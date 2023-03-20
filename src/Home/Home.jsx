@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container as MapDiv,
   NaverMap,
@@ -18,6 +18,8 @@ const Home = () => {
   // },[])
 
   const navermaps = useNavermaps();
+  const [centerPoint, setCenterPoint] = useState({});
+  const handleCenter = value => setCenterPoint(value);
 
   const geocoder = navermaps.Service.geocode(
     {
@@ -41,9 +43,13 @@ const Home = () => {
   return (
     <S.MapBox>
       <NaverMap
-        defaultCenter={new navermaps.LatLng(37.5568085, 126.9199839)}
+        defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.x)}
         defaultZoom={15}
         zoomControl={true}
+        // onCenterChanged={value => {
+        //   console.log(value.x);
+        // }}
+        onCenterChanged={handleCenter}
       >
         <Marker position={new navermaps.LatLng(37.5568085, 126.9199839)} />
       </NaverMap>
