@@ -9,30 +9,63 @@ const Photo = ({
   handleImg,
   uploadInfo,
 }) => {
+  const imageUrl = uploadInfo.imageUrl;
+
+  console.log('imageUrl', imageUrl);
+
   return (
     <S.PhotoBox isOpen={true} ariaHideApp={false}>
       <div>
         <button onClick={onClickCamera}>x</button>
         <p>전단지 0면</p>
       </div>
-      <img alt="카메라 렌즈로 촬영하는 화면" onClick={onClickImg} />
-      <div>
-        <img alt="사진첩" onClick={onClickImg} />
+      <S.Camera>
+        <img alt="카메라 렌즈로 촬영하는 화면" onClick={onClickImg} />
         <input
           ref={inputRef}
           type="file"
+          multiple
           hidden
           accept="image/*"
           onChange={handleImg}
         />
-        <div>
-          <UploadedImg uploadInfo={uploadInfo} />
-          {/* <img src={URL.createObjectURL(uploadInfo.imageUrl[0])} alt="flyers" />
-          <img src={URL.createObjectURL(uploadInfo.imageUrl[1])} alt="flyers" />
-          <img src={URL.createObjectURL(uploadInfo.imageUrl[2])} alt="flyers" />
-          <img src={URL.createObjectURL(uploadInfo.imageUrl[3])} alt="flyers" /> */}
-        </div>
-      </div>
+      </S.Camera>
+      <S.BottomBox>
+        <S.Album>
+          <img alt="사진첩" onClick={onClickImg} />
+          <input
+            ref={inputRef}
+            type="file"
+            multiple
+            hidden
+            accept="image/*"
+            onChange={handleImg}
+          />
+        </S.Album>
+        <S.ImgBox>
+          {/* <UploadedImg uploadInfo={uploadInfo} /> */}
+          {imageUrl[0] ? (
+            <img alt="flyer1" src={`${URL.createObjectURL(imageUrl[0])}`} />
+          ) : (
+            <div>1면</div>
+          )}
+          {imageUrl[1] ? (
+            <img alt="flyer2" src={`${URL.createObjectURL(imageUrl[1])}`} />
+          ) : (
+            <div>2면</div>
+          )}
+          {imageUrl[2] ? (
+            <img alt="flyer3" src={`${URL.createObjectURL(imageUrl[2])}`} />
+          ) : (
+            <div>3면</div>
+          )}
+          {imageUrl[3] ? (
+            <img alt="flyer4" src={`${URL.createObjectURL(imageUrl[3])}`} />
+          ) : (
+            <div>4면</div>
+          )}
+        </S.ImgBox>
+      </S.BottomBox>
     </S.PhotoBox>
   );
 };
