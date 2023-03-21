@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container as MapDiv,
   NaverMap,
@@ -16,8 +16,28 @@ const Home = () => {
   //     앱종료되는 로직
   //   }
   // },[])
+
   const navermaps = useNavermaps();
 
+  const geocoder = navermaps.Service.geocode(
+    {
+      address: '테헤란로 427',
+    },
+    function (status, response) {
+      if (status !== navermaps.Service.Status.OK) {
+        console.log('error');
+        return alert('Something wrong!');
+      }
+      console.log('응답 = ', response);
+      const result = response.result;
+      console.log('결과 = ', result); // Container of the search result
+      const items = result.items; // Array of the search result
+      console.log('아이템 = ', items);
+      // do Something
+      console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
+    }
+  );
+  console.log('지오코더 = ', geocoder);
   return (
     <S.MapBox>
       <NaverMap
