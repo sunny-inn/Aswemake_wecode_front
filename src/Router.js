@@ -4,6 +4,7 @@ import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import Upload from './Upload/Upload';
+import Footer from './Components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
