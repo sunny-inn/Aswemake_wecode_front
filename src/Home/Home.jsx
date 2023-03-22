@@ -37,7 +37,7 @@ const Home = () => {
       console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
     }
   );
-  console.log('지오코더 = ', geocoder);
+
   return (
     <S.MapBox>
       <NaverMap
