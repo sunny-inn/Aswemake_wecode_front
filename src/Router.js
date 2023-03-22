@@ -4,7 +4,7 @@ import Container from './Components/Container/Container';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Footer from './Components/Footer/Footer';
+
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 
