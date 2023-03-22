@@ -5,6 +5,7 @@ import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import Footer from './Components/Footer/Footer';
 import Upload from './Upload/Upload';
+import Footer from './Components/Footer/Footer';
 
 const Router = () => {
   return (
