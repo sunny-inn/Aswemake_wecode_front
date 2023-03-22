@@ -6,6 +6,7 @@ const Login = () => {
 
   const [inputId, setInputId] = useState('');
   const [inputPw, setInputPw] = useState('');
+  const [showPw, setShowPw] = useState(false);
 
   const saveUserId = e => {
     setInputId(e.target.value);
@@ -13,6 +14,7 @@ const Login = () => {
   const saveUserPw = e => {
     setInputPw(e.target.value);
   };
+
   const goToHome = () => {
     // fetch(`주소`, {
     //   method: 'POST',
@@ -49,7 +51,7 @@ const Login = () => {
       />
       <input
         name="pw"
-        type="password"
+        type={showPw ? 'text' : 'password'}
         placeholder="비밀번호"
         value={inputPw}
         onChange={e => {
@@ -71,7 +73,7 @@ const Login = () => {
       )}
 
       <Link to="/signup">
-        <p>아직 회원이 아니신가요?</p>
+        <button>회원가입</button>
       </Link>
     </div>
   );
