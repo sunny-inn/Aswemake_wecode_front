@@ -4,12 +4,17 @@ import ReactModal from 'react-modal';
 export const SignupBox = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  position: absolute;
   width: 360px;
-  height: 640px;
-  border: 1px solid black;
-  padding: 10px;
+  height: 800px;
+  left: 16px;
+  top: 215px;
+
+  background: #ffffff;
+  border: 2px solid #8b8b8b;
 `;
+
+export const TitleBox = styled.div``;
 
 export const ModalBox = styled(ReactModal)`
   width: 200px;

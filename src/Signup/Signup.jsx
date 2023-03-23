@@ -114,6 +114,10 @@ const Signup = () => {
 
   return (
     <S.SignupBox>
+      <S.TitleBox>
+        <h1>회원가입</h1>
+        <button>서비스 이용약관 확인</button>
+      </S.TitleBox>
       <label>아이디</label>
       <div>
         <input name="id" value={id} type="text" onChange={handleId} />
