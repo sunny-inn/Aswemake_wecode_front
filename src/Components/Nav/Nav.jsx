@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
+import * as S from './Nav.style';
 
 const Nav = () => {
-  return <div></div>;
+  return <S.NavBox />;
 };
 
 export default Nav;

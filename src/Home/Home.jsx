@@ -21,6 +21,7 @@ const Home = () => {
   const [centerPoint, setCenterPoint] = useState({});
   const handleCenter = value => setCenterPoint(value);
 
+  console.log('center', centerPoint);
   const geocoder = navermaps.Service.geocode(
     {
       address: '테헤란로 427',
@@ -30,26 +31,27 @@ const Home = () => {
         console.log('error');
         return alert('Something wrong!');
       }
-      console.log('응답 = ', response);
+      // console.log('응답 = ', response);
       const result = response.result;
-      console.log('결과 = ', result); // Container of the search result
+      // console.log('결과 = ', result); // Container of the search result
       const items = result.items; // Array of the search result
-      console.log('아이템 = ', items);
+      // console.log('아이템 = ', items);
       // do Something
-      console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
+      // console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
     }
   );
-  console.log('지오코더 = ', geocoder);
+
   return (
     <S.MapBox>
       <NaverMap
-        defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.x)}
+        // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
+        defaultCenter={new navermaps.LatLng(37.5568085, 126.9199839)}
         defaultZoom={15}
         zoomControl={true}
+        onCenterChanged={handleCenter}
         // onCenterChanged={value => {
         //   console.log(value.x);
         // }}
-        onCenterChanged={handleCenter}
       >
         <Marker position={new navermaps.LatLng(37.5568085, 126.9199839)} />
       </NaverMap>

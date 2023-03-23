@@ -1,9 +1,8 @@
 import { css } from 'styled-components';
 
-export const mixins = {
-  flexbox: (direction = 'row', align = 'center', justify = 'center') => `
-    display : flex;
-    flex-direction : ${direction};
-    align-items:${align};
-    justify-content : ${justify}`,
-};
+export const flex = (jc = 'center', ai = 'center', fd = 'row') => css`
+  display: flex;
+  justify-content: ${jc};
+  align-items: ${ai};
+  flex-direction: ${fd};
+`;

@@ -4,13 +4,14 @@ import Container from './Components/Container/Container';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Footer from './Components/Footer/Footer';
+import Nav from './Components/Nav/Nav';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route element={<Container />}>
           <Route path="/" element={<Home />} />
