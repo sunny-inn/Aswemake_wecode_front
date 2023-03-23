@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import Modal from '../Components/Modal/Modal';
+import Birth from './SignupComponents/Birth/Birth';
+import Terms from './SignupComponents/Terms/Terms';
+import Id from './SignupComponents/Id/Id';
+import Submit from './SignupComponents/Submit/Submit';
 import * as S from './Signup.style';
 
 const Signup = () => {
@@ -16,8 +19,8 @@ const Signup = () => {
     phoneNumber: '',
     // postalCode: '',
   });
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isSubmitOpen, setIsSubmitOpen] = useState(false);
 
   const {
     id,
@@ -32,11 +35,12 @@ const Signup = () => {
     // postalCode,
   } = signupInfo;
 
+  const onClickTerms = () => setIsTermsOpen(prev => !prev);
+  console.log('btn', isTermsOpen);
+
   const handleId = e => {
     setSignupInfo(prev => ({ ...prev, id: e.target.value }));
   };
-
-  const handleModal = () => setIsModalOpen(true);
 
   const handlePasswd = e => {
     setSignupInfo(prev => ({ ...prev, passwd: e.target.value }));
@@ -84,9 +88,9 @@ const Signup = () => {
     setSignupInfo(prev => ({ ...prev, addressDetail: e.target.value }));
   };
 
-  const handleBirth = e => {
-    setSignupInfo(prev => ({ ...prev, birth: e.target.value }));
-  };
+  // const handleBirth = e => {
+  //   setSignupInfo(prev => ({ ...prev, birth: e.target.value }));
+  // };
 
   const handleGender = e => {
     setSignupInfo(prev => ({ ...prev, gender: e.target.value }));
@@ -98,7 +102,7 @@ const Signup = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    setIsModalOpen(prev => !prev);
+    setIsSubmitOpen(prev => !prev);
     // if (payments.totalProductPrice && payments.totalDeliveryPrice) {
     //   fetch(`${API.ORDERS}/payment`, {
     //     method: 'POST',
@@ -123,21 +127,14 @@ const Signup = () => {
     <S.SignupBox>
       <S.TitleBox>
         <h1>회원가입</h1>
-        <button>서비스 이용약관 확인</button>
+        <button onClick={onClickTerms}>서비스 이용약관 확인</button>
+        {isTermsOpen && <Terms onClickTerms={onClickTerms} />}
       </S.TitleBox>
       <S.FormBox>
         <S.InputTitle>
           <label>아이디</label>
         </S.InputTitle>
-        <div>
-          <input name="id" value={id} type="text" onChange={handleId} />
-          <button onClick={handleModal}>중복 확인</button>
-          {isModalOpen && (
-            <S.ModalBox>
-              사용할 수 있는 아이디입니다, 사용할 수 없는 아이디입니다
-            </S.ModalBox>
-          )}
-        </div>
+        <Id />
         <S.InputTitle>
           <label>비밀번호</label>
         </S.InputTitle>
@@ -170,21 +167,10 @@ const Signup = () => {
           <label>이름</label>
         </S.InputTitle>
         <input name="name" value={name} type="text" onChange={handleName} />
-
         <S.InputTitle>
           <label>생년월일</label>
         </S.InputTitle>
-        <input name="birth" value={birth} type="text" onChange={handleBirth} />
-        <button onClick={onSubmit}>가입하기</button>
-        <S.InputTitle>
-          <label>휴대폰 번호</label>
-        </S.InputTitle>
-        <input
-          name="phoneNumber"
-          value={phoneNumber}
-          type="text"
-          onChange={handlePhoneNumber}
-        />
+        <Birth />
         <div>
           <S.InputTitle>
             <label>주소</label>
@@ -207,9 +193,28 @@ const Signup = () => {
             </div>
           )}
         </div>
-        <button onClick={onSubmit}>회원가입 완료</button>
+        <S.InputTitle>
+          <label>휴대전화</label>
+        </S.InputTitle>
+        <div>
+          <input
+            name="phoneNumber"
+            value={phoneNumber}
+            type="text"
+            onChange={handlePhoneNumber}
+            placeholder="휴대폰 번호 10자리 또는 11자리 입력하세요"
+          />
+          <button>인증번호 받기</button>
+        </div>
+        <div>
+          <input placeholder="인증번호 6자리 숫자 입력" />
+          <button>확인</button>
+        </div>
+        <div>
+          <button onClick={onSubmit}>회원가입 완료</button>
+        </div>
       </S.FormBox>
-      {isModalOpen && <Modal />}
+      {isSubmitOpen && <Submit />}
     </S.SignupBox>
   );
 };
