@@ -207,6 +207,7 @@ const Signup = () => {
             </div>
           )}
         </div>
+        <button onClick={onSubmit}>회원가입 완료</button>
       </S.FormBox>
       {isModalOpen && <Modal />}
     </S.SignupBox>
