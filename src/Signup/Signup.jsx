@@ -8,12 +8,13 @@ const Signup = () => {
     id: '',
     passwd: '',
     passwdCheck: '',
-    phoneNumber: '',
-    postalCode: '',
+    gender: '',
+    name: '',
+    birth: '',
     address: '',
     addressDetail: '',
-    birth: '',
-    gender: '',
+    phoneNumber: '',
+    // postalCode: '',
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,11 +23,13 @@ const Signup = () => {
     id,
     passwd,
     passwdCheck,
-    phoneNumber,
-    postalCode,
+    gender,
+    name,
+    birth,
     address,
     addressDetail,
-    birth,
+    phoneNumber,
+    // postalCode,
   } = signupInfo;
 
   const handleId = e => {
@@ -43,8 +46,8 @@ const Signup = () => {
     setSignupInfo(prev => ({ ...prev, passwdCheck: e.target.value }));
   };
 
-  const handlePhoneNumber = e => {
-    setSignupInfo(prev => ({ ...prev, phoneNumber: e.target.value }));
+  const handleName = e => {
+    setSignupInfo(prev => ({ ...prev, name: e.target.value }));
   };
 
   const scriptUrl =
@@ -89,6 +92,10 @@ const Signup = () => {
     setSignupInfo(prev => ({ ...prev, gender: e.target.value }));
   };
 
+  const handlePhoneNumber = e => {
+    setSignupInfo(prev => ({ ...prev, phoneNumber: e.target.value }));
+  };
+
   const onSubmit = e => {
     e.preventDefault();
     setIsModalOpen(prev => !prev);
@@ -118,53 +125,77 @@ const Signup = () => {
         <h1>회원가입</h1>
         <button>서비스 이용약관 확인</button>
       </S.TitleBox>
-      <label>아이디</label>
-      <div>
-        <input name="id" value={id} type="text" onChange={handleId} />
-        <button onClick={handleModal}>중복 확인</button>
-        {isModalOpen && (
-          <S.ModalBox>
-            사용할 수 있는 아이디입니다, 사용할 수 없는 아이디입니다
-          </S.ModalBox>
+      <S.FormBox>
+        <S.InputTitle>
+          <label>아이디</label>
+        </S.InputTitle>
+        <div>
+          <input name="id" value={id} type="text" onChange={handleId} />
+          <button onClick={handleModal}>중복 확인</button>
+          {isModalOpen && (
+            <S.ModalBox>
+              사용할 수 있는 아이디입니다, 사용할 수 없는 아이디입니다
+            </S.ModalBox>
+          )}
+        </div>
+        <S.InputTitle>
+          <label>비밀번호</label>
+        </S.InputTitle>
+        <input
+          name="passwd"
+          value={passwd}
+          type="password"
+          onChange={handlePasswd}
+        />
+        <S.InputTitle>
+          <label>비밀번호 확인</label>
+        </S.InputTitle>
+        <input
+          name="passwdCheck"
+          value={passwdCheck}
+          type="password"
+          onChange={handlePasswdCheck}
+        />
+        {passwdCheck !== '' && passwd !== passwdCheck && (
+          <div>비밀번호가 다릅니다</div>
         )}
-      </div>
-      <label>비밀번호</label>
-      <input
-        name="passwd"
-        value={passwd}
-        type="password"
-        onChange={handlePasswd}
-      />
-      <label>비밀번호 확인</label>
-      <input
-        name="passwdCheck"
-        value={passwdCheck}
-        type="password"
-        onChange={handlePasswdCheck}
-      />
-      {passwdCheck !== '' && passwd !== passwdCheck && (
-        <div>비밀번호가 다릅니다</div>
-      )}
-      <label>휴대폰 번호</label>
-      <input
-        name="phoneNumber"
-        value={phoneNumber}
-        type="text"
-        onChange={handlePhoneNumber}
-      />
-      <div>
-        {!address ? (
-          <>
-            <label>주소 찾기</label>
+        <S.InputTitle>
+          <p>성별</p>
+        </S.InputTitle>
+        <div onChange={handleGender}>
+          <input type="radio" value="남자" name="gender" /> 남자
+          <input type="radio" value="여자" name="gender" /> 여자
+        </div>
+        <S.InputTitle>
+          <label>이름</label>
+        </S.InputTitle>
+        <input name="name" value={name} type="text" onChange={handleName} />
+
+        <S.InputTitle>
+          <label>생년월일</label>
+        </S.InputTitle>
+        <input name="birth" value={birth} type="text" onChange={handleBirth} />
+        <button onClick={onSubmit}>가입하기</button>
+        <S.InputTitle>
+          <label>휴대폰 번호</label>
+        </S.InputTitle>
+        <input
+          name="phoneNumber"
+          value={phoneNumber}
+          type="text"
+          onChange={handlePhoneNumber}
+        />
+        <div>
+          <S.InputTitle>
+            <label>주소</label>
+          </S.InputTitle>
+          {!address ? (
             <button type="button" onClick={handleClick}>
               주소 검색
             </button>
-          </>
-        ) : (
-          <>
-            <label>주소</label>
+          ) : (
             <div>
-              <input name="postalCode" value={postalCode} readOnly />
+              {/* <input name="postalCode" value={postalCode} readOnly /> */}
               <input name="address" value={address} readOnly />
               <input
                 name="addressDetail"
@@ -174,32 +205,12 @@ const Signup = () => {
                 placeholder="상세 주소"
               />
             </div>
-          </>
-        )}
-      </div>
-
-      <label>생년월일</label>
-      <input name="birth" value={birth} type="text" onChange={handleBirth} />
-      <label>성별</label>
-      <select name="gender" onChange={e => handleGender(e)}>
-        <option value="none" hidden>
-          성별
-        </option>
-        {GENDER_OPTIONS.map(({ id, gender }) => (
-          <option key={id} value={gender}>
-            {gender}
-          </option>
-        ))}
-      </select>
-      <button onClick={onSubmit}>가입하기</button>
+          )}
+        </div>
+      </S.FormBox>
       {isModalOpen && <Modal />}
     </S.SignupBox>
   );
 };
 
 export default Signup;
-
-const GENDER_OPTIONS = [
-  { id: 1, gender: '여성' },
-  { id: 2, gender: '남성' },
-];
