@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Sample = () => {
+const Detail = () => {
   return <div></div>;
 };
 
-export default Sample;
+export default Detail;
