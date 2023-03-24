@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ReactModal from 'react-modal';
-import { flex } from '../../../Styles/Mixin';
+import { flex } from '../../Styles/Mixin';
 
 export const TermsBox = styled(ReactModal)`
   ${flex('center', 'center', 'column')}

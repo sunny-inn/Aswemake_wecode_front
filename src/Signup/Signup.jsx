@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import Birth from './SignupComponents/Birth/Birth';
-import Terms from './SignupComponents/Terms/Terms';
+import Terms from '../Components/Terms/Terms';
 import Id from './SignupComponents/Id/Id';
 import Submit from './SignupComponents/Submit/Submit';
 import * as S from './Signup.style';
