@@ -12,6 +12,7 @@ const HomeCarousel = ({ homeMartList, selectedMart }) => {
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '25px',
+    dot: false,
   };
   const selectedMartList = selectedMart ? [selectedMart] : homeMartList;
 
