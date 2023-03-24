@@ -8,6 +8,7 @@ import Nav from './Components/Nav/Nav';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ const Router = () => {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/upload" element={<Upload />} />
       </Routes>
     </BrowserRouter>
   );
