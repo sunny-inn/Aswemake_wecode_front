@@ -8,7 +8,6 @@ import Nav from './Components/Nav/Nav';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 
-
 const Router = () => {
   return (
     <BrowserRouter>
