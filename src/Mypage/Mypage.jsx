@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import Switch from './MypageComponents/Switch/Switch';
+import Terms from '../Components/Terms';
 import * as S from './Mypage.style';
 
 const Mypage = () => {
@@ -28,8 +29,7 @@ const Mypage = () => {
         {isSwitch && <Switch />}
       </div>
       <button onClick={toTerms}>큐마켓 전단지도 이용약관 확인하기</button>
-      {/* Terms 가져오기
-      {isTerms && <Terms />} */}
+      {isTerms && <Terms />}
     </S.MypageBox>
   );
 };
