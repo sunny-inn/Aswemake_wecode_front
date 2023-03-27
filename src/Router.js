@@ -11,7 +11,6 @@ import Mypage from './Mypage/Mypage';
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
         <Route element={<Container />}>
           <Route path="/" element={<Home />} />
@@ -20,7 +19,6 @@ const Router = () => {
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/upload" element={<Upload />} />
       </Routes>
     </BrowserRouter>
   );
