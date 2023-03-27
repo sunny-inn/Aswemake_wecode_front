@@ -4,14 +4,14 @@ import Container from './Components/Container/Container';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
-import Nav from './Components/Nav/Nav';
+// import Nav from './Components/Nav/Nav';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
         <Route element={<Container />}>
           <Route path="/" element={<Home />} />
