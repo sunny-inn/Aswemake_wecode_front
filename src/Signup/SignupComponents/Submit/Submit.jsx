@@ -11,8 +11,14 @@ const Submit = () => {
 
   return (
     <S.SubmitBox isOpen={true} ariaHideApp={false}>
-      <p>회원가입 성공</p>
-      <button onClick={toLogin}>로그인 하러가기</button>
+      <S.TitleBox>
+        <img alt="arrow" src="images/signup/arrow.png" />
+        <h1>회원가입 완료</h1>
+        <div />
+      </S.TitleBox>
+      <S.SubmitMsg>축하드립니다!</S.SubmitMsg>
+      <S.SubmitMsg>회원가입이 완료되었습니다.</S.SubmitMsg>
+      <S.SubmitBtn onClick={toLogin}>로그인 하러가기</S.SubmitBtn>
     </S.SubmitBox>
   );
 };
