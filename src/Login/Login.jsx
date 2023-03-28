@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import * as S from './Login.style';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [inputId, setInputId] = useState('');
-  const [inputPw, setInputPw] = useState('');
+  const [input, setInput] = useState({ id: '', pw: '', showPw: false });
+  const [checked, setChecked] = useState(false);
 
-  const saveUserId = e => {
-    setInputId(e.target.value);
+  const saveInput = e => {
+    setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
   };
-  const saveUserPw = e => {
-    setInputPw(e.target.value);
+
+  const toggleShowPw = () => {
+    setInput(prevInput => ({ ...prevInput, showPw: !prevInput.showPw }));
   };
+
+  const handleCheckboxImgClick = () => {
+    setChecked(prevChecked => !prevChecked);
+  };
+
   const goToHome = () => {
     // fetch(`주소`, {
     //   method: 'POST',
@@ -27,53 +34,72 @@ const Login = () => {
     //   .then(response => response.json())
     //   .then(data => {
     //     localStorage.setItem('token', data.accessToken);
-    //     if (localStorage.getItem('token') !== 'undefined') {
-    //       return navigate('/');
-    //     } else {
-    //       alert('아이디 혹은 비밀번호가 일치하지 않습니다');
-    //     }
-    //   });
+    // if (localStorage.getItem('token') !== 'undefined') {
+    //   return navigate('/');
+    // } else {
+    //   const message = document.getElementById('message');
+    //   message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';
+    // }
   };
 
   return (
-    <div>
-      <h1>로그인</h1>
-      <input
-        name="id"
-        type="text"
-        placeholder="아이디"
-        value={inputId}
-        onChange={e => {
-          saveUserId(e);
-        }}
-      />
-      <input
-        name="pw"
-        type="password"
-        placeholder="비밀번호"
-        value={inputPw}
-        onChange={e => {
-          saveUserPw(e);
-        }}
-      />
+    <S.LoginContainer>
+      <S.LogoImg src="./images/logo.png" alt="로고" />
       <div>
-        <input type="checkbox" />
-        <label>로그인 상태 유지</label>
+        <S.InputBox
+          name="id"
+          type="text"
+          placeholder=" 아이디를 입력해주세요."
+          value={input.id}
+          onChange={saveInput}
+        />
+        <S.InputBox
+          name="pw"
+          type={input.showPw ? 'text' : 'password'}
+          placeholder=" 비밀번호를 입력해주세요."
+          value={input.pw}
+          onChange={saveInput}
+        />
+        <S.ShowPwImg
+          onClick={toggleShowPw}
+          src={
+            input.showPw
+              ? './images/passwordIconColor.png'
+              : './images/passwordIcon.png'
+          }
+          alt="비밀번호 표시/숨김 아이콘"
+        />
+        {/* <S.FailMsg id="message"></S.FailMsg> */}
+        <S.KeepLoginBox>
+          <S.CheckboxImg
+            src={
+              checked ? './images/checkedImg.png' : './images/uncheckedImg.png'
+            }
+            onClick={handleCheckboxImgClick}
+          />
+          <S.KeepLoginSpan>로그인 상태 유지</S.KeepLoginSpan>
+        </S.KeepLoginBox>
+        <S.Button
+          onClick={() => goToHome(input.id, input.pw)}
+          disabled={input.id.length < 2 || input.pw.length < 2}
+        >
+          <span>로그인</span>
+        </S.Button>
+        <S.LineHr />
+        <Link to="/signup">
+          <S.Button
+            disabled={false}
+            style={{
+              border: '1px solid #ff6a21',
+              color: '#ff6a21',
+              backgroundColor: '#fff',
+            }}
+          >
+            회원가입
+          </S.Button>
+        </Link>
       </div>
-      {inputId.length > 1 && inputPw.length > 1 ? (
-        <button onClick={goToHome} disabled={false}>
-          <span>로그인</span>
-        </button>
-      ) : (
-        <button disabled={true}>
-          <span>로그인</span>
-        </button>
-      )}
-
-      <Link to="/signup">
-        <p>아직 회원이 아니신가요?</p>
-      </Link>
-    </div>
+    </S.LoginContainer>
   );
 };
 
