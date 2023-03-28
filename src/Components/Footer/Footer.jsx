@@ -1,69 +1,40 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Footer.style';
 
 const Footer = () => {
-  const [clickedImages, setClickedImages] = useState({
-    0: false,
-    1: false,
-    2: false,
-    3: false,
-  });
+  const [clickedIndex, setClickedIndex] = useState(0);
+
+  const navigate = useNavigate();
+
+  const goToNav = item => {
+    navigate(`${item.goTo}`);
+  };
 
   const handleClicked = index => {
-    setClickedImages({ ...clickedImages, [index]: !clickedImages[index] });
+    setClickedIndex(index);
   };
 
   return (
     <S.FooterContainer>
       <S.FooterUl>
-        <div>
-          <S.FooterList onClick={() => handleClicked(0)}>
-            <S.FooterImg
-              src={
-                clickedImages[0]
-                  ? FOOTER_LIST[0].checkedImg
-                  : FOOTER_LIST[0].defaultImg
-              }
-            />
-            {FOOTER_LIST[0].title}
-          </S.FooterList>
-        </div>
-        <div>
-          <S.FooterList onClick={() => handleClicked(1)}>
-            <S.FooterImg
-              src={
-                clickedImages[1]
-                  ? FOOTER_LIST[1].checkedImg
-                  : FOOTER_LIST[1].defaultImg
-              }
-            />
-            {FOOTER_LIST[1].title}
-          </S.FooterList>
-        </div>
-        <div>
-          <S.FooterList onClick={() => handleClicked(2)}>
-            <S.FooterImg
-              src={
-                clickedImages[2]
-                  ? FOOTER_LIST[2].checkedImg
-                  : FOOTER_LIST[2].defaultImg
-              }
-            />
-            {FOOTER_LIST[2].title}
-          </S.FooterList>
-        </div>
-        <div>
-          <S.FooterList onClick={() => handleClicked(3)}>
-            <S.FooterImg
-              src={
-                clickedImages[3]
-                  ? FOOTER_LIST[3].checkedImg
-                  : FOOTER_LIST[3].defaultImg
-              }
-            />
-            {FOOTER_LIST[3].title}
-          </S.FooterList>
-        </div>
+        {FOOTER_LIST.map((item, index) => (
+          <div key={index}>
+            <S.FooterList
+              onClick={() => {
+                handleClicked(index);
+                goToNav(item);
+              }}
+              isClicked={index === clickedIndex}
+            >
+              <S.FooterImg
+                onClick={goToNav}
+                src={index === clickedIndex ? item.checkedImg : item.defaultImg}
+              />
+              <S.FooterTitle> {item.title}</S.FooterTitle>
+            </S.FooterList>
+          </div>
+        ))}
       </S.FooterUl>
     </S.FooterContainer>
   );
@@ -75,25 +46,29 @@ const FOOTER_LIST = [
   {
     id: 1,
     title: '홈',
-    defaultImg: './images/storefront.png',
-    checkedImg: './images/store.png',
+    defaultImg: './images/store.png',
+    checkedImg: './images/storefront.png',
+    goTo: '/',
   },
   {
     id: 2,
     title: '자주가요',
     defaultImg: './images/favorite.png',
     checkedImg: './images/colorFavorite.png',
+    goTo: '/favorite',
   },
   {
     id: 3,
     title: '전단 등록',
     defaultImg: './images/upload.png',
     checkedImg: './images/colorUpload.png',
+    goTo: '/upload',
   },
   {
     id: 4,
     title: '마이페이지',
     defaultImg: './images/mypage.png',
     checkedImg: './images/colorMypage.png',
+    goTo: '/Mypage',
   },
 ];

@@ -5,12 +5,12 @@ export const FooterContainer = styled.div`
   height: 56px;
   background-color: white;
   position: absolute;
-
-  bottom: 0;
+  bottom: -42px;
 `;
 export const FooterUl = styled.ul`
   display: flex;
   padding-left: 0;
+  margin-top: 13px;
   justify-content: space-around;
   align-items: center;
   text-align: center;
@@ -26,14 +26,9 @@ export const FooterList = styled.li`
   display: flex;
   align-items: center;
   text-align: center;
-  color: #bcbcbc;
+  color: ${props => (props.isClicked ? '#ff6a21' : '#bcbcbc')};
   cursor: pointer;
   transition: 0.3s;
-
-  :hover,
-  ::selection {
-    color: #ff6a21;
-  }
 `;
 export const FooterTitle = styled.span`
   margin: 3px 0 10px 0;
