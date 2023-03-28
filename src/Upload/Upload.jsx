@@ -8,7 +8,7 @@ const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState({});
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
-  const [isCameraClicked, setIsCameraClicked] = useState(false);
+  const [isCloseClicked, setIsCloseClicked] = useState(false);
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
 
@@ -26,7 +26,7 @@ const Upload = () => {
   //       setMarts(data.data));
   // }, [phoneNumber]);
 
-  const onClickCamera = () => setIsCameraClicked(prev => !prev);
+  const onClickClose = () => setIsCloseClicked(prev => !prev);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -35,7 +35,8 @@ const Upload = () => {
   const inputRef = useRef(null);
 
   // 이미지 넣기
-  const onClickImg = () => {
+  const onClickImg = e => {
+    e.preventDefault();
     if (!inputRef.current) return;
     inputRef.current.click();
   };
@@ -48,7 +49,7 @@ const Upload = () => {
 
     setUploadInfo(prev => ({
       ...prev,
-      imageUrl: files,
+      imageUrl: [...uploadInfo.imageUrl, files[0]],
     }));
   };
 
@@ -125,11 +126,11 @@ const Upload = () => {
       <button onClick={onClickTutorial}>등록 방법 확인</button>
       {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
       <div>
-        <S.CameraImg alt="camera" onClick={onClickCamera} />
+        <S.CameraImg alt="camera" onClick={onClickClose} />
         <S.ImgCount>{uploadInfo.imageUrl ? '4' : '0'}/4</S.ImgCount>
-        {isCameraClicked && (
+        {isCloseClicked && (
           <Photo
-            onClickCamera={onClickCamera}
+            onClickClose={onClickClose}
             onClickImg={onClickImg}
             inputRef={inputRef}
             handleImg={handleImg}

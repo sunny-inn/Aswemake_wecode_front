@@ -3,7 +3,7 @@ import UploadedImg from '../UploadedImg/UploadedImg';
 import * as S from './Photo.style';
 
 const Photo = ({
-  onClickCamera,
+  onClickClose,
   onClickImg,
   inputRef,
   handleImg,
@@ -11,13 +11,11 @@ const Photo = ({
 }) => {
   const imageUrl = uploadInfo.imageUrl;
 
-  console.log('imageUrl', imageUrl);
-
   return (
     <S.PhotoBox isOpen={true} ariaHideApp={false}>
       <div>
-        <button onClick={onClickCamera}>x</button>
-        <p>전단지 0면</p>
+        <button onClick={onClickClose}>x</button>
+        <p>전단지 {imageUrl.length}면</p>
       </div>
       <S.Camera>
         <img alt="카메라 렌즈로 촬영하는 화면" onClick={onClickImg} />
