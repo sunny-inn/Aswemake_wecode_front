@@ -7,7 +7,7 @@ import {
 } from 'react-naver-maps';
 
 export const MapBox = styled(MapDiv)`
-  height: 640px;
+  height: 616px;
   width: 360px;
 `;
 

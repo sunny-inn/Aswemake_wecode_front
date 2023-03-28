@@ -9,6 +9,7 @@ import {
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import * as S from './Home.style';
+import Footer from '../Components/Footer/Footer';
 
 const Home = () => {
   // useEffect(()=>{
@@ -84,7 +85,7 @@ const Home = () => {
             />
           );
         })}
-        <HomeCarousel homeMartList={homeMartList} selectedMart={selectedMart} />
+        {/* <HomeCarousel homeMartList={homeMartList} selectedMart={selectedMart} /> */}
       </NaverMap>
     </S.MapBox>
   );
