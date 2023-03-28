@@ -15,6 +15,12 @@ a{
 button{
       cursor: pointer;
     }
+li{
+  list-style:none;
+}
+input{
+  outline-style: none;
+}
 `;
 
 export default GlobalStyle;
