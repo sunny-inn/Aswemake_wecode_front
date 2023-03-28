@@ -19,7 +19,7 @@ li{
   list-style:none;
 }
 input{
-  outline-style: none;
+  outline: none;
 }
 `;
 
