@@ -18,7 +18,7 @@ button{
 li{
   list-style:none;
 }
-input{
+input:focus{
   outline: none;
 }
 `;
