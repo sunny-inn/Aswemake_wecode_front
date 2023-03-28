@@ -84,7 +84,7 @@ const Home = () => {
             />
           );
         })}
-        <HomeCarousel homeMartList={homeMartList} selectedMart={selectedMart} />
+        {/* <HomeCarousel homeMartList={homeMartList} selectedMart={selectedMart} /> */}
       </NaverMap>
     </S.MapBox>
   );
