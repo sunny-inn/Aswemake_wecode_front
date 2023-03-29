@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
 import * as S from './Login.style';
 
 const Login = () => {
   const navigate = useNavigate();
+  const cookies = new Cookies();
 
   const [input, setInput] = useState({ id: '', pw: '', showPw: false });
   const [checked, setChecked] = useState(false);
@@ -21,6 +23,12 @@ const Login = () => {
   };
 
   const goToHome = () => {
+    cookies.set('my-cookie', `response.cookie`, {
+      maxAge: 60000000,
+      secure: true,
+      httpOnly: false,
+      sameSite: 'none',
+    });
     fetch('http://172.30.1.41:8000/api/users/login', {
       method: 'POST',
       headers: {
@@ -33,8 +41,11 @@ const Login = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         localStorage.setItem('token', data.accessToken);
+        cookies.set('refreshToken', data.refreshToken, {
+          httpOnly: false,
+          secure: false,
+        }); // 쿠키에 refreshToken 저장
         if (localStorage.getItem('token') !== 'undefined') {
           return navigate('/');
         } else {
@@ -71,6 +82,7 @@ const Login = () => {
           }
           alt="비밀번호 표시/숨김 아이콘"
         />
+        <S.FailMsg id="message" />
         <S.KeepLoginBox>
           <S.CheckboxImg
             src={
