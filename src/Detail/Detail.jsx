@@ -29,7 +29,7 @@ const Detail = () => {
             <S.SecImg src="./images/secRec.png" alt="두번째" />
             <div>
               <S.ThirdImg src="./images/thirdRec.png" alt="세번째" />
-              <img src="./images/thirdRec.png" alt="네번째" />
+              <img src="./images/fourthRec.png" alt="네번째" />
             </div>
           </li>
         </S.PostersUl>
