@@ -8,7 +8,7 @@ const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState({});
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
-  const [isCameraClicked, setIsCameraClicked] = useState(false);
+  const [isCloseClicked, setIsCloseClicked] = useState(false);
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
 
@@ -26,7 +26,7 @@ const Upload = () => {
   //       setMarts(data.data));
   // }, [phoneNumber]);
 
-  const onClickCamera = () => setIsCameraClicked(prev => !prev);
+  const onClickClose = () => setIsCloseClicked(prev => !prev);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -35,16 +35,25 @@ const Upload = () => {
   const inputRef = useRef(null);
 
   // 이미지 넣기
-  const onClickImg = () => {
+  const onClickImg = e => {
+    e.preventDefault();
     if (!inputRef.current) return;
     inputRef.current.click();
   };
 
-  // 이미지 변경됐을 때 실제 스테이트에 넣는 함수
-  const handleImg = ({ target: { files } }) => {
-    setUploadInfo(files[0]);
+  // 이미지 state에 넣기
+  //FIXME: img가 배열에 쌓이도록 구현해야 함
+  const handleImg = e => {
+    e.preventDefault();
+    const files = e.target.files;
+
+    setUploadInfo(prev => ({
+      ...prev,
+      imageUrl: [...uploadInfo.imageUrl, files[0]],
+    }));
   };
 
+  // 전단 행사 기간
   const now = new Date();
   const year = now.getFullYear();
 
@@ -58,14 +67,22 @@ const Upload = () => {
   const endDate =
     month.length === 2 ? year + month + date : year + '0' + month + date;
 
+  // 등록 요청
   const [uploadInfo, setUploadInfo] = useState({
     martId: marts.id,
     imageUrl: [],
-    endDate,
+    endDate: endDate,
   });
 
   const uploadForm = new FormData();
-  uploadForm.append('imageUrl', uploadInfo.imageUrl);
+  for (let i = 0; i < 4; i++) {
+    uploadForm.append('imagesUrl', uploadInfo.imageUrl[i]);
+  }
+
+  // uploadForm.append('imageUrl', uploadInfo.imageUrl[0]);
+  // uploadForm.append('imageUrl', uploadInfo.imageUrl[1]);
+  // uploadForm.append('imageUrl', uploadInfo.imageUrl[2]);
+  // uploadForm.append('imageUrl', uploadInfo.imageUrl[3]);
 
   const onSubmitFlyers = e => {
     e.preventDefault();
@@ -109,11 +126,11 @@ const Upload = () => {
       <button onClick={onClickTutorial}>등록 방법 확인</button>
       {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
       <div>
-        <S.CameraImg alt="camera" onClick={onClickCamera} />
+        <S.CameraImg alt="camera" onClick={onClickClose} />
         <S.ImgCount>{uploadInfo.imageUrl ? '4' : '0'}/4</S.ImgCount>
-        {isCameraClicked && (
+        {isCloseClicked && (
           <Photo
-            onClickCamera={onClickCamera}
+            onClickClose={onClickClose}
             onClickImg={onClickImg}
             inputRef={inputRef}
             handleImg={handleImg}
