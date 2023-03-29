@@ -21,25 +21,27 @@ const Login = () => {
   };
 
   const goToHome = () => {
-    // fetch(`주소`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     id: loginInfo.id,
-    //     password: loginInfo.pw,
-    //   }),
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     localStorage.setItem('token', data.accessToken);
-    // if (localStorage.getItem('token') !== 'undefined') {
-    //   return navigate('/');
-    // } else {
-    //   const message = document.getElementById('message');
-    //   message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';
-    // }
+    fetch('http://172.30.1.41:8000/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        identification: input.id,
+        password: input.pw,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        localStorage.setItem('token', data.accessToken);
+        if (localStorage.getItem('token') !== 'undefined') {
+          return navigate('/');
+        } else {
+          const message = document.getElementById('message');
+          message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';
+        }
+      });
   };
 
   return (
@@ -69,7 +71,6 @@ const Login = () => {
           }
           alt="비밀번호 표시/숨김 아이콘"
         />
-        {/* <S.FailMsg id="message"></S.FailMsg> */}
         <S.KeepLoginBox>
           <S.CheckboxImg
             src={
@@ -80,7 +81,7 @@ const Login = () => {
           <S.KeepLoginSpan>로그인 상태 유지</S.KeepLoginSpan>
         </S.KeepLoginBox>
         <S.Button
-          onClick={() => goToHome(input.id, input.pw)}
+          onClick={() => goToHome()}
           disabled={input.id.length < 2 || input.pw.length < 2}
         >
           <span>로그인</span>
