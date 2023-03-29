@@ -18,6 +18,7 @@ export const TitleBox = styled.div`
 
   img {
     padding-left: 10px;
+    cursor: pointer;
   }
 
   h1 {
@@ -27,6 +28,26 @@ export const TitleBox = styled.div`
   }
 `;
 
-export const SubmitMsg = styled.p``;
+export const MsgBox = styled.div`
+  margin: 140px 0px;
+  ${flex(null, 'center', 'column')}
+`;
 
-export const SubmitBtn = styled.button``;
+export const SubmitMsg = styled.p`
+  margin: 5px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+`;
+
+export const SubmitBtn = styled.button`
+  width: 328px;
+  height: 50px;
+  background: #ff6a21;
+  border-style: none;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: #ffffff;
+`;
