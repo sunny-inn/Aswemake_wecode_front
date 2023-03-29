@@ -1,24 +1,30 @@
 import React from 'react';
 import * as S from './Birth.style';
 
-const Birth = () => {
+const Birth = ({ year, date, handleYear, handleMonth, handleDate }) => {
   return (
     <S.BirthBox>
-      <S.Year name="year" placeholder="년(4자)" />
-      {/* <S.Month onChange={e => handleMonth(e)}> */}
-      <S.Month>
+      <S.Birth
+        value={year}
+        name="year"
+        placeholder="년(4자)"
+        onChange={handleYear}
+      />
+      <S.Month onChange={e => handleMonth(e)}>
         <option value="none" hidden>
           월
         </option>
         {MONTH_OPTIONS.map(({ id, month }) => (
-          <option key={id}>{month}</option>
+          <option key={id} value={month}>
+            {month}
+          </option>
         ))}
       </S.Month>
-      <S.Date
+      <S.Birth
         name="birth"
-        // value={date}
+        value={date}
         type="text"
-        // onChange={handleDate}
+        onChange={handleDate}
         placeholder="일"
       />
     </S.BirthBox>

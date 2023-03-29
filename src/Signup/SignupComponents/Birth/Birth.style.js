@@ -5,23 +5,27 @@ export const BirthBox = styled.div`
   gap: 10px;
 `;
 
-export const Year = styled.input`
-  width: 94px;
-  height: 46px;
-  background: #d9d9d9;
-  mix-blend-mode: overlay;
+export const Birth = styled.input`
+  width: 104px;
+  height: 50px;
+  padding-left: 10px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+
+  ::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #dbdbdb;
+  }
 `;
 
 export const Month = styled.select`
-  width: 94px;
-  height: 46px;
-  background: #d9d9d9;
-  mix-blend-mode: overlay;
-`;
-
-export const Date = styled.input`
-  width: 75px;
-  height: 46px;
-  background: #d9d9d9;
-  mix-blend-mode: overlay;
+  width: 104px;
+  height: 50px;
+  padding-left: 10px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
 `;
