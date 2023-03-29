@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { API } from '../config/config';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import Switch from './MypageComponents/Switch/Switch';
 import Terms from '../Components/Terms/Terms';
 import * as S from './Mypage.style';
 
 const Mypage = () => {
+  const [user, setUser] = useState();
   const [isFlyersList, setIsFlyersList] = useState(false);
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
@@ -16,6 +18,22 @@ const Mypage = () => {
   const onClickTerms = () => setIsTerms(prev => !prev);
 
   //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    fetch('http://172.30.1.41:8000/api/users/details', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setUser(data);
+      });
+  }, []);
 
   return (
     <S.MypageBox>
