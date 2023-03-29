@@ -107,7 +107,7 @@ export const LineHr = styled.hr`
   width: 325px;
   margin: 15px 0;
 `;
-export const FailMsg = styled.p`
+export const FailMsg = styled.span`
   color: #ff6a21;
   font-weight: 500;
   font-size: 14px;
