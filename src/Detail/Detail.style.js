@@ -8,40 +8,9 @@ export const DetailContainer = styled.div`
   background-color: white;
 `;
 
-export const DetailNavContainer = styled.div`
-  box-sizing: border-box;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  z-index: 10;
-  background-color: white;
-  width: 360px;
-  height: 56px;
-  border-bottom: 1px solid #ececec;
-  text-align: center;
-  align-items: center;
-  top: 0;
-`;
-
-export const BeforeIcon = styled.img`
-  width: 6px;
-  height: 12px;
-  color: black;
-  left: 10px;
-  margin: 0px 10px;
-  position: absolute;
-  cursor: pointer;
-`;
-
-export const DetailNavTitle = styled.p`
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
-`;
-
 export const PostersConstainer = styled.div`
-  margin-top: 60px;
-  border: 1px solid red;
+  margin-top: 70px;
+  border-bottom: 8px solid #ececec;
 `;
 
 export const PostersUl = styled.ul`
@@ -73,9 +42,29 @@ export const ThirdImg = styled.img`
 export const MartTitleBox = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin-top: -20px;
 `;
 
 export const MartFavoriteIcon = styled.img`
   width: 19px;
   height: 18px;
+  margin-right: 15px;
+`;
+
+export const MartTitle = styled.p`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  margin-left: 15px;
+`;
+
+export const MartDetailBox = styled.div`
+  margin-left: 15px;
+`;
+export const MartDetailText = styled.p`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
 `;

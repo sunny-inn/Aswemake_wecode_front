@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../Components/Footer/Footer';
+import DetailNav from './DetailNav';
 import * as S from './Detail.style';
 
 const Detail = () => {
+  const [detailMartList, setDetailMartList] = useState([]);
+
+  useEffect(() => {
+    fetch('./data/MhomeData.json')
+      .then(response => response.json())
+      .then(data => {
+        setDetailMartList(data.martList[0]);
+      });
+  }, []);
+
   return (
     <S.DetailContainer>
-      <S.DetailNavContainer>
-        <S.BeforeIcon src="./images/goBefore.png" alt="뒤로가기" />
-        <S.DetailNavTitle>마트 정보</S.DetailNavTitle>
-      </S.DetailNavContainer>
+      <DetailNav />
       <S.PostersConstainer>
         <S.PostersUl>
+          {/* {detailMartList.map(list => {
+            return()
+          })} */}
           <li>
             <S.FirstImg src="./images/firstRec.png" alt="첫번째" />
           </li>
@@ -23,10 +34,14 @@ const Detail = () => {
           </li>
         </S.PostersUl>
         <S.MartTitleBox>
-          <p>마트 이름</p>
+          <S.MartTitle>마트 이름</S.MartTitle>
           <S.MartFavoriteIcon src="./images/favorite.png" alt="자주가요" />
         </S.MartTitleBox>
       </S.PostersConstainer>
+      <S.MartDetailBox>
+        <S.MartDetailText>주소 : </S.MartDetailText>
+        <S.MartDetailText>연락처 : </S.MartDetailText>
+      </S.MartDetailBox>
       <Footer />
     </S.DetailContainer>
   );
