@@ -9,8 +9,7 @@ export const DetailContainer = styled.div`
 `;
 
 export const PostersConstainer = styled.div`
-  margin-top: 70px;
-  border-bottom: 8px solid #ececec;
+  margin-top: 75px;
 `;
 
 export const PostersUl = styled.ul`
@@ -19,24 +18,39 @@ export const PostersUl = styled.ul`
   align-items: ceneter;
   justify-content: center;
   padding-left: 0;
+  padding-bottom: 15px;
+  border-bottom: 8px solid #f9f9f9;
 `;
 
 export const PostersList = styled.li``;
 
 export const FirstImg = styled.img`
-  width: 162px;
-  height: 162px;
-  margin: 1px 5px 0 0;
+  width: 160px;
+  height: 160px;
+  margin-right: 8px;
 `;
 
 export const SecImg = styled.img`
-  width: 162px;
-  height: 80px;
+  width: 160px;
+  height: 76px;
+  border-radius: 8px;
 `;
 export const ThirdImg = styled.img`
   margin-right: 3px;
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
+  border-radius: 8px;
+`;
+
+export const FourthImg = styled.img`
+  width: 76px;
+  height: 76px;
+  margin-left: 3px;
+  border-radius: 8px;
+`;
+
+export const ThridandFouth = styled.div`
+  margin-top: 3px;
 `;
 
 export const MartTitleBox = styled.div`
@@ -45,12 +59,6 @@ export const MartTitleBox = styled.div`
   align-items: center;
   text-align: center;
   margin-top: -20px;
-`;
-
-export const MartFavoriteIcon = styled.img`
-  width: 19px;
-  height: 18px;
-  margin-right: 15px;
 `;
 
 export const MartTitle = styled.p`
