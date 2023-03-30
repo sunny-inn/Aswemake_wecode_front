@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const HomeCarousel = ({ homeMartList, selectedMart }) => {
+const HomeCarousel = ({ homeMartList, selectedMart, handleModal }) => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -14,13 +14,27 @@ const HomeCarousel = ({ homeMartList, selectedMart }) => {
     centerPadding: '25px',
     dot: false,
   };
-  const selectedMartList = selectedMart ? [selectedMart] : homeMartList;
 
+  const smIndex = homeMartList.indexOf(selectedMart);
+  const newArray = [
+    ...homeMartList.slice(0, 1),
+    ...homeMartList.slice(1),
+    selectedMart,
+  ];
+
+  if (smIndex > -1) {
+    const newArray = [
+      ...homeMartList.slice(0, smIndex),
+      ...homeMartList.slice(smIndex + 1),
+      selectedMart,
+    ];
+  }
+  const selectedMartList = selectedMart ? newArray : [];
   return (
     <S.CarouselWholeContainer>
       <Slider {...settings}>
         {selectedMartList.map(martlist => (
-          <div key={martlist.id}>
+          <S.MartBox key={martlist.id} onClick={handleModal}>
             <S.CarouselBox>
               <div>
                 <S.CarouselImg alt="전단지" />
@@ -35,7 +49,7 @@ const HomeCarousel = ({ homeMartList, selectedMart }) => {
                 <li>연락처 : {martlist.phoneNumber}</li>
               </S.CarouselContent>
             </S.CarouselBox>
-          </div>
+          </S.MartBox>
         ))}
       </Slider>
     </S.CarouselWholeContainer>

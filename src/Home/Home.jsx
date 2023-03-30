@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import HomeCarousel from '../Components/Carousel/HomeCarousel';
+import HomeCarousel from './HomeCarousel';
 import {
   Container as MapDiv,
   NaverMap,
@@ -8,6 +8,7 @@ import {
 } from 'react-naver-maps';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Modal from '../Components/Modal/Modal';
 import * as S from './Home.style';
 import Footer from '../Components/Footer/Footer';
 
@@ -24,6 +25,12 @@ const Home = () => {
   //MockData시작
   const [homeMartList, setHomeMartList] = useState([]);
   const [selectedMart, setSelectedMart] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const [shopModal, setShopModal] = useState(false);
+
+  const handleModal = () => {
+    setOpenModal(prev => !prev);
+  };
 
   const handleMarkerClick = (e, mart) => {
     setSelectedMart(mart);
@@ -58,6 +65,8 @@ const Home = () => {
   );
   if (homeMartList.length === 0) return;
 
+  // console.log('modal', openModal);
+
   return (
     <S.MapBox>
       <NaverMap
@@ -85,8 +94,15 @@ const Home = () => {
             />
           );
         })}
-        {/* <HomeCarousel homeMartList={homeMartList} selectedMart={selectedMart} /> */}
+
+        <HomeCarousel
+          homeMartList={homeMartList}
+          selectedMart={selectedMart}
+          handleModal={handleModal}
+        />
       </NaverMap>
+      {openModal && <Modal handleModal={handleModal} type="map" />}
+      {shopModal && <Modal handleModal={handleModal} type="shop" />}
     </S.MapBox>
   );
 };

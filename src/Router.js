@@ -7,6 +7,7 @@ import Signup from './Signup/Signup';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
+import Detail from './Detail/Detail';
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
           <Route path="/upload" element={<Upload />} />
           <Route path="/Mypage" element={<Mypage />} />
           <Route path="/favorite" element={<Favorite />} />
+          <Route path="/detail" element={<Detail />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

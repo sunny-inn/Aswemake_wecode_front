@@ -46,3 +46,7 @@ export const CarouselContent = styled.div`
   margin-left: 20px;
   padding-top: 5px;
 `;
+
+export const MartBox = styled.div`
+  cursor: pointer;
+`;
