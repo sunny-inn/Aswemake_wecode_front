@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import HomeCarousel from './HomeCarousel';
 import {
   Container as MapDiv,
@@ -27,6 +27,8 @@ const Home = () => {
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [shopModal, setShopModal] = useState(false);
+  // const [centerPoint, setCenterPoint] = useState(null);
+  const mapRef = useRef(null);
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
@@ -44,12 +46,21 @@ const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    if (mapRef.current) {
+      // console.log('이동', mapRef.current);
+      const newCenter = new navermaps.LatLng(selectedMart.y, selectedMart.x);
+      // console.log('좌표', newCenter);
+      mapRef.current.setCenter(newCenter);
+    }
+  }, [selectedMart]);
+
   const navermaps = useNavermaps();
-  const [centerPoint, setCenterPoint] = useState({});
-  const handleCenter = value => setCenterPoint(value);
+
+  // const handleCenter = value => setCenterPoint(value);
+
   const HOME_PATH = window.HOME_PATH || '.';
 
-  // console.log('center', centerPoint);
   const geocoder = navermaps.Service.geocode(
     {
       address: '테헤란로 427',
@@ -74,23 +85,21 @@ const Home = () => {
         defaultCenter={new navermaps.LatLng(37.4857254, 126.9276657)}
         defaultZoom={15}
         zoomControl={true}
-        onCenterChanged={handleCenter}
-        // onCenterChanged={value => {
-        //   console.log(value.x);
-        // }}
+        // onCenterChanged={handleCenter} 중심좌표구할때
+        ref={mapRef}
       >
-        {homeMartList.map(list => {
+        {homeMartList.map(mart => {
           return (
             <Marker
-              position={new navermaps.LatLng(list.y, list.x)}
-              key={list.id}
-              title={list.name}
+              position={new navermaps.LatLng(mart.y, mart.x)}
+              key={mart.id}
+              title={mart.name}
               icon={{
                 content: `<S.MarkerBox>
-                    <S.MarkerOrder>${list.name}</S.MarkerOrder>
-                    ${list.phoneNumber}</S.MarkerBox>`,
+                    <S.MarkerOrder>${mart.name}</S.MarkerOrder>
+                    ${mart.phoneNumber}</S.MarkerBox>`,
               }}
-              onClick={e => handleMarkerClick(e, list)}
+              onClick={e => handleMarkerClick(e, mart)}
             />
           );
         })}
