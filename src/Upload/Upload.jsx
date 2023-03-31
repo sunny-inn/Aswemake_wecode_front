@@ -1,12 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import * as S from './Upload.style';
 import Period from './UploadComponents/Period/Period';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Photo from './UploadComponents/Photo/Photo';
+import Datepicker from './UploadComponents/Datepicker/Datepicker';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [marts, setMarts] = useState({});
+  const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCloseClicked, setIsCloseClicked] = useState(false);
   const [month, setMonth] = useState('');
@@ -16,15 +17,24 @@ const Upload = () => {
     setPhoneNumber(e.target.value);
   };
 
-  //FIXME: 전화번호 맞는 애를 패치해오기
-  // useEffect(() => {
-  //   fetch(`${API}`, {
-  //     method: 'GET',
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => phoneNumber && (phoneNumber === marts.phoneNumber) ? (
-  //       setMarts(data.data));
-  // }, [phoneNumber]);
+  //FIXME: api로 수정
+  useEffect(() => {
+    fetch(
+      '/data/MhomeData.json'
+      // , {method: 'GET', }
+    )
+      .then(res => res.json())
+      .then(data => setMarts(data.martList));
+  }, []);
+
+  const filteredMart =
+    phoneNumber && marts.filter(mart => mart.phoneNumber === phoneNumber);
+
+  const filteredMartName =
+    filteredMart && filteredMart.length > 0 ? filteredMart[0].name : null;
+
+  const filteredMartAddress =
+    filteredMart && filteredMart.length > 0 ? filteredMart[0].address : null;
 
   const onClickClose = () => setIsCloseClicked(prev => !prev);
 
@@ -75,21 +85,14 @@ const Upload = () => {
   });
 
   const uploadForm = new FormData();
+  uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
   for (let i = 0; i < 4; i++) {
     uploadForm.append('imagesUrl', uploadInfo.imageUrl[i]);
   }
-
-  // uploadForm.append('imageUrl', uploadInfo.imageUrl[0]);
-  // uploadForm.append('imageUrl', uploadInfo.imageUrl[1]);
-  // uploadForm.append('imageUrl', uploadInfo.imageUrl[2]);
-  // uploadForm.append('imageUrl', uploadInfo.imageUrl[3]);
+  // 행사 끝나는 날짜도 보내줘야 함
 
   const onSubmitFlyers = e => {
     e.preventDefault();
-
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
 
     //TODO: POST하는 api
     // fetch(`${API.POSTS}`, {
@@ -119,9 +122,17 @@ const Upload = () => {
         onChange={handlePhoneNumber}
       />
       <label>마트 이름</label>
-      <S.UploadInput value={marts.name} readOnly />
+      <S.UploadInput
+        value={filteredMartName}
+        placeholder="마트 이름을 입력해주세요."
+        readOnly
+      />
       <label>마트 주소</label>
-      <S.UploadInput value={marts.roadNameAddress} readOnly />
+      <S.UploadInput
+        value={filteredMartAddress}
+        placeholder="주소를 입력해주세요."
+        readOnly
+      />
       <label>사진 등록</label>
       <button onClick={onClickTutorial}>등록 방법 확인</button>
       {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
@@ -139,13 +150,14 @@ const Upload = () => {
         )}
       </div>
       <label>전단 행사 기간</label>
-      <Period
+      {/* <Period
         year={year}
         month={month}
         date={date}
         handleMonth={handleMonth}
         handleDate={handleDate}
-      />
+      /> */}
+      <Datepicker />
       <button>등록 요청</button>
     </S.UploadBox>
   );
