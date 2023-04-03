@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const StarImg = styled.img`
-  width: 14px;
-  height: 13px;
+  width: 19px;
+  height: 18px;
   display: inline-block;
-  position: absolute;
 `;
 
 export const RatingSpan = styled.span`
@@ -12,41 +11,60 @@ export const RatingSpan = styled.span`
 `;
 
 export const CarouselWholeContainer = styled.div`
-  width: 345px;
-  height: 100px;
+  width: 355px;
+  height: 115px;
   z-index: 10;
   position: absolute;
-  margin-left: 7px;
+  margin-left: 2px;
   bottom: 0;
 `;
 
 export const CarouselImg = styled.img`
-  width: 83px;
-  height: 83px;
+  width: 88px;
+  height: 88px;
   left: 51px;
   top: 612px;
-  background: #d9d9d9;
-  mix-blend-mode: overlay;
+  border-radius: 8px;
 `;
 
 export const CarouselBox = styled.ul`
   display: flex;
-  padding: 5px;
-  margin: 0 5px;
+  padding: 10px;
+  margin: 0 3px;
   list-style: none;
-  background-color: #c6c3c3;
+  background-color: #fff;
+  width: 300px;
+  height: 110px;
+  border-radius: 12px;
 `;
 
 export const CarouselContent = styled.div`
   font-family: 'Noto Sans KR';
   font-style: normal;
-  font-weight: 400;
-  font-size: 9px;
+  font-weight: 500;
+  font-size: 12px;
   line-height: 17px;
-  margin-left: 20px;
+  margin-left: 10px;
   padding-top: 5px;
+  color: #707070;
+  width: 250px;
 `;
 
 export const MartBox = styled.div`
   cursor: pointer;
+`;
+
+export const MartTitle = styled.span`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  color: black;
+`;
+export const MartTitleLi = styled.li`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const MartContentBox = styled.div`
+  margin-top: 10px;
 `;

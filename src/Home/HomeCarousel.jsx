@@ -4,7 +4,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const HomeCarousel = ({ homeMartList, selectedMart, handleModal }) => {
+const HomeCarousel = ({
+  homeMartList,
+  selectedMart,
+  handleModal,
+  changeCenterByCarousel,
+}) => {
   const settings = {
     infinite: true,
     speed: 500,
@@ -12,25 +17,21 @@ const HomeCarousel = ({ homeMartList, selectedMart, handleModal }) => {
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '25px',
-    dot: false,
+    draggable: true,
+    arrows: false,
+    beforeChange: (current, next) => {
+      setCurrentSlide(next);
+    },
   };
   const [slider, setSlider] = useState(null);
+  const [checked, setChecked] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
-
-  // const newArray = [
-  //   ...homeMartList.slice(0, 1),
-  //   ...homeMartList.slice(1),
-  //   selectedMart,
-  // ];
-
-  // if (smIndex > -1) {
-  //   const newArray = [
-  //     ...homeMartList.slice(0, smIndex),
-  //     ...homeMartList.slice(smIndex + 1),
-  //     selectedMart,
-  //   ];
-  // }
   const selectedMartList = selectedMart ? homeMartList : [];
+
+  const handleFavorite = () => {
+    setChecked(prevChecked => !prevChecked);
+  };
 
   useEffect(() => {
     if (slider) {
@@ -40,22 +41,38 @@ const HomeCarousel = ({ homeMartList, selectedMart, handleModal }) => {
 
   return (
     <S.CarouselWholeContainer>
-      <Slider {...settings} ref={setSlider}>
+      <Slider
+        {...settings}
+        ref={setSlider}
+        onSwipe={() => changeCenterByCarousel(currentSlide)}
+      >
         {selectedMartList &&
           selectedMartList.map(mart => (
-            <S.MartBox key={mart.id} onClick={handleModal}>
+            <S.MartBox key={mart.id}>
               <S.CarouselBox>
                 <div>
-                  <S.CarouselImg alt="전단지" />
+                  <S.CarouselImg
+                    src="./images/thirdRec.png"
+                    alt="전단지"
+                    onClick={handleModal}
+                  />
                 </div>
                 <S.CarouselContent>
-                  <li>{mart.name}</li>
-                  <li>
-                    <S.StarImg src="./images/starIcon.png" alt="별점" />
-                    <S.RatingSpan>{mart.ratings}</S.RatingSpan>
-                  </li>
-                  <li>주소 : {mart.address}</li>
-                  <li>연락처 : {mart.phoneNumber}</li>
+                  <S.MartTitleLi>
+                    <S.MartTitle>{mart.name}</S.MartTitle>
+                    <S.StarImg
+                      src={
+                        checked
+                          ? './images/clickedFavorite.png'
+                          : './images/favorite.png'
+                      }
+                      onClick={() => handleFavorite(mart.id)}
+                    />
+                  </S.MartTitleLi>
+                  <S.MartContentBox>
+                    <li>주소 : {mart.address}</li>
+                    <li>연락처 : {mart.phoneNumber}</li>
+                  </S.MartContentBox>
                 </S.CarouselContent>
               </S.CarouselBox>
             </S.MartBox>
