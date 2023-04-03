@@ -23,14 +23,15 @@ const Login = () => {
   };
 
   const goToHome = () => {
-    cookies.set('my-cookie', `response.cookie`, {
-      maxAge: 60000000,
-      secure: true,
-      httpOnly: false,
-      sameSite: 'none',
-    });
+    // cookies.set('my-cookie', `response.cookie`, {
+    //   maxAge: 60000000,
+    //   secure: true,
+    //   httpOnly: false,
+    //   sameSite: 'none',
+    // });
     fetch('http://172.30.1.41:8000/api/users/login', {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
@@ -39,13 +40,12 @@ const Login = () => {
         password: input.pw,
       }),
     })
-      .then(response => response.json())
+      .then(response => {
+        console.log(response.headers.get('Set-Cookie'));
+        return response.json();
+      })
       .then(data => {
         localStorage.setItem('token', data.accessToken);
-        cookies.set('refreshToken', data.refreshToken, {
-          httpOnly: false,
-          secure: false,
-        }); // 쿠키에 refreshToken 저장
         if (localStorage.getItem('token') !== 'undefined') {
           return navigate('/');
         } else {

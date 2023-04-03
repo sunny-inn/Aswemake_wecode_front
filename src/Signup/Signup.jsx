@@ -5,12 +5,17 @@ import Terms from '../Components/Terms/Terms';
 import Id from './SignupComponents/Id/Id';
 import Submit from './SignupComponents/Submit/Submit';
 import * as S from './Signup.style';
+import Header from '../Components/Header/Header';
+import { useNavigate } from 'react-router-dom';
+import Phone from './SignupComponents/Phone/Phone';
 
 const Signup = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
+
   const birthDate = year && month && date && year + month + date;
+
   const [signupInfo, setSignupInfo] = useState({
     id: '',
     passwd: '',
@@ -25,19 +30,23 @@ const Signup = () => {
   });
 
   // 유효성 검사
+  const [isIdDisabled, setIsIdDisabled] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const [isPasswdEyeClicked, setIsPasswdEyeClicked] = useState(false);
+  const [counter, setCounter] = useState(180);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
+  const [code, setCode] = useState('');
+  const [verification, setVerification] = useState(false);
 
   const {
     id,
     passwd,
     passwdCheck,
+    birth,
     gender,
     name,
-    birth,
     address,
     addressDetail,
     phoneNumber,
@@ -61,7 +70,6 @@ const Signup = () => {
     setSignupInfo(prev => ({ ...prev, passwdCheck: e.target.value }));
   };
 
-  //FIXME: passwd랑 passwdCheck 값 똑같아도 true 처리 안되는 에러
   const correctPasswd = passwd !== '' && passwd === passwdCheck;
 
   const onClickPasswdEye = () => setIsPasswdEyeClicked(prev => !prev);
@@ -80,8 +88,17 @@ const Signup = () => {
     setMonth(e.target.value);
   };
 
+  const formatDay = day => {
+    const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    if (numbers.includes(day)) return `0${day}`;
+    if (day.length >= 2 && day[0] === '0') return day.substring(1);
+  };
+
   const handleDate = e => {
-    setDate(e.target.value);
+    const day = e.target.value;
+    const formattedDay = formatDay(day);
+    setDate(formattedDay);
   };
 
   // 성별
@@ -129,7 +146,14 @@ const Signup = () => {
     setSignupInfo(prev => ({ ...prev, phoneNumber: e.target.value }));
   };
 
-  // 이용약관
+  // 팝업창
+  const navigate = useNavigate();
+
+  const onClickBack = e => {
+    e.preventDefault();
+    navigate('/');
+  };
+
   const onClickTerms = e => {
     e.preventDefault();
     setIsTermsOpen(prev => !prev);
@@ -142,59 +166,65 @@ const Signup = () => {
   // 유효성 검사
   const handleDisabled = !(
     isFilled === true &&
+    isIdDisabled === false &&
     correctPasswd === true &&
     name !== '' &&
     birth !== '' &&
+    gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
-    phoneNumber !== '' &&
+    verification === true &&
     isCheckboxClicked === true
   );
 
-  console.log(handleDisabled);
+  const AlertMsg = code !== '' && verification === false;
 
   // 회원가입 완료
   const onSubmit = e => {
-    fetch('http://172.30.1.41:8000/api/users/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        identification: id,
-        password: passwd,
-        name: name,
-        birth: birthDate,
-        phoneNumber: phoneNumber,
-        gender: gender,
-        zipCode: postalCode,
-        address: address,
-        detailAddress: addressDetail,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if (data.message === 'SIGNUP_SUCCESS') {
-          setIsSubmitOpen(prev => !prev);
-        } else {
-          alert('실패');
-        }
-      });
+    e.preventDefault();
+
+    birth.length === 8 &&
+      fetch('http://172.30.1.41:8000/api/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          identification: id,
+          password: passwd,
+          name: name,
+          birth: birthDate,
+          phoneNumber: phoneNumber,
+          gender: gender,
+          zipCode: postalCode,
+          address: address,
+          detailAddress: addressDetail,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.message === 'SIGNUP_SUCCESS') {
+            setIsSubmitOpen(prev => !prev);
+          } else {
+            alert('실패');
+          }
+        });
   };
 
   return (
     <S.SignupBox>
-      <S.TitleBox>
-        <img alt="arrow" src="images/signup/arrow.png" />
-        <h1>회원가입</h1>
-        <div />
-      </S.TitleBox>
+      <Header type="signup" onClickBack={onClickBack} />
       <S.FormBox>
         <S.InputTitle>
           <label>아이디</label>
         </S.InputTitle>
-        <Id id={id} handleId={handleId} isFilled={isFilled} />
+        <Id
+          id={id}
+          handleId={handleId}
+          isFilled={isFilled}
+          isIdDisabled={isIdDisabled}
+          setIsIdDisabled={setIsIdDisabled}
+        />
         <S.InputTitle>
           <label>비밀번호</label>
         </S.InputTitle>
@@ -218,12 +248,14 @@ const Signup = () => {
           <label>비밀번호 확인</label>
         </S.InputTitle>
         <div>
-          <S.PasswdInput
+          <S.PasswdCheckInput
             name="passwdCheck"
             value={passwdCheck}
             type={isPasswdEyeClicked ? 'text' : 'password'}
             placeholder="비밀번호를 확인해주세요."
             onChange={handlePasswdCheck}
+            correctPasswd={correctPasswd}
+            passwdCheck={passwdCheck}
           />
           <S.CheckedImg
             alt="eye"
@@ -234,8 +266,10 @@ const Signup = () => {
             }
             onClick={onClickPasswdEye}
           />
-          {!correctPasswd && !passwdCheck && (
-            <div>비밀번호가 일치하지 않습니다.</div>
+          {!correctPasswd && passwdCheck !== '' && (
+            <S.AlertMsg correctPasswd={correctPasswd}>
+              비밀번호가 일치하지 않습니다.
+            </S.AlertMsg>
           )}
         </div>
         <S.InputTitle>
@@ -267,7 +301,6 @@ const Signup = () => {
             type="radio"
             value="남자"
             name="gender"
-            checked
             onChange={handleGender}
           />
           <S.GenderLabel htmlFor="male">남자</S.GenderLabel>
@@ -307,30 +340,22 @@ const Signup = () => {
         <S.InputTitle>
           <label>휴대전화</label>
         </S.InputTitle>
-        <S.PhoneBox>
-          <S.PhoneBtnBox>
-            <input
-              name="phoneNumber"
-              value={phoneNumber}
-              type="text"
-              onChange={handlePhoneNumber}
-              placeholder="번호를 입력해주세요."
-            />
-            <button>인증번호 받기</button>
-          </S.PhoneBtnBox>
-          <S.PhoneBtnBox>
-            <input type="text" placeholder="인증번호를 입력해주세요." />
-            <button>확인</button>
-          </S.PhoneBtnBox>
-        </S.PhoneBox>
+        <Phone
+          phoneNumber={phoneNumber}
+          handlePhoneNumber={handlePhoneNumber}
+          code={code}
+          setCode={setCode}
+          verification={verification}
+          setVerification={setVerification}
+          AlertMsg={AlertMsg}
+        />
         <S.TermsBox>
           <S.InputTitle>
             <label>이용 약관</label>
           </S.InputTitle>
           <S.TermsBtn onClick={onClickTerms}>서비스 이용약관 보기</S.TermsBtn>
-          {isTermsOpen && <Terms onClickTerms={onClickTerms} />}
+          {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
           <div>
-            {/* <input type="checkbox" /> */}
             <img
               alt="checkbox"
               src={
