@@ -29,14 +29,31 @@ const Home = () => {
   const [shopModal, setShopModal] = useState(false);
   // const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
+  const [isMarkerClicked, setIsMarkerClicked] = useState([]);
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
   };
 
-  const handleMarkerClick = (e, mart) => {
+  const handleMarkerClick = (e, mart, index) => {
     setSelectedMart(mart);
+    const newToggles = isMarkerClicked.map((toggle, i) => {
+      if (i === index) {
+        return !toggle;
+      } else {
+        return isMarkerClicked[index] === false ? false : toggle;
+      }
+    });
+    setIsMarkerClicked(newToggles);
   };
+
+  useEffect(() => {
+    if (homeMartList) {
+      setIsMarkerClicked(
+        Array.from({ length: homeMartList.length }, () => false)
+      );
+    }
+  }, [homeMartList]);
 
   useEffect(() => {
     fetch('./data/MhomeData.json')
@@ -54,7 +71,6 @@ const Home = () => {
       mapRef.current.setCenter(newCenter);
     }
   }, [selectedMart]);
-
   const navermaps = useNavermaps();
 
   // const handleCenter = value => setCenterPoint(value);
@@ -76,7 +92,23 @@ const Home = () => {
   );
   if (homeMartList.length === 0) return;
 
-  // console.log('modal', openModal);
+  const changeCenterByCarousel = smIndex => {
+    let nextIndex = 0;
+    if (smIndex === homeMartList.length - 1) {
+      nextIndex = 0;
+    } else {
+      nextIndex = smIndex + 1;
+    }
+    setSelectedMart(homeMartList[nextIndex]);
+    const newToggles = isMarkerClicked.map((toggle, i) => {
+      if (i === nextIndex) {
+        return true;
+      } else {
+        return isMarkerClicked[nextIndex] === false ? false : toggle;
+      }
+    });
+    setIsMarkerClicked(newToggles);
+  };
 
   return (
     <S.MapBox>
@@ -88,18 +120,23 @@ const Home = () => {
         // onCenterChanged={handleCenter} 중심좌표구할때
         ref={mapRef}
       >
-        {homeMartList.map(mart => {
+        {homeMartList.map((mart, index) => {
           return (
             <Marker
               position={new navermaps.LatLng(mart.y, mart.x)}
               key={mart.id}
               title={mart.name}
-              icon={{
-                content: `<S.MarkerBox>
-                    <S.MarkerOrder>${mart.name}</S.MarkerOrder>
-                    ${mart.phoneNumber}</S.MarkerBox>`,
-              }}
-              onClick={e => handleMarkerClick(e, mart)}
+              icon={
+                isMarkerClicked[index]
+                  ? './images/clickedMarker.png'
+                  : './images/marker.png'
+              }
+              // {{
+              //   content: `<S.MarkerBox>
+              //       <S.MarkerOrder>${mart.name}</S.MarkerOrder>
+              //       ${mart.phoneNumber}</S.MarkerBox>`,
+              // }}
+              onClick={e => handleMarkerClick(e, mart, index)}
             />
           );
         })}
@@ -108,6 +145,7 @@ const Home = () => {
           homeMartList={homeMartList}
           selectedMart={selectedMart}
           handleModal={handleModal}
+          changeCenterByCarousel={changeCenterByCarousel}
         />
       </NaverMap>
       {openModal && <Modal handleModal={handleModal} type="map" />}
