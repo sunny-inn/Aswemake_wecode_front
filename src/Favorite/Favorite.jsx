@@ -1,10 +1,14 @@
 import React from 'react';
-import DetailNav from '../Detail/DetailNav';
+import FavoriteNav from './FavoriteNav';
+import FavoriteEmpty from './FavoriteEmpty';
+import FavoriteList from './FavoriteList';
 
 const Favorite = () => {
   return (
     <div>
-      <DetailNav />
+      <FavoriteNav />
+      {/* <FavoriteEmpty /> */}
+      <FavoriteList />
     </div>
   );
 };

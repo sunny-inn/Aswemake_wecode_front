@@ -92,7 +92,8 @@ const Home = () => {
   );
   if (homeMartList.length === 0) return;
 
-  const changeCenterByCarousel = smIndex => {
+  const changeCenterByCarousel = (smIndex, e) => {
+    console.log(e);
     let nextIndex = 0;
     if (smIndex === homeMartList.length - 1) {
       nextIndex = 0;
@@ -131,11 +132,6 @@ const Home = () => {
                   ? './images/clickedMarker.png'
                   : './images/marker.png'
               }
-              // {{
-              //   content: `<S.MarkerBox>
-              //       <S.MarkerOrder>${mart.name}</S.MarkerOrder>
-              //       ${mart.phoneNumber}</S.MarkerBox>`,
-              // }}
               onClick={e => handleMarkerClick(e, mart, index)}
             />
           );
