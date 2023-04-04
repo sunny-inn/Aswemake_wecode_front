@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HomeCarousel from './HomeCarousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Modal from '../Components/Modal/Modal';
+import * as S from './Home.style';
+import Footer from '../Components/Footer/Footer';
 import {
   Container as MapDiv,
   NaverMap,
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Modal from '../Components/Modal/Modal';
-import * as S from './Home.style';
-import Footer from '../Components/Footer/Footer';
 
 const Home = () => {
   // useEffect(()=>{
