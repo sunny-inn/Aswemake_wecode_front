@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as S from './Upload.style';
+import Header from '../Components/'
 import Period from './UploadComponents/Period/Period';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Photo from './UploadComponents/Photo/Photo';
@@ -52,7 +53,6 @@ const Upload = () => {
   };
 
   // 이미지 state에 넣기
-  //FIXME: img가 배열에 쌓이도록 구현해야 함
   const handleImg = e => {
     e.preventDefault();
     const files = e.target.files;
@@ -114,26 +114,27 @@ const Upload = () => {
 
   return (
     <S.UploadBox onSubmit={onSubmitFlyers}>
-      <label>마트 전화 번호</label>
+      <Header />
+      <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
       <S.UploadInput
         type="text"
         value={phoneNumber}
         placeholder='전화번호를 "-"없이 입력해주세요'
         onChange={handlePhoneNumber}
       />
-      <label>마트 이름</label>
+      <S.UplaodLabel>마트 이름</S.UplaodLabel>
       <S.UploadInput
         value={filteredMartName}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
-      <label>마트 주소</label>
+      <S.UplaodLabel>마트 주소</S.UplaodLabel>
       <S.UploadInput
         value={filteredMartAddress}
         placeholder="주소를 입력해주세요."
         readOnly
       />
-      <label>사진 등록</label>
+      <S.UplaodLabel>사진 등록</S.UplaodLabel>
       <button onClick={onClickTutorial}>등록 방법 확인</button>
       {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
       <div>
@@ -149,7 +150,7 @@ const Upload = () => {
           />
         )}
       </div>
-      <label>전단 행사 기간</label>
+      <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
       {/* <Period
         year={year}
         month={month}

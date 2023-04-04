@@ -21,6 +21,14 @@ export const UploadInput = styled.input`
   color: #a2a0a0;
 `;
 
+export const UplaodLabel = styled.label`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  color: #252525;
+`;
+
 export const CameraImg = styled.img`
   position: relative;
   display: block;
