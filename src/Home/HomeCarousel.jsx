@@ -44,7 +44,7 @@ const HomeCarousel = ({
       <Slider
         {...settings}
         ref={setSlider}
-        onSwipe={() => changeCenterByCarousel(currentSlide)}
+        onSwipe={e => changeCenterByCarousel(currentSlide, e)}
       >
         {selectedMartList &&
           selectedMartList.map(mart => (

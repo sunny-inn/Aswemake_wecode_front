@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HomeCarousel from './HomeCarousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Modal from '../Components/Modal/Modal';
+import * as S from './Home.style';
+import Footer from '../Components/Footer/Footer';
 import {
   Container as MapDiv,
   NaverMap,
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Modal from '../Components/Modal/Modal';
-import * as S from './Home.style';
-import Footer from '../Components/Footer/Footer';
 
 const Home = () => {
   // useEffect(()=>{
@@ -92,7 +92,8 @@ const Home = () => {
   );
   if (homeMartList.length === 0) return;
 
-  const changeCenterByCarousel = smIndex => {
+  const changeCenterByCarousel = (smIndex, e) => {
+    console.log(e);
     let nextIndex = 0;
     if (smIndex === homeMartList.length - 1) {
       nextIndex = 0;
@@ -131,11 +132,6 @@ const Home = () => {
                   ? './images/clickedMarker.png'
                   : './images/marker.png'
               }
-              // {{
-              //   content: `<S.MarkerBox>
-              //       <S.MarkerOrder>${mart.name}</S.MarkerOrder>
-              //       ${mart.phoneNumber}</S.MarkerBox>`,
-              // }}
               onClick={e => handleMarkerClick(e, mart, index)}
             />
           );
