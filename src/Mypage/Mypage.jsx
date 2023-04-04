@@ -21,7 +21,7 @@ const Mypage = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://172.30.1.41:8000/api/users/details', {
+    fetch('https://flyers.qmarket.me/api/users/details', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

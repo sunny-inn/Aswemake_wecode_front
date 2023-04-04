@@ -184,7 +184,7 @@ const Signup = () => {
     e.preventDefault();
 
     birth.length === 8 &&
-      fetch('http://172.30.1.41:8000/api/users/signup', {
+      fetch('https://flyers.qmarket.me/api/users/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
