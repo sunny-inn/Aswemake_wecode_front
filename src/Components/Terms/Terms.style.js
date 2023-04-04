@@ -3,12 +3,12 @@ import ReactModal from 'react-modal';
 import { flex } from '../../Styles/Mixin';
 
 export const TermsBox = styled(ReactModal)`
-  ${flex('center', 'center', 'column')}
-  /* position: absolute; */
-  width: 333px;
-  height: 683px;
-  /* left: 15px;
-  top: 91px; */
-
+  ${flex('flex-start', null, 'column')}
+  width: 360px;
+  height: 100%;
   background: #ffffff;
+`;
+
+export const Content = styled.p`
+  padding: 20px;
 `;

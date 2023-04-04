@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { flex } from '../Styles/Mixin';
 
 export const SignupBox = styled.div`
-  ${flex(null, null, 'coulmn')}
-  display: flex;
-  flex-direction: column;
-  position: absolute;
+  ${flex(null, null, 'column')}
   width: 360px;
   height: 616px;
   left: 0px;
@@ -15,21 +12,10 @@ export const SignupBox = styled.div`
   backdrop-filter: blur(2px);
 `;
 
-export const TitleBox = styled.div`
-  ${flex('space-between', 'center', null)}
-  width: 360px;
-  height: 56px;
-  background: #ffffff;
-  border-bottom: 1px solid #ececec;
-
-  h1 {
-    font-weight: 700;
-    font-size: 18px;
-    color: #252525;
-  }
+export const FormBox = styled.form`
+  ${flex(null, null, 'column')}
+  gap: 10px;
 `;
-
-export const FormBox = styled.form``;
 
 export const InputTitle = styled.h2`
   font-weight: 700;
@@ -55,16 +41,42 @@ export const PasswdInput = styled.input`
   }
 `;
 
+export const PasswdCheckInput = styled.input`
+  position: relative;
+  width: 328px;
+  height: 50px;
+  padding-left: 10px;
+  background-color: #ffffff;
+  border: 1px solid
+    ${({ correctPasswd, passwdCheck }) =>
+      !passwdCheck || correctPasswd ? '#dbdbdb' : '#ff6a21'};
+  border-radius: 8px;
+
+  ::placeholder {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #dbdbdb;
+  }
+`;
+
 export const PasswdImg = styled.img`
   position: absolute;
-  top: 18.5%;
+  top: 35.5%;
   right: 10%;
 `;
 
 export const CheckedImg = styled.img`
   position: absolute;
-  top: 27%;
+  top: 50.5%;
   right: 10%;
+`;
+
+export const AlertMsg = styled.p`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ff6a21;
 `;
 
 export const SignupInput = styled.input`
@@ -89,25 +101,48 @@ export const GenderBox = styled.div`
 `;
 
 export const Gender = styled.input`
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: #dbdbdb;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid #dbdbdb;
   border-radius: 50%;
-  border: 2px solid #ccc;
-  outline: none;
-  transition: all 0.3s ease-in-out;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+
+  ::before {
+    content: '';
+    width: 0.6em;
+    height: 0.6em;
+    border-radius: 50%;
+    transform: scale(0);
+    /* transition: 120ms transform ease-in-out; */
+    box-shadow: inset 1em 1em #ff6a21;
+  }
+
+  :checked::before {
+    transform: scale(1);
+  }
 
   :checked {
-    /* background-color: #ff6a21; */
-    border-color: #ff6a21;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #ff6a21;
+  }
+
+  :checked + label {
+    color: #252525;
   }
 `;
 
 export const GenderLabel = styled.label`
   height: 18px;
   margin-right: 50px;
+  color: #dbdbdb;
   text-align: center;
 `;
 
@@ -151,45 +186,6 @@ export const AddressInput = styled.input`
     font-size: 14px;
     line-height: 20px;
     color: #dbdbdb;
-  }
-`;
-
-export const PhoneBox = styled.div`
-  ${flex('center', null, 'column')}
-  gap: 10px;
-`;
-
-export const PhoneBtnBox = styled.div`
-  ${flex(null, 'center', null)}
-  gap: 13px;
-
-  input {
-    width: 204px;
-    height: 50px;
-    padding-left: 10px;
-    background: #f9f9f9;
-    border: 1px solid #dbdbdb;
-    border-radius: 8px;
-
-    ::placeholder {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 20px;
-      color: #dbdbdb;
-    }
-  }
-
-  button {
-    width: 116px;
-    height: 50px;
-    border: none;
-    background: #dbdbdb;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-    color: #ffffff;
   }
 `;
 

@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
 import * as S from './Id.style';
 
-const Id = ({ id, handleId, isFilled }) => {
+const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [isIdDisabled, setIsIdDisabled] = useState(false);
-
-  //FIXME: isIdDisabled 에러 React does not recognize the `isIdDisabled` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `isiddisabled` instead. If you accidentally passed it from a parent component
 
   const onClickAvailable = e => {
     e.preventDefault();
     setIsClicked(true);
-    //   TODO: 패치로 중복확인
-    // fetch(`${API}`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json;charset=utf-8',
-    //       authorization: Token,
-    //     },
-    //     body: JSON.stringify({ payments }),
-    //   })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       if (data.message === '') {
-    //         setIsIdDisabled(true)
-    //       } else {
-    //         setIsIdDisabled(false);
-    //       }
-    //     });
+
+    fetch(`http://172.30.1.41:8000/api/users/checkDuplicateId/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'THIS ID CAN USE') {
+          setIsIdDisabled(false);
+        } else {
+          setIsIdDisabled(true);
+        }
+      });
   };
 
   return (
     <S.IdBox>
       <div>
-        <input
+        <S.Input
           name="id"
           value={id}
           type="text"
@@ -41,7 +36,7 @@ const Id = ({ id, handleId, isFilled }) => {
           isIdDisabled={isIdDisabled}
         />
         {isFilled && isClicked && (
-          <S.AlertMsg>
+          <S.AlertMsg isIdDisabled={isIdDisabled}>
             {isIdDisabled
               ? '이미 가입된 아이디입니다'
               : '사용가능한 아이디입니다.'}
