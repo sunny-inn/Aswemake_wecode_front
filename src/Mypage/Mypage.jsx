@@ -19,7 +19,7 @@ const Mypage = () => {
 
   //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
   const token = localStorage.getItem('token');
-
+  // const refreshToken =
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/users/details', {
       method: 'GET',
@@ -28,7 +28,10 @@ const Mypage = () => {
         authorization: token,
       },
     })
-      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        response.json();
+      })
       .then(data => {
         console.log(data);
         setUser(data);

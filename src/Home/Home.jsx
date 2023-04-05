@@ -61,13 +61,16 @@ const Home = () => {
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/home', {
       method: 'GET',
-      headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA2ODk3NzAsImV4cCI6MTY4MDY4OTgzMH0.icNxzOdATa6TFjODSG_6rZrBN8zJLDSDK75hl1CHj70',
-        'Content-Type': 'application/json;charset=utf-8',
-      },
+      // headers: {
+      //   authorization:
+      //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA2ODk3NzAsImV4cCI6MTY4MDY4OTgzMH0.icNxzOdATa6TFjODSG_6rZrBN8zJLDSDK75hl1CHj70',
+      //   'Content-Type': 'application/json;charset=utf-8',
+      // },
     })
-      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        response.json();
+      })
 
       .then(data => {
         console.log(data);
