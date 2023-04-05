@@ -68,12 +68,15 @@ const Home = () => {
       // },
     })
       .then(response => {
-        console.log(response);
+        // console.log(response);
+        for (let entry of response.headers.entries()) {
+          console.log('header', entry);
+        }
         response.json();
       })
 
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setHomeMartList(data.martList);
       });
   }, []);
