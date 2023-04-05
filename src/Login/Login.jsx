@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
-import HomeSplash from '../Home/HomeComponents/HomeSplash';
+import HomeSplash from './HomeSplash';
+import NetworkCheckModal from './NetworkCheckModal';
+import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import * as S from './Login.style';
 
 const Login = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
-
+  const [showModal, setShowModal] = useState(false);
   const [input, setInput] = useState({ id: '', pw: '', showPw: false });
   const [checked, setChecked] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
@@ -23,6 +26,45 @@ const Login = () => {
   const handleCheckboxImgClick = () => {
     setChecked(prevChecked => !prevChecked);
   };
+
+  const handleNetworkModal = () => {
+    setShowModal(prev => !prev);
+  };
+
+  const root = document.getElementById('root');
+  const rootApi = createRoot(root);
+
+  const handleExit = () => {
+    rootApi.unmount();
+  };
+
+  useEffect(() => {
+    const checkConnection = async () => {
+      try {
+        const response = await fetch('https://www.google.com', {
+          mode: 'no-cors',
+        });
+        const status = response && response.status;
+        if (status === 200) {
+          // 연결 가능한 상태
+        } else {
+          // 연결 불가능한 상태
+          setShowModal(true);
+        }
+      } catch (error) {
+        // 연결 불가능한 상태
+        setShowModal(true);
+      }
+    };
+
+    if (!navigator.onLine) {
+      // 연결 불가능한 상태
+      setShowModal(true);
+    } else {
+      // 연결 가능한 상태
+      checkConnection();
+    }
+  }, []);
 
   const goToHome = () => {
     // cookies.set('my-cookie', `response.cookie`, {
@@ -125,6 +167,13 @@ const Login = () => {
               </S.Button>
             </Link>
           </div>
+          {showModal && (
+            <NetworkCheckModal
+              handleNetworkModal={handleNetworkModal}
+              handleExit={handleExit}
+              type="network"
+            />
+          )}
         </S.LoginContainer>
       )}
     </>
