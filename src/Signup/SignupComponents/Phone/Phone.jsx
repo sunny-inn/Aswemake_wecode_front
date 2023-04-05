@@ -28,28 +28,30 @@ const Phone = ({
     e.preventDefault();
     setCodeBtn(true);
 
-    codeBtn === true &&
-      fetch('https://flyers.qmarket.me/api/verificationCode/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          phoneNumber: phoneNumber,
-        }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message === 'message sent successfully') {
-            codeBtn && timer === 0
-              ? reset()
-              : (id.current = setInterval(() => {
-                  setTimer(time => time - 1);
-                }));
-          } else {
-            alert('실패');
-          }
-        });
+    //https://flyers.qmarket.me/api/verificationCode/send
+    //http://172.30.1.41:8000/api/verificationCode/send
+
+    fetch('https://flyers.qmarket.me/api/verificationCode/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        phoneNumber: phoneNumber,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'message sent successfully') {
+          codeBtn && timer === 0
+            ? reset()
+            : (id.current = setInterval(() => {
+                setTimer(time => time - 1);
+              }));
+        } else {
+          alert('실패');
+        }
+      });
     return () => reset();
   };
 
@@ -57,27 +59,29 @@ const Phone = ({
   const onClickVerification = e => {
     e.preventDefault();
 
-    code &&
-      fetch('https://flyers.qmarket.me/api/verificationCode/check', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          phoneNumber: phoneNumber,
-          code: code,
-        }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message === 'verification code matches') {
-            setVerification(true);
-            setAlertMsg(false);
-          } else {
-            setVerification(false);
-            setAlertMsg(true);
-          }
-        });
+    //https://flyers.qmarket.me/api/verificationCode/check
+    //http://172.30.1.41:8000/api/verificationCode/check
+
+    fetch('https://flyers.qmarket.me/api/verificationCode/check', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        phoneNumber: phoneNumber,
+        code: code,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'verification code matches') {
+          setVerification(true);
+          setAlertMsg(false);
+        } else {
+          setVerification(false);
+          setAlertMsg(true);
+        }
+      });
   };
 
   return (

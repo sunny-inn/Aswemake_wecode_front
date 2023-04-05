@@ -22,7 +22,7 @@ const Signup = () => {
     passwdCheck: '',
     gender: '',
     name: '',
-    birth: birthDate,
+    birth: '19900101',
     address: '',
     addressDetail: '',
     phoneNumber: '',
@@ -177,36 +177,51 @@ const Signup = () => {
     isCheckboxClicked === true
   );
 
+  //FIXME: birth 안담김!!!!!
+  // console.log('isFilled', isFilled);
+  // console.log('isIdDisabled', isIdDisabled);
+  // console.log('correctPasswd', correctPasswd);
+  // console.log(name);
+  // console.log(birth);
+  // console.log('gender', gender);
+  // console.log('postalCode', postalCode);
+  // console.log('addressDetail', addressDetail);
+  // console.log('verification', verification);
+  // console.log('isCheckboxClicked', isCheckboxClicked);
+  // console.log('handleDisabled', handleDisabled);
+  // console.log('--------------------');
+
   // 회원가입 완료
   const onSubmit = e => {
     e.preventDefault();
+    //https://flyers.qmarket.me/api/users/signUp
+    //http://172.30.1.41:8000/api/users/signup
 
-    birth.length === 8 &&
-      fetch('https://flyers.qmarket.me/api/users/signUp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          identification: id,
-          password: passwd,
-          name: name,
-          birth: birthDate,
-          phoneNumber: phoneNumber,
-          gender: gender,
-          zipCode: postalCode,
-          address: address,
-          detailAddress: addressDetail,
-        }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message === 'SIGNUP_SUCCESS') {
-            setIsSubmitOpen(prev => !prev);
-          } else {
-            alert('실패');
-          }
-        });
+    fetch('https://flyers.qmarket.me/api/users/signUp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        identification: id,
+        password: passwd,
+        name: name,
+        birth: birthDate,
+        phoneNumber: phoneNumber,
+        gender: gender,
+        zipCode: postalCode,
+        address: address,
+        detailAddress: addressDetail,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'SIGNUP_SUCCESS') {
+          setIsSubmitOpen(prev => !prev);
+        } else {
+          alert('실패');
+        }
+      });
   };
 
   return (
