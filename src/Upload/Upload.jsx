@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as S from './Upload.style';
-import Period from './UploadComponents/Period/Period';
+import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Photo from './UploadComponents/Photo/Photo';
-import Datepicker from './UploadComponents/Datepicker/Datepicker';
+import Calendar from './UploadComponents/Calendar/Calendar';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -52,7 +52,6 @@ const Upload = () => {
   };
 
   // 이미지 state에 넣기
-  //FIXME: img가 배열에 쌓이도록 구현해야 함
   const handleImg = e => {
     e.preventDefault();
     const files = e.target.files;
@@ -113,32 +112,41 @@ const Upload = () => {
   };
 
   return (
-    <S.UploadBox onSubmit={onSubmitFlyers}>
-      <label>마트 전화 번호</label>
-      <S.UploadInput
+    <S.UploadForm onSubmit={onSubmitFlyers}>
+      <Header type="upload" />
+      <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
+      <S.PhoneInput
         type="text"
         value={phoneNumber}
         placeholder='전화번호를 "-"없이 입력해주세요'
         onChange={handlePhoneNumber}
       />
-      <label>마트 이름</label>
-      <S.UploadInput
+      <S.UplaodLabel>마트 이름</S.UplaodLabel>
+      <S.MartInput
         value={filteredMartName}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
-      <label>마트 주소</label>
-      <S.UploadInput
+      <S.UplaodLabel>마트 주소</S.UplaodLabel>
+      <S.MartInput
         value={filteredMartAddress}
         placeholder="주소를 입력해주세요."
         readOnly
       />
-      <label>사진 등록</label>
-      <button onClick={onClickTutorial}>등록 방법 확인</button>
-      {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
+      <S.PhotoBox>
+        <S.UplaodLabel>사진 등록</S.UplaodLabel>
+        <S.TutorialBtn onClick={onClickTutorial}>등록 방법 확인</S.TutorialBtn>
+        {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
+      </S.PhotoBox>
       <div>
-        <S.CameraImg alt="camera" onClick={onClickClose} />
-        <S.ImgCount>{uploadInfo.imageUrl ? '4' : '0'}/4</S.ImgCount>
+        <S.CameraBox>
+          <S.CameraImg
+            alt="camera"
+            src="/images/upload/camera.png"
+            onClick={onClickClose}
+          />
+          <S.ImgCount>{uploadInfo.imageUrl.length}/4</S.ImgCount>
+        </S.CameraBox>
         {isCloseClicked && (
           <Photo
             onClickClose={onClickClose}
@@ -149,17 +157,10 @@ const Upload = () => {
           />
         )}
       </div>
-      <label>전단 행사 기간</label>
-      {/* <Period
-        year={year}
-        month={month}
-        date={date}
-        handleMonth={handleMonth}
-        handleDate={handleDate}
-      /> */}
-      <Datepicker />
-      <button>등록 요청</button>
-    </S.UploadBox>
+      <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
+      <Calendar />
+      <S.SubmitBtn>등록 요청</S.SubmitBtn>
+    </S.UploadForm>
   );
 };
 export default Upload;

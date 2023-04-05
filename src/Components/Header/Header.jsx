@@ -12,12 +12,14 @@ const Header = ({ type, onClickBack }) => {
 
   return (
     <S.HeaderBox>
-      {headerList[type].button === true && (
+      {headerList[type].button === true ? (
         <S.Back
           alt="arrow"
           src="images/signup/arrow.png"
           onClick={onClickBack}
         />
+      ) : (
+        <div />
       )}
       <S.Title>{headerList[type].title}</S.Title>
       <div />
