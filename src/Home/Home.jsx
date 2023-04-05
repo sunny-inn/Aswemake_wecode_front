@@ -69,9 +69,10 @@ const Home = () => {
     })
       .then(response => {
         // console.log(response);
-        for (let entry of response.headers.entries()) {
-          console.log('header', entry);
-        }
+        // for (let entry of response.headers.entries()) {
+        //   console.log('header', entry);
+        // }
+        console.log(document.cookies);
         response.json();
       })
 
