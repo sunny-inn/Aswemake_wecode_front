@@ -177,8 +177,6 @@ const Signup = () => {
     isCheckboxClicked === true
   );
 
-  const AlertMsg = code !== '' && verification === false;
-
   // 회원가입 완료
   const onSubmit = e => {
     e.preventDefault();
@@ -347,7 +345,6 @@ const Signup = () => {
           setCode={setCode}
           verification={verification}
           setVerification={setVerification}
-          AlertMsg={AlertMsg}
         />
         <S.TermsBox>
           <S.InputTitle>

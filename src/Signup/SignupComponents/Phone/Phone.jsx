@@ -8,10 +8,10 @@ const Phone = ({
   setCode,
   verification,
   setVerification,
-  AlertMsg,
 }) => {
   const [codeBtn, setCodeBtn] = useState(false);
   const [timer, setTimer] = useState(180);
+  const [alertMsg, setAlertMsg] = useState(false);
 
   const handleCode = e => setCode(e.target.value);
 
@@ -29,7 +29,7 @@ const Phone = ({
     setCodeBtn(true);
 
     codeBtn === true &&
-      fetch('https://flyers.qmarket.me/api/verificationCode/send', {
+      fetch('http://172.30.1.41:8000/api/verificationCode/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -57,28 +57,28 @@ const Phone = ({
   const onClickVerification = e => {
     e.preventDefault();
 
-    fetch('https://flyers.qmarket.me/api/verificationCode/check', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        phoneNumber: phoneNumber,
-        code: code,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'verification code matches') {
-          setVerification(true);
-        } else {
-          setVerification(false);
-        }
-      });
+    code &&
+      fetch('http://172.30.1.41:8000/api/verificationCode/check', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          phoneNumber: phoneNumber,
+          code: code,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.message === 'verification code matches') {
+            setVerification(true);
+            setAlertMsg(false);
+          } else {
+            setVerification(false);
+            setAlertMsg(true);
+          }
+        });
   };
-
-  console.log('phone', phoneNumber);
-  console.log('code btn', handleCodeBtn);
 
   return (
     <S.PhoneBox>
@@ -105,18 +105,18 @@ const Phone = ({
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
-          AlertMsg={AlertMsg}
+          alertMsg={alertMsg}
         />
         <S.VerificationBtn
           onClick={onClickVerification}
-          disabled={verification ? false : true}
-          verification={verification}
-          AlertMsg={AlertMsg}
+          disabled={code && phoneNumber ? false : true}
+          code={code}
+          phoneNumber={phoneNumber}
         >
           확인
         </S.VerificationBtn>
       </S.PhoneBtnBox>
-      {AlertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
+      {alertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
     </S.PhoneBox>
   );
 };

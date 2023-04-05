@@ -52,16 +52,13 @@ export const CodeBtn = styled.button`
 
 export const CodeInput = styled.input`
   ${PhoneInput}
-  border: 1px solid ${({ AlertMsg }) => (AlertMsg ? '#ff6a21' : '#dbdbdb')};
+  border: 1px solid ${({ alertMsg }) => (alertMsg ? '#ff6a21' : '#dbdbdb')};
 `;
 
 export const VerificationBtn = styled.button`
   ${PhoneBtn}
-  background: {
-    ({verification}) => 
-      verification?'#ff6a21': '#dbdbdb';
-    
-  }
+  background: ${({ code, phoneNumber }) =>
+    code && phoneNumber ? '#ff6a21' : '#dbdbdb'}
 `;
 
 export const AlertMsg = styled.p`
