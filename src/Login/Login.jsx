@@ -89,10 +89,12 @@ const Login = () => {
       }),
     })
       .then(response => {
-        for (let entry of response.headers.entries()) {
-          console.log('header', entry);
-        }
-        console.log(document.cookies);
+        // for (let entry of response.headers.entries()) {
+        //   console.log('header', entry);
+        // }
+        // console.log(document.cookies);
+        const setCookieHeader = response.headers.get('Set-Cookie');
+        console.log(setCookieHeader);
         return response.json();
       })
       .then(data => {
