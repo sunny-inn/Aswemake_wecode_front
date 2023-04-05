@@ -72,7 +72,7 @@ const Home = () => {
         // for (let entry of response.headers.entries()) {
         //   console.log('header', entry);
         // }
-        console.log(document.cookies);
+        // console.log(document.cookies);
         response.json();
       })
 
