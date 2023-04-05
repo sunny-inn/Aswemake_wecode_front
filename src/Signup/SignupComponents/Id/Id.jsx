@@ -11,7 +11,7 @@ const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
     //https://flyers.qmarket.me/api/users/checkDuplicateId/${id}
     //http://172.30.1.41:8000/api/users/checkDuplicateId/${id}
 
-    fetch(`http://172.30.1.41:8000/api/users/checkDuplicateId/${id}`, {
+    fetch(`https://flyers.qmarket.me/api/users/checkDuplicateId/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
