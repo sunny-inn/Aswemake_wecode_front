@@ -29,7 +29,7 @@ const Phone = ({
     setCodeBtn(true);
 
     codeBtn === true &&
-      fetch('http://10.58.52.174:8000/api/verificationCode/send', {
+      fetch('https://flyers.qmarket.me/api/verificationCode/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -57,7 +57,7 @@ const Phone = ({
   const onClickVerification = e => {
     e.preventDefault();
 
-    fetch('http://10.58.52.174:8000/api/verificationCode/check', {
+    fetch('https://flyers.qmarket.me/api/verificationCode/check', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
