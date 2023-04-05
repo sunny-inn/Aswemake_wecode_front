@@ -7,7 +7,6 @@ const UploadInput = css`
   height: 50px;
   padding: 10px;
   background: #ffffff;
-  border: 1px solid #dbdbdb;
   border-radius: 8px;
   font-style: normal;
   font-weight: 500;
@@ -24,15 +23,28 @@ export const UploadForm = styled.form`
   ${flex(null, null, 'column')}
   padding: 10px;
   gap: 15px;
+  height: 600px;
+  overflow: scroll;
 `;
 
 export const PhoneInput = styled.input`
   ${UploadInput}
   background: #ffffff;
+  border: 1px solid
+    ${({ handleAlertMsg }) => (handleAlertMsg ? '#ff6a21' : '#dbdbdb')};
+`;
+
+export const AlertMsg = styled.p`
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  color: #ff6a21;
 `;
 
 export const MartInput = styled.input`
   ${UploadInput}
+  border: 1px solid #dbdbdb;
   background: #f9f9f9;
 `;
 
@@ -85,8 +97,8 @@ export const ImgCount = styled.p`
 
 export const SubmitBtn = styled.button`
   width: 328px;
-  height: 50px;
-  margin-top: 20px;
+  padding: 15px;
+  margin: 20px 0px;
   background: #dbdbdb;
   border: none;
   border-radius: 8px;

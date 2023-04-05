@@ -10,14 +10,31 @@ const Upload = () => {
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCloseClicked, setIsCloseClicked] = useState(false);
-  const [month, setMonth] = useState('');
-  const [date, setDate] = useState('');
 
+  const [uploadInfo, setUploadInfo] = useState({
+    martId: 0,
+    imageUrl: [],
+    startDate: '',
+    endDate: '',
+  });
+
+  const { martId, imageUrl, startDate, endDate } = uploadInfo;
+
+  const uploadForm = new FormData();
+  uploadForm.append('martId', uploadInfo.martId);
+  uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
+  //FIXME: for (let i = 0; i < 4; i++)
+  uploadForm.append('imagesUrl', uploadInfo.imageUrl);
+
+  uploadForm.append('startDate', uploadInfo.startDate);
+  uploadForm.append('endDate', uploadInfo.endDate);
+
+  // 전화번호
   const handlePhoneNumber = e => {
     setPhoneNumber(e.target.value);
   };
 
-  //FIXME: api로 수정
+  // 마트 정보 FIXME: api로 수정
   useEffect(() => {
     fetch(
       '/data/MhomeData.json'
@@ -42,9 +59,18 @@ const Upload = () => {
     setIsTutorialClicked(prev => !prev);
   };
 
-  const inputRef = useRef(null);
+  useEffect(
+    prev => {
+      phoneNumber &&
+        filteredMart.length > 0 &&
+        setUploadInfo({ ...prev, martId: filteredMart[0].id });
+    },
+    [phoneNumber]
+  );
 
   // 이미지 넣기
+  const inputRef = useRef(null);
+
   const onClickImg = e => {
     e.preventDefault();
     if (!inputRef.current) return;
@@ -62,34 +88,10 @@ const Upload = () => {
     }));
   };
 
-  // 전단 행사 기간
-  const now = new Date();
-  const year = now.getFullYear();
+  // 전화번호 유효성 검사
+  const handleAlertMsg = phoneNumber && filteredMart.length === 0;
 
-  const handleMonth = e => {
-    setMonth(e.target.value);
-  };
-  const handleDate = e => {
-    setDate(e.target.value);
-  };
-
-  const endDate =
-    month.length === 2 ? year + month + date : year + '0' + month + date;
-
-  // 등록 요청
-  const [uploadInfo, setUploadInfo] = useState({
-    martId: marts.id,
-    imageUrl: [],
-    endDate: endDate,
-  });
-
-  const uploadForm = new FormData();
-  uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
-  for (let i = 0; i < 4; i++) {
-    uploadForm.append('imagesUrl', uploadInfo.imageUrl[i]);
-  }
   // 행사 끝나는 날짜도 보내줘야 함
-
   const onSubmitFlyers = e => {
     e.preventDefault();
 
@@ -111,6 +113,8 @@ const Upload = () => {
     // });
   };
 
+  console.log(uploadInfo);
+
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
@@ -120,7 +124,11 @@ const Upload = () => {
         value={phoneNumber}
         placeholder='전화번호를 "-"없이 입력해주세요'
         onChange={handlePhoneNumber}
+        handleAlertMsg={handleAlertMsg}
       />
+      {handleAlertMsg && (
+        <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>
+      )}
       <S.UplaodLabel>마트 이름</S.UplaodLabel>
       <S.MartInput
         value={filteredMartName}
@@ -145,7 +153,8 @@ const Upload = () => {
             src="/images/upload/camera.png"
             onClick={onClickClose}
           />
-          <S.ImgCount>{uploadInfo.imageUrl.length}/4</S.ImgCount>
+          {/* <S.ImgCount>{uploadInfo.imageUrl.length}/4</S.ImgCount> */}
+          <S.ImgCount>0/4</S.ImgCount>
         </S.CameraBox>
         {isCloseClicked && (
           <Photo
@@ -158,8 +167,12 @@ const Upload = () => {
         )}
       </div>
       <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
-      <Calendar />
-      <S.SubmitBtn>등록 요청</S.SubmitBtn>
+      <Calendar
+        startDate={startDate}
+        endDate={endDate}
+        setUploadInfo={setUploadInfo}
+      />
+      <S.SubmitBtn>전단 등록 요청</S.SubmitBtn>
     </S.UploadForm>
   );
 };
