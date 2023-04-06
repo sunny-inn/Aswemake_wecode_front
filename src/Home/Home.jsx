@@ -62,9 +62,9 @@ const Home = () => {
     fetch('https://flyers.qmarket.me/api/home', {
       method: 'GET',
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA3NjE4NTMsImV4cCI6MTY4MDc2MTkxM30.2e_0EdoifBi7FehN4LxU4mVGNOd82HOD4wIIsQALsk0',
-        'Content-Type': 'application/json;charset=utf-8',
+        // authorization:
+        //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA3NjE4NTMsImV4cCI6MTY4MDc2MTkxM30.2e_0EdoifBi7FehN4LxU4mVGNOd82HOD4wIIsQALsk0',
+        // 'Content-Type': 'application/json;charset=utf-8',
       },
     })
       .then(response => {
