@@ -23,7 +23,7 @@ const Home = () => {
   // },[])
 
   //MockData시작
-  const [homeMartList, setHomeMartList] = useState([]);
+  const [homeMartList, setHomeMartList] = useState([{}]);
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [shopModal, setShopModal] = useState(false);
@@ -67,8 +67,6 @@ const Home = () => {
       }, {});
 
   const cookieString = parseCookie(document.cookie);
-
-  console.log(typeof cookieString.refreshToken);
 
   //http://172.30.1.41:8000/api/home
   //https://flyers.qmarket.me/api/home
