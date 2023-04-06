@@ -17,7 +17,7 @@ export const FormBox = styled.form`
   gap: 10px;
 `;
 
-export const InputTitle = styled.h2`
+export const InputTitle = styled.label`
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
@@ -73,6 +73,7 @@ export const CheckedImg = styled.img`
 `;
 
 export const AlertMsg = styled.p`
+  padding: 10px 0px;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
@@ -206,6 +207,11 @@ export const TermsBtn = styled.button`
   line-height: 20px;
   text-decoration-line: underline;
   color: #252525;
+`;
+
+export const CheckBox = styled.div`
+  ${flex(null, 'center', null)}
+  gap:5px;
 `;
 
 export const SubmitBtn = styled.button`

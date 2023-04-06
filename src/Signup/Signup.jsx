@@ -215,9 +215,7 @@ const Signup = () => {
     <S.SignupBox>
       <Header type="signup" onClickBack={onClickBack} />
       <S.FormBox>
-        <S.InputTitle>
-          <label>아이디</label>
-        </S.InputTitle>
+        <S.InputTitle>아이디</S.InputTitle>
         <Id
           id={id}
           handleId={handleId}
@@ -225,9 +223,7 @@ const Signup = () => {
           isIdDisabled={isIdDisabled}
           setIsIdDisabled={setIsIdDisabled}
         />
-        <S.InputTitle>
-          <label>비밀번호</label>
-        </S.InputTitle>
+        <S.InputTitle>비밀번호</S.InputTitle>
         <S.PasswdInput
           name="passwd"
           value={passwd}
@@ -244,9 +240,7 @@ const Signup = () => {
           }
           onClick={onClickPasswdEye}
         />
-        <S.InputTitle>
-          <label>비밀번호 확인</label>
-        </S.InputTitle>
+        <S.InputTitle>비밀번호 확인</S.InputTitle>
         <div>
           <S.PasswdCheckInput
             name="passwdCheck"
@@ -266,15 +260,16 @@ const Signup = () => {
             }
             onClick={onClickPasswdEye}
           />
-          {!correctPasswd && passwdCheck !== '' && (
-            <S.AlertMsg correctPasswd={correctPasswd}>
-              비밀번호가 일치하지 않습니다.
-            </S.AlertMsg>
-          )}
+          {passwdCheck !== '' &&
+            (!correctPasswd ? (
+              <S.AlertMsg correctPasswd={correctPasswd}>
+                비밀번호가 일치하지 않습니다.
+              </S.AlertMsg>
+            ) : (
+              <S.AlertMsg>비밀번호가 일치합니다.</S.AlertMsg>
+            ))}
         </div>
-        <S.InputTitle>
-          <label>이름</label>
-        </S.InputTitle>
+        <S.InputTitle>이름</S.InputTitle>
         <S.SignupInput
           name="name"
           value={name}
@@ -282,9 +277,7 @@ const Signup = () => {
           placeholder="이름을 입력해주세요."
           onChange={handleName}
         />
-        <S.InputTitle>
-          <label>생년월일</label>
-        </S.InputTitle>
+        <S.InputTitle>생년월일</S.InputTitle>
         <Birth
           year={year}
           date={date}
@@ -292,9 +285,7 @@ const Signup = () => {
           handleMonth={handleMonth}
           handleDate={handleDate}
         />
-        <S.InputTitle>
-          <p>성별</p>
-        </S.InputTitle>
+        <S.InputTitle>성별</S.InputTitle>
         <S.GenderBox>
           <S.Gender
             id="male"
@@ -310,13 +301,12 @@ const Signup = () => {
             value="여자"
             name="gender"
             onChange={handleGender}
+            checked
           />
           <S.GenderLabel htmlFor="female">여자</S.GenderLabel>
         </S.GenderBox>
         <S.AddressBox>
-          <S.InputTitle>
-            <label>주소</label>
-          </S.InputTitle>
+          <S.InputTitle>주소</S.InputTitle>
           <S.BtnBox>
             <input name="postalCode" value={postalCode} readOnly />
             <button type="button" onClick={handleAddressClick}>
@@ -337,9 +327,7 @@ const Signup = () => {
             placeholder="상세 주소를 입력해주세요."
           />
         </S.AddressBox>
-        <S.InputTitle>
-          <label>휴대전화</label>
-        </S.InputTitle>
+        <S.InputTitle>휴대전화</S.InputTitle>
         <Phone
           phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
@@ -350,12 +338,10 @@ const Signup = () => {
           AlertMsg={AlertMsg}
         />
         <S.TermsBox>
-          <S.InputTitle>
-            <label>이용 약관</label>
-          </S.InputTitle>
+          <S.InputTitle>이용 약관</S.InputTitle>
           <S.TermsBtn onClick={onClickTerms}>서비스 이용약관 보기</S.TermsBtn>
           {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
-          <div>
+          <S.CheckBox>
             <img
               alt="checkbox"
               src={
@@ -366,7 +352,7 @@ const Signup = () => {
               onClick={onClickCheckbox}
             />
             <label>서비스 이용 약관에 동의합니다.</label>
-          </div>
+          </S.CheckBox>
         </S.TermsBox>
         <S.SubmitBtn
           onClick={onSubmit}

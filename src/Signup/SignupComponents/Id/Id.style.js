@@ -23,6 +23,7 @@ export const Input = styled.input`
 `;
 
 export const AlertMsg = styled.p`
+  padding: 10px 0px;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
