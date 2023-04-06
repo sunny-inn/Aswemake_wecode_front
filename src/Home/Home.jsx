@@ -79,7 +79,7 @@ const Home = () => {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token'),
         Cookie: cookieString.refreshToken,
       },
     })
