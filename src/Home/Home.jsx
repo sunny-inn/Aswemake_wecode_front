@@ -69,7 +69,7 @@ const Home = () => {
 
   const cookieString = parseCookie(document.cookie);
 
-  console.log(cookieString.refreshToken);
+  console.log(typeof cookieString.refreshToken);
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/home', {
@@ -81,7 +81,7 @@ const Home = () => {
       },
     })
       .then(response => {
-        console.log(document.cookie);
+        // console.log(document.cookie);
 
         response.json();
       })
