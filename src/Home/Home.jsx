@@ -82,7 +82,7 @@ const Home = () => {
       },
     })
       .then(response => {
-        console.log(response);
+        console.log(response.homeMartList);
         response.json();
       })
 
