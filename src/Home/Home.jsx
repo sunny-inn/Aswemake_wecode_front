@@ -56,7 +56,6 @@ const Home = () => {
   }, [homeMartList]);
 
   //./data/MhomeData.json
-  // https://flyers.qmarket.me/api/home
 
   const parseCookie = str =>
     str
@@ -71,8 +70,11 @@ const Home = () => {
 
   console.log(typeof cookieString.refreshToken);
 
+  //http://172.30.1.41:8000/api/home
+  // https://flyers.qmarket.me/api/home
+
   useEffect(() => {
-    fetch('http://172.30.1.41:8000/api/home', {
+    fetch('https://flyers.qmarket.me/api/home', {
       method: 'GET',
       credentials: 'include',
       headers: {

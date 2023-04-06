@@ -77,7 +77,7 @@ const Login = () => {
     //https://flyers.qmarket.me/api/users/login
     //http://172.30.1.41:8000/api/users/login
 
-    fetch('http://172.30.1.41:8000/api/users/login', {
+    fetch('https://flyers.qmarket.me/api/users/login', {
       method: 'POST',
       credentials: 'include',
       headers: {
