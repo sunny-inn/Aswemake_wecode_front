@@ -177,20 +177,6 @@ const Signup = () => {
     isCheckboxClicked === true
   );
 
-  //FIXME: birth 안담김!!!!!
-  // console.log('isFilled', isFilled);
-  // console.log('isIdDisabled', isIdDisabled);
-  // console.log('correctPasswd', correctPasswd);
-  // console.log(name);
-  // console.log(birth);
-  // console.log('gender', gender);
-  // console.log('postalCode', postalCode);
-  // console.log('addressDetail', addressDetail);
-  // console.log('verification', verification);
-  // console.log('isCheckboxClicked', isCheckboxClicked);
-  // console.log('handleDisabled', handleDisabled);
-  // console.log('--------------------');
-
   // 회원가입 완료
   const onSubmit = e => {
     e.preventDefault();

@@ -89,9 +89,6 @@ const Login = () => {
       }),
     })
       .then(response => {
-        console.log([...response.headers.entries()]);
-        console.log(response.headers.get('set-cookie'));
-
         return response.json();
       })
       .then(data => {

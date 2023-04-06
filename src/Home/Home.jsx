@@ -71,7 +71,7 @@ const Home = () => {
   console.log(typeof cookieString.refreshToken);
 
   //http://172.30.1.41:8000/api/home
-  // https://flyers.qmarket.me/api/home
+  //https://flyers.qmarket.me/api/home
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/home', {
@@ -84,11 +84,12 @@ const Home = () => {
       },
     })
       .then(response => {
-        console.log(document.cookie);
+        console.log('response');
         response.json();
       })
 
       .then(data => {
+        console.log('data');
         console.log(data);
         setHomeMartList(data.homeMartList);
       });
