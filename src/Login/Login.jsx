@@ -93,8 +93,13 @@ const Login = () => {
         //   console.log('header', entry);
         // }
         // console.log(document.cookies);
-        const setCookieHeader = response.headers.getAll('Set-Cookie');
-        console.log(setCookieHeader);
+
+        // const setCookieHeader = response.headers.getAll('Set-Cookie');
+        // console.log(setCookieHeader);
+
+        console.log([...response.headers.entries()]);
+        console.log(response.headers.get('set-cookie'));
+
         return response.json();
       })
       .then(data => {
