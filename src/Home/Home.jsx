@@ -71,6 +71,7 @@ const Home = () => {
       .then(response => {
         const setCookieHeader = response.headers.get('Set-Cookie');
         console.log(setCookieHeader);
+        console.log(document.cookie);
 
         response.json();
       })
