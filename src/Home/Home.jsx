@@ -58,31 +58,28 @@ const Home = () => {
   //./data/MhomeData.json
   // https://flyers.qmarket.me/api/home
 
+  const parseCookie = str =>
+    str
+      .split(';')
+      .map(v => v.split('='))
+      .reduce((acc, v) => {
+        acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+        return acc;
+      }, {});
+
+  const cookieString = parseCookie(document.cookie);
+
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/home', {
       method: 'GET',
       credentials: 'include',
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA3NjE4NTMsImV4cCI6MTY4MDc2MTkxM30.2e_0EdoifBi7FehN4LxU4mVGNOd82HOD4wIIsQALsk0',
         'Content-Type': 'application/json;charset=utf-8',
+        Cookie: cookieString.refreshToken,
       },
     })
       .then(response => {
         console.log(document.cookie);
-
-        const parseCookie = str =>
-          str
-            .split(';')
-            .map(v => v.split('='))
-            .reduce((acc, v) => {
-              acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
-                v[1].trim()
-              );
-              return acc;
-            }, {});
-
-        console.log(parseCookie(document.cookie));
 
         response.json();
       })
