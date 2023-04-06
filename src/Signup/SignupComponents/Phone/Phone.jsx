@@ -77,8 +77,8 @@ const Phone = ({
       });
   };
 
-  console.log('phone', phoneNumber);
-  console.log('code btn', handleCodeBtn);
+  // console.log('phone', phoneNumber);
+  // console.log('code btn', handleCodeBtn);
 
   return (
     <S.PhoneBox>

@@ -14,15 +14,13 @@ const Signup = () => {
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
 
-  const birthDate = year && month && date && year + month + date;
-
   const [signupInfo, setSignupInfo] = useState({
     id: '',
     passwd: '',
     passwdCheck: '',
     gender: '',
     name: '',
-    birth: birthDate,
+    birth: '',
     address: '',
     addressDetail: '',
     phoneNumber: '',
@@ -99,7 +97,10 @@ const Signup = () => {
     const day = e.target.value;
     const formattedDay = formatDay(day);
     setDate(formattedDay);
+    setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
   };
+
+  console.log(signupInfo);
 
   // 성별
   const handleGender = e => {
@@ -193,7 +194,7 @@ const Signup = () => {
           identification: id,
           password: passwd,
           name: name,
-          birth: birthDate,
+          birth: year + month + date,
           phoneNumber: phoneNumber,
           gender: gender,
           zipCode: postalCode,
