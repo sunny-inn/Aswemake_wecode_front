@@ -79,10 +79,10 @@ const Login = () => {
 
     fetch('https://flyers.qmarket.me/api/users/login', {
       method: 'POST',
+      credentials: 'includes',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      credentials: 'same-origin',
       body: JSON.stringify({
         identification: input.id,
         password: input.pw,
@@ -93,7 +93,7 @@ const Login = () => {
         //   console.log('header', entry);
         // }
         // console.log(document.cookies);
-        const setCookieHeader = response.headers.get('Set-Cookie');
+        const setCookieHeader = response.headers.getAll('Set-Cookie');
         console.log(setCookieHeader);
         return response.json();
       })
