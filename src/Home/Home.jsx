@@ -72,17 +72,17 @@ const Home = () => {
   console.log(typeof cookieString.refreshToken);
 
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/home', {
+    fetch('http://172.30.1.41:8000/api/home', {
       method: 'GET',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('token'),
         Cookie: cookieString.refreshToken,
       },
     })
       .then(response => {
-        // console.log(document.cookie);
-
+        console.log(document.cookie);
         response.json();
       })
 
