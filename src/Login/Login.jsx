@@ -79,7 +79,7 @@ const Login = () => {
 
     fetch('https://flyers.qmarket.me/api/users/login', {
       method: 'POST',
-      credentials: 'includes',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
