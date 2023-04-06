@@ -63,22 +63,19 @@ const Home = () => {
       method: 'GET',
       credentials: 'include',
       headers: {
-        // authorization:
-        //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA3NjE4NTMsImV4cCI6MTY4MDc2MTkxM30.2e_0EdoifBi7FehN4LxU4mVGNOd82HOD4wIIsQALsk0',
-        // 'Content-Type': 'application/json;charset=utf-8',
+        authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA3NjE4NTMsImV4cCI6MTY4MDc2MTkxM30.2e_0EdoifBi7FehN4LxU4mVGNOd82HOD4wIIsQALsk0',
+        'Content-Type': 'application/json;charset=utf-8',
       },
     })
       .then(response => {
-        // console.log(response);
-        // for (let entry of response.headers.entries()) {
-        //   console.log('header', entry);
-        // }
-        // console.log(document.cookies);
+        const setCookieHeader = response.headers.get('Set-Cookie');
+        console.log(setCookieHeader);
+
         response.json();
       })
 
       .then(data => {
-        // console.log(data);
         setHomeMartList(data.martList);
       });
   }, []);
