@@ -89,7 +89,8 @@ const Home = () => {
       })
 
       .then(data => {
-        setHomeMartList(data.martList);
+        console.log(data);
+        setHomeMartList(data.homeMartList);
       });
   }, []);
 
