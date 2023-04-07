@@ -16,7 +16,7 @@ const Router = () => {
         <Route element={<Container />}>
           <Route path="/" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/Mypage" element={<Mypage />} />
+          <Route path="/mypage" element={<Mypage />} />
           <Route path="/favorite" element={<Favorite />} />
           <Route path="/detail" element={<Detail />} />
         </Route>
