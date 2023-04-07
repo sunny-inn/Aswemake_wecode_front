@@ -71,10 +71,11 @@ const Home = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setHomeMartList(data.homeMartList);
       });
   }, []);
+
+  console.log(homeMartList);
 
   useEffect(() => {
     if (mapRef.current) {
