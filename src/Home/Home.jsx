@@ -71,7 +71,7 @@ const Home = () => {
     })
       .then(response => {
         console.log(response.homeMartList);
-        response.json();
+        console.log(response.json());
       })
 
       .then(data => {
