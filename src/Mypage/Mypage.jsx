@@ -30,10 +30,11 @@ const Mypage = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        setUser(data);
+        setUser(data.userInfo);
       });
   }, []);
+
+  const totalPoints = user && Math.trunc(user.totalPoints);
 
   return (
     <S.MypageBox>
@@ -42,12 +43,12 @@ const Mypage = () => {
         <S.NameBox>
           <p>안녕하세요!</p>
           <p>
-            <span>김땡땡</span>님
+            <span>{user.name}</span>님
           </p>
         </S.NameBox>
         <S.PointBox>
           <p>보유포인트</p>
-          <p>3,000 P</p>
+          <p>{totalPoints} P</p>
         </S.PointBox>
       </S.InfoBox>
       <hr />
