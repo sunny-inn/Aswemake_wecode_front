@@ -57,17 +57,6 @@ const Home = () => {
 
   //./data/MhomeData.json
 
-  const parseCookie = str =>
-    str
-      .split(';')
-      .map(v => v.split('='))
-      .reduce((acc, v) => {
-        acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
-        return acc;
-      }, {});
-
-  const cookieString = parseCookie(document.cookie);
-
   //http://172.30.1.41:8000/api/home
   //https://flyers.qmarket.me/api/home
 
