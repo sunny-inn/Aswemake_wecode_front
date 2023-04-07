@@ -71,6 +71,7 @@ const Home = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setHomeMartList(data.homeMartList);
       });
   }, []);
