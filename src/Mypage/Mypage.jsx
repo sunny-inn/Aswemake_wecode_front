@@ -18,14 +18,12 @@ const Mypage = () => {
   const onClickTerms = () => setIsTerms(prev => !prev);
 
   //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
-  const token = localStorage.getItem('token');
-  // const refreshToken =
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/users/details', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
+        authorization: localStorage.getItem('token'),
       },
     })
       .then(response => {

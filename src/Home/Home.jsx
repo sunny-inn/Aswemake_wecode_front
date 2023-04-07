@@ -78,7 +78,6 @@ const Home = () => {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: localStorage.getItem('token'),
-        Cookie: cookieString.refreshToken,
       },
     })
       .then(response => {
