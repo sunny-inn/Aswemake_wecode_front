@@ -2,18 +2,26 @@ import React, { useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
 import * as S from './Calendar.style';
-import CalenderHeader from '../CalendarHeader/CalendarHeader';
 
-const Calendar = () => {
+const Calendar = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  setUploadInfo,
+}) => {
   //TODO: 디자인 나오면 커스텀하기
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  console.log(startDate);
 
   return (
     <S.DateBox>
       <S.DatePickerBox
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={(date, prev) =>
+          setStartDate(date) &&
+          startDate &&
+          setUploadInfo({ ...prev, startDate: startDate })
+        }
         selectsStart
         startDate={startDate}
         endDate={endDate}

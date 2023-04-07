@@ -4,17 +4,30 @@ import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Photo from './UploadComponents/Photo/Photo';
 import Calendar from './UploadComponents/Calendar/Calendar';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCloseClicked, setIsCloseClicked] = useState(false);
-  const [month, setMonth] = useState('');
-  const [date, setDate] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  const handlePhoneNumber = e => {
+  // 등록 요청
+  const [uploadInfo, setUploadInfo] = useState({
+    martPhoneNumber: '',
+    imageUrl: [],
+    startDate: '',
+    endDate: '',
+  });
+
+  console.log('업로드', uploadInfo);
+  console.log('마트', marts);
+
+  const handlePhoneNumber = (e, prev) => {
     setPhoneNumber(e.target.value);
+    phoneNumber && setUploadInfo({ ...prev, martPhoneNumber: phoneNumber });
   };
 
   //FIXME: api로 수정
@@ -62,53 +75,34 @@ const Upload = () => {
     }));
   };
 
-  // 전단 행사 기간
-  const now = new Date();
-  const year = now.getFullYear();
-
-  const handleMonth = e => {
-    setMonth(e.target.value);
-  };
-  const handleDate = e => {
-    setDate(e.target.value);
-  };
-
-  const endDate =
-    month.length === 2 ? year + month + date : year + '0' + month + date;
-
-  // 등록 요청
-  const [uploadInfo, setUploadInfo] = useState({
-    martId: marts.id,
-    imageUrl: [],
-    endDate: endDate,
-  });
+  const navigate = useNavigate();
 
   const uploadForm = new FormData();
   uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
-  for (let i = 0; i < 4; i++) {
-    uploadForm.append('imagesUrl', uploadInfo.imageUrl[i]);
-  }
-  // 행사 끝나는 날짜도 보내줘야 함
+  uploadForm.append('imagesUrl', uploadInfo.imageUrl);
+  uploadForm.append('startDate', startDate);
+  uploadForm.append('endDate', endDate);
 
   const onSubmitFlyers = e => {
     e.preventDefault();
 
     //TODO: POST하는 api
-    // fetch(`${API.POSTS}`, {
+    // fetch('https://flyers.qmarket.me/api/flyer', {
     //   method: 'POST',
     //   headers: {
     //     enctype: 'multipart/form-data',
-    //     authorization: Token,
+    //     authorization: localStorage.getItem('token'),
     //   },
     //   body: uploadForm,
-    // }).then(response => response.json());
-    // .then(data => {
-    //   if (data.message === 'success') {
-    //     navigate('/home-warming-list');
-    //   } else {
-    //     alert('실패');
-    //   }
-    // });
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     if (data.message === 'success') {
+    //       navigate('/home-warming-list');
+    //     } else {
+    //       alert('실패');
+    //     }
+    //   });
   };
 
   return (
@@ -145,7 +139,7 @@ const Upload = () => {
             src="/images/upload/camera.png"
             onClick={onClickClose}
           />
-          <S.ImgCount>{uploadInfo.imageUrl.length}/4</S.ImgCount>
+          <S.ImgCount>0/4</S.ImgCount>
         </S.CameraBox>
         {isCloseClicked && (
           <Photo
@@ -158,7 +152,13 @@ const Upload = () => {
         )}
       </div>
       <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
-      <Calendar />
+      <Calendar
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+        setUploadInfo={setUploadInfo}
+      />
       <S.SubmitBtn>등록 요청</S.SubmitBtn>
     </S.UploadForm>
   );
