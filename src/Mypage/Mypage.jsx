@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API } from '../config/config';
+import Header from '../Components/Header/Header';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import Switch from './MypageComponents/Switch/Switch';
 import Terms from '../Components/Terms/Terms';
@@ -18,28 +19,40 @@ const Mypage = () => {
   const onClickTerms = () => setIsTerms(prev => !prev);
 
   //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
-  useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/users/details', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(response => {
-        console.log(response);
-        response.json();
-      })
-      .then(data => {
-        console.log(data);
-        setUser(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://flyers.qmarket.me/api/users/details', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: localStorage.getItem('token'),
+  //     },
+  //   })
+  //     .then(response => {
+  //       console.log(response);
+  //       response.json();
+  //     })
+  //     .then(data => {
+  //       // console.log(data);
+  //       setUser(data);
+  //     });
+  // }, []);
 
   return (
     <S.MypageBox>
-      <p>님 안녕하세요</p>
-      <p>보유 포인트 0P</p>
+      <Header type="mypage" />
+      <S.InfoBox>
+        <S.NameBox>
+          <p>안녕하세요!</p>
+          <p>
+            <span>김땡땡</span>님
+          </p>
+        </S.NameBox>
+        <S.PointBox>
+          <p>보유포인트</p>
+          <p>3,000 P</p>
+        </S.PointBox>
+      </S.InfoBox>
+      <hr />
       <button onClick={toFlyersList}>전단 등록 승인 현황 확인하러가기</button>
       <div>
         <button onClick={toWithdraw}>계좌 등록 및 인출</button>
