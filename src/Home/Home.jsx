@@ -69,10 +69,7 @@ const Home = () => {
         authorization: localStorage.getItem('token'),
       },
     })
-      .then(response => {
-        console.log(response.homeMartList);
-        console.log(response.json());
-      })
+      .then(response => response.json())
 
       .then(data => {
         console.log('data');
