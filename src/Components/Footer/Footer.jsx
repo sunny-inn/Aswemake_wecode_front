@@ -69,6 +69,6 @@ const FOOTER_LIST = [
     title: '마이페이지',
     defaultImg: './images/mypage.png',
     checkedImg: './images/colorMypage.png',
-    goTo: '/Mypage',
+    goTo: '/mypage',
   },
 ];
