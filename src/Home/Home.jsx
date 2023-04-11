@@ -56,17 +56,18 @@ const Home = () => {
   }, [homeMartList]);
 
   //./data/MhomeData.json
-
-  //http://172.30.1.41:8000/api/home
+  //172.30.1.87
+  //http://172.30.1.87:8000/api/home
   //https://flyers.qmarket.me/api/home
-
+  const token = localStorage.getItem('token');
+  // console.log(token);
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/home', {
       method: 'GET',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
+        authorization: token,
       },
     })
       .then(response => response.json())
@@ -75,7 +76,7 @@ const Home = () => {
       });
   }, []);
 
-  console.log(homeMartList);
+  console.log('마트리스트', homeMartList);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -159,6 +160,7 @@ const Home = () => {
               handleModal={handleModal}
               changeCenterByCarousel={changeCenterByCarousel}
             />
+            <S.CurrentLocation src="./images/location.png" alt="현위치" />
           </NaverMap>
           {openModal && <Modal handleModal={handleModal} type="map" />}
           {shopModal && <Modal handleModal={handleModal} type="shop" />}
