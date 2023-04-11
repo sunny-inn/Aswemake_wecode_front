@@ -4,9 +4,10 @@ import { flex } from '../Styles/Mixin';
 
 export const UploadForm = styled.form`
   ${flex(null, null, 'column')}
-  height: 504px;
+  height: 620px;
   padding: 10px;
   gap: 15px;
+  overflow: scroll;
 `;
 
 const UploadInput = css`
