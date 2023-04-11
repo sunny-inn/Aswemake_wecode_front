@@ -170,13 +170,13 @@ const Login = () => {
               </S.Button>
             </Link>
           </div>
-          {showModal && (
+          {/* {showModal && (
             <NetworkCheckModal
               handleNetworkModal={handleNetworkModal}
               handleExit={handleExit}
               type="network"
             />
-          )}
+          )} */}
         </S.LoginContainer>
       )}
     </>
