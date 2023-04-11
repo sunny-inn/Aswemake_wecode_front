@@ -127,7 +127,7 @@ const Home = () => {
 
   return (
     <S.MapBox>
-      {homeMartList && (
+      {homeMartList.length > 1 && (
         <>
           <NaverMap
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
