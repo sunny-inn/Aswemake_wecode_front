@@ -7,8 +7,8 @@ const Favorite = () => {
   return (
     <div>
       <FavoriteNav />
-      {/* <FavoriteEmpty /> */}
-      <FavoriteList />
+      <FavoriteEmpty />
+      {/* <FavoriteList /> */}
     </div>
   );
 };
