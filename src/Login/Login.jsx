@@ -94,7 +94,7 @@ const Login = () => {
       .then(data => {
         localStorage.setItem('token', data.accessToken);
         if (localStorage.getItem('token') !== 'undefined') {
-          return navigate('/');
+          return navigate('/home');
         } else {
           const message = document.getElementById('message');
           message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';
