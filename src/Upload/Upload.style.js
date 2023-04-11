@@ -7,7 +7,6 @@ export const UploadForm = styled.form`
   height: 504px;
   padding: 10px;
   gap: 15px;
-  overflow: scroll;
 `;
 
 const UploadInput = css`
