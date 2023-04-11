@@ -77,6 +77,6 @@ export const ModalUploadButton = styled.button`
 export const CurrentLocation = styled.img`
   width: 60px;
   height: 60px;
-  bottom: 80px;
+  bottom: 100px;
   position: absolute;
 `;
