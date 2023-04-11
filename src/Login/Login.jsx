@@ -4,7 +4,7 @@ import { Cookies } from 'react-cookie';
 import HomeSplash from './HomeSplash';
 import NetworkCheckModal from './NetworkCheckModal';
 import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
+// import { createRoot } from 'react-dom/client';
 import * as S from './Login.style';
 
 const Login = () => {
@@ -31,12 +31,12 @@ const Login = () => {
     setShowModal(prev => !prev);
   };
 
-  const root = document.getElementById('root');
-  const rootApi = createRoot(root);
+  // const root = document.getElementById('root');
+  // const rootApi = createRoot(root);
 
-  const handleExit = () => {
-    rootApi.unmount();
-  };
+  // const handleExit = () => {
+  //   rootApi.unmount();
+  // };
 
   useEffect(() => {
     const checkConnection = async () => {
