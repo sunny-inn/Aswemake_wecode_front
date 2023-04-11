@@ -4,7 +4,7 @@ import { Cookies } from 'react-cookie';
 import HomeSplash from './HomeSplash';
 import NetworkCheckModal from './NetworkCheckModal';
 import ReactDOM from 'react-dom';
-import { createRoot } from 'react-dom/client';
+// import { createRoot } from 'react-dom/client';
 import * as S from './Login.style';
 
 const Login = () => {
@@ -31,12 +31,12 @@ const Login = () => {
     setShowModal(prev => !prev);
   };
 
-  const root = document.getElementById('root');
-  const rootApi = createRoot(root);
+  // const root = document.getElementById('root');
+  // const rootApi = createRoot(root);
 
-  const handleExit = () => {
-    rootApi.unmount();
-  };
+  // const handleExit = () => {
+  //   rootApi.unmount();
+  // };
 
   useEffect(() => {
     const checkConnection = async () => {
@@ -94,7 +94,7 @@ const Login = () => {
       .then(data => {
         localStorage.setItem('token', data.accessToken);
         if (localStorage.getItem('token') !== 'undefined') {
-          return navigate('/');
+          return navigate('/home');
         } else {
           const message = document.getElementById('message');
           message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';

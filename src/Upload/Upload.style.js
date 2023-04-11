@@ -2,6 +2,13 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 import { flex } from '../Styles/Mixin';
 
+export const UploadForm = styled.form`
+  ${flex(null, null, 'column')}
+  height: 504px;
+  padding: 10px;
+  gap: 15px;
+`;
+
 const UploadInput = css`
   width: 328px;
   height: 50px;
@@ -18,12 +25,6 @@ const UploadInput = css`
   ::placeholder {
     color: #dbdbdb;
   }
-`;
-
-export const UploadForm = styled.form`
-  ${flex(null, null, 'column')}
-  padding: 10px;
-  gap: 15px;
 `;
 
 export const PhoneInput = styled.input`

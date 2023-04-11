@@ -127,39 +127,43 @@ const Home = () => {
 
   return (
     <S.MapBox>
-      <NaverMap
-        // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-        defaultCenter={new navermaps.LatLng(37.4857254, 126.9276657)}
-        defaultZoom={15}
-        zoomControl={true}
-        // onCenterChanged={handleCenter} 중심좌표구할때
-        ref={mapRef}
-      >
-        {homeMartList.map((mart, index) => {
-          return (
-            <Marker
-              position={new navermaps.LatLng(mart.y, mart.x)}
-              key={mart.id}
-              title={mart.name}
-              icon={
-                isMarkerClicked[index]
-                  ? './images/clickedMarker.png'
-                  : './images/marker.png'
-              }
-              onClick={e => handleMarkerClick(e, mart, index)}
-            />
-          );
-        })}
+      {homeMartList.length > 1 && (
+        <>
+          <NaverMap
+            // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
+            defaultCenter={new navermaps.LatLng(37.4857254, 126.9276657)}
+            defaultZoom={15}
+            zoomControl={true}
+            // onCenterChanged={handleCenter} 중심좌표구할때
+            ref={mapRef}
+          >
+            {homeMartList.map((mart, index) => {
+              return (
+                <Marker
+                  position={new navermaps.LatLng(mart.y, mart.x)}
+                  key={mart.id}
+                  title={mart.name}
+                  icon={
+                    isMarkerClicked[index]
+                      ? './images/clickedMarker.png'
+                      : './images/marker.png'
+                  }
+                  onClick={e => handleMarkerClick(e, mart, index)}
+                />
+              );
+            })}
 
-        <HomeCarousel
-          homeMartList={homeMartList}
-          selectedMart={selectedMart}
-          handleModal={handleModal}
-          changeCenterByCarousel={changeCenterByCarousel}
-        />
-      </NaverMap>
-      {openModal && <Modal handleModal={handleModal} type="map" />}
-      {shopModal && <Modal handleModal={handleModal} type="shop" />}
+            <HomeCarousel
+              homeMartList={homeMartList}
+              selectedMart={selectedMart}
+              handleModal={handleModal}
+              changeCenterByCarousel={changeCenterByCarousel}
+            />
+          </NaverMap>
+          {openModal && <Modal handleModal={handleModal} type="map" />}
+          {shopModal && <Modal handleModal={handleModal} type="shop" />}
+        </>
+      )}
     </S.MapBox>
   );
 };
