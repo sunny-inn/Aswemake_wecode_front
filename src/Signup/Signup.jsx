@@ -8,6 +8,7 @@ import * as S from './Signup.style';
 import Header from '../Components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import Phone from './SignupComponents/Phone/Phone';
+import Passwd from './SignupComponents/Passwd/Passwd';
 
 const Signup = () => {
   const [year, setYear] = useState('');
@@ -17,7 +18,6 @@ const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
     id: '',
     passwd: '',
-    passwdCheck: '',
     gender: '',
     name: '',
     birth: '',
@@ -26,11 +26,10 @@ const Signup = () => {
     phoneNumber: '',
     postalCode: '',
   });
-
-  // 유효성 검사
+  const [isValidPasswd, setIsValidPasswd] = useState(false);
+  const [passwdCheck, setPasswdCheck] = useState('');
   const [isIdDisabled, setIsIdDisabled] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [isPasswdEyeClicked, setIsPasswdEyeClicked] = useState(false);
   const [counter, setCounter] = useState(180);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
@@ -41,7 +40,6 @@ const Signup = () => {
   const {
     id,
     passwd,
-    passwdCheck,
     birth,
     gender,
     name,
@@ -62,15 +60,16 @@ const Signup = () => {
   // 비번
   const handlePasswd = e => {
     setSignupInfo(prev => ({ ...prev, passwd: e.target.value }));
+
+    setIsValidPasswd(
+      /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=\+\\|;:'"<>,\./\?]{8,20}$/.test(
+        e.target.value
+      )
+    );
   };
 
-  const handlePasswdCheck = e => {
-    setSignupInfo(prev => ({ ...prev, passwdCheck: e.target.value }));
-  };
-
+  const handlePasswdCheck = e => setPasswdCheck(e.target.value);
   const correctPasswd = passwd !== '' && passwd === passwdCheck;
-
-  const onClickPasswdEye = () => setIsPasswdEyeClicked(prev => !prev);
 
   // 이름
   const handleName = e => {
@@ -97,8 +96,12 @@ const Signup = () => {
     const day = e.target.value;
     const formattedDay = formatDay(day);
     setDate(formattedDay);
-    setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+    if (date) {
+      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+    }
   };
+
+  const birthDate = year && month && date && year + month + birth;
 
   console.log(signupInfo);
 
@@ -194,7 +197,7 @@ const Signup = () => {
           identification: id,
           password: passwd,
           name: name,
-          birth: year + month + date,
+          birth: birthDate,
           phoneNumber: phoneNumber,
           gender: gender,
           zipCode: postalCode,
@@ -225,51 +228,14 @@ const Signup = () => {
           setIsIdDisabled={setIsIdDisabled}
         />
         <S.InputTitle>비밀번호</S.InputTitle>
-        <S.PasswdInput
-          name="passwd"
-          value={passwd}
-          type={isPasswdEyeClicked ? 'text' : 'password'}
-          placeholder="비밀번호를 입력해주세요."
-          onChange={handlePasswd}
+        <Passwd
+          passwd={passwd}
+          handlePasswd={handlePasswd}
+          isValidPasswd={isValidPasswd}
+          passwdCheck={passwdCheck}
+          handlePasswdCheck={handlePasswdCheck}
+          correctPasswd={correctPasswd}
         />
-        <S.PasswdImg
-          alt="eye"
-          src={
-            isPasswdEyeClicked
-              ? 'images/signup/showpasswd.png'
-              : 'images/signup/passwd.png'
-          }
-          onClick={onClickPasswdEye}
-        />
-        <S.InputTitle>비밀번호 확인</S.InputTitle>
-        <div>
-          <S.PasswdCheckInput
-            name="passwdCheck"
-            value={passwdCheck}
-            type={isPasswdEyeClicked ? 'text' : 'password'}
-            placeholder="비밀번호를 확인해주세요."
-            onChange={handlePasswdCheck}
-            correctPasswd={correctPasswd}
-            passwdCheck={passwdCheck}
-          />
-          <S.CheckedImg
-            alt="eye"
-            src={
-              isPasswdEyeClicked
-                ? 'images/signup/showpasswd.png'
-                : 'images/signup/passwd.png'
-            }
-            onClick={onClickPasswdEye}
-          />
-          {passwdCheck !== '' &&
-            (!correctPasswd ? (
-              <S.AlertMsg correctPasswd={correctPasswd}>
-                비밀번호가 일치하지 않습니다.
-              </S.AlertMsg>
-            ) : (
-              <S.AlertMsg>비밀번호가 일치합니다.</S.AlertMsg>
-            ))}
-        </div>
         <S.InputTitle>이름</S.InputTitle>
         <S.SignupInput
           name="name"
