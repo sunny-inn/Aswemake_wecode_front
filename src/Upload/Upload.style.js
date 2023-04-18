@@ -23,7 +23,7 @@ export const UploadForm = styled.form`
   ${flex(null, null, 'column')}
   padding: 10px;
   gap: 15px;
-  height: 600px;
+  height: 616px;
   overflow: scroll;
 `;
 
@@ -64,19 +64,19 @@ export const PhotoBox = styled.div`
 export const TutorialBtn = styled.button`
   background: #ffffff;
   border-style: none;
-  color: #707070;
+  color: #ff6a21;
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   letter-spacing: -0.02em;
-  text-decoration: underline #707070;
+  text-decoration: underline #ff6a21;
 `;
 
 export const CameraBox = styled.div`
   ${flex('center', 'center', 'column')}
-  width: 88px;
-  height: 88px;
+  width: 120px;
+  height: 168px;
   background: #ffffff;
   border: 1px dashed #dbdbdb;
   border-radius: 16px;

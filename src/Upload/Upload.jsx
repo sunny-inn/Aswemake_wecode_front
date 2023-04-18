@@ -143,7 +143,9 @@ const Upload = () => {
       />
       <S.PhotoBox>
         <S.UplaodLabel>사진 등록</S.UplaodLabel>
-        <S.TutorialBtn onClick={onClickTutorial}>등록 방법 확인</S.TutorialBtn>
+        <S.TutorialBtn onClick={onClickTutorial}>
+          필독! 사진 등록 방법 확인
+        </S.TutorialBtn>
         {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
       </S.PhotoBox>
       <div>
@@ -153,10 +155,11 @@ const Upload = () => {
             src="/images/upload/camera.png"
             onClick={onClickClose}
           />
-          {/* <S.ImgCount>{uploadInfo.imageUrl.length}/4</S.ImgCount> */}
-          <S.ImgCount>0/4</S.ImgCount>
+
+          <S.ImgCount>4장 필수</S.ImgCount>
         </S.CameraBox>
         {isCloseClicked && (
+          // FIXME: 캐러셀로 바꾸기
           <Photo
             onClickClose={onClickClose}
             onClickImg={onClickImg}
@@ -167,11 +170,7 @@ const Upload = () => {
         )}
       </div>
       <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
-      <Calendar
-        startDate={startDate}
-        endDate={endDate}
-        setUploadInfo={setUploadInfo}
-      />
+      <Calendar setUploadInfo={setUploadInfo} />
       <S.SubmitBtn>전단 등록 요청</S.SubmitBtn>
     </S.UploadForm>
   );
