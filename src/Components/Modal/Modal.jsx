@@ -5,6 +5,7 @@ const Modal = ({ handleModal, children, type }) => {
   const infoList = {
     map: MAP_MODAL_INFO,
     shop: SHOP_MODAL_INFO,
+    logout: LOGOUT,
   };
 
   return (
@@ -37,4 +38,10 @@ const SHOP_MODAL_INFO = {
   title: '전단 등록',
   message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
   button: ['전단 등록 하기'],
+};
+
+const LOGOUT = {
+  title: '로그아웃',
+  message: '정말 로그아웃 하시겠어요?',
+  button: ['로그아웃 하기'],
 };

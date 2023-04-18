@@ -7,17 +7,17 @@ export const MypageBox = styled.div`
 
 export const InfoBox = styled.div`
   ${flex('center', null, 'column')}
-  padding: 10px;
-  border-bottom: 5px solid #f9f9f9;
+  padding: 0 16px 16px 16px;
+  border-bottom: 8px solid #f9f9f9;
 `;
 
 export const NameBox = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 
   p {
     font-weight: 500;
     font-size: 15px;
-    line-height: 18px;
+    line-height: 22.8px;
     color: #252525;
   }
 `;
@@ -30,8 +30,9 @@ export const Name = styled.span`
 export const PointBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 328px;
-  height: 52px;
-  padding: 10px;
+  height: 64px;
+  padding: 16px;
+  margin: 0 auto;
   background: #fff8f5;
   border: 1px solid #fff1eb;
   border-radius: 8px;
@@ -52,9 +53,13 @@ export const Points = styled.span`
   color: #ff6a21;
 `;
 
+export const MenuBoxWrap = styled.div`
+  height: 335px;
+  overflow: auto;
+`;
+
 export const MenuBox = styled.div`
   ${flex(null, 'flex-start', 'column')}
-  gap : 10px;
 `;
 
 export const MenuBtn = styled.div`
@@ -66,4 +71,17 @@ export const MenuBtn = styled.div`
   font-size: 15px;
   line-height: 18px;
   cursor: pointer;
+`;
+
+export const LogoutBtn = styled.p`
+  margin: 30px auto;
+  text-align: center;
+
+  button {
+    background: none;
+    border: none;
+    color: #bcbcbc;
+    font-size: 11px;
+    font-weight: 500;
+  }
 `;

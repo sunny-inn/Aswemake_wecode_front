@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API } from '../config/config';
 import Header from '../Components/Header/Header';
 import FlyersList from './MypageComponents/FlyersList/FlyersList';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import Switch from './MypageComponents/Switch/Switch';
 import Terms from '../Components/Terms/Terms';
+import Modal from '../Components/Modal/Modal';
 import * as S from './Mypage.style';
 
 const Mypage = () => {
@@ -13,6 +15,8 @@ const Mypage = () => {
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
   const [isTerms, setIsTerms] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
 
   const toFlyersList = () => setIsFlyersList(prev => !prev);
   const toWithdraw = () => setIsWithdraw(prev => !prev);
@@ -37,14 +41,24 @@ const Mypage = () => {
 
   // const totalPoints = user && Math.trunc(user.totalPoints);
 
+  const handleModal = () => {
+    setOpenModal(prev => !prev);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    // refresh token(document.cookie) cookie 에서 삭제
+    return navigate('/');
+  };
+
   return (
     <S.MypageBox>
       <Header type="mypage" />
       <S.InfoBox>
         <S.NameBox>
           <p>안녕하세요!</p>
+          {/* <span>{user.name}</span>님 */}
           <p>
-            {/* <span>{user.name}</span>님 */}
             <S.Name>성이름</S.Name>님
           </p>
         </S.NameBox>
@@ -54,20 +68,29 @@ const Mypage = () => {
           <S.Points>3,000 P</S.Points>
         </S.PointBox>
       </S.InfoBox>
-      <S.MenuBox>
-        <S.MenuBtn onClick={toFlyersList}>
-          전단 등록 승인 현황 확인하러가기
-        </S.MenuBtn>
-        {/* {isFlyersList && <FlyersList />} */}
-        <S.MenuBtn onClick={toWithdraw}>계좌 등록 및 인출</S.MenuBtn>
-        {/* {isWithdraw && <Withdraw toWithdraw={toWithdraw} />} */}
-        <S.MenuBtn onClick={toSwitch}>계좌 변경</S.MenuBtn>
-        {/* {isSwitch && <Switch />} */}
-        <S.MenuBtn onClick={onClickTerms}>
-          큐마켓 전단지도 이용약관 확인하기
-        </S.MenuBtn>
-        {/* {isTerms && <Terms onClickTerms={onClickTerms} />} */}
-      </S.MenuBox>
+      <S.MenuBoxWrap>
+        <S.MenuBox>
+          <S.MenuBtn onClick={toFlyersList}>전단 등록 승인 현황</S.MenuBtn>
+          {/* {isFlyersList && <FlyersList />} */}
+          <S.MenuBtn onClick={toWithdraw}>포인트 인출</S.MenuBtn>
+          {/* {isWithdraw && <Withdraw toWithdraw={toWithdraw} />} */}
+          <S.MenuBtn>계좌 등록</S.MenuBtn>
+          <S.MenuBtn onClick={toSwitch}>계좌 변경</S.MenuBtn>
+          {/* {isSwitch && <Switch />} */}
+          <S.MenuBtn onClick={onClickTerms}>큐마켓 전단지도 이용약관</S.MenuBtn>
+          {/* {isTerms && <Terms onClickTerms={onClickTerms} />} */}
+        </S.MenuBox>
+        <S.LogoutBtn>
+          <button onClick={handleModal}>로그아웃</button>
+          {openModal && (
+            <Modal
+              handleLogout={handleLogout}
+              handleModal={handleModal}
+              type="logout"
+            />
+          )}
+        </S.LogoutBtn>
+      </S.MenuBoxWrap>
     </S.MypageBox>
   );
 };
