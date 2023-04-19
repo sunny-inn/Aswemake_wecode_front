@@ -5,6 +5,7 @@ import FlyersList from './MypageComponents/FlyersList/FlyersList';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import Switch from './MypageComponents/Switch/Switch';
 import Terms from '../Components/Terms/Terms';
+import ModifyInfo from './MypageComponents/ModifyInfo/ModifyInfo';
 import * as S from './Mypage.style';
 
 const Mypage = () => {
@@ -13,11 +14,13 @@ const Mypage = () => {
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [isSwitch, setIsSwitch] = useState(false);
   const [isTerms, setIsTerms] = useState(false);
+  const [modifyInfo, setModifyInfo] = useState(false);
 
   const toFlyersList = () => setIsFlyersList(prev => !prev);
   const toWithdraw = () => setIsWithdraw(prev => !prev);
   const toSwitch = () => setIsSwitch(prev => !prev);
   const onClickTerms = () => setIsTerms(prev => !prev);
+  const goToModifyInfo = () => setModifyInfo(prev => !prev);
 
   //FIXME: 디자인 수정 중
   //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
@@ -39,10 +42,17 @@ const Mypage = () => {
 
   return (
     <S.MypageBox>
+      {modifyInfo && <ModifyInfo />}
       <Header type="mypage" />
       <S.InfoBox>
         <S.NameBox>
-          <p>안녕하세요!</p>
+          <div>
+            <p>안녕하세요!</p>
+            <S.ModifyInfo onClick={goToModifyInfo}>
+              <span>내 정보 수정</span>
+              <img src="/images/mypage/Vector.png" alt="right arrow" />
+            </S.ModifyInfo>
+          </div>
           <p>
             {/* <span>{user.name}</span>님 */}
             <S.Name>성이름</S.Name>님

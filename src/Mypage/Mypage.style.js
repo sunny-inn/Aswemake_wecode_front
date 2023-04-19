@@ -14,11 +14,27 @@ export const InfoBox = styled.div`
 export const NameBox = styled.div`
   margin-bottom: 20px;
 
+  div {
+    ${flex('space-between', 'center', null)}
+  }
+
   p {
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
     color: #252525;
+  }
+`;
+
+export const ModifyInfo = styled.button`
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+
+  span {
+    margin-right: 7px;
+    color: #707070;
   }
 `;
 
