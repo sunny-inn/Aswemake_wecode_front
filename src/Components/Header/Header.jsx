@@ -4,6 +4,10 @@ import * as S from './Header.style';
 const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
   const headerList = {
     signup: SIGNUP_HEADER,
+    findid: FINDID_HEADER,
+    findpwd: FINDPWD_HEADER,
+    pwdresetting: PWDRESETTING_HEADER,
+    withdrawpoint: WITHDRAWPOINT_HEADER,
     terms: TERMS_HEADER,
     submit: SUBMIT_HEADER,
     upload: UPLOAD_HEADER,
@@ -42,6 +46,26 @@ export default Header;
 
 const SIGNUP_HEADER = {
   title: '회원가입',
+  button: true,
+};
+
+const FINDID_HEADER = {
+  title: '아이디 찾기',
+  button: true,
+};
+
+const FINDPWD_HEADER = {
+  title: '비밀번호 찾기',
+  button: true,
+};
+
+const PWDRESETTING_HEADER = {
+  title: '비밀번호 재설정',
+  button: true,
+};
+
+const WITHDRAWPOINT_HEADER = {
+  title: '포인트 인출',
   button: true,
 };
 

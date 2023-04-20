@@ -3,14 +3,30 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Container from './Components/Container/Container';
 import Home from './Home/Home';
 import Login from './Login/Login';
+import FindId from './Login/FindId/FindId';
+import NotifyId from './Login/FindId/NotifyId';
+import CntFindId from './Login/FindId/CntFindId';
+import FindPwd from './Login/FindPwd/FindPwd';
+import PwdReSetting from './Login/FindPwd/PwdReSetting';
+import PwdFinal from './Login/FindPwd/PwdFinal';
 import Signup from './Signup/Signup';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
+<<<<<<< HEAD
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
 import Search from './Home/HomeComponents/Search/Search';
+=======
+import Input from './Components/Input/Input';
+<<<<<<< HEAD
+import Withdraw from './Mypage/MypageComponents/Withdraw/Withdraw';
+import WithdrawNoti from './Withdraw/WithdrawNotify';
+import WithdrawNotify from './Withdraw/WithdrawNotify';
+>>>>>>> 4d463b4 (ADD : 비밀번호 재설정 페이지 기능 구현 완료)
+=======
+>>>>>>> 6a5c1a3 (ADD : component reuse)
 
 const Router = () => {
   return (
@@ -24,6 +40,13 @@ const Router = () => {
         </Route>
         <Route path="/detail" element={<Detail />} />
         <Route path="/" element={<Login />} />
+        <Route path="/findid" element={<FindId />} />
+        <Route path="/cntfindid" element={<CntFindId />} />
+        <Route path="/findpwd" element={<FindPwd />} />
+        <Route path="/pwdresetting" element={<PwdReSetting />} />
+        <Route path="/pwdfinal" element={<PwdFinal />} />
+        <Route path="/input" element={<Input />} />
+        <Route path="/notify" element={<NotifyId />} />
         <Route path="/suggest" element={<Suggest />} />
         <Route
           path="/suggest/suggestCompleted"

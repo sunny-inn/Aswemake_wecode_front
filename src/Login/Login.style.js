@@ -74,7 +74,24 @@ export const KeepLoginSpan = styled.p`
   padding-top: 3px;
   color: #707070;
 `;
-
+export const FindBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 16px 28px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  font-size: 14px;
+`;
+export const FindId = styled.div`
+  padding-right: 8px;
+`;
+export const Division = styled.div`
+  font-weight: 400;
+  color: #707070;
+`;
+export const FindPwd = styled.div`
+  padding-left: 8px;
+`;
 export const Button = styled.button`
   width: 328px;
   height: 50px;
@@ -88,7 +105,6 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: border-color 0.3s ease;
 
   &:disabled {
     opacity: 0.5;

@@ -162,6 +162,15 @@ const Login = () => {
             >
               <span>로그인</span>
             </S.Button>
+            {/* 나 */}
+            <S.FindBlock>
+              <Link to="/findid">
+                <S.FindId>아이디 찾기</S.FindId>
+              </Link>
+              <S.Division>|</S.Division>
+              <S.FindPwd>비밀번호 찾기</S.FindPwd>
+            </S.FindBlock>
+            {/* 나 */}
             <S.LineHr />
             <Link to="/signup">
               <S.Button
