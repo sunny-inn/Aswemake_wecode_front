@@ -14,6 +14,7 @@ const Header = ({ type, onClickBack }) => {
     modifyAddress: MODIFY_ADDRESS_HEADER,
     modifyPhone: MODIFY_PHONE_HEADER,
     dropOut: DROPOUT_HEADER,
+    dropOutSuccess: DROPOUT_SUCCESS_HEADER,
   };
 
   return (
@@ -87,5 +88,10 @@ const MODIFY_PHONE_HEADER = {
 
 const DROPOUT_HEADER = {
   title: '회원탈퇴',
+  button: true,
+};
+
+const DROPOUT_SUCCESS_HEADER = {
+  title: '회원탈퇴 완료',
   button: true,
 };

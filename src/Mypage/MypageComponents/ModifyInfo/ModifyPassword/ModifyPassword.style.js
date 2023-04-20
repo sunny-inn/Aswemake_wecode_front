@@ -1,35 +1,29 @@
 import styled from 'styled-components';
-import { flex } from '../../../Styles/Mixin';
+import { flex } from '../../../../Styles/Mixin';
 
-export const ModifyInfo = styled.div`
+export const ModifyPassword = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 360px;
   height: 616px;
-  z-index: 5;
+  z-index: 15;
   background: #fff;
 `;
 
-export const ModifyInfoBody = styled.div`
+export const ModifyPasswordBody = styled.div`
   padding: 0 16px;
-
-  p {
-    padding: 5px 0 22px 0;
-    font-size: 15px;
-    line-height: 17.9px;
-    border-bottom: 1px solid #f9f9f9;
-  }
 `;
 
-export const PasswordTitle = styled.h2`
-  margin: 22px 0 8px 0;
+export const ModifyPasswordTitle = styled.h2`
+  margin-top: 22px;
   font-size: 15px;
   font-weight: 700;
 `;
 
 export const PasswordInputWrap = styled.div`
   ${flex(null, 'center', null)}
+  margin-top: 8px;
   width: 328px;
   height: 50px;
   border: 1px solid #dbdbdb;
@@ -54,6 +48,13 @@ export const PasswordInputWrap = styled.div`
   }
 `;
 
+export const PasswordCheckText = styled.h4`
+  margin-top: 8px;
+  color: #ff6a21;
+  font-size: 13px;
+  font-weight: 500;
+`;
+
 export const ConfirmBtn = styled.button`
   position: absolute;
   bottom: 20px;
@@ -63,7 +64,7 @@ export const ConfirmBtn = styled.button`
   background: #dbdbdb;
   border: none;
   border-radius: 8px;
-  color: white;
+  color: #fff;
   font-size: 17px;
   font-weight: 700;
 `;

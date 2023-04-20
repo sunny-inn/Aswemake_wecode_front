@@ -65,18 +65,16 @@ const Mypage = () => {
         </S.PointBox>
       </S.InfoBox>
       <S.MenuBox>
-        <S.MenuBtn onClick={toFlyersList}>
-          전단 등록 승인 현황 확인하러가기
-        </S.MenuBtn>
+        <S.MenuBtn onClick={toFlyersList}>포인트 인출</S.MenuBtn>
         {/* {isFlyersList && <FlyersList />} */}
-        <S.MenuBtn onClick={toWithdraw}>계좌 등록 및 인출</S.MenuBtn>
+        <S.MenuBtn onClick={toWithdraw}>전단등록 현황</S.MenuBtn>
         {/* {isWithdraw && <Withdraw toWithdraw={toWithdraw} />} */}
-        <S.MenuBtn onClick={toSwitch}>계좌 변경</S.MenuBtn>
+        <S.MenuBtn onClick={toSwitch}>마트 정보 수정 현황</S.MenuBtn>
         {/* {isSwitch && <Switch />} */}
-        <S.MenuBtn onClick={onClickTerms}>
-          큐마켓 전단지도 이용약관 확인하기
-        </S.MenuBtn>
+        <S.MenuBtn onClick={onClickTerms}>계좌 등록</S.MenuBtn>
         {/* {isTerms && <Terms onClickTerms={onClickTerms} />} */}
+        <S.MenuBtn>계좌 변경</S.MenuBtn>
+        <S.MenuBtn>이용약관</S.MenuBtn>
       </S.MenuBox>
     </S.MypageBox>
   );

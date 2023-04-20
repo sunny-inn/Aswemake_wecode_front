@@ -5,6 +5,7 @@ const Modal = ({ handleModal, children, type }) => {
   const infoList = {
     map: MAP_MODAL_INFO,
     shop: SHOP_MODAL_INFO,
+    modify: MODIFY_PASSWORD_MODAL_INFO,
   };
 
   return (
@@ -37,4 +38,10 @@ const SHOP_MODAL_INFO = {
   title: '전단 등록',
   message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
   button: ['전단 등록 하기'],
+};
+
+const MODIFY_PASSWORD_MODAL_INFO = {
+  title: '비밀번호 불일치',
+  message: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
+  button: ['확인'],
 };

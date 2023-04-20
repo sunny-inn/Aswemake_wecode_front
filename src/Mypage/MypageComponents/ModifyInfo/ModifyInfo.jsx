@@ -1,10 +1,21 @@
 import React from 'react';
+import { useState } from 'react';
 import Header from '../../../Components/Header/Header';
+import Modal from '../../../Components/Modal/Modal';
+import ModifyInfoDetail from './ModifyInfoDetail';
 import * as S from './ModifyInfo.style';
 
 const ModifyInfo = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModal = () => {
+    setModalOpen(prev => !prev);
+  };
+
   return (
-    <S.ModifyInfoContainer>
+    <S.ModifyInfo>
+      {/* 비밀번호 일치하지 않으면 {modalOpen && <Modal handleModal={handleModal} type="modify" />} 띄우고 맞으면 아래 모달 띄우기 */}
+      {modalOpen && <ModifyInfoDetail />}
       <Header type="modifyInfo" />
       <S.ModifyInfoBody>
         <p>
@@ -19,9 +30,9 @@ const ModifyInfo = () => {
           />
           <img src="/images/passwordIcon.png" alt="password" />
         </S.PasswordInputWrap>
-        <S.ConfirmBtn>확인</S.ConfirmBtn>
       </S.ModifyInfoBody>
-    </S.ModifyInfoContainer>
+      <S.ConfirmBtn onClick={handleModal}>확인</S.ConfirmBtn>
+    </S.ModifyInfo>
   );
 };
 
