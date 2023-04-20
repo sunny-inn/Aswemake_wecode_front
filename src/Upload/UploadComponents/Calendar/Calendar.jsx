@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-// import { ko } from 'date-fns/esm/locale';
+import { ko } from 'date-fns/esm/locale';
 import { BottomSheet } from 'react-spring-bottom-sheet';
 import DatePicker from 'react-datepicker';
+import getYear from 'date-fns/getYear';
+import getMonth from 'date-fns/getMonth';
 import * as S from './Calendar.style';
 
 const Calendar = ({ setUploadInfo }) => {
@@ -111,18 +113,48 @@ const Calendar = ({ setUploadInfo }) => {
         </S.AlertMsg>
       )}
 
-      <BottomSheet open={open}>
-        <DatePicker
-          selected={startDate}
-          onChange={onChange}
-          startDate={startDate}
-          endDate={endDate}
-          // locale={ko}
-          dateFormat="yyyy.MM.dd"
-          selectsRange
-          inline
-        />
-      </BottomSheet>
+      <S.BottomSheetBox open={open}>
+        <S.CustomBox>
+          <DatePicker
+            selected={startDate}
+            onChange={onChange}
+            startDate={startDate}
+            endDate={endDate}
+            locale={ko}
+            dateFormat="yyyy.MM.dd"
+            selectsRange
+            inline
+            renderCustomHeader={({
+              date,
+              prevMonthButtonDisabled,
+              nextMonthButtonDisabled,
+              decreaseMonth,
+              increaseMonth,
+            }) => (
+              <S.CustomHeader>
+                <div
+                  className="btn_month btn_month-prev"
+                  onClick={decreaseMonth}
+                  disabled={prevMonthButtonDisabled}
+                >
+                  <img alt="prev" src="images/upload/prev.png" />
+                </div>
+                <div className="month-day">
+                  {getYear(date)}.{[getMonth(date)]}
+                </div>
+
+                <div
+                  className="btn_month btn_month-next"
+                  onClick={increaseMonth}
+                  disabled={nextMonthButtonDisabled}
+                >
+                  <img alt="next" src="images/upload/next.png" />
+                </div>
+              </S.CustomHeader>
+            )}
+          />
+        </S.CustomBox>
+      </S.BottomSheetBox>
     </S.CalendarBox>
   );
 };

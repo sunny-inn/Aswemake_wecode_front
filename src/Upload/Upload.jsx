@@ -1,16 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import * as S from './Upload.style';
+import Slider from 'react-slick';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Photo from './UploadComponents/Photo/Photo';
 import Calendar from './UploadComponents/Calendar/Calendar';
+import * as S from './Upload.style';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCloseClicked, setIsCloseClicked] = useState(false);
-
+  const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [uploadInfo, setUploadInfo] = useState({
     martId: 0,
     imageUrl: [],
@@ -113,7 +114,29 @@ const Upload = () => {
     // });
   };
 
-  console.log(uploadInfo);
+  const onClickCheckbox = e => {
+    setIsCheckboxClicked(prev => !prev);
+  };
+
+  let settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
+
+  console.log(uploadInfo.imageUrl);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
@@ -149,16 +172,40 @@ const Upload = () => {
         {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
       </S.PhotoBox>
       <div>
-        <S.CameraBox>
-          <S.CameraImg
-            alt="camera"
-            src="/images/upload/camera.png"
-            onClick={onClickClose}
-          />
-
-          <S.ImgCount>4장 필수</S.ImgCount>
-        </S.CameraBox>
-        {isCloseClicked && (
+        {imageUrl.length === 4 ? (
+          <Slider {...settings}>
+            <S.UploadedImg
+              alt="flyer1"
+              src={`${URL.createObjectURL(imageUrl[0])}`}
+            />
+            <S.UploadedImg
+              alt="flyer2"
+              src={`${URL.createObjectURL(imageUrl[1])}`}
+            />
+            <S.UploadedImg
+              alt="flyer3"
+              src={`${URL.createObjectURL(imageUrl[2])}`}
+            />
+            <S.UploadedImg
+              alt="flyer4"
+              src={`${URL.createObjectURL(imageUrl[3])}`}
+            />
+          </Slider>
+        ) : (
+          <S.CameraBox onClick={onClickImg}>
+            <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+            <S.ImgCount>4장 필수</S.ImgCount>
+          </S.CameraBox>
+        )}
+        <input
+          ref={inputRef}
+          type="file"
+          multiple
+          hidden
+          accept="image/*"
+          onChange={handleImg}
+        />
+        {/* {isCloseClicked && (
           // FIXME: 캐러셀로 바꾸기
           <Photo
             onClickClose={onClickClose}
@@ -167,10 +214,22 @@ const Upload = () => {
             handleImg={handleImg}
             uploadInfo={uploadInfo}
           />
-        )}
+        )} */}
       </div>
       <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
       <Calendar setUploadInfo={setUploadInfo} />
+      <S.CheckBox>
+        <img
+          alt="checkbox"
+          src={
+            isCheckboxClicked
+              ? 'images/signup/checkbox.png'
+              : 'images/signup/checkbox_d.png'
+          }
+          onClick={onClickCheckbox}
+        />
+        <label>등록 요청 후, 해당 건의 내용 수정은 불가합니다.</label>
+      </S.CheckBox>
       <S.SubmitBtn>전단 등록 요청</S.SubmitBtn>
     </S.UploadForm>
   );

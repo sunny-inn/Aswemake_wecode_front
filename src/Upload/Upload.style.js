@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import { flex } from '../Styles/Mixin';
+import Slider from 'react-slick';
 
 const UploadInput = css`
   width: 328px;
@@ -24,7 +25,8 @@ export const UploadForm = styled.form`
   padding: 10px;
   gap: 15px;
   height: 616px;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 export const PhoneInput = styled.input`
@@ -59,6 +61,17 @@ export const UplaodLabel = styled.label`
 export const PhotoBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 328px;
+`;
+
+export const ImgSlider = styled(Slider)`
+  width: 120px;
+`;
+
+export const UploadedImg = styled.img`
+  width: 120px;
+  height: 168px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
 `;
 
 export const TutorialBtn = styled.button`
@@ -107,4 +120,9 @@ export const SubmitBtn = styled.button`
   line-height: 20px;
   letter-spacing: -0.02em;
   color: #ffffff;
+`;
+
+export const CheckBox = styled.div`
+  ${flex(null, 'center', null)}
+  gap: 5px;
 `;
