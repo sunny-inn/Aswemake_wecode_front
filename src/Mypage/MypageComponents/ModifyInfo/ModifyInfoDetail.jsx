@@ -15,7 +15,7 @@ const ModifyInfoDetail = () => {
 
   return (
     <S.ModifyInfoDetail>
-      {modalOpen && <DropOut />}
+      {modalOpen && <ModifyAddress />}
       <Header type="modifyInfo" />
       <S.ModifyInfoDetailUpperBody>
         <h2>성이름</h2>

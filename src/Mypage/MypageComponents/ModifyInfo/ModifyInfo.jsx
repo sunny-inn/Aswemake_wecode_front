@@ -7,6 +7,7 @@ import * as S from './ModifyInfo.style';
 
 const ModifyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
 
   const handleModal = () => {
     setModalOpen(prev => !prev);
@@ -25,10 +26,20 @@ const ModifyInfo = () => {
         <S.PasswordTitle>비밀번호</S.PasswordTitle>
         <S.PasswordInputWrap>
           <input
-            type="password"
+            type={isPwEyeClicked ? 'text' : 'password'}
             placeholder="문자+숫자 8자리 이상 입력해주세요"
           />
-          <img src="/images/passwordIcon.png" alt="password" />
+          <img
+            src={
+              isPwEyeClicked
+                ? '/images/passwordIconColor.png'
+                : '/images/passwordIcon.png'
+            }
+            alt="password eye"
+            onClick={() => {
+              setIsPwEyeClicked(prev => !prev);
+            }}
+          />
         </S.PasswordInputWrap>
       </S.ModifyInfoBody>
       <S.ConfirmBtn onClick={handleModal}>확인</S.ConfirmBtn>

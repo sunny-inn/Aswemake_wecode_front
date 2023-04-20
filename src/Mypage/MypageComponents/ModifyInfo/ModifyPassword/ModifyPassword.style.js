@@ -45,6 +45,7 @@ export const PasswordInputWrap = styled.div`
   img {
     width: 23px;
     margin: 0 auto;
+    cursor: pointer;
   }
 `;
 
