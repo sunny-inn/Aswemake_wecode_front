@@ -9,6 +9,8 @@ const Header = ({ type, onClickBack }) => {
     upload: UPLOAD_HEADER,
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
+    martInfoStatus: MART_INFO_STATUS_HEADER,
+    flyerStatus: FLYER_STATUS_HEADER,
   };
 
   return (
@@ -58,4 +60,14 @@ const PHOTO_HEADER = {
 const MYPAGE_HEADER = {
   title: '마이페이지',
   button: false,
+};
+
+const MART_INFO_STATUS_HEADER = {
+  title: '마트 정보 수정 현황',
+  button: true,
+};
+
+const FLYER_STATUS_HEADER = {
+  title: '전단등록 현황',
+  button: true,
 };
