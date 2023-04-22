@@ -79,4 +79,5 @@ export const CurrentLocation = styled.img`
   height: 60px;
   bottom: 115px;
   position: absolute;
+  cursor: pointer;
 `;
