@@ -9,6 +9,7 @@ const Header = ({ type, onClickBack }) => {
     upload: UPLOAD_HEADER,
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
+    suggest: SUGGEST_HEADER,
   };
 
   return (
@@ -57,5 +58,10 @@ const PHOTO_HEADER = {
 
 const MYPAGE_HEADER = {
   title: '마이페이지',
+  button: false,
+};
+
+const SUGGEST_HEADER = {
+  title: '정보 수정 제안',
   button: false,
 };
