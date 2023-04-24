@@ -45,13 +45,13 @@ export const PasswdCheckInput = styled.input`
 export const PasswdImg = styled.img`
   position: absolute;
   top: 35.5%;
-  right: 10%;
+  right: 9%;
 `;
 
 export const CheckedImg = styled.img`
   position: absolute;
-  top: 50.5%;
-  right: 10%;
+  top: 44%;
+  right: 9%;
 `;
 
 export const ConfirmMsg = styled.p`

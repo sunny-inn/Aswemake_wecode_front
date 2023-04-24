@@ -13,6 +13,8 @@ const Passwd = ({
 
   const onClickPasswdEye = () => setIsPasswdEyeClicked(prev => !prev);
 
+  console.log(isValidPasswd);
+
   return (
     <S.PasswdBox>
       <S.PasswdInput
@@ -31,9 +33,6 @@ const Passwd = ({
         }
         onClick={onClickPasswdEye}
       />
-      {passwd !== '' && isValidPasswd && (
-        <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>
-      )}
       <div>
         <S.PasswdCheckInput
           name="passwdCheck"
@@ -53,6 +52,10 @@ const Passwd = ({
           }
           onClick={onClickPasswdEye}
         />
+        {passwd !== '' && isValidPasswd && (
+          <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>
+        )}
+
         {passwdCheck !== '' &&
           (!correctPasswd ? (
             <S.AlertMsg correctPasswd={correctPasswd}>

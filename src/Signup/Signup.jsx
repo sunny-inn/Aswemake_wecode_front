@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import { useNavigate } from 'react-router-dom';
 import Birth from './SignupComponents/Birth/Birth';
 import Terms from '../Components/Terms/Terms';
 import Id from './SignupComponents/Id/Id';
 import Submit from './SignupComponents/Submit/Submit';
-import * as S from './Signup.style';
 import Header from '../Components/Header/Header';
-import { useNavigate } from 'react-router-dom';
 import Phone from './SignupComponents/Phone/Phone';
 import Passwd from './SignupComponents/Passwd/Passwd';
+import * as S from './Signup.style';
 
 const Signup = () => {
   const [year, setYear] = useState('');

@@ -10,6 +10,8 @@ export const SignupBox = styled.div`
   padding: 10px;
   background: #ffffff;
   backdrop-filter: blur(2px);
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 export const FormBox = styled.form`
