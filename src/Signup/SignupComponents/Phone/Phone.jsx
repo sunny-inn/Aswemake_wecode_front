@@ -8,6 +8,7 @@ const Phone = ({
   setCode,
   verification,
   setVerification,
+  AlertMsg,
 }) => {
   const [codeBtn, setCodeBtn] = useState(0);
   const [showTimer, setShowTimer] = useState(false);
@@ -64,10 +65,7 @@ const Phone = ({
   const onClickVerification = e => {
     e.preventDefault();
 
-    //https://flyers.qmarket.me/api/verificationCode/check
-    //http://172.30.1.41:8000/api/verificationCode/check
-
-    fetch('https://flyers.qmarket.me/api/verificationCode/check', {
+    fetch('http://10.58.52.174:8000/api/verificationCode/check', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -81,10 +79,8 @@ const Phone = ({
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
-          setAlertMsg(false);
         } else {
           setVerification(false);
-          setAlertMsg(true);
         }
       });
   };
@@ -114,19 +110,19 @@ const Phone = ({
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
-          alertMsg={alertMsg}
+          AlertMsg={AlertMsg}
         />
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
           onClick={onClickVerification}
-          disabled={code && phoneNumber ? false : true}
-          code={code}
-          phoneNumber={phoneNumber}
+          disabled={verification ? false : true}
+          verification={verification}
+          AlertMsg={AlertMsg}
         >
           확인
         </S.VerificationBtn>
       </S.PhoneBtnBox>
-      {alertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
+      {AlertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
     </S.PhoneBox>
   );
 };
