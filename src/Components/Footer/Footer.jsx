@@ -48,7 +48,7 @@ const FOOTER_LIST = [
     title: '홈',
     defaultImg: './images/store.png',
     checkedImg: './images/storefront.png',
-    goTo: '/',
+    goTo: '/home',
   },
   {
     id: 2,
@@ -69,6 +69,6 @@ const FOOTER_LIST = [
     title: '마이페이지',
     defaultImg: './images/mypage.png',
     checkedImg: './images/colorMypage.png',
-    goTo: '/Mypage',
+    goTo: '/mypage',
   },
 ];

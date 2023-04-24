@@ -181,38 +181,37 @@ const Signup = () => {
     isCheckboxClicked === true
   );
 
-  const AlertMsg = code !== '' && verification === false;
-
   // 회원가입 완료
   const onSubmit = e => {
     e.preventDefault();
+    //https://flyers.qmarket.me/api/users/signUp
+    //http://172.30.1.41:8000/api/users/signup
 
-    birth.length === 8 &&
-      fetch('http://172.30.1.41:8000/api/users/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          identification: id,
-          password: passwd,
-          name: name,
-          birth: birthDate,
-          phoneNumber: phoneNumber,
-          gender: gender,
-          zipCode: postalCode,
-          address: address,
-          detailAddress: addressDetail,
-        }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message === 'SIGNUP_SUCCESS') {
-            setIsSubmitOpen(prev => !prev);
-          } else {
-            alert('실패');
-          }
-        });
+    fetch('https://flyers.qmarket.me/api/users/signUp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        identification: id,
+        password: passwd,
+        name: name,
+        birth: birthDate,
+        phoneNumber: phoneNumber,
+        gender: gender,
+        zipCode: postalCode,
+        address: address,
+        detailAddress: addressDetail,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'SIGNUP_SUCCESS') {
+          setIsSubmitOpen(prev => !prev);
+        } else {
+          alert('실패');
+        }
+      });
   };
 
   return (
@@ -302,7 +301,6 @@ const Signup = () => {
           setCode={setCode}
           verification={verification}
           setVerification={setVerification}
-          AlertMsg={AlertMsg}
         />
         <S.TermsBox>
           <S.InputTitle>이용 약관</S.InputTitle>

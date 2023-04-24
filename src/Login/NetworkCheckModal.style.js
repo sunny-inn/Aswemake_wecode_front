@@ -1,15 +1,5 @@
 import styled from 'styled-components';
-import {
-  Container as MapDiv,
-  NaverMap,
-  Marker,
-  useNavermaps,
-} from 'react-naver-maps';
-
-export const MapBox = styled(MapDiv)`
-  height: 616px;
-  width: 360px;
-`;
+// import close from './images/closeImg.png';
 
 export const ModalContainer = styled.div`
   width: 288px;
@@ -18,11 +8,13 @@ export const ModalContainer = styled.div`
   border-radius: 8px;
   position: absolute;
   top: 48%;
-  left: 50%;
+  left: 36%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
 `;
 export const ModalContentBox = styled.div`
   display: flex;
@@ -35,8 +27,7 @@ export const ModalText = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 50px;
-  padding-top: 30px;
+  margin: 30px 0;
   display: flex;
   align-items: center;
   text-align: center;
@@ -46,24 +37,11 @@ export const ModalButtonBox = styled.div`
   display: flex;
 `;
 
-export const ModalInfoButton = styled.button`
-  border: 1px solid #ff6a21;
-  border-radius: 8px;
-  background-color: #fff;
-  width: 128px;
-  height: 50px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  color: #ff6a21;
-  cursor: pointer;
-`;
 export const ModalUploadButton = styled.button`
   border: 1px solid #ff6a21;
   border-radius: 8px;
   background-color: #ff6a21;
-  width: 128px;
+  width: 264px;
   height: 50px;
   font-style: normal;
   font-weight: 700;
@@ -71,13 +49,30 @@ export const ModalUploadButton = styled.button`
   line-height: 16px;
   color: #fff;
   cursor: pointer;
-  margin-left: 8px;
 `;
 
-export const CurrentLocation = styled.img`
-  width: 60px;
-  height: 60px;
-  bottom: 115px;
-  position: absolute;
+export const Close = styled.button`
+  width: 24px;
+  height: 24px;
+  color: #dbdbdb;
+  background-image: url(/images/closeImg.png);
+  background-color: #fff;
+  border: none;
   cursor: pointer;
+  margin-bottom: 10px;
+`;
+
+export const ModalTitleBox = styled.div`
+  display: flex;
+  text-align: center;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #eeeeee;
+`;
+
+export const ModalTitle = styled.p`
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  padding-left: 95px;
 `;

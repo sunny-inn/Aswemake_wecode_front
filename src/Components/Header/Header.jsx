@@ -8,16 +8,20 @@ const Header = ({ type, onClickBack }) => {
     submit: SUBMIT_HEADER,
     upload: UPLOAD_HEADER,
     photo: PHOTO_HEADER,
+    mypage: MYPAGE_HEADER,
+    suggest: SUGGEST_HEADER,
   };
 
   return (
     <S.HeaderBox>
-      {headerList[type].button === true && (
+      {headerList[type].button === true ? (
         <S.Back
           alt="arrow"
           src="images/signup/arrow.png"
           onClick={onClickBack}
         />
+      ) : (
+        <div />
       )}
       <S.Title>{headerList[type].title}</S.Title>
       <div />
@@ -50,4 +54,14 @@ const UPLOAD_HEADER = {
 const PHOTO_HEADER = {
   title: '사진 등록 방법 안내',
   button: true,
+};
+
+const MYPAGE_HEADER = {
+  title: '마이페이지',
+  button: false,
+};
+
+const SUGGEST_HEADER = {
+  title: '정보 수정 제안',
+  button: false,
 };

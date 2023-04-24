@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HomeCarousel from './HomeCarousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Modal from '../Components/Modal/Modal';
+import * as S from './Home.style';
+import Footer from '../Components/Footer/Footer';
 import {
   Container as MapDiv,
   NaverMap,
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Modal from '../Components/Modal/Modal';
-import * as S from './Home.style';
-import Footer from '../Components/Footer/Footer';
 
 const Home = () => {
   // useEffect(()=>{
@@ -23,7 +23,7 @@ const Home = () => {
   // },[])
 
   //MockData시작
-  const [homeMartList, setHomeMartList] = useState([]);
+  const [homeMartList, setHomeMartList] = useState([{}]);
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [shopModal, setShopModal] = useState(false);
@@ -55,13 +55,28 @@ const Home = () => {
     }
   }, [homeMartList]);
 
+  //./data/MhomeData.json
+  //172.30.1.87
+  //http://172.30.1.87:8000/api/home
+  //https://flyers.qmarket.me/api/home
+  const token = localStorage.getItem('token');
+  // console.log(token);
   useEffect(() => {
-    fetch('./data/MhomeData.json')
+    fetch('https://flyers.qmarket.me/api/home', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+    })
       .then(response => response.json())
       .then(data => {
-        setHomeMartList(data.martList);
+        setHomeMartList(data.homeMartList);
       });
   }, []);
+
+  console.log('마트리스트', homeMartList);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -92,7 +107,8 @@ const Home = () => {
   );
   if (homeMartList.length === 0) return;
 
-  const changeCenterByCarousel = smIndex => {
+  const changeCenterByCarousel = (smIndex, e) => {
+    console.log(e);
     let nextIndex = 0;
     if (smIndex === homeMartList.length - 1) {
       nextIndex = 0;
@@ -112,44 +128,44 @@ const Home = () => {
 
   return (
     <S.MapBox>
-      <NaverMap
-        // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-        defaultCenter={new navermaps.LatLng(37.4857254, 126.9276657)}
-        defaultZoom={15}
-        zoomControl={true}
-        // onCenterChanged={handleCenter} 중심좌표구할때
-        ref={mapRef}
-      >
-        {homeMartList.map((mart, index) => {
-          return (
-            <Marker
-              position={new navermaps.LatLng(mart.y, mart.x)}
-              key={mart.id}
-              title={mart.name}
-              icon={
-                isMarkerClicked[index]
-                  ? './images/clickedMarker.png'
-                  : './images/marker.png'
-              }
-              // {{
-              //   content: `<S.MarkerBox>
-              //       <S.MarkerOrder>${mart.name}</S.MarkerOrder>
-              //       ${mart.phoneNumber}</S.MarkerBox>`,
-              // }}
-              onClick={e => handleMarkerClick(e, mart, index)}
-            />
-          );
-        })}
+      {homeMartList.length > 1 && (
+        <>
+          <NaverMap
+            // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
+            defaultCenter={new navermaps.LatLng(37.4857254, 126.9276657)}
+            defaultZoom={15}
+            zoomControl={true}
+            // onCenterChanged={handleCenter} 중심좌표구할때
+            ref={mapRef}
+          >
+            {homeMartList.map((mart, index) => {
+              return (
+                <Marker
+                  position={new navermaps.LatLng(mart.y, mart.x)}
+                  key={mart.id}
+                  title={mart.name}
+                  icon={
+                    isMarkerClicked[index]
+                      ? './images/clickedMarker.png'
+                      : './images/marker.png'
+                  }
+                  onClick={e => handleMarkerClick(e, mart, index)}
+                />
+              );
+            })}
 
-        <HomeCarousel
-          homeMartList={homeMartList}
-          selectedMart={selectedMart}
-          handleModal={handleModal}
-          changeCenterByCarousel={changeCenterByCarousel}
-        />
-      </NaverMap>
-      {openModal && <Modal handleModal={handleModal} type="map" />}
-      {shopModal && <Modal handleModal={handleModal} type="shop" />}
+            <HomeCarousel
+              homeMartList={homeMartList}
+              selectedMart={selectedMart}
+              handleModal={handleModal}
+              changeCenterByCarousel={changeCenterByCarousel}
+            />
+            <S.CurrentLocation src="./images/location.png" alt="현위치" />
+          </NaverMap>
+          {openModal && <Modal handleModal={handleModal} type="map" />}
+          {shopModal && <Modal handleModal={handleModal} type="shop" />}
+        </>
+      )}
     </S.MapBox>
   );
 };

@@ -15,7 +15,7 @@ const Photo = ({
     <S.PhotoBox isOpen={true} ariaHideApp={false}>
       <div>
         <button onClick={onClickClose}>x</button>
-        <p>전단지 {imageUrl.length}면</p>
+        <p>전단지 1면</p>
       </div>
       <S.Camera>
         <img alt="카메라 렌즈로 촬영하는 화면" onClick={onClickImg} />

@@ -14,7 +14,7 @@ export const LogoImg = styled.img`
   width: 80px;
   height: 71px;
   margin-bottom: 50px;
-  margin-left: -10px;
+  margin-left: -33px;
 `;
 
 export const InputBoxContainer = styled.div`

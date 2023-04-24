@@ -1,20 +1,33 @@
 import React, { useState, useRef, useEffect } from 'react';
 import * as S from './Upload.style';
-import Period from './UploadComponents/Period/Period';
+import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Photo from './UploadComponents/Photo/Photo';
-import Datepicker from './UploadComponents/Datepicker/Datepicker';
+import Calendar from './UploadComponents/Calendar/Calendar';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCloseClicked, setIsCloseClicked] = useState(false);
-  const [month, setMonth] = useState('');
-  const [date, setDate] = useState('');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  const handlePhoneNumber = e => {
+  // 등록 요청
+  const [uploadInfo, setUploadInfo] = useState({
+    martPhoneNumber: '',
+    imageUrl: [],
+    startDate: '',
+    endDate: '',
+  });
+
+  console.log('업로드', uploadInfo);
+  console.log('마트', marts);
+
+  const handlePhoneNumber = (e, prev) => {
     setPhoneNumber(e.target.value);
+    phoneNumber && setUploadInfo({ ...prev, martPhoneNumber: phoneNumber });
   };
 
   //FIXME: api로 수정
@@ -52,7 +65,6 @@ const Upload = () => {
   };
 
   // 이미지 state에 넣기
-  //FIXME: img가 배열에 쌓이도록 구현해야 함
   const handleImg = e => {
     e.preventDefault();
     const files = e.target.files;
@@ -63,82 +75,72 @@ const Upload = () => {
     }));
   };
 
-  // 전단 행사 기간
-  const now = new Date();
-  const year = now.getFullYear();
-
-  const handleMonth = e => {
-    setMonth(e.target.value);
-  };
-  const handleDate = e => {
-    setDate(e.target.value);
-  };
-
-  const endDate =
-    month.length === 2 ? year + month + date : year + '0' + month + date;
-
-  // 등록 요청
-  const [uploadInfo, setUploadInfo] = useState({
-    martId: marts.id,
-    imageUrl: [],
-    endDate: endDate,
-  });
+  const navigate = useNavigate();
 
   const uploadForm = new FormData();
   uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
-  for (let i = 0; i < 4; i++) {
-    uploadForm.append('imagesUrl', uploadInfo.imageUrl[i]);
-  }
-  // 행사 끝나는 날짜도 보내줘야 함
+  uploadForm.append('imagesUrl', uploadInfo.imageUrl);
+  uploadForm.append('startDate', startDate);
+  uploadForm.append('endDate', endDate);
 
   const onSubmitFlyers = e => {
     e.preventDefault();
 
     //TODO: POST하는 api
-    // fetch(`${API.POSTS}`, {
+    // fetch('https://flyers.qmarket.me/api/flyer', {
     //   method: 'POST',
     //   headers: {
     //     enctype: 'multipart/form-data',
-    //     authorization: Token,
+    //     authorization: localStorage.getItem('token'),
     //   },
     //   body: uploadForm,
-    // }).then(response => response.json());
-    // .then(data => {
-    //   if (data.message === 'success') {
-    //     navigate('/home-warming-list');
-    //   } else {
-    //     alert('실패');
-    //   }
-    // });
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     if (data.message === 'success') {
+    //       navigate('/home-warming-list');
+    //     } else {
+    //       alert('실패');
+    //     }
+    //   });
   };
 
   return (
-    <S.UploadBox onSubmit={onSubmitFlyers}>
-      <label>마트 전화 번호</label>
-      <S.UploadInput
+    <S.UploadForm onSubmit={onSubmitFlyers}>
+      <Header type="upload" />
+      <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
+      <S.PhoneInput
         type="text"
         value={phoneNumber}
         placeholder='전화번호를 "-"없이 입력해주세요'
         onChange={handlePhoneNumber}
       />
-      <label>마트 이름</label>
-      <S.UploadInput
+      <S.UplaodLabel>마트 이름</S.UplaodLabel>
+      <S.MartInput
         value={filteredMartName}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
-      <label>마트 주소</label>
-      <S.UploadInput
+      <S.UplaodLabel>마트 주소</S.UplaodLabel>
+      <S.MartInput
         value={filteredMartAddress}
         placeholder="주소를 입력해주세요."
         readOnly
       />
-      <label>사진 등록</label>
-      <button onClick={onClickTutorial}>등록 방법 확인</button>
-      {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
+      <S.PhotoBox>
+        <S.UplaodLabel>사진 등록</S.UplaodLabel>
+        <S.TutorialBtn onClick={onClickTutorial}>등록 방법 확인</S.TutorialBtn>
+        {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
+      </S.PhotoBox>
       <div>
-        <S.CameraImg alt="camera" onClick={onClickClose} />
-        <S.ImgCount>{uploadInfo.imageUrl ? '4' : '0'}/4</S.ImgCount>
+        <S.CameraBox>
+          <S.CameraImg
+            alt="camera"
+            src="/images/upload/camera.png"
+            onClick={onClickClose}
+          />
+          <S.ImgCount>0/4</S.ImgCount>
+        </S.CameraBox>
         {isCloseClicked && (
           <Photo
             onClickClose={onClickClose}
@@ -149,17 +151,16 @@ const Upload = () => {
           />
         )}
       </div>
-      <label>전단 행사 기간</label>
-      {/* <Period
-        year={year}
-        month={month}
-        date={date}
-        handleMonth={handleMonth}
-        handleDate={handleDate}
-      /> */}
-      <Datepicker />
-      <button>등록 요청</button>
-    </S.UploadBox>
+      <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
+      <Calendar
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
+        setUploadInfo={setUploadInfo}
+      />
+      <S.SubmitBtn>등록 요청</S.SubmitBtn>
+    </S.UploadForm>
   );
 };
 export default Upload;

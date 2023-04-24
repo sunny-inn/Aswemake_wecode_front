@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
+import * as S from './Calendar.style';
 
-const Datepicker = () => {
+const Calendar = ({
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+  setUploadInfo,
+}) => {
   //TODO: 디자인 나오면 커스텀하기
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  console.log(startDate);
 
   return (
-    <>
-      <DatePicker
+    <S.DateBox>
+      <S.DatePickerBox
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={(date, prev) =>
+          setStartDate(date) &&
+          startDate &&
+          setUploadInfo({ ...prev, startDate: startDate })
+        }
         selectsStart
         startDate={startDate}
         endDate={endDate}
@@ -20,7 +29,7 @@ const Datepicker = () => {
         dateFormat="yyyy.MM.dd"
         placeholderText="시작일자"
       />
-      <DatePicker
+      <S.DatePickerBox
         selected={endDate}
         onChange={date => setEndDate(date)}
         selectsEnd
@@ -31,8 +40,8 @@ const Datepicker = () => {
         dateFormat="yyyy.MM.dd"
         placeholderText="마감일자"
       />
-    </>
+    </S.DateBox>
   );
 };
 
-export default Datepicker;
+export default Calendar;
