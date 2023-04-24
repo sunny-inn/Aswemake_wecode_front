@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/esm/locale';
-import { BottomSheet } from 'react-spring-bottom-sheet';
 import DatePicker from 'react-datepicker';
 import getYear from 'date-fns/getYear';
 import getMonth from 'date-fns/getMonth';

@@ -63,10 +63,6 @@ export const PhotoBox = styled.div`
   width: 328px;
 `;
 
-export const ImgSlider = styled(Slider)`
-  width: 120px;
-`;
-
 export const UploadedImg = styled.img`
   width: 120px;
   height: 168px;
