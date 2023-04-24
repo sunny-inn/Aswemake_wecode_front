@@ -2,11 +2,7 @@ import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import * as S from './CallModal.style';
 
-const CallModal = ({ detailMartList, handleModal }) => {
-  const handleCopy = () => {
-    alert('복사되었습니다.');
-  };
-
+const CallModal = ({ detailMartList, handleModal, handlePhoneNum }) => {
   return (
     <S.ModalBackground>
       <S.ModalContainer>
@@ -27,10 +23,9 @@ const CallModal = ({ detailMartList, handleModal }) => {
           <S.ModalText>
             <a href={`tel:${detailMartList[0].martPhoneNumber}`}>전화 걸기</a>
           </S.ModalText>
-          <S.ModalText>연락처 저장하기</S.ModalText>
           <CopyToClipboard
             text={detailMartList[0].martPhoneNumber}
-            onCopy={handleCopy}
+            onCopy={handlePhoneNum}
           >
             <S.ModalText>클립보드 복사하기</S.ModalText>
           </CopyToClipboard>

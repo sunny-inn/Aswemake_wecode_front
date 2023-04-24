@@ -11,5 +11,8 @@ export const ToastBox = styled.div`
   font-size: 14px;
   position: absolute;
   bottom: 0;
+`;
+
+export const ToastMessage = styled.p`
   color: #fff;
 `;

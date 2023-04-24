@@ -30,7 +30,7 @@ export const ModalContentBox = styled.div`
   height: 160px;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   font-weight: 500;
 `;
 export const ModalTitleBox = styled.div`

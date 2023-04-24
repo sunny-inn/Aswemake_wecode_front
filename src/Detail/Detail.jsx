@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FlyersCarousel from './FlyersCarousel';
 import DetailNav from './DetailNav';
-import FavoriteBtn from './FavoriteBtn';
+import DetailBtn from './DetailBtn';
 import CallModal from './CallModal';
 import DetailToast from './DetailToast';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -12,31 +12,45 @@ const Detail = () => {
   const [detailMartList, setDetailMartList] = useState([]);
   const [openCallModal, setOpenCallModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [showBigFlyerModal, setShowBigFlyerModal] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // const [showSuggestModal, setShowSuggestModal] = useState(false); //suggest 모달로 띄울때
   const navigate = useNavigate();
 
-  const goToSuggest = e => {
-    e.preventDefault();
-    navigate('/suggest');
+  const handleImageClick = index => {
+    setCurrentImageIndex(index);
+    setShowBigFlyerModal(true);
   };
 
-  const handleCopy = () => {
-    setShowToast(true);
+  const onClickSuggestBtn = e => {
+    e.preventDefault();
+    navigate('/suggest');
+    // setShowSuggestModal(true);
+  };
+  // const handleSuggestModalClose = () => {
+  //   setShowSuggestModal(false);
+  // };
+
+  const handleToast = type => {
+    setShowToast({ show: true, type }); // showToast 상태값 변경
     let timer = setTimeout(() => {
-      setShowToast(false);
+      setShowToast(prevState => ({ ...prevState, show: false })); // showToast 상태값 변경
     }, 1500);
     return () => {
       clearTimeout(timer);
     };
+  };
+
+  const handleAddressCopy = () => {
+    handleToast('copy');
   };
 
   const handleFavorite = () => {
-    setShowToast(true);
-    let timer = setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
-    return () => {
-      clearTimeout(timer);
-    };
+    handleToast('favorite');
+  };
+
+  const handlePhoneNum = () => {
+    handleToast('copyNum');
   };
 
   const handleModal = () => {
@@ -61,16 +75,22 @@ const Detail = () => {
               전단 행사기간 : {list.startDate} ~
               <S.PromoEndDate>{list.endDate}</S.PromoEndDate>
             </S.PromoStartDate>
-            <FlyersCarousel detailMartList={detailMartList} />
+            <FlyersCarousel
+              showBigFlyerModal={showBigFlyerModal}
+              handleImageClick={handleImageClick}
+              detailMartList={detailMartList}
+            />
             <S.MartTitle>{list.martName}</S.MartTitle>
             <S.MartDetailBox>
               <S.MartDetailText>
                 주소 : {list.martAddress}
-                <CopyToClipboard text={list.martAddress} onCopy={handleCopy}>
+                <CopyToClipboard
+                  text={list.martAddress}
+                  onCopy={handleAddressCopy}
+                >
                   <S.MartDetailContentImg
                     src="./images/copy.png"
                     alt="복사하기"
-                    onClick={handleCopy}
                   />
                 </CopyToClipboard>
               </S.MartDetailText>
@@ -86,16 +106,17 @@ const Detail = () => {
                   onClick={handleModal}
                 />
               </S.MartDetailText>
-              <S.MartDetailText onClick={goToSuggest}>
+              <S.MartDetailText>
                 정보 수정 제안
                 <S.MartDetailContentImg
                   src="./images/edit.png"
                   alt="편집하기"
+                  onClick={onClickSuggestBtn}
                 />
               </S.MartDetailText>
               <S.ShareAndFavoriteBox>
-                <FavoriteBtn type="share" />
-                <FavoriteBtn onClick={handleFavorite} />
+                <DetailBtn type="share" />
+                <DetailBtn type="favorite" handleFavorite={handleFavorite} />
               </S.ShareAndFavoriteBox>
             </S.MartDetailBox>
           </div>
@@ -103,13 +124,33 @@ const Detail = () => {
       })}
       {openCallModal && (
         <CallModal
-          handleCopy={handleCopy}
+          handlePhoneNum={handlePhoneNum}
           handleModal={handleModal}
           detailMartList={detailMartList}
+          showToast={showToast}
         />
       )}
-      {showToast && <DetailToast type="copy" />}
-      {showToast && <DetailToast type="favorite" />}
+      {showToast.show && <DetailToast type={showToast.type} />}
+      {/* 이거는 없을꺼 */}
+      {/* {showBigFlyerModal && (
+        <S.ModalContainer>
+          <S.CloseButton
+            src="./images/closeImg.png"
+            onClick={() => showBigFlyerModal(false)}
+          />
+          <S.BigImage
+            src={
+              detailMartList[currentImageIndex].xmartFlyerImages === '0'
+                ? './images/flyernone.png'
+                : detailMartList[currentImageIndex].martFlyerImages[0].imageUrl
+            }
+            alt="큰 전단지"
+          />
+        </S.ModalContainer>
+      )} */}
+
+      {/* //suggest modal로 만들고싶을때 */}
+      {/* {showSuggestModal && <Suggest onClose={handleSuggestModalClose} />}  */}
     </S.DetailContainer>
   );
 };
