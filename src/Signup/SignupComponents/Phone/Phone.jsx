@@ -10,23 +10,38 @@ const Phone = ({
   setVerification,
   AlertMsg,
 }) => {
-  const [codeBtn, setCodeBtn] = useState(false);
-  const [timer, setTimer] = useState(180);
+  const [codeBtn, setCodeBtn] = useState(0);
+  const [showTimer, setShowTimer] = useState(false);
+  const [seconds, setSeconds] = useState(180);
 
   const handleCode = e => setCode(e.target.value);
 
-  const handleCodeBtn = phoneNumber.length === 11;
+  const handleCodeBtn =
+    phoneNumber.includes('010') &&
+    (phoneNumber.length === 10 || phoneNumber.length === 11);
 
-  const id = useRef(null);
+  useEffect(() => {
+    const timer =
+      codeBtn &&
+      setInterval(() => {
+        setSeconds(prev => prev - 1);
+      }, 1000);
+    setTimeout(() => {
+      clearInterval(timer);
+    }, 10000);
+  }, [codeBtn]);
 
-  const reset = () => {
-    window.clearInterval(id.current);
+  const formatTime = () => {
+    const minutes = Math.floor(seconds / 60);
+    const secondsLeft = seconds % 60;
+    return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
   };
 
-  // TODO: 인증번호
   const onClickCode = e => {
     e.preventDefault();
     setCodeBtn(true);
+    setShowTimer(true);
+    setSeconds(180);
 
     codeBtn === true &&
       fetch('http://10.58.52.174:8000/api/verificationCode/send', {
@@ -40,17 +55,10 @@ const Phone = ({
       })
         .then(res => res.json())
         .then(data => {
-          if (data.message === 'message sent successfully') {
-            codeBtn && timer === 0
-              ? reset()
-              : (id.current = setInterval(() => {
-                  setTimer(time => time - 1);
-                }));
-          } else {
-            alert('실패');
+          if (data.message !== 'message sent successfully') {
+            alert('인증번호 전송 실패');
           }
         });
-    return () => reset();
   };
 
   //Btn 휴대폰번호 & 인증번호 post
@@ -76,9 +84,6 @@ const Phone = ({
         }
       });
   };
-
-  console.log('phone', phoneNumber);
-  console.log('code btn', handleCodeBtn);
 
   return (
     <S.PhoneBox>
@@ -107,6 +112,7 @@ const Phone = ({
           placeholder="인증번호를 입력해주세요."
           AlertMsg={AlertMsg}
         />
+        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
           onClick={onClickVerification}
           disabled={verification ? false : true}

@@ -16,7 +16,9 @@ const Calendar = ({ setUploadInfo }) => {
   const onChange = dates => {
     const [start, end] = dates;
     setStartDate(start);
-    setEndDate(end);
+    if (end && end > start) {
+      setEndDate(end);
+    }
 
     let formattedStart =
       start &&
@@ -86,13 +88,22 @@ const Calendar = ({ setUploadInfo }) => {
     }
   }, [endDate]);
 
+  const onClickDate = () => {
+    setOpen(true);
+
+    if (invalidEndDate) {
+      setStartDate('');
+      setEndDate('');
+    }
+  };
+
   return (
     <S.CalendarBox>
       <S.DateRangeBox>
         <S.StartDateBox
           value={formattedStart}
           placeholder="시작일자"
-          onClick={() => setOpen(true)}
+          onClick={onClickDate}
           readOnly
           autoFocus="off"
         />
@@ -100,7 +111,7 @@ const Calendar = ({ setUploadInfo }) => {
         <S.EndDateBox
           value={formattedEnd}
           placeholder="마감일자"
-          onClick={() => setOpen(true)}
+          onClick={onClickDate}
           readOnly
           invalidEndDate={invalidEndDate}
           autoFocus="off"
@@ -141,7 +152,6 @@ const Calendar = ({ setUploadInfo }) => {
                 <div className="month-day">
                   {getYear(date)}.{[getMonth(date)]}
                 </div>
-
                 <div
                   className="btn_month btn_month-next"
                   onClick={increaseMonth}

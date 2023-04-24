@@ -8,7 +8,10 @@ const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
     e.preventDefault();
     setIsClicked(true);
 
-    fetch(`http://172.30.1.41:8000/api/users/checkDuplicateId/${id}`, {
+    //https://flyers.qmarket.me/api/users/checkDuplicateId/${id}
+    //http://172.30.1.41:8000/api/users/checkDuplicateId/${id}
+
+    fetch(`https://flyers.qmarket.me/api/users/checkDuplicateId/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -32,16 +35,18 @@ const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
           value={id}
           type="text"
           onChange={handleId}
-          placeholder="아이디를 입력해주세요"
+          placeholder="아이디를 입력해주세요."
           isIdDisabled={isIdDisabled}
         />
-        {isFilled && isClicked && (
-          <S.AlertMsg isIdDisabled={isIdDisabled}>
-            {isIdDisabled
-              ? '이미 가입된 아이디입니다'
-              : '사용가능한 아이디입니다.'}
-          </S.AlertMsg>
-        )}
+        {isFilled &&
+          isClicked &&
+          (isIdDisabled ? (
+            <S.AlertMsg>이미 가입된 아이디입니다.</S.AlertMsg>
+          ) : (
+            <S.ConfirmMsg isIdDisabled={isIdDisabled}>
+              사용가능한 아이디입니다.
+            </S.ConfirmMsg>
+          ))}
       </div>
 
       <S.IdCheck onClick={onClickAvailable} isFilled={isFilled}>

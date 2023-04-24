@@ -11,7 +11,7 @@ export const Input = styled.input`
   padding-left: 10px;
   background: #ffffff;
   border: 1px solid
-    ${({ isIdDisabled }) => (isIdDisabled ? '#ff6a21' : '#dbdbdb')};
+    ${({ isIdDisabled }) => (isIdDisabled ? '#e40303' : '#dbdbdb')};
   border-radius: 8px;
 
   ::placeholder {
@@ -23,6 +23,15 @@ export const Input = styled.input`
 `;
 
 export const AlertMsg = styled.p`
+  padding: 10px 0px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #e40303;
+`;
+
+export const ConfirmMsg = styled.p`
+  padding: 10px 0px;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;

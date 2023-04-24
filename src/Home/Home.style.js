@@ -11,26 +11,6 @@ export const MapBox = styled(MapDiv)`
   width: 360px;
 `;
 
-//** Marker css인데 적용안됨
-// export const MarkerBox = styled.button`
-//   border: 1px solid red;
-// `;
-
-// export const MarkerOrder = styled.div`
-//   text-align: center;
-//   line-height: 30px;
-//   width: 25px;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-//   background-color: blue;
-//   color: white;
-//   border-radius: 50%;
-//   position: absolute;
-// `;
-
-//Modal style임
-
 export const ModalContainer = styled.div`
   width: 288px;
   height: 196px;
@@ -92,4 +72,12 @@ export const ModalUploadButton = styled.button`
   color: #fff;
   cursor: pointer;
   margin-left: 8px;
+`;
+
+export const CurrentLocation = styled.img`
+  width: 60px;
+  height: 60px;
+  bottom: 115px;
+  position: absolute;
+  cursor: pointer;
 `;

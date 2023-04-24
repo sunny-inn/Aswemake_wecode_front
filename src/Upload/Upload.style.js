@@ -122,3 +122,10 @@ export const CheckBox = styled.div`
   ${flex(null, 'center', null)}
   gap: 5px;
 `;
+
+export const CheckBoxMsg = styled.label`
+  color: #707070;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+`;

@@ -26,7 +26,6 @@ const Upload = () => {
   uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
   //FIXME: for (let i = 0; i < 4; i++)
   uploadForm.append('imagesUrl', uploadInfo.imageUrl);
-
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
@@ -53,6 +52,9 @@ const Upload = () => {
 
   const filteredMartAddress =
     filteredMart && filteredMart.length > 0 ? filteredMart[0].address : null;
+
+  // 전화번호 유효성 검사
+  const handleAlertMsg = phoneNumber && filteredMart.length === 0;
 
   const onClickClose = () => setIsCloseClicked(prev => !prev);
 
@@ -89,10 +91,37 @@ const Upload = () => {
     }));
   };
 
-  // 전화번호 유효성 검사
-  const handleAlertMsg = phoneNumber && filteredMart.length === 0;
+  let settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+    ],
+  };
 
-  // 행사 끝나는 날짜도 보내줘야 함
+  const onClickCheckbox = e => {
+    setIsCheckboxClicked(prev => !prev);
+  };
+
+  const handelDisabled = !(
+    filteredMartName &&
+    filteredMartAddress &&
+    uploadInfo.imageUrl.length === 4 &&
+    startDate &&
+    endDate &&
+    isCheckboxClicked
+  );
+
   const onSubmitFlyers = e => {
     e.preventDefault();
 
@@ -112,28 +141,6 @@ const Upload = () => {
     //     alert('실패');
     //   }
     // });
-  };
-
-  const onClickCheckbox = e => {
-    setIsCheckboxClicked(prev => !prev);
-  };
-
-  let settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 360,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-    ],
   };
 
   console.log(uploadInfo.imageUrl);
@@ -169,7 +176,12 @@ const Upload = () => {
         <S.TutorialBtn onClick={onClickTutorial}>
           필독! 사진 등록 방법 확인
         </S.TutorialBtn>
-        {isTutorialClicked && <Tutorial onClickTutorial={onClickTutorial} />}
+        {isTutorialClicked && (
+          <Tutorial
+            onClickTutorial={onClickTutorial}
+            setIsTutorialClicked={setIsTutorialClicked}
+          />
+        )}
       </S.PhotoBox>
       <div>
         {imageUrl.length === 4 ? (
@@ -205,16 +217,6 @@ const Upload = () => {
           accept="image/*"
           onChange={handleImg}
         />
-        {/* {isCloseClicked && (
-          // FIXME: 캐러셀로 바꾸기
-          <Photo
-            onClickClose={onClickClose}
-            onClickImg={onClickImg}
-            inputRef={inputRef}
-            handleImg={handleImg}
-            uploadInfo={uploadInfo}
-          />
-        )} */}
       </div>
       <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
       <Calendar setUploadInfo={setUploadInfo} />
@@ -228,9 +230,13 @@ const Upload = () => {
           }
           onClick={onClickCheckbox}
         />
-        <label>등록 요청 후, 해당 건의 내용 수정은 불가합니다.</label>
+        <S.CheckBoxMsg>
+          등록 요청 후, 해당 건의 내용 수정은 불가합니다.
+        </S.CheckBoxMsg>
       </S.CheckBox>
-      <S.SubmitBtn>전단 등록 요청</S.SubmitBtn>
+      <S.SubmitBtn disabled={handelDisabled ? true : false}>
+        전단 등록 요청
+      </S.SubmitBtn>
     </S.UploadForm>
   );
 };

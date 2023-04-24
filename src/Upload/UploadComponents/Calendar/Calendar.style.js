@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import DatePicker from 'react-datepicker';
 import 'react-spring-bottom-sheet/dist/style.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { BottomSheet } from 'react-spring-bottom-sheet';
