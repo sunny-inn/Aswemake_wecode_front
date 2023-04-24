@@ -10,6 +10,7 @@ const Header = ({ type, onClickBack }) => {
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
     suggest: SUGGEST_HEADER,
+    suggestCompleted: SUGGEST_COMPLET_HEADER,
   };
 
   return (
@@ -63,5 +64,10 @@ const MYPAGE_HEADER = {
 
 const SUGGEST_HEADER = {
   title: '정보 수정 제안',
+  button: true,
+};
+
+const SUGGEST_COMPLET_HEADER = {
+  title: '정보 수정 제안 완료',
   button: false,
 };

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import * as S from './Suggest.style';
 
-const Suggest = () => {
+const Suggest = ({ onClose }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ martName: '', martPhoneNumber: '' });
 
@@ -15,7 +15,13 @@ const Suggest = () => {
     e.preventDefault();
     navigate('#');
   };
+
+  const onClickSuggestBtn = e => {
+    e.preventDefault();
+    navigate('./suggestCompleted');
+  };
   return (
+    // <S.SuggestModalContainer>
     <>
       <Header type="suggest" onClickBack={onClickBack} />
       <S.SuggestWholeContainer>
@@ -47,6 +53,7 @@ const Suggest = () => {
           </S.TitleAndInput>
         </S.TitleAndInputContainer>
         <S.SuggestBtn
+          onClick={onClickSuggestBtn}
           disabled={
             input.martName.length < 2 || input.martPhoneNumber.length < 2
           }
@@ -54,6 +61,7 @@ const Suggest = () => {
           요청하기
         </S.SuggestBtn>
       </S.SuggestWholeContainer>
+      {/* </S.SuggestModalContainer> */}
     </>
   );
 };

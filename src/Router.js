@@ -9,6 +9,7 @@ import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
 import Suggest from './Suggest/Suggest';
+import SuggestCompleted from './Suggest/SuggestCompleted';
 
 const Router = () => {
   return (
@@ -23,6 +24,10 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/" element={<Login />} />
         <Route path="/suggest" element={<Suggest />} />
+        <Route
+          path="/suggest/suggestCompleted"
+          element={<SuggestCompleted />}
+        />
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
       </Routes>

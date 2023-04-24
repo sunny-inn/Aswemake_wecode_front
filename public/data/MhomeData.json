@@ -17,7 +17,7 @@
       "martAddress": "서울특별시 관악구 신림동 1432-135",
       "startDate": "2023-04-15",
       "endDate": "2023-04-29",
-      "martFlyerImages": "[{\"imageId\": 1, \"imageUrl\": \"./images/logo.png\"}]",
+      "martFlyerImages": "[{\"imageId\": 1, \"imageUrl\": \"./images/logo.png\"}, {\"imageId\": 2, \"imageUrl\": \"./images/marker.png\"}, {\"imageId\": 3, \"imageUrl\": \"./images/favorite.png\"}, {\"imageId\": 4, \"imageUrl\": \"./images/location.png\"}]",
       "favoriteCheck": "0"
     },
     {
