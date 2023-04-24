@@ -1,15 +1,19 @@
 import React from 'react';
+import Header from '../../../Components/Header/Header';
 import * as S from './Tutorial.style';
 
-const Tutorial = ({ onClickTutorial }) => {
+const Tutroial = ({ setIsTutorialClicked }) => {
+  const onClickBack = e => {
+    e.preventDefault();
+    setIsTutorialClicked(prev => !prev);
+  };
+
   return (
     <S.TutorialBox isOpen={true} ariaHideApp={false}>
-      <div>
-        <button onClick={onClickTutorial}>X</button>
-      </div>
-      <p>등록 방법 안내</p>
+      <Header type="photo" onClickBack={onClickBack} />
+      <S.Content>1. 화질</S.Content>
     </S.TutorialBox>
   );
 };
 
-export default Tutorial;
+export default Tutroial;
