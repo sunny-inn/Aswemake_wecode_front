@@ -30,6 +30,12 @@ const Home = () => {
   // const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
+  const [location, setLocation] = useState({
+    lat: 37.4857254,
+    lang: 126.9276657,
+  });
+
+  const { lat, lang } = location;
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
@@ -128,10 +134,15 @@ const Home = () => {
 
   // 현위치 가져오는 함수
   const getCurrentPosition = () => {
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      loadNavermapsScript(pos.coords.latitude, pos.coords.longitude);
+    navigator.geolocation.getCurrentPosition(position => {
+      setLocation({
+        lat: position.coords.latitude,
+        lang: position.coords.longitude,
+      });
     });
   };
+
+  console.log(location);
 
   return (
     <S.MapBox>
@@ -139,7 +150,7 @@ const Home = () => {
         <>
           <NaverMap
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-            defaultCenter={new navermaps.LatLng(37.4857254, 126.9276657)}
+            defaultCenter={new navermaps.LatLng(lat, lang)}
             defaultZoom={15}
             zoomControl={true}
             // onCenterChanged={handleCenter} 중심좌표구할때
