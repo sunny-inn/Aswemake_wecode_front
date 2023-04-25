@@ -37,6 +37,7 @@ const Home = () => {
   });
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
+  const [newKeyword, setNewKeyword] = useState('');
 
   const { lat, lang } = center;
 
@@ -191,12 +192,14 @@ const Home = () => {
                   );
                 })}
                 <S.SearchBox>
-                  <S.SearchBar
-                    type="text"
-                    placeholder="동주소, 마트 검색"
-                    readOnly
-                    onClick={handleSearch}
-                  />
+                  <div onClick={handleSearch}>
+                    <S.SearchBar
+                      type="text"
+                      placeholder="동주소, 마트 검색"
+                      value={newKeyword}
+                      readOnly
+                    />
+                  </div>
                   <S.CurrentLocation
                     src="./images/home/location.png"
                     alt="현위치"
@@ -217,7 +220,7 @@ const Home = () => {
           )}
         </S.MapBox>
       ) : (
-        <Search />
+        <Search newKeyword={newKeyword} />
       )}
     </div>
   );

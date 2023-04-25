@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const Search = () => {
+const Search = ({ newKeyword }) => {
   const [keywords, setKeywords] = useState([]);
-  const [newKeyword, setNewKeyword] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
