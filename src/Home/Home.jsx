@@ -37,7 +37,6 @@ const Home = () => {
   });
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const [keyword, setKeyword] = useState('');
 
   const { lat, lang } = center;
 
@@ -212,7 +211,7 @@ const Home = () => {
           </NaverMap>
           {openModal && <Modal handleModal={handleModal} type="map" />}
           {shopModal && <Modal handleModal={handleModal} type="shop" />}
-          {isSearchClicked && <Search />}
+          {isSearchClicked && <Search keyword={keyword} />}
         </>
       )}
     </S.MapBox>

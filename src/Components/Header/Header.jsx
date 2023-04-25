@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Header.style';
 
-const Header = ({ type, onClickBack }) => {
+const Header = ({ type, onClickBack, newKeyword }) => {
   const headerList = {
     signup: SIGNUP_HEADER,
     terms: TERMS_HEADER,
@@ -11,6 +11,7 @@ const Header = ({ type, onClickBack }) => {
     mypage: MYPAGE_HEADER,
     suggest: SUGGEST_HEADER,
     suggestCompleted: SUGGEST_COMPLET_HEADER,
+    search: SEARCH_HEADER,
   };
 
   return (
@@ -24,7 +25,11 @@ const Header = ({ type, onClickBack }) => {
       ) : (
         <div />
       )}
-      <S.Title>{headerList[type].title}</S.Title>
+      {headerList[type].title ? (
+        <S.Title>{headerList[type].title}</S.Title>
+      ) : (
+        <input type="text" value={newKeyword} />
+      )}
       <div />
     </S.HeaderBox>
   );
@@ -70,4 +75,8 @@ const SUGGEST_HEADER = {
 const SUGGEST_COMPLET_HEADER = {
   title: '정보 수정 제안 완료',
   button: false,
+};
+
+const SEARCH_HEADER = {
+  button: true,
 };
