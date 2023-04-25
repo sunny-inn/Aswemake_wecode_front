@@ -126,6 +126,13 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
+  // 현위치 가져오는 함수
+  const getCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      loadNavermapsScript(pos.coords.latitude, pos.coords.longitude);
+    });
+  };
+
   return (
     <S.MapBox>
       {homeMartList.length > 1 && (
@@ -160,7 +167,11 @@ const Home = () => {
               handleModal={handleModal}
               changeCenterByCarousel={changeCenterByCarousel}
             />
-            <S.CurrentLocation src="./images/location.png" alt="현위치" />
+            <S.CurrentLocation
+              src="./images/location.png"
+              alt="현위치"
+              onClick={getCurrentPosition}
+            />
           </NaverMap>
           {openModal && <Modal handleModal={handleModal} type="map" />}
           {shopModal && <Modal handleModal={handleModal} type="shop" />}
