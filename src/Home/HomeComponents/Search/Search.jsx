@@ -49,6 +49,7 @@ const Search = ({
 
   console.log('새 키워드', newKeyword);
   console.log('검색했던', keywords.length);
+  console.log('필터', filteredList);
 
   return (
     <S.SearchBox>
