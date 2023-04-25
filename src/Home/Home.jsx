@@ -150,7 +150,7 @@ const Home = () => {
         <>
           <NaverMap
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-            defaultCenter={new navermaps.LatLng(lat, lang)}
+            defaultCenter={new navermaps.LatLng(location.lat, location.lang)}
             defaultZoom={15}
             zoomControl={true}
             // onCenterChanged={handleCenter} 중심좌표구할때
