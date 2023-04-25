@@ -143,7 +143,7 @@ const Home = () => {
     });
   };
 
-  console.log(location.lat);
+  console.log(location);
 
   return (
     <S.MapBox>
