@@ -8,6 +8,7 @@ const Search = ({
   homeMartList,
 }) => {
   const [keywords, setKeywords] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -20,7 +21,10 @@ const Search = ({
     localStorage.setItem('keywords', JSON.stringify(keywords));
   }, [keywords]);
 
-  const handleKeyword = e => setNewKeyword(e.target.value);
+  const handleKeyword = e => {
+    setNewKeyword(e.target.value);
+    setIsSubmitted(false);
+  };
 
   const filteredList = homeMartList.filter(mart =>
     mart.martName.includes(newKeyword)
@@ -38,6 +42,7 @@ const Search = ({
       text: text,
     };
     setKeywords([newKeyword, ...keywords]);
+    setIsSubmitted(true);
   };
 
   const handleRemoveKeyword = id => {
@@ -70,13 +75,13 @@ const Search = ({
         </S.HeaderBox>
       </form>
       <S.KeywordBox>
-        {newKeyword.length > 0 ? (
+        {isSubmitted ? (
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredList > 0 && (
               <ul>
                 {filteredList.map(mart => (
-                  <li key={mart.id}>
+                  <li key={mart.martId}>
                     <div>
                       <p>{mart.martName}</p>
                       <p>{mart.martAddress}</p>
