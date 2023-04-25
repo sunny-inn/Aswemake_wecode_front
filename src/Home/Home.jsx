@@ -161,13 +161,12 @@ const Home = () => {
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
             center={center}
             defaultZoom={15}
-            zoomControl={true}
             // onCenterChanged={handleCenter} 중심좌표구할때
             ref={mapRef}
+            scaleControl={false}
             logoControl={false}
             mapDataControl={false}
-            pinchZoom={false}
-            scaleControl={false}
+            zoomControl={false}
           >
             {homeMartList.map((mart, index) => {
               return (
