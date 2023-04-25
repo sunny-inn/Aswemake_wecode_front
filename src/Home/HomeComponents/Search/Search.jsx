@@ -73,7 +73,19 @@ const Search = ({
         {newKeyword.length > 0 ? (
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
-            <ul />
+            {filteredList > 0 && (
+              <ul>
+                {filteredList.map(mart => (
+                  <li key={mart.id}>
+                    <div>
+                      <p>{mart.martName}</p>
+                      <p>{mart.martAddress}</p>
+                    </div>
+                    <p>거리</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </>
         ) : (
           <>
