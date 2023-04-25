@@ -86,7 +86,7 @@ export const SearchBox = styled.div`
 export const SearchBar = styled.input`
   width: 270px;
   height: 50px;
-  padding-left: 10px;
+  padding-left: 30px;
   background: url('./images/home/search.png') left no-repeat;
   background-color: #ffffff;
   border: 1px solid #dbdbdb;
