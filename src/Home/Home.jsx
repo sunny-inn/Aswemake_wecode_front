@@ -30,13 +30,13 @@ const Home = () => {
   // const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
-  const [location, setLocation] = useState({
+  const [center, setCenter] = useState({
     lat: 37.4857254,
-    lang: 126.9276657,
+    lng: 126.9276657,
   });
   const [error, setError] = useState('');
 
-  const { lat, lang } = location;
+  const { lat, lang } = center;
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
@@ -138,9 +138,10 @@ const Home = () => {
   const getCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
-        setLocation({
-          lat: position.coords.latitude,
-          lang: position.coords.longitude,
+        const { latitude, longitude } = position.coords;
+        setCenter({
+          lat: latitude,
+          lng: longitude,
         });
         setError(null);
       },
@@ -150,7 +151,7 @@ const Home = () => {
     );
   };
 
-  console.log(location);
+  console.log(center);
 
   return (
     <S.MapBox>
@@ -158,7 +159,7 @@ const Home = () => {
         <>
           <NaverMap
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-            defaultCenter={new navermaps.LatLng(lat, lang)}
+            center={center}
             defaultZoom={15}
             zoomControl={true}
             // onCenterChanged={handleCenter} 중심좌표구할때
@@ -167,7 +168,7 @@ const Home = () => {
             {homeMartList.map((mart, index) => {
               return (
                 <Marker
-                  position={new navermaps.LatLng(lat, lang)}
+                  position={new navermaps.LatLng(mart.y, mart.x)}
                   key={mart.id}
                   title={mart.name}
                   icon={
