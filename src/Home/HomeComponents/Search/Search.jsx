@@ -72,7 +72,7 @@ const Search = ({
         {newKeyword.length > 0 ? (
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
-            <ul>{filteredList}</ul>
+            <ul />
           </>
         ) : (
           <>
