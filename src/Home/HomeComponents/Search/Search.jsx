@@ -48,7 +48,7 @@ const Search = ({
   };
 
   console.log('새 키워드', newKeyword);
-  console.log('검색했던', keywords);
+  console.log('검색했던', keywords.length);
 
   return (
     <S.SearchBox>
