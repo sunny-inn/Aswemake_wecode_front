@@ -87,8 +87,8 @@ export const SearchBar = styled.input`
   width: 270px;
   height: 50px;
   padding-left: 10px;
-  background-color: #ffffff;
   background: url('./images/home/search.png') left no-repeat;
+  background-color: #ffffff;
   border: 1px solid #dbdbdb;
   box-shadow: 0px 4px 8px rgba(37, 37, 37, 0.08);
   border-radius: 16px;
@@ -100,5 +100,6 @@ export const CurrentLocation = styled.img`
   width: 60px;
   height: 60px;
   bottom: 115px;
+  z-index: 10;
   cursor: pointer;
 `;
