@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../../../Components/Header/Header';
 
 const Search = ({ newKeyword }) => {
   const [keywords, setKeywords] = useState([]);
@@ -31,7 +32,7 @@ const Search = ({ newKeyword }) => {
 
   return (
     <>
-      <header type="search" newKeyword={newKeyword} />
+      <Header type="search" newKeyword={newKeyword} />
       <div>
         <h1>최근 검색어</h1>
         <ul>

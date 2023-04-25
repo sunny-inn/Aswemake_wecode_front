@@ -4,4 +4,5 @@ export const SearchBox = styled.div`
   width: 360px;
   height: 800px;
   background-color: #ffffff;
+  z-index: 11;
 `;
