@@ -11,6 +11,7 @@ import {
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
+import useWatchLocation from '@utils/hooks/useCurrentLocation';
 
 const Home = () => {
   // useEffect(()=>{
@@ -31,9 +32,10 @@ const Home = () => {
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [location, setLocation] = useState({
-    lat: 37.5566629,
+    lat: 37.4857254,
     lang: 126.9276657,
   });
+  const [error, setError] = useState('');
 
   const { lat, lang } = location;
 
@@ -135,12 +137,18 @@ const Home = () => {
 
   // 현위치 가져오는 함수
   const getCurrentPosition = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-      setLocation({
-        lat: position.coords.latitude,
-        lang: position.coords.longitude,
-      });
-    });
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        setLocation({
+          lat: position.coords.latitude,
+          lang: position.coords.longitude,
+        });
+        setError(null);
+      },
+      error => {
+        setError(error.message);
+      }
+    );
   };
 
   console.log(location);
