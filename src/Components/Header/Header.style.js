@@ -15,19 +15,6 @@ export const Back = styled.img`
   cursor: pointer;
 `;
 
-export const SearchBar = styled.input`
-  width: 280px;
-  height: 30px;
-  border-style: none;
-
-  ::placeholder {
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
-    color: #dbdbdb;
-  }
-`;
-
 export const Title = styled.h1`
   font-weight: 700;
   font-size: 18px;

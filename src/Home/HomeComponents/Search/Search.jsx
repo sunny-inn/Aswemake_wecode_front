@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../../Components/Header/Header';
 import * as S from './Search.style';
 
 const Search = ({
@@ -21,14 +20,12 @@ const Search = ({
     localStorage.setItem('keywords', JSON.stringify(keywords));
   }, [keywords]);
 
+  const handleKeyword = e => setNewKeyword(e.target.value);
+
   const onClickBack = e => {
     e.preventDefault();
     setIsSearchClicked(false);
   };
-
-  const filteredMartList = newKeyword.filter(el => {
-    return newKeyword === homeMartList.martName;
-  });
 
   const handleAddKeyword = (e, text) => {
     e.preventDefault();
@@ -52,12 +49,20 @@ const Search = ({
   return (
     <S.SearchBox>
       <form onSubmit={handleAddKeyword}>
-        <Header
-          type="search"
-          onClick={onClickBack}
-          newKeyword={newKeyword}
-          setNewKeyword={setNewKeyword}
-        />
+        <S.HeaderBox>
+          <S.Back
+            alt="arrow"
+            src="images/signup/arrow.png"
+            onClick={onClickBack}
+          />
+          <S.SearchBar
+            type="text"
+            value={newKeyword}
+            placeholder="동주소, 마트 검색"
+            onChange={handleKeyword}
+          />
+          <div />
+        </S.HeaderBox>
       </form>
       <S.KeywordBox>
         {newKeyword.length > 0 ? (

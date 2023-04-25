@@ -11,10 +11,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     mypage: MYPAGE_HEADER,
     suggest: SUGGEST_HEADER,
     suggestCompleted: SUGGEST_COMPLET_HEADER,
-    search: SEARCH_HEADER,
   };
-
-  const handleKeyword = e => setNewKeyword(e.target.value);
 
   return (
     <S.HeaderBox>
@@ -27,16 +24,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
       ) : (
         <div />
       )}
-      {headerList[type].title ? (
-        <S.Title>{headerList[type].title}</S.Title>
-      ) : (
-        <S.SearchBar
-          type="text"
-          value={newKeyword}
-          placeholder="동주소, 마트 검색"
-          onChange={handleKeyword}
-        />
-      )}
+      <S.Title>{headerList[type].title}</S.Title>
       <div />
     </S.HeaderBox>
   );
@@ -82,8 +70,4 @@ const SUGGEST_HEADER = {
 const SUGGEST_COMPLET_HEADER = {
   title: '정보 수정 제안 완료',
   button: false,
-};
-
-const SEARCH_HEADER = {
-  button: true,
 };
