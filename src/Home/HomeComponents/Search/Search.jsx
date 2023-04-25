@@ -16,14 +16,15 @@ const Search = ({
     }
   }, []);
 
-  let filteredList = [];
-
   useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords));
-    filteredList = newKeyword.filter(el => el.text === homeMartList.martName);
   }, [keywords]);
 
   const handleKeyword = e => setNewKeyword(e.target.value);
+
+  const filteredList = homeMartList.filter(mart =>
+    mart.martName.includes(newKeyword)
+  );
 
   const onClickBack = e => {
     e.preventDefault();
