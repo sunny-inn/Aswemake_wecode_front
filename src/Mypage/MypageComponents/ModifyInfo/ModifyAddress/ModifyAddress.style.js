@@ -31,10 +31,12 @@ export const AddressInputWrap = styled.div`
     width: 204px;
     height: 50px;
     padding: 16px;
+    background: #f9f9f9;
     border: 1px solid #dbdbdb;
     border-radius: 8px;
     font-weight: 500;
     font-size: 15px;
+    color: #707070;
 
     ::placeholder {
       color: #dbdbdb;
@@ -59,10 +61,12 @@ export const AddressInput = styled.input`
   height: 50px;
   margin-top: 8px;
   padding: 16px;
+  background: ${({ background }) => background};
   border: 1px solid #dbdbdb;
   border-radius: 8px;
   font-weight: 500;
   font-size: 15px;
+  color: ${({ color }) => color};
 
   ::placeholder {
     color: #dbdbdb;
@@ -75,7 +79,7 @@ export const ConfirmBtn = styled.button`
   left: 16px;
   width: 328px;
   height: 50px;
-  background: #dbdbdb;
+  background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
   color: #fff;

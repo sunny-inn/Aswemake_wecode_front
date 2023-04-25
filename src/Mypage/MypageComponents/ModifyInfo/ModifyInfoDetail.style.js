@@ -58,7 +58,7 @@ export const InputBtnWrap = styled.div`
     font-size: 15px;
 
     ::placeholder {
-      color: #dbdbdb;
+      color: #252525;
     }
   }
 
@@ -86,7 +86,7 @@ export const IdAddInput = styled.input`
   font-size: 15px;
 
   ::placeholder {
-    color: #dbdbdb;
+    color: #252525;
   }
 `;
 

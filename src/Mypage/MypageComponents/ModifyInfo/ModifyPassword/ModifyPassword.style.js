@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { flex } from '../../../../Styles/Mixin';
 
@@ -36,6 +37,7 @@ export const PasswordInputWrap = styled.div`
     border: none;
     font-weight: 500;
     font-size: 15px;
+    color: #252525;
 
     ::placeholder {
       color: #dbdbdb;
@@ -51,7 +53,7 @@ export const PasswordInputWrap = styled.div`
 
 export const PasswordCheckText = styled.h4`
   margin-top: 8px;
-  color: #ff6a21;
+  color: ${({ color }) => color};
   font-size: 13px;
   font-weight: 500;
 `;
@@ -62,7 +64,7 @@ export const ConfirmBtn = styled.button`
   left: 16px;
   width: 328px;
   height: 50px;
-  background: #dbdbdb;
+  background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
   color: #fff;

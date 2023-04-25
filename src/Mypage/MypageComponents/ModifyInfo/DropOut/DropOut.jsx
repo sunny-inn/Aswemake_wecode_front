@@ -3,17 +3,21 @@ import Header from '../../../../Components/Header/Header';
 import DropOutSuccess from './DropOutSuccess';
 import * as S from './DropOut.style';
 
-const DropOut = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+const DropOut = ({ setModalOpen }) => {
+  const [successDropOut, setSuccessDropOut] = useState(false);
 
   const handleModal = () => {
+    setSuccessDropOut(prev => !prev);
+  };
+
+  const onClickBack = () => {
     setModalOpen(prev => !prev);
   };
 
   return (
     <S.DropOut>
-      {modalOpen && <DropOutSuccess />}
-      <Header type="dropOut" />
+      {successDropOut && <DropOutSuccess />}
+      <Header type="dropOut" onClickBack={onClickBack} />
       <S.DropOutBody>
         <S.DropOutText>
           그동안 전단지도를 이용해주셔서 감사합니다. <br />

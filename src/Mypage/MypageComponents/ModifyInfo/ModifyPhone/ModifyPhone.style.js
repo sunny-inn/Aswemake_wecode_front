@@ -35,23 +35,24 @@ export const PhoneInputWrap = styled.div`
     border-radius: 8px;
     font-weight: 500;
     font-size: 15px;
+    color: #252525;
 
     ::placeholder {
       color: #dbdbdb;
     }
   }
+`;
 
-  button {
-    width: 116px;
-    height: 50px;
-    padding: 16px;
-    border: 1px solid #dbdbdb;
-    border-radius: 8px;
-    background-color: #dbdbdb;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-  }
+export const GetNumBtn = styled.button`
+  width: 116px;
+  height: 50px;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
 `;
 
 export const PhoneCheckText = styled.h4`
@@ -67,7 +68,7 @@ export const ConfirmBtn = styled.button`
   left: 16px;
   width: 328px;
   height: 50px;
-  background: #dbdbdb;
+  background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
   color: #fff;

@@ -93,5 +93,5 @@ const DROPOUT_HEADER = {
 
 const DROPOUT_SUCCESS_HEADER = {
   title: '회원탈퇴 완료',
-  button: true,
+  button: false,
 };
