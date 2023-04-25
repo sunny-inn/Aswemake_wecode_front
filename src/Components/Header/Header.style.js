@@ -16,8 +16,9 @@ export const Back = styled.img`
 `;
 
 export const SearchBar = styled.input`
-  width: 200px;
+  width: 250px;
   height: 30px;
+  border-style: none;
 `;
 
 export const Title = styled.h1`
