@@ -164,6 +164,9 @@ const Home = () => {
             zoomControl={true}
             // onCenterChanged={handleCenter} 중심좌표구할때
             ref={mapRef}
+            scaleControl={false}
+            logoControl={false}
+            mapDataControl={false}
           >
             {homeMartList.map((mart, index) => {
               return (
