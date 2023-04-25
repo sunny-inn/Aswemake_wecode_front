@@ -37,7 +37,7 @@ const Home = () => {
   });
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const [newKeyword, setNewKeyword] = useState('');
+  const [newKeyword, setNewKeyword] = useState({});
 
   const { lat, lang } = center;
 
@@ -157,7 +157,11 @@ const Home = () => {
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
 
-  console.log(center);
+  // const filteredMartList = newKeyword.filter(el => {
+  //   return newKeyword === homeMartList.martName;
+  // });
+
+  console.log(homeMartList);
 
   return (
     <div>
@@ -224,6 +228,7 @@ const Home = () => {
           newKeyword={newKeyword}
           setNewKeyword={setNewKeyword}
           setIsSearchClicked={setIsSearchClicked}
+          homeMartList={homeMartList}
         />
       )}
     </div>

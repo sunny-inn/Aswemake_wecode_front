@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import * as S from './Search.style';
 
-const Search = ({ newKeyword, setNewKeyword, setIsSearchClicked }) => {
+const Search = ({
+  newKeyword,
+  setNewKeyword,
+  setIsSearchClicked,
+  homeMartList,
+}) => {
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
@@ -21,7 +26,12 @@ const Search = ({ newKeyword, setNewKeyword, setIsSearchClicked }) => {
     setIsSearchClicked(false);
   };
 
-  const handleAddKeyword = text => {
+  const filteredMartList = newKeyword.filter(el => {
+    return newKeyword === homeMartList.martName;
+  });
+
+  const handleAddKeyword = (e, text) => {
+    e.preventDefault();
     const newKeyword = {
       id: Date.now(),
       text: text,
@@ -36,8 +46,8 @@ const Search = ({ newKeyword, setNewKeyword, setIsSearchClicked }) => {
     setKeywords(nextKeyword);
   };
 
-  console.log(newKeyword);
-  console.log(keywords);
+  console.log('새 키워드', newKeyword);
+  console.log('검색했던', keywords);
 
   return (
     <S.SearchBox>
@@ -50,26 +60,35 @@ const Search = ({ newKeyword, setNewKeyword, setIsSearchClicked }) => {
         />
       </form>
       <S.KeywordBox>
-        <S.KeywordTitle>최근 검색어</S.KeywordTitle>
-        <ul>
-          {keywords.length ? (
-            keywords.map(el => (
-              <S.KeywordItem key={el.id}>
-                <p>{el.text}</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleRemoveKeyword(el.id);
-                  }}
-                >
-                  <img alt="delete" src="./images/closeImg.png" />
-                </button>
-              </S.KeywordItem>
-            ))
-          ) : (
-            <div />
-          )}
-        </ul>
+        {newKeyword.length > 0 ? (
+          <>
+            <S.KeywordTitle>검색 결과</S.KeywordTitle>
+            <ul>{filteredMartList}</ul>
+          </>
+        ) : (
+          <>
+            <S.KeywordTitle>최근 검색어</S.KeywordTitle>
+            <ul>
+              {keywords.length ? (
+                keywords.map(el => (
+                  <S.KeywordItem key={el.id}>
+                    <p>{el.text}</p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleRemoveKeyword(el.id);
+                      }}
+                    >
+                      <img alt="delete" src="./images/closeImg.png" />
+                    </button>
+                  </S.KeywordItem>
+                ))
+              ) : (
+                <div />
+              )}
+            </ul>
+          </>
+        )}
       </S.KeywordBox>
     </S.SearchBox>
   );
