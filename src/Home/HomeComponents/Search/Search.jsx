@@ -78,7 +78,7 @@ const Search = ({
         {isSubmitted ? (
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
-            {filteredList > 0 ? (
+            {filteredList.length > 0 ? (
               <ul>
                 {filteredList.map(mart => (
                   <li key={mart.martId}>
