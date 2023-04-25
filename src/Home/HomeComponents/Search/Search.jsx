@@ -8,6 +8,7 @@ const Search = ({
   homeMartList,
 }) => {
   const [keywords, setKeywords] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -18,6 +19,9 @@ const Search = ({
 
   useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords));
+    newKeyword.filter(el => {
+      return setFilteredList(newKeyword.text === homeMartList.martName);
+    });
   }, [keywords]);
 
   const handleKeyword = e => setNewKeyword(e.target.value);
@@ -57,7 +61,7 @@ const Search = ({
           />
           <S.SearchBar
             type="text"
-            value={newKeyword}
+            value={newKeyword.text}
             placeholder="동주소, 마트 검색"
             onChange={handleKeyword}
           />
@@ -68,13 +72,13 @@ const Search = ({
         {newKeyword.length > 0 ? (
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
-            <ul>{filteredMartList}</ul>
+            <ul>{filteredList}</ul>
           </>
         ) : (
           <>
             <S.KeywordTitle>최근 검색어</S.KeywordTitle>
             <ul>
-              {keywords.length ? (
+              {keywords.length > 0 ? (
                 keywords.map(el => (
                   <S.KeywordItem key={el.id}>
                     <p>{el.text}</p>

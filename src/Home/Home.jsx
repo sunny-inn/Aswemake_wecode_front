@@ -37,7 +37,7 @@ const Home = () => {
   });
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const [newKeyword, setNewKeyword] = useState({});
+  const [newKeyword, setNewKeyword] = useState({ id: 0, text: '' });
 
   const { lat, lang } = center;
 
@@ -200,7 +200,7 @@ const Home = () => {
                     <S.SearchBar
                       type="text"
                       placeholder="동주소, 마트 검색"
-                      value={newKeyword}
+                      value={newKeyword.text}
                       readOnly
                     />
                   </div>
