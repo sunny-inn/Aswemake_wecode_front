@@ -79,8 +79,12 @@ export const SearchBar = styled.input`
   position: absolute;
   width: 270px;
   height: 50px;
-  bottom: 50px;
-  background: url('./images/home/search.png') left no-repeat;
+  top: 20px;
+  background: #ffffff;
+  background-image: url('./images/home/search.png') left no-repeat;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0px 4px 8px rgba(37, 37, 37, 0.08);
+  border-radius: 16px;
   z-index: 10;
 `;
 
