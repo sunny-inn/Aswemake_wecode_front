@@ -167,7 +167,7 @@ const Home = () => {
             {homeMartList.map((mart, index) => {
               return (
                 <Marker
-                  position={new navermaps.LatLng(mart.y, mart.x)}
+                  position={new navermaps.LatLng(lat, lang)}
                   key={mart.id}
                   title={mart.name}
                   icon={
