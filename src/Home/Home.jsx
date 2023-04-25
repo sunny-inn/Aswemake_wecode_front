@@ -113,6 +113,8 @@ const Home = () => {
   );
   if (homeMartList.length === 0) return;
 
+  geocoder();
+
   const changeCenterByCarousel = (smIndex, e) => {
     console.log(e);
     let nextIndex = 0;
