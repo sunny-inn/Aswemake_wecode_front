@@ -56,6 +56,17 @@ const Detail = () => {
   const handleModal = () => {
     setOpenCallModal(prev => !prev);
   };
+  const onClickShare = async () => {
+    try {
+      await navigator.share({
+        title: '공유 제목',
+        text: '공유내용',
+        url: 'https://flyers.qmarket.me/detail',
+      });
+    } catch (error) {
+      alert('오류가 발생했습니다.');
+    }
+  };
 
   useEffect(() => {
     fetch('./data/MhomeData.json')
@@ -115,7 +126,7 @@ const Detail = () => {
                 />
               </S.MartDetailText>
               <S.ShareAndFavoriteBox>
-                <DetailBtn type="share" />
+                <DetailBtn type="share" onClick={onClickShare} />
                 <DetailBtn type="favorite" handleFavorite={handleFavorite} />
               </S.ShareAndFavoriteBox>
             </S.MartDetailBox>
