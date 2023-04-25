@@ -6,6 +6,7 @@ import DetailBtn from './DetailBtn';
 import CallModal from './CallModal';
 import DetailToast from './DetailToast';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import * as S from './Detail.style';
 
 const Detail = () => {
@@ -56,6 +57,7 @@ const Detail = () => {
   const handleModal = () => {
     setOpenCallModal(prev => !prev);
   };
+
   const onClickShare = async () => {
     try {
       await navigator.share({
@@ -67,6 +69,9 @@ const Detail = () => {
       alert('오류가 발생했습니다.');
     }
   };
+  const shareUrl = 'https://flyers.qmarket.me/detail';
+  const title = '공유 제목';
+  const description = '공유 내용';
 
   useEffect(() => {
     fetch('./data/MhomeData.json')
@@ -126,6 +131,14 @@ const Detail = () => {
                 />
               </S.MartDetailText>
               <S.ShareAndFavoriteBox>
+                <div>
+                  <FacebookShareButton url={shareUrl} quote={title}>
+                    <button>페이스북으로 공유하기</button>
+                  </FacebookShareButton>
+                  <TwitterShareButton url={shareUrl} title={title}>
+                    <button>트위터로 공유하기</button>
+                  </TwitterShareButton>
+                </div>
                 <DetailBtn type="share" onClick={onClickShare} />
                 <DetailBtn type="favorite" handleFavorite={handleFavorite} />
               </S.ShareAndFavoriteBox>
