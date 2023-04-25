@@ -108,12 +108,11 @@ const Home = () => {
       }
       const result = response.result;
       const items = result.items;
-      console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
+      // console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
     }
   );
-  if (homeMartList.length === 0) return;
 
-  geocoder();
+  if (homeMartList.length === 0) return;
 
   const changeCenterByCarousel = (smIndex, e) => {
     console.log(e);
@@ -144,7 +143,7 @@ const Home = () => {
     });
   };
 
-  console.log(location);
+  console.log(location.lat);
 
   return (
     <S.MapBox>
