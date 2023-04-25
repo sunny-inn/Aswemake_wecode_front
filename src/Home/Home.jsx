@@ -31,7 +31,7 @@ const Home = () => {
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [location, setLocation] = useState({
-    lat: 37.4857254,
+    lat: 37.5566629,
     lang: 126.9276657,
   });
 
@@ -151,7 +151,7 @@ const Home = () => {
         <>
           <NaverMap
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-            defaultCenter={new navermaps.LatLng(location.lat, location.lang)}
+            defaultCenter={new navermaps.LatLng(lat, lang)}
             defaultZoom={15}
             zoomControl={true}
             // onCenterChanged={handleCenter} 중심좌표구할때
