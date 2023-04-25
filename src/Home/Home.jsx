@@ -11,6 +11,7 @@ import {
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
+import Search from './HomeComponents/Search/Search';
 
 const Home = () => {
   // useEffect(()=>{
@@ -35,6 +36,8 @@ const Home = () => {
     lng: 126.9276657,
   });
   const [error, setError] = useState('');
+  const [isSearchClicked, setIsSearchClicked] = useState(false);
+  const [keyword, setKeyword] = useState('');
 
   const { lat, lang } = center;
 
@@ -151,6 +154,9 @@ const Home = () => {
     );
   };
 
+  // 검색 기능
+  const handleSearch = () => setIsSearchClicked(true);
+
   console.log(center);
 
   return (
@@ -190,14 +196,21 @@ const Home = () => {
               handleModal={handleModal}
               changeCenterByCarousel={changeCenterByCarousel}
             />
+            <input
+              type="text"
+              placeholder="동주소, 마트 검색"
+              readOnly
+              onClick={handleSearch}
+            />
             <S.CurrentLocation
-              src="./images/location.png"
+              src="./images/home/location.png"
               alt="현위치"
               onClick={getCurrentPosition}
             />
           </NaverMap>
           {openModal && <Modal handleModal={handleModal} type="map" />}
           {shopModal && <Modal handleModal={handleModal} type="shop" />}
+          {isSearchClicked && <Search />}
         </>
       )}
     </S.MapBox>

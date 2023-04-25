@@ -7,6 +7,7 @@ import {
 } from 'react-naver-maps';
 
 export const MapBox = styled(MapDiv)`
+  position: relative;
   height: 616px;
   width: 360px;
 `;
@@ -74,10 +75,19 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 
+export const SearchBar = styled.input`
+  position: absolute;
+  width: 270px;
+  height: 50px;
+  left: 16px;
+  top: 32px;
+  background: url('/images/home/search.png') left no-repeat;
+`;
+
 export const CurrentLocation = styled.img`
+  position: absolute;
   width: 60px;
   height: 60px;
   bottom: 115px;
-  position: absolute;
   cursor: pointer;
 `;
