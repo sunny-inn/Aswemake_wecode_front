@@ -8,7 +8,7 @@ export const SearchBox = styled.div`
 `;
 
 export const KeywordBox = styled.div`
-  padding: 10px;
+  padding: 10px 20px;
 `;
 
 export const KeywordTitle = styled.h1`

@@ -36,6 +36,9 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
     setKeywords(nextKeyword);
   };
 
+  console.log(newKeyword);
+  console.log(keywords);
+
   return (
     <S.SearchBox>
       <Header type="search" newKeyword={newKeyword} onClick={onClickBack} />
