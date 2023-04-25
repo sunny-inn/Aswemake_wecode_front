@@ -100,7 +100,7 @@ const Home = () => {
 
   const geocoder = navermaps.Service.geocode(
     {
-      address: '테헤란로 427',
+      address: '대구광역시 남구 대명9동 앞산순환로',
     },
     function (status, response) {
       if (status !== navermaps.Service.Status.OK) {
