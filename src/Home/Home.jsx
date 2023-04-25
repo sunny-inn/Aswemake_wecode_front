@@ -11,7 +11,6 @@ import {
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
-import useWatchLocation from '@utils/hooks/useCurrentLocation';
 
 const Home = () => {
   // useEffect(()=>{
