@@ -16,9 +16,16 @@ export const Back = styled.img`
 `;
 
 export const SearchBar = styled.input`
-  width: 250px;
+  width: 270px;
   height: 30px;
   border-style: none;
+
+  ::placeholder {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #dbdbdb;
+  }
 `;
 
 export const Title = styled.h1`
