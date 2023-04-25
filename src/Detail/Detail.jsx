@@ -56,6 +56,7 @@ const Detail = () => {
   const handleModal = () => {
     setOpenCallModal(prev => !prev);
   };
+
   const onClickShare = async () => {
     try {
       await navigator.share({
