@@ -79,9 +79,8 @@ export const SearchBar = styled.input`
   position: absolute;
   width: 270px;
   height: 50px;
-  left: 16px;
-  top: 32px;
-  background: url('/images/home/search.png') left no-repeat;
+  bottom: 50px;
+  background: url('./images/home/search.png') left no-repeat;
 `;
 
 export const CurrentLocation = styled.img`
