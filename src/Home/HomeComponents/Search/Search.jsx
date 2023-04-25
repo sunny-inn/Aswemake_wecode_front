@@ -44,7 +44,7 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
         <ul>
           {keywords.length ? (
             keywords.map(el => (
-              <li key={el.id}>
+              <S.KeywordItem key={el.id}>
                 <p>{el.text}</p>
                 <button
                   type="button"
@@ -54,7 +54,7 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
                 >
                   <img alt="delete" src="./images/closeImg.png" />
                 </button>
-              </li>
+              </S.KeywordItem>
             ))
           ) : (
             <div />

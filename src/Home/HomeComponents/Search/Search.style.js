@@ -8,7 +8,7 @@ export const SearchBox = styled.div`
 `;
 
 export const KeywordBox = styled.div`
-  border-top: 1px solid #dbdbdb;
+  padding: 10px;
 `;
 
 export const KeywordTitle = styled.h1`
@@ -16,5 +16,14 @@ export const KeywordTitle = styled.h1`
   font-weight: 700;
   font-size: 13px;
   line-height: 16px;
+  color: #252525;
+`;
+
+export const KeywordItem = styled.li`
+  padding: 5px;
+  border-top: 1px solid #dbdbdb;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
   color: #252525;
 `;
