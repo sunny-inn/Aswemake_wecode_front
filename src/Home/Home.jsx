@@ -159,62 +159,67 @@ const Home = () => {
   console.log(center);
 
   return (
-    <S.MapBox>
-      {homeMartList.length > 1 && (
-        <>
-          <NaverMap
-            // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-            center={center}
-            defaultZoom={15}
-            // onCenterChanged={handleCenter} 중심좌표구할때
-            ref={mapRef}
-            scaleControl={false}
-            logoControl={false}
-            mapDataControl={false}
-            zoomControl={false}
-          >
-            {homeMartList.map((mart, index) => {
-              return (
-                <Marker
-                  position={new navermaps.LatLng(mart.y, mart.x)}
-                  key={mart.id}
-                  title={mart.name}
-                  icon={
-                    isMarkerClicked[index]
-                      ? './images/clickedMarker.png'
-                      : './images/marker.png'
-                  }
-                  onClick={e => handleMarkerClick(e, mart, index)}
-                />
-              );
-            })}
-            <S.SearchBox>
-              <S.SearchBar
-                type="text"
-                placeholder="동주소, 마트 검색"
-                readOnly
-                onClick={handleSearch}
-              />
-              <S.CurrentLocation
-                src="./images/home/location.png"
-                alt="현위치"
-                onClick={getCurrentPosition}
-              />
-            </S.SearchBox>
+    <div>
+      {!isSearchClicked ? (
+        <S.MapBox>
+          {homeMartList.length > 1 && (
+            <>
+              <NaverMap
+                // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
+                center={center}
+                defaultZoom={15}
+                // onCenterChanged={handleCenter} 중심좌표구할때
+                ref={mapRef}
+                scaleControl={false}
+                logoControl={false}
+                mapDataControl={false}
+                zoomControl={false}
+              >
+                {homeMartList.map((mart, index) => {
+                  return (
+                    <Marker
+                      position={new navermaps.LatLng(mart.y, mart.x)}
+                      key={mart.id}
+                      title={mart.name}
+                      icon={
+                        isMarkerClicked[index]
+                          ? './images/clickedMarker.png'
+                          : './images/marker.png'
+                      }
+                      onClick={e => handleMarkerClick(e, mart, index)}
+                    />
+                  );
+                })}
+                <S.SearchBox>
+                  <S.SearchBar
+                    type="text"
+                    placeholder="동주소, 마트 검색"
+                    readOnly
+                    onClick={handleSearch}
+                  />
+                  <S.CurrentLocation
+                    src="./images/home/location.png"
+                    alt="현위치"
+                    onClick={getCurrentPosition}
+                  />
+                </S.SearchBox>
 
-            <HomeCarousel
-              homeMartList={homeMartList}
-              selectedMart={selectedMart}
-              handleModal={handleModal}
-              changeCenterByCarousel={changeCenterByCarousel}
-            />
-          </NaverMap>
-          {openModal && <Modal handleModal={handleModal} type="map" />}
-          {shopModal && <Modal handleModal={handleModal} type="shop" />}
-          {isSearchClicked && <Search keyword={keyword} />}
-        </>
+                <HomeCarousel
+                  homeMartList={homeMartList}
+                  selectedMart={selectedMart}
+                  handleModal={handleModal}
+                  changeCenterByCarousel={changeCenterByCarousel}
+                />
+              </NaverMap>
+              {openModal && <Modal handleModal={handleModal} type="map" />}
+              {shopModal && <Modal handleModal={handleModal} type="shop" />}
+            </>
+          )}
+        </S.MapBox>
+      ) : (
+        <Search />
       )}
-    </S.MapBox>
+    </div>
   );
 };
 
