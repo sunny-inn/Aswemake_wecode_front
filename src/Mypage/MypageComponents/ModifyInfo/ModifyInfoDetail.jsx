@@ -11,13 +11,8 @@ const ModifyInfoDetail = () => {
   const [selectedType, setSelectedType] = useState(null);
 
   const handleModal = e => {
-    const { value, type } = e.target;
-    if (value && type === selectedType) {
-      setModalOpen(prev => !prev);
-    } else {
-      setModalOpen(true);
-      setSelectedType(type);
-    }
+    setSelectedType(e.target.value);
+    setModalOpen(prev => !prev);
   };
 
   let modalComponent = null;
@@ -33,7 +28,7 @@ const ModifyInfoDetail = () => {
 
   return (
     <S.ModifyInfoDetail>
-      {modalOpen && <ModifyPhone setModalOpen={setModalOpen} />}
+      {modalComponent}
       <Header type="modifyInfo" />
       <S.ModifyInfoDetailUpperBody>
         <h2>성이름</h2>

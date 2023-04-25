@@ -27,7 +27,9 @@ export const PasswordInputWrap = styled.div`
   margin-top: 8px;
   width: 328px;
   height: 50px;
-  border: 1px solid #dbdbdb;
+  border: 1px solid
+    ${({ correctPassword, passwordCheck }) =>
+      !passwordCheck || correctPassword ? '#dbdbdb' : '#E40303'};
   border-radius: 8px;
 
   input {

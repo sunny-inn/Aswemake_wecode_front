@@ -3,7 +3,8 @@ import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyPassword.style';
 
 const ModifyPassword = ({ setModalOpen }) => {
-  const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
+  const [isPwEyeClicked1, setIsPwEyeClicked1] = useState(false);
+  const [isPwEyeClicked2, setIsPwEyeClicked2] = useState(false);
   const [modifyPassword, setModifyPassword] = useState({
     password: '',
     passwordCheck: '',
@@ -31,38 +32,43 @@ const ModifyPassword = ({ setModalOpen }) => {
         <S.ModifyPasswordTitle>비밀번호</S.ModifyPasswordTitle>
         <S.PasswordInputWrap>
           <input
-            type={isPwEyeClicked ? 'text' : 'password'}
+            type={isPwEyeClicked1 ? 'text' : 'password'}
             placeholder="문자+숫자 8자리 이상 입력해주세요"
             onChange={handlePassword}
+            value={password}
           />
           <img
             src={
-              isPwEyeClicked
+              isPwEyeClicked1
                 ? '/images/passwordIconColor.png'
                 : '/images/passwordIcon.png'
             }
             alt="password eye"
             onClick={() => {
-              setIsPwEyeClicked(prev => !prev);
+              setIsPwEyeClicked1(prev => !prev);
             }}
           />
         </S.PasswordInputWrap>
         {/* <S.PasswordCheckText>사용 가능한 비밀번호입니다.</S.PasswordCheckText> */}
-        <S.PasswordInputWrap>
+        <S.PasswordInputWrap
+          correctPassword={correctPassword}
+          passwordCheck={passwordCheck}
+        >
           <input
-            type={isPwEyeClicked ? 'text' : 'password'}
+            type={isPwEyeClicked2 ? 'text' : 'password'}
             placeholder="비밀번호를 확인해주세요."
             onChange={handlePasswordCheck}
+            value={passwordCheck}
           />
           <img
             src={
-              isPwEyeClicked
+              isPwEyeClicked2
                 ? '/images/passwordIconColor.png'
                 : '/images/passwordIcon.png'
             }
             alt="password eye"
             onClick={() => {
-              setIsPwEyeClicked(prev => !prev);
+              setIsPwEyeClicked2(prev => !prev);
             }}
           />
         </S.PasswordInputWrap>

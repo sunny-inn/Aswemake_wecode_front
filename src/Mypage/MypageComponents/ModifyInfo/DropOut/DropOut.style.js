@@ -36,34 +36,47 @@ export const DropOutText = styled.p`
 `;
 
 export const DropOutReasonLi = styled.li`
-  margin-bottom: 22px;
+  margin-top: 22px;
   color: #bcbcbc;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
+`;
 
-  p {
-    ${flex(null, 'center', null)};
+export const DropOutReasonLabel = styled.label`
+  ${flex(null, 'center', null)};
+  cursor: pointer;
 
-    span {
-      margin-left: 9px;
+  span {
+    margin-left: 9px;
+
+    &[aria-selected='true'] {
+      color: #252525;
     }
   }
+`;
 
-  textarea {
-    display: block;
-    width: 328px;
-    height: 80px;
-    margin-top: 11px;
-    padding: 12px;
-    border: 1px solid #ececec;
-    border-radius: 12px;
-    resize: none;
-    color: #252525;
+export const DropOutReasonEtc = styled.textarea`
+  display: block;
+  width: 328px;
+  height: 80px;
+  margin-top: 11px;
+  padding: 12px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  resize: none;
+  color: #252525;
 
-    ::placeholder {
-      color: #dbdbdb;
-    }
+  &[disabled] {
+    background: #fff;
+  }
+
+  ::placeholder {
+    color: #dbdbdb;
+  }
+
+  :focus {
+    outline: none;
   }
 `;
 
@@ -82,11 +95,15 @@ export const DropOutAgree = styled.p`
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
+`;
 
-  span {
-    margin-left: 9px;
-    color: #707070;
-  }
+export const DropOutAgreeLabel = styled.label`
+  ${flex(null, 'center', null)}
+`;
+
+export const DropOutAgreeText = styled.span`
+  margin-left: 9px;
+  color: #707070;
 `;
 
 export const ConfirmBtn = styled.button`
@@ -95,7 +112,7 @@ export const ConfirmBtn = styled.button`
   left: 16px;
   width: 328px;
   height: 50px;
-  background: #dbdbdb;
+  background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
   color: #fff;

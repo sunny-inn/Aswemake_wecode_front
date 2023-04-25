@@ -5,6 +5,8 @@ import * as S from './DropOut.style';
 
 const DropOut = ({ setModalOpen }) => {
   const [successDropOut, setSuccessDropOut] = useState(false);
+  const [selected, setSelected] = useState('1');
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleModal = () => {
     setSuccessDropOut(prev => !prev);
@@ -12,6 +14,10 @@ const DropOut = ({ setModalOpen }) => {
 
   const onClickBack = () => {
     setModalOpen(prev => !prev);
+  };
+
+  const handleSelectReason = e => {
+    setSelected(e.target.value);
   };
 
   return (
@@ -28,24 +34,66 @@ const DropOut = ({ setModalOpen }) => {
         </S.DropOutTitle>
         <ul>
           <S.DropOutReasonLi>
-            <p>
-              <img src="/images/mypage/radio.png" alt="radio" />
-              <span>사용 빈도가 낮음</span>
-            </p>
+            <S.DropOutReasonLabel htmlFor="tab1">
+              <input
+                type="image"
+                id="tab1"
+                src={
+                  selected === '1'
+                    ? '/images/mypage/selected.png'
+                    : '/images/mypage/unselected.png'
+                }
+                alt="selected"
+                onClick={handleSelectReason}
+                role="tab"
+                value="1"
+                aria-selected={selected === '1'}
+              />
+              <span aria-selected={selected === '1'}>사용 빈도가 낮음</span>
+            </S.DropOutReasonLabel>
           </S.DropOutReasonLi>
           <S.DropOutReasonLi>
-            <p>
-              <img src="/images/mypage/Ellipse 84.png" alt="ellipse" />
-              <span>자주가는 마트가 없음</span>
-            </p>
+            <S.DropOutReasonLabel htmlFor="tab2">
+              <input
+                type="image"
+                id="tab2"
+                src={
+                  selected === '2'
+                    ? '/images/mypage/selected.png'
+                    : '/images/mypage/unselected.png'
+                }
+                alt="unselected"
+                onClick={handleSelectReason}
+                role="tab"
+                value="2"
+                aria-selected={selected === '2'}
+              />
+              <span aria-selected={selected === '2'}>자주가는 마트가 없음</span>
+            </S.DropOutReasonLabel>
           </S.DropOutReasonLi>
           <S.DropOutReasonLi>
-            <p>
-              <img src="/images/mypage/Ellipse 84.png" alt="ellipse" />
-              <span>기타</span>
-            </p>
-            <textarea placeholder="더 나은 전단지도가 될 수 있도록 의견을 들려주세요." />
+            <S.DropOutReasonLabel htmlFor="tab3">
+              <input
+                type="image"
+                id="tab3"
+                src={
+                  selected === '3'
+                    ? '/images/mypage/selected.png'
+                    : '/images/mypage/unselected.png'
+                }
+                alt="unselected"
+                onClick={handleSelectReason}
+                role="tab"
+                value="3"
+                aria-selected={selected === '3'}
+              />
+              <span aria-selected={selected === '3'}>기타</span>
+            </S.DropOutReasonLabel>
           </S.DropOutReasonLi>
+          <S.DropOutReasonEtc
+            placeholder="더 나은 전단지도가 될 수 있도록 의견을 들려주세요."
+            disabled={selected !== '3'}
+          />
         </ul>
         <S.DropOutTitle margin="40px 0 8px 0">꼭 확인해주세요!</S.DropOutTitle>
         <ul>
@@ -60,11 +108,29 @@ const DropOut = ({ setModalOpen }) => {
           </S.DropOutConfirmLi>
         </ul>
         <S.DropOutAgree>
-          <img src="/images/uncheckedImg.png" alt="unchecked" />
-          <span>위 내용을 숙지하였으며 탈퇴에 동의합니다.</span>
+          <S.DropOutAgreeLabel htmlFor="agree">
+            <input
+              type="image"
+              id="agree"
+              src={
+                isClicked
+                  ? '/images/checkedImg.png'
+                  : '/images/uncheckedImg.png'
+              }
+              alt="unchecked"
+              onClick={() => {
+                setIsClicked(prev => !prev);
+              }}
+            />
+            <S.DropOutAgreeText>
+              위 내용을 숙지하였으며 탈퇴에 동의합니다.
+            </S.DropOutAgreeText>
+          </S.DropOutAgreeLabel>
         </S.DropOutAgree>
       </S.DropOutBody>
-      <S.ConfirmBtn onClick={handleModal}>탈퇴하기</S.ConfirmBtn>
+      <S.ConfirmBtn onClick={handleModal} disabled={!isClicked}>
+        탈퇴하기
+      </S.ConfirmBtn>
     </S.DropOut>
   );
 };
