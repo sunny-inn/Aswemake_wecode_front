@@ -8,7 +8,6 @@ const Search = ({
   homeMartList,
 }) => {
   const [keywords, setKeywords] = useState([]);
-  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -17,11 +16,11 @@ const Search = ({
     }
   }, []);
 
+  let filteredList = [];
+
   useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords));
-    newKeyword.filter(el => {
-      return setFilteredList(newKeyword.text === homeMartList.martName);
-    });
+    filteredList = newKeyword.filter(el => el.text === homeMartList.martName);
   }, [keywords]);
 
   const handleKeyword = e => setNewKeyword(e.target.value);
