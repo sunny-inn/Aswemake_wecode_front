@@ -196,7 +196,7 @@ const Home = () => {
               handleModal={handleModal}
               changeCenterByCarousel={changeCenterByCarousel}
             />
-            <input
+            <S.SearchBar
               type="text"
               placeholder="동주소, 마트 검색"
               readOnly

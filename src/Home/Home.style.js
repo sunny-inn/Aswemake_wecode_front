@@ -81,6 +81,7 @@ export const SearchBar = styled.input`
   height: 50px;
   bottom: 50px;
   background: url('./images/home/search.png') left no-repeat;
+  z-index: 10;
 `;
 
 export const CurrentLocation = styled.img`
