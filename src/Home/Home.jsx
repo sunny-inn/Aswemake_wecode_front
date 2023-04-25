@@ -189,23 +189,25 @@ const Home = () => {
                 />
               );
             })}
+            <S.SearchBox>
+              <S.SearchBar
+                type="text"
+                placeholder="동주소, 마트 검색"
+                readOnly
+                onClick={handleSearch}
+              />
+              <S.CurrentLocation
+                src="./images/home/location.png"
+                alt="현위치"
+                onClick={getCurrentPosition}
+              />
+            </S.SearchBox>
 
             <HomeCarousel
               homeMartList={homeMartList}
               selectedMart={selectedMart}
               handleModal={handleModal}
               changeCenterByCarousel={changeCenterByCarousel}
-            />
-            <S.SearchBar
-              type="text"
-              placeholder="동주소, 마트 검색"
-              readOnly
-              onClick={handleSearch}
-            />
-            <S.CurrentLocation
-              src="./images/home/location.png"
-              alt="현위치"
-              onClick={getCurrentPosition}
             />
           </NaverMap>
           {openModal && <Modal handleModal={handleModal} type="map" />}

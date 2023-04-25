@@ -5,6 +5,7 @@ import {
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
+import { flex } from '../Styles/Mixin';
 
 export const MapBox = styled(MapDiv)`
   position: relative;
@@ -75,13 +76,19 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 
-export const SearchBar = styled.input`
+export const SearchBox = styled.div`
+  ${flex('space-between', 'center', null)}
   position: absolute;
+  margin: 0px 10px;
+  top: 20px;
+`;
+
+export const SearchBar = styled.input`
   width: 270px;
   height: 50px;
-  top: 20px;
-  background: #ffffff;
-  background-image: url('./images/home/search.png') left no-repeat;
+  padding-left: 10px;
+  background-color: #ffffff;
+  background: url('./images/home/search.png') left no-repeat;
   border: 1px solid #dbdbdb;
   box-shadow: 0px 4px 8px rgba(37, 37, 37, 0.08);
   border-radius: 16px;
