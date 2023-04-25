@@ -15,6 +15,11 @@ export const Back = styled.img`
   cursor: pointer;
 `;
 
+export const SearchBar = styled.input`
+  width: 200px;
+  height: 30px;
+`;
+
 export const Title = styled.h1`
   font-weight: 700;
   font-size: 18px;

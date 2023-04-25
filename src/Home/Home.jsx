@@ -220,7 +220,10 @@ const Home = () => {
           )}
         </S.MapBox>
       ) : (
-        <Search newKeyword={newKeyword} />
+        <Search
+          newKeyword={newKeyword}
+          setIsSearchClicked={setIsSearchClicked}
+        />
       )}
     </div>
   );

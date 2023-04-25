@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../../Components/Header/Header';
 
-const Search = ({ newKeyword }) => {
+const Search = ({ newKeyword, setIsSearchClicked }) => {
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
@@ -14,6 +14,11 @@ const Search = ({ newKeyword }) => {
   useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords));
   }, [keywords]);
+
+  const onClickBack = e => {
+    e.preventDefault();
+    setIsSearchClicked(false);
+  };
 
   const handleAddKeyword = text => {
     const newKeyword = {
@@ -32,7 +37,7 @@ const Search = ({ newKeyword }) => {
 
   return (
     <>
-      <Header type="search" newKeyword={newKeyword} />
+      <Header type="search" newKeyword={newKeyword} onClick={onClickBack} />
       <div>
         <h1>최근 검색어</h1>
         <ul>
