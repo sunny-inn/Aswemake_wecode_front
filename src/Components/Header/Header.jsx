@@ -28,7 +28,11 @@ const Header = ({ type, onClickBack, newKeyword }) => {
       {headerList[type].title ? (
         <S.Title>{headerList[type].title}</S.Title>
       ) : (
-        <input type="text" value={newKeyword} />
+        <S.SearchBar
+          type="text"
+          value={newKeyword}
+          placeholder="동주소, 마트 검색"
+        />
       )}
       <div />
     </S.HeaderBox>
