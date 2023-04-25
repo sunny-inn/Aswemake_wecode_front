@@ -16,7 +16,7 @@ export const Back = styled.img`
 `;
 
 export const SearchBar = styled.input`
-  width: 270px;
+  width: 280px;
   height: 30px;
   border-style: none;
 

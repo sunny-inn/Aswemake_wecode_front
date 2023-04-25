@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../../Components/Header/Header';
+import * as S from './Search.style';
 
 const Search = ({ newKeyword, setIsSearchClicked }) => {
   const [keywords, setKeywords] = useState([]);
@@ -36,10 +37,10 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
   };
 
   return (
-    <>
+    <S.SearchBox>
       <Header type="search" newKeyword={newKeyword} onClick={onClickBack} />
-      <div>
-        <h1>최근 검색어</h1>
+      <S.KeywordBox>
+        <S.KeywordTitle>최근 검색어</S.KeywordTitle>
         <ul>
           {keywords.length ? (
             keywords.map(el => (
@@ -51,7 +52,7 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
                     handleRemoveKeyword(el.id);
                   }}
                 >
-                  <img alt="delete" />
+                  <img alt="delete" src="./images/closeImg.png" />
                 </button>
               </li>
             ))
@@ -59,8 +60,8 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
             <div />
           )}
         </ul>
-      </div>
-    </>
+      </S.KeywordBox>
+    </S.SearchBox>
   );
 };
 
