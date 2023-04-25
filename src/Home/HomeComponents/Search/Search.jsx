@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import * as S from './Search.style';
 
-const Search = ({ newKeyword, setIsSearchClicked }) => {
+const Search = ({ newKeyword, setNewKeyword, setIsSearchClicked }) => {
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
@@ -41,7 +41,14 @@ const Search = ({ newKeyword, setIsSearchClicked }) => {
 
   return (
     <S.SearchBox>
-      <Header type="search" newKeyword={newKeyword} onClick={onClickBack} />
+      <form onSubmit={handleAddKeyword}>
+        <Header
+          type="search"
+          onClick={onClickBack}
+          newKeyword={newKeyword}
+          setNewKeyword={setNewKeyword}
+        />
+      </form>
       <S.KeywordBox>
         <S.KeywordTitle>최근 검색어</S.KeywordTitle>
         <ul>

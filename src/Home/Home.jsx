@@ -222,6 +222,7 @@ const Home = () => {
       ) : (
         <Search
           newKeyword={newKeyword}
+          setNewKeyword={setNewKeyword}
           setIsSearchClicked={setIsSearchClicked}
         />
       )}

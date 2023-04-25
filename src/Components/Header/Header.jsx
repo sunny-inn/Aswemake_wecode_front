@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Header.style';
 
-const Header = ({ type, onClickBack, newKeyword }) => {
+const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
   const headerList = {
     signup: SIGNUP_HEADER,
     terms: TERMS_HEADER,
@@ -13,6 +13,8 @@ const Header = ({ type, onClickBack, newKeyword }) => {
     suggestCompleted: SUGGEST_COMPLET_HEADER,
     search: SEARCH_HEADER,
   };
+
+  const handleKeyword = e => setNewKeyword(e.target.value);
 
   return (
     <S.HeaderBox>
@@ -32,6 +34,7 @@ const Header = ({ type, onClickBack, newKeyword }) => {
           type="text"
           value={newKeyword}
           placeholder="동주소, 마트 검색"
+          onChange={handleKeyword}
         />
       )}
       <div />
