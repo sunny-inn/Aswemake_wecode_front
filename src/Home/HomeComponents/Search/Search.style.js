@@ -128,6 +128,7 @@ export const HideFooter = styled.div`
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 100px;
+  height: 80px;
   background-color: #ffffff;
+  z-index: 10;
 `;
