@@ -106,14 +106,14 @@ const Search = ({
                 keywords.map(el => (
                   <S.KeywordItem key={el.id}>
                     <p>{el.text}</p>
-                    <button
+                    <S.DeleteBtn
                       type="button"
                       onClick={() => {
                         handleRemoveKeyword(el.id);
                       }}
                     >
                       <img alt="delete" src="./images/closeImg.png" />
-                    </button>
+                    </S.DeleteBtn>
                   </S.KeywordItem>
                 ))
               ) : (
