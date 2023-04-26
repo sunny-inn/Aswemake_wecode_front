@@ -140,7 +140,7 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
-  // 현위치 가져오는 함수
+  // 현위치 가져오는 기능
   const getCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -162,7 +162,6 @@ const Home = () => {
   const handleSearch = () => setIsSearchClicked(true);
 
   console.log(homeMartList);
-  console.log('검색 후 선택된 마트', selectedMart);
 
   return (
     <div>

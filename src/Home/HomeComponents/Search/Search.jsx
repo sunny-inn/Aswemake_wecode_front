@@ -40,6 +40,12 @@ const Search = ({
     setIsSearchClicked(false);
   };
 
+  const onClickKeyword = (id, text) => {
+    setNewKeyword(text);
+    setIsSubmitted(true);
+    // 검색어 순서 바꿔야 함
+  };
+
   const handleAddKeyword = e => {
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
@@ -59,8 +65,7 @@ const Search = ({
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
-    console.log(id);
-    console.log(selectedMart);
+    setNewKeyword('');
   };
 
   return (
@@ -109,13 +114,16 @@ const Search = ({
             <S.KeywordTitle>최근 검색어</S.KeywordTitle>
             <ul>
               {keywords.length > 0 ? (
-                keywords.map(el => (
-                  <S.KeywordItem key={el.id}>
-                    <p>{el.text}</p>
+                keywords.map(({ id, text }) => (
+                  <S.KeywordItem
+                    key={id}
+                    onClick={() => onClickKeyword(id, text)}
+                  >
+                    <p>{text}</p>
                     <S.DeleteBtn
                       type="button"
                       onClick={() => {
-                        handleRemoveKeyword(el.id);
+                        handleRemoveKeyword(id);
                       }}
                     >
                       <img alt="delete" src="./images/closeImg.png" />
