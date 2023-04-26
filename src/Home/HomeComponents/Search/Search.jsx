@@ -37,6 +37,8 @@ const Search = ({
     )
     .slice(-3);
 
+  console.log(filteredList);
+
   const onClickBack = e => {
     e.preventDefault();
     setIsSearchClicked(false);
