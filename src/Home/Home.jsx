@@ -39,8 +39,6 @@ const Home = () => {
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [newKeyword, setNewKeyword] = useState('');
 
-  const { lat, lang } = center;
-
   const handleModal = () => {
     setOpenModal(prev => !prev);
   };

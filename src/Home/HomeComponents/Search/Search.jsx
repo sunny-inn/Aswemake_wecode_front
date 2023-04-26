@@ -26,8 +26,12 @@ const Search = ({
     setIsSubmitted(false);
   };
 
-  const filteredList = homeMartList.filter(mart =>
-    mart.martName.includes(newKeyword)
+  // FIXME: 동, 지번 주소로도 검색가능하게
+  const filteredList = homeMartList.filter(
+    mart =>
+      mart.martName.includes(newKeyword) ||
+      mart.martNumberAddress.includes(newKeyword) ||
+      mart.martRoadNameAddress.includes(newKeyword)
   );
 
   const onClickBack = e => {
@@ -47,10 +51,6 @@ const Search = ({
     });
     setKeywords(nextKeyword);
   };
-
-  console.log('새 키워드', newKeyword);
-  console.log('검색했던', keywords);
-  console.log('필터', filteredList);
 
   return (
     <S.SearchBox>
@@ -80,7 +80,7 @@ const Search = ({
                   <S.SearchedItem key={mart.martId}>
                     <div>
                       <S.MartName>{mart.martName}</S.MartName>
-                      <S.MartAddress>{mart.martAddress}</S.MartAddress>
+                      <S.MartAddress>{mart.martRoadNameAddress}</S.MartAddress>
                     </div>
                     <S.Distance>거리</S.Distance>
                   </S.SearchedItem>
