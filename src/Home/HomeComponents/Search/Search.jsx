@@ -79,8 +79,6 @@ const Search = ({
   //   });
   // };
 
-  console.log(keywords);
-
   return (
     <S.SearchBox>
       <form onSubmit={e => handleAddKeyword(e)}>

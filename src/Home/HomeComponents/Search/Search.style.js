@@ -13,7 +13,7 @@ export const HeaderBox = styled.div`
   width: 360px;
   height: 56px;
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   background: #ffffff;
   border-bottom: 1px solid #ececec;
 `;
