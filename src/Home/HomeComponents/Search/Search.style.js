@@ -60,6 +60,6 @@ export const KeywordItem = styled.li`
 export const DeleteBtn = styled.button`
   width: 24px;
   height: 24px;
-  background-color: none;
+  background-color: #ffffff;
   border-style: none;
 `;

@@ -10,8 +10,6 @@ const Search = ({
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const { id, text } = newKeyword;
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const result = localStorage.getItem('keywords') || '[]';
@@ -39,14 +37,8 @@ const Search = ({
 
   const handleAddKeyword = e => {
     e.preventDefault();
-    const newKeyword = {
-      id: Date.now(),
-      text: text,
-    };
-    setKeywords([newKeyword, ...keywords]);
+    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
     setIsSubmitted(true);
-
-    console.log(text);
   };
 
   const handleRemoveKeyword = id => {

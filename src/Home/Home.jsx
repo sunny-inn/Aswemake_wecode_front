@@ -37,7 +37,7 @@ const Home = () => {
   });
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const [newKeyword, setNewKeyword] = useState({ id: 0, text: '' });
+  const [newKeyword, setNewKeyword] = useState('');
 
   const { lat, lang } = center;
 
