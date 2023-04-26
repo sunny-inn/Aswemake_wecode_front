@@ -113,3 +113,13 @@ export const DeleteBtn = styled.button`
   background-color: #ffffff;
   border-style: none;
 `;
+
+export const EmptyList = styled.p`
+  ${flex('center', 'center', null)}
+  height: 200px;
+  color: #bcbcbc;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: center;
+`;
