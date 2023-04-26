@@ -6,7 +6,6 @@ import DetailBtn from './DetailBtn';
 import CallModal from './CallModal';
 import DetailToast from './DetailToast';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import * as S from './Detail.style';
 
 const Detail = () => {
@@ -46,10 +45,6 @@ const Detail = () => {
     handleToast('copy');
   };
 
-  const handleFavorite = () => {
-    handleToast('favorite');
-  };
-
   const handlePhoneNum = () => {
     handleToast('copyNum');
   };
@@ -58,20 +53,31 @@ const Detail = () => {
     setOpenCallModal(prev => !prev);
   };
 
-  const onClickShare = async () => {
-    try {
-      await navigator.share({
-        title: '공유 제목',
-        text: '공유내용',
-        url: 'https://flyers.qmarket.me/detail',
-      });
-    } catch (error) {
-      alert('오류가 발생했습니다.');
+  //즐겨찾기 눌렀을때 로직들
+  const [isFavorite, setIsFavorite] = useState(false);
+  const onClickFavorite = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+      handleToast('favoriteRemoved');
+    } else {
+      setIsFavorite(true);
+      handleToast('favorite');
     }
   };
-  const shareUrl = 'https://flyers.qmarket.me/detail';
-  const title = '공유 제목';
-  const description = '공유 내용';
+  //공유하기 로직
+  const url = 'https://flyers.qmarket.me/detail';
+  const title = '떙땡마트 행사중이래~';
+
+  const onClickShare = () => {
+    navigator
+      .share({
+        title: '큐마켓',
+        text: '들어와서 확인해보자!!',
+        url: url,
+      })
+      .then(() => alert('Successful share'))
+      .catch(error => alert('Error sharing', error));
+  };
 
   useEffect(() => {
     fetch('./data/MhomeData.json')
@@ -131,16 +137,18 @@ const Detail = () => {
                 />
               </S.MartDetailText>
               <S.ShareAndFavoriteBox>
-                <div>
-                  <FacebookShareButton url={shareUrl} quote={title}>
-                    <button>페이스북으로 공유하기</button>
-                  </FacebookShareButton>
-                  <TwitterShareButton url={shareUrl} title={title}>
-                    <button>트위터로 공유하기</button>
-                  </TwitterShareButton>
-                </div>
-                <DetailBtn type="share" onClick={onClickShare} />
-                <DetailBtn type="favorite" handleFavorite={handleFavorite} />
+                <DetailBtn
+                  onClickShare={onClickShare}
+                  type="share"
+                  onClick={() => {
+                    onClickShare();
+                  }}
+                />
+                <DetailBtn
+                  type="favorite"
+                  onClickFavorite={onClickFavorite}
+                  isFavorite={isFavorite}
+                />
               </S.ShareAndFavoriteBox>
             </S.MartDetailBox>
           </div>
@@ -154,9 +162,19 @@ const Detail = () => {
           showToast={showToast}
         />
       )}
-      {showToast.show && <DetailToast type={showToast.type} />}
-      {/* 이거는 없을꺼 */}
-      {/* {showBigFlyerModal && (
+      {showToast.show && (
+        <DetailToast onClickFavorite={onClickFavorite} type={showToast.type} />
+      )}
+    </S.DetailContainer>
+  );
+};
+
+export default Detail;
+{
+  /* 이거는 없을꺼 */
+}
+{
+  /* {showBigFlyerModal && (
         <S.ModalContainer>
           <S.CloseButton
             src="./images/closeImg.png"
@@ -171,12 +189,12 @@ const Detail = () => {
             alt="큰 전단지"
           />
         </S.ModalContainer>
-      )} */}
+      )} */
+}
 
-      {/* //suggest modal로 만들고싶을때 */}
-      {/* {showSuggestModal && <Suggest onClose={handleSuggestModalClose} />}  */}
-    </S.DetailContainer>
-  );
-};
-
-export default Detail;
+{
+  /* //suggest modal로 만들고싶을때 */
+}
+{
+  /* {showSuggestModal && <Suggest onClose={handleSuggestModalClose} />}  */
+}
