@@ -53,8 +53,7 @@ const Search = ({
     setKeywords(nextKeyword);
   };
 
-  const onClickMart = (e, id) => {
-    e.preventDefault();
+  const onClickMart = id => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
@@ -91,7 +90,7 @@ const Search = ({
                 {filteredList.map(({ martId, martName, martNumberAddress }) => (
                   <S.SearchedItem
                     key={martId}
-                    onClick={(e, martId) => onClickMart(e, martId)}
+                    onClick={() => onClickMart(martId)}
                   >
                     <div>
                       <S.MartName>{martName}</S.MartName>
