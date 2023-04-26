@@ -41,9 +41,12 @@ const Search = ({
   };
 
   const onClickKeyword = (id, text) => {
+    const filteredKeyword = keywords.filter(keyword => {
+      return keyword.id !== id;
+    });
     setNewKeyword(text);
     setIsSubmitted(true);
-    // 검색어 순서 바꿔야 함
+    setKeywords([{ id: Date.now(), text: newKeyword }, ...filteredKeyword]);
   };
 
   const handleAddKeyword = e => {
@@ -53,10 +56,10 @@ const Search = ({
   };
 
   const handleRemoveKeyword = id => {
-    const nextKeyword = keywords.filter(keyword => {
+    const filteredKeyword = keywords.filter(keyword => {
       return keyword.id !== id;
     });
-    setKeywords(nextKeyword);
+    setKeywords(filteredKeyword);
   };
 
   const onClickMart = id => {
