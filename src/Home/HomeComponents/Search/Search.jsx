@@ -53,13 +53,14 @@ const Search = ({
     setKeywords(nextKeyword);
   };
 
-  const onClickMart = (e, martId) => {
+  const onClickMart = (e, id) => {
     e.preventDefault();
     const selectedMart = homeMartList.filter(mart => {
-      return mart.martId === martId;
+      return mart.martId === id;
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
+    console.log(id);
     console.log(selectedMart);
   };
 
