@@ -6,6 +6,7 @@ export const SearchBox = styled.div`
   height: 800px;
   background-color: #ffffff;
   z-index: 11;
+  overflow-y: hidden;
 `;
 
 export const HeaderBox = styled.div`
