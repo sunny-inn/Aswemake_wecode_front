@@ -24,6 +24,7 @@ const Home = () => {
   // },[])
 
   //MockData시작
+  const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -32,14 +33,30 @@ const Home = () => {
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [center, setCenter] = useState({
-    lat: 37.4857254,
-    lng: 126.9276657,
+    lat: 37.5568439,
+    lng: 126.919976,
   });
   // 검색 기능 관련 state
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [newKeyword, setNewKeyword] = useState('');
   const [searchedMart, setSearchedMart] = useState({});
+
+  // 회원정보 받기
+  // useEffect(() => {
+  //   fetch('', {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: token,
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setUserAddress(data);
+  //     });
+  // }, []);
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
