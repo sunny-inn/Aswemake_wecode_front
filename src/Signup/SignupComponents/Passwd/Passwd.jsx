@@ -57,15 +57,15 @@ const Passwd = ({
           }
           onClick={onClickPasswdEye}
         />
-        {passwdCheck !== '' &&
-          (!correctPasswd ? (
-            <S.AlertMsg correctPasswd={correctPasswd}>
-              비밀번호가 일치하지 않습니다.
-            </S.AlertMsg>
-          ) : (
-            <S.ConfirmMsg>비밀번호가 일치합니다.</S.ConfirmMsg>
-          ))}
       </S.PasswdInputBox>
+      {passwdCheck !== '' &&
+        (!correctPasswd ? (
+          <S.AlertMsg correctPasswd={correctPasswd}>
+            비밀번호가 일치하지 않습니다.
+          </S.AlertMsg>
+        ) : (
+          <S.ConfirmMsg>비밀번호가 일치합니다.</S.ConfirmMsg>
+        ))}
     </S.PasswdBox>
   );
 };
