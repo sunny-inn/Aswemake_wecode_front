@@ -52,6 +52,28 @@ const ModifyAddress = ({ setModalOpen }) => {
     setModifyAddress(prev => ({ ...prev, addressDetail: e.target.value }));
   };
 
+  // 확인 버튼 클릭시 적용되는 함수
+  const toModifyAddress = () => {
+    fetch('{PORT}/api/users/addressModify', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        zipCode: postalCode,
+        address: address,
+        detailAddress: addressDetail,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'USER_ADDRESS_MODIFIED') {
+          setModalOpen(prev => !prev);
+        }
+      });
+  };
+
   return (
     <S.ModifyAddress>
       <Header type="modifyAddress" onClickBack={onClickBack} />

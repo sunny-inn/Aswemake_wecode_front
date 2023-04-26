@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyPassword.style';
 
 const ModifyPassword = ({ setModalOpen }) => {
   const [isPwEyeClicked1, setIsPwEyeClicked1] = useState(false);
   const [isPwEyeClicked2, setIsPwEyeClicked2] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [modifyPassword, setModifyPassword] = useState({
     password: '',
     passwordCheck: '',
   });
   const { password, passwordCheck } = modifyPassword;
+  const navigate = useNavigate();
 
   const onClickBack = () => {
     setModalOpen(prev => !prev);
@@ -25,6 +28,32 @@ const ModifyPassword = ({ setModalOpen }) => {
 
   const correctPassword = password !== '' && password === passwordCheck;
 
+  const verifiablePw = e => {
+    const availablePw = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
+
+    availablePw.test(e.target.value) ? setIsActive(true) : setIsActive(false);
+  };
+
+  // 확인 버튼 눌렀을 때 실행되는 함수
+  const toModifyPassword = () => {
+    fetch('{PORT}/api/users/changeUserPw', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        password: password,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'CHANGED SUCCESSFULLY') {
+          navigate('/');
+        }
+      });
+  };
+
   return (
     <S.ModifyPassword>
       <Header type="modifyPassword" onClickBack={onClickBack} />
@@ -35,6 +64,7 @@ const ModifyPassword = ({ setModalOpen }) => {
             type={isPwEyeClicked1 ? 'text' : 'password'}
             placeholder="문자+숫자 8자리 이상 입력해주세요"
             onChange={handlePassword}
+            onKeyUp={verifiablePw}
             value={password}
           />
           <img
@@ -49,7 +79,16 @@ const ModifyPassword = ({ setModalOpen }) => {
             }}
           />
         </S.PasswordInputWrap>
-        {/* <S.PasswordCheckText>사용 가능한 비밀번호입니다.</S.PasswordCheckText> */}
+        {isActive && (
+          <S.PasswordCheckText color="#ff6a21">
+            사용 가능한 비밀번호입니다.
+          </S.PasswordCheckText>
+        )}
+        {!isActive && password !== '' && (
+          <S.PasswordCheckText color="#E40303">
+            사용 불가능한 비밀번호입니다.
+          </S.PasswordCheckText>
+        )}
         <S.PasswordInputWrap
           correctPassword={correctPassword}
           passwordCheck={passwordCheck}
@@ -83,7 +122,10 @@ const ModifyPassword = ({ setModalOpen }) => {
           </S.PasswordCheckText>
         )}
       </S.ModifyPasswordBody>
-      <S.ConfirmBtn disabled={!correctPassword} onClick={onClickBack}>
+      <S.ConfirmBtn
+        disabled={!correctPassword || !isActive}
+        onClick={onClickBack}
+      >
         확인
       </S.ConfirmBtn>
     </S.ModifyPassword>

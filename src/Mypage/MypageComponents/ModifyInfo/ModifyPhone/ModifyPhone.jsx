@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Header from '../../../../Components/Header/Header';
-import Phone from '../../../../Signup/SignupComponents/Phone/Phone';
 import * as S from './ModifyPhone.style';
 
 const ModifyPhone = ({ setModalOpen }) => {
@@ -29,7 +28,7 @@ const ModifyPhone = ({ setModalOpen }) => {
     setModalOpen(prev => !prev);
   };
 
-  const onClickCode = e => {
+  const toGetCode = e => {
     e.preventDefault();
     setCodeBtn(true);
 
@@ -57,11 +56,8 @@ const ModifyPhone = ({ setModalOpen }) => {
     return () => reset();
   };
 
-  const onClickVerification = e => {
+  const toVerifyCode = e => {
     e.preventDefault();
-
-    //https://flyers.qmarket.me/api/verificationCode/check
-    //http://172.30.1.41:8000/api/verificationCode/check
 
     fetch('https://flyers.qmarket.me/api/verificationCode/check', {
       method: 'POST',
@@ -85,19 +81,31 @@ const ModifyPhone = ({ setModalOpen }) => {
       });
   };
 
+  //전화번호 수정 확인 버튼 눌렀을 때 실행되는 함수
+  const toModifyPhone = () => {
+    fetch('{PORT}/api/users/phoneNumberModify', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        newPhoneNumber: phoneNumber,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'USER_PHONE_NUMBER_MODIFIED') {
+          setModalOpen(prev => !prev);
+        }
+      });
+  };
+
   return (
     <S.ModifyPhone>
       <Header type="modifyPhone" onClickBack={onClickBack} />
       <S.ModifyPhoneBody>
         <S.ModifyPhoneTitle>휴대전화</S.ModifyPhoneTitle>
-        {/* <Phone
-          phoneNumber={phoneNumber}
-          handlePhoneNumber={handlePhoneNumber}
-          code={code}
-          setCode={setCode}
-          verification={verification}
-          setVerification={setVerification}
-        /> */}
         <S.PhoneInputWrap>
           <input
             placeholder="전화번호를 입력해주세요."
@@ -107,7 +115,7 @@ const ModifyPhone = ({ setModalOpen }) => {
             onChange={handlePhoneNumber}
           />
           <S.GetNumBtn
-            onClick={onClickCode}
+            onClick={toGetCode}
             disabled={handleCodeBtn ? false : true}
             handleCodeBtn={handleCodeBtn}
           >
@@ -121,13 +129,10 @@ const ModifyPhone = ({ setModalOpen }) => {
             type="text"
             value={code}
             onChange={handleCode}
-            alertMsg={alertMsg}
           />
           <S.GetNumBtn
-            onClick={onClickVerification}
+            onClick={toVerifyCode}
             disabled={code && phoneNumber ? false : true}
-            code={code}
-            phoneNumber={phoneNumber}
           >
             확인
           </S.GetNumBtn>

@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Header from '../../../../Components/Header/Header';
 import DropOutSuccess from './DropOutSuccess';
 import * as S from './DropOut.style';
+import { useEffect } from 'react';
 
 const DropOut = ({ setModalOpen }) => {
   const [successDropOut, setSuccessDropOut] = useState(false);
   const [selected, setSelected] = useState('1');
   const [isClicked, setIsClicked] = useState(false);
+  const [textAreaValue, setTextAreaValue] = useState('');
+  const [dropOutReason, setDropOutReason] = useState('사용 빈도가 낮음');
 
   const handleModal = () => {
     setSuccessDropOut(prev => !prev);
@@ -18,6 +21,40 @@ const DropOut = ({ setModalOpen }) => {
 
   const handleSelectReason = e => {
     setSelected(e.target.value);
+
+    if (e.target.value === '1') {
+      setDropOutReason('사용 빈도가 낮음');
+    } else if (e.target.value === '2') {
+      setDropOutReason('자주가는 마트가 없음');
+    } else if (e.target.value === '3') {
+      setDropOutReason(textAreaValue);
+    }
+  };
+
+  useEffect(() => {
+    if (selected === '3') {
+      setDropOutReason(textAreaValue);
+    }
+  }, [selected, textAreaValue]);
+
+  //탈퇴하기 버튼 눌렀을 때 실행되는 함수
+  const toDropOut = () => {
+    fetch('{PORT}/api/users/deleteRequest', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        withdrawReason: dropOutReason,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'USER_DELETE_REQUESTED') {
+          setSuccessDropOut(true);
+        }
+      });
   };
 
   return (
@@ -93,6 +130,8 @@ const DropOut = ({ setModalOpen }) => {
           <S.DropOutReasonEtc
             placeholder="더 나은 전단지도가 될 수 있도록 의견을 들려주세요."
             disabled={selected !== '3'}
+            onChange={e => setTextAreaValue(e.target.value)}
+            value={textAreaValue}
           />
         </ul>
         <S.DropOutTitle margin="40px 0 8px 0">꼭 확인해주세요!</S.DropOutTitle>

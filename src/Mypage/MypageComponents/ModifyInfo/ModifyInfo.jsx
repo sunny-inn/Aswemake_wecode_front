@@ -8,9 +8,27 @@ import * as S from './ModifyInfo.style';
 const ModifyInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
+  const [password, setPassword] = useState('');
+  const [userInfo, setUserInfo] = useState({});
 
   const handleModal = () => {
     setModalOpen(prev => !prev);
+  };
+
+  // 확인 버튼 눌렀을 때 적용되는 함수
+  const toVerifyPassword = () => {
+    fetch('{PORT}/api/users/userCheck', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        password: password,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => setUserInfo(data.result(0)));
   };
 
   return (
@@ -28,6 +46,8 @@ const ModifyInfo = () => {
           <input
             type={isPwEyeClicked ? 'text' : 'password'}
             placeholder="문자+숫자 8자리 이상 입력해주세요"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
           <img
             src={
