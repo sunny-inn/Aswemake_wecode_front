@@ -79,6 +79,7 @@ export const ModalUploadButton = styled.button`
 export const SearchBox = styled.div`
   ${flex('space-between', 'center', null)}
   position: absolute;
+  width: 100%;
   margin: 0px 10px;
   top: 20px;
 `;
