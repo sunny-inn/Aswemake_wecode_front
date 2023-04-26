@@ -118,11 +118,8 @@ const Search = ({
             <ul>
               {keywords.length > 0 ? (
                 keywords.map(({ id, text }) => (
-                  <S.KeywordItem
-                    key={id}
-                    onClick={() => onClickKeyword(id, text)}
-                  >
-                    <p>{text}</p>
+                  <S.KeywordItem key={id}>
+                    <p onClick={() => onClickKeyword(id, text)}>{text}</p>
                     <S.DeleteBtn
                       type="button"
                       onClick={() => {
