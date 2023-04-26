@@ -6,7 +6,6 @@ export const SearchBox = styled.div`
   height: 800px;
   background-color: #ffffff;
   z-index: 11;
-  overflow-y: scroll;
 `;
 
 export const HeaderBox = styled.div`
@@ -57,6 +56,8 @@ export const KeywordTitle = styled.h1`
 export const SearchedList = styled.ul`
   ${flex('center', 'center', 'column')}
   gap: 5px;
+  height: 400px;
+  overflow-y: scroll;
 `;
 
 export const SearchedItem = styled.li`
