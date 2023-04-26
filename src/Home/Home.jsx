@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HomeCarousel from './HomeCarousel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Modal from '../Components/Modal/Modal';
-import * as S from './Home.style';
 import Footer from '../Components/Footer/Footer';
 import {
   Container as MapDiv,
@@ -12,11 +12,13 @@ import {
   useNavermaps,
 } from 'react-naver-maps';
 import Search from './HomeComponents/Search/Search';
+import * as S from './Home.style';
 
 const Home = () => {
+  const navigate = useNavigate();
   // useEffect(()=>{
   //   if (인터넷연결 확인 = true)
-  //   {Navigate("스플래시 링크")}
+  //   {navigate("스플래시 링크")}
   //   else {
   //     alert("문제 발생")
   //     앱종료되는 로직
@@ -201,7 +203,10 @@ const Home = () => {
   };
 
   // 검색 기능
-  const handleSearch = () => setIsSearchClicked(true);
+  const handleSearch = () => {
+    setIsSearchClicked(true);
+    navigate('/search');
+  };
 
   console.log(homeMartList);
 
