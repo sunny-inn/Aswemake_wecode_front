@@ -28,12 +28,14 @@ const Search = ({
     setIsSubmitted(false);
   };
 
-  const filteredList = homeMartList.filter(
-    mart =>
-      mart.martName.includes(newKeyword) ||
-      mart.martNumberAddress.includes(newKeyword) ||
-      mart.martRoadNameAddress.includes(newKeyword)
-  );
+  const filteredList = homeMartList
+    .filter(
+      mart =>
+        mart.martName.includes(newKeyword) ||
+        mart.martNumberAddress.includes(newKeyword) ||
+        mart.martRoadNameAddress.includes(newKeyword)
+    )
+    .slice(-3);
 
   const onClickBack = e => {
     e.preventDefault();
@@ -149,6 +151,7 @@ const Search = ({
           </>
         )}
       </S.KeywordBox>
+      <S.HideFooter />
     </S.SearchBox>
   );
 };

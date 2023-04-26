@@ -123,3 +123,11 @@ export const EmptyList = styled.div`
   line-height: 20px;
   text-align: center;
 `;
+
+export const HideFooter = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 100px;
+  background-color: #ffffff;
+`;
