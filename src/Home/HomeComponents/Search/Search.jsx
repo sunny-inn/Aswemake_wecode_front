@@ -60,6 +60,7 @@ const Search = ({
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
+    console.log(selectedMart);
   };
 
   return (
