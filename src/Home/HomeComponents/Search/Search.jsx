@@ -63,7 +63,7 @@ const Search = ({
           />
           <S.SearchBar
             type="text"
-            value={text}
+            value={newKeyword}
             placeholder="동주소, 마트 검색"
             onChange={handleKeyword}
           />
