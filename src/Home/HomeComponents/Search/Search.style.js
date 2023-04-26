@@ -3,7 +3,7 @@ import { flex } from '../../../Styles/Mixin';
 
 export const SearchBox = styled.div`
   width: 360px;
-  height: 800px;
+  height: 600px;
   background-color: #ffffff;
   z-index: 11;
   overflow-y: hidden;
@@ -55,7 +55,7 @@ export const KeywordTitle = styled.h1`
 `;
 
 export const SearchedList = styled.ul`
-  ${flex('center', 'center', 'column')}
+  ${flex('flex-start', 'center', 'column')}
   gap: 5px;
   height: 400px;
   overflow-y: scroll;
@@ -63,7 +63,7 @@ export const SearchedList = styled.ul`
 
 export const SearchedItem = styled.li`
   ${flex('space-between', 'center', null)}
-  width: 328px;
+  width: 320px;
   height: 80px;
   padding: 10px;
   border: 1px solid #ececec;
