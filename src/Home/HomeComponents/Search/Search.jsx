@@ -110,11 +110,11 @@ const Search = ({
                 ))}
               </S.SearchedList>
             ) : (
-              <p>
+              <S.EmptyList>
                 검색 결과가 없어요!
                 <br />
                 다른 마트를 검색해주세요.
-              </p>
+              </S.EmptyList>
             )}
           </>
         ) : (
