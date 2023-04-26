@@ -47,7 +47,7 @@ const Search = ({
     });
     setNewKeyword(text);
     setIsSubmitted(true);
-    setKeywords([{ id: Date.now(), text: newKeyword }, ...filteredKeyword]);
+    setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
   const handleAddKeyword = e => {
