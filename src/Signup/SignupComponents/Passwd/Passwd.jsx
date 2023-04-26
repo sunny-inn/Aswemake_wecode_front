@@ -17,22 +17,27 @@ const Passwd = ({
 
   return (
     <S.PasswdBox>
-      <S.PasswdInput
-        name="passwd"
-        value={passwd}
-        type={isPasswdEyeClicked ? 'text' : 'password'}
-        placeholder="문자+숫자 8자리 이상 입력해주세요."
-        onChange={handlePasswd}
-      />
-      <S.PasswdImg
-        alt="eye"
-        src={
-          isPasswdEyeClicked
-            ? 'images/signup/showpasswd.png'
-            : 'images/signup/passwd.png'
-        }
-        onClick={onClickPasswdEye}
-      />
+      <div>
+        <S.PasswdInput
+          name="passwd"
+          value={passwd}
+          type={isPasswdEyeClicked ? 'text' : 'password'}
+          placeholder="문자+숫자 8자리 이상 입력해주세요."
+          onChange={handlePasswd}
+        />
+        <S.PasswdImg
+          alt="eye"
+          src={
+            isPasswdEyeClicked
+              ? 'images/signup/showpasswd.png'
+              : 'images/signup/passwd.png'
+          }
+          onClick={onClickPasswdEye}
+        />
+        {passwd !== '' && isValidPasswd && (
+          <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>
+        )}
+      </div>
       <div>
         <S.PasswdCheckInput
           name="passwdCheck"
@@ -52,10 +57,6 @@ const Passwd = ({
           }
           onClick={onClickPasswdEye}
         />
-        {passwd !== '' && isValidPasswd && (
-          <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>
-        )}
-
         {passwdCheck !== '' &&
           (!correctPasswd ? (
             <S.AlertMsg correctPasswd={correctPasswd}>

@@ -92,7 +92,6 @@ const Login = () => {
         return response.json();
       })
       .then(data => {
-        console.log('유저 정보', data);
         localStorage.setItem('token', data.accessToken);
         if (localStorage.getItem('token') !== 'undefined') {
           return navigate('/home');

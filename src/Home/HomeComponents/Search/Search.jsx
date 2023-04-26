@@ -7,6 +7,7 @@ const Search = ({
   setIsSearchClicked,
   homeMartList,
   setSelectedMart,
+  center,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -27,7 +28,6 @@ const Search = ({
     setIsSubmitted(false);
   };
 
-  // FIXME: 동, 지번 주소로도 검색가능하게
   const filteredList = homeMartList.filter(
     mart =>
       mart.martName.includes(newKeyword) ||
@@ -70,6 +70,13 @@ const Search = ({
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
     setNewKeyword('');
+  };
+
+  // 중심에서 마트까지 거리 계산하는 기능
+  const calculateDistance = () => {
+    filteredList.map(({ lat, lng }) => {
+      if()
+    });
   };
 
   return (

@@ -6,6 +6,10 @@ export const PasswdBox = styled.div`
   gap: 5px;
 `;
 
+export const PasswdInputBox = styled.div`
+  position: relative;
+`;
+
 export const PasswdInput = styled.input`
   position: relative;
   width: 328px;

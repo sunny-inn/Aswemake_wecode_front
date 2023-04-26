@@ -42,21 +42,60 @@ const Home = () => {
   const [newKeyword, setNewKeyword] = useState('');
   const [searchedMart, setSearchedMart] = useState({});
 
-  // 회원정보 받기
-  // useEffect(() => {
-  //   fetch('', {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       authorization: token,
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setUserAddress(data);
-  //     });
-  // }, []);
+  // 회원 주소지 받는 기능
+  useEffect(() => {
+    fetch('', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUserAddress(data);
+      });
+  }, []);
+
+  // 회원 주소지 좌표값으로 바꾸는 기능
+  // const geocoder = navermaps.Service.geocode(
+  //   {
+  //     address: userAddress,
+  //   },
+  //   function (status, response) {
+  //     if (status !== navermaps.Service.Status.OK) {
+  //       return alert('Something wrong!');
+  //     }
+  //     const result = response.result;
+  //     const items = result.items;
+  //     console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
+  //     setCenter({ lat: items[0].point.x, lng: items[0].point.y });
+  //   }
+  // );
+
+  useEffect(() => {
+    userAddress &&
+      navermaps.Service.geocode(
+        {
+          address: userAddress,
+        },
+        function (status, response) {
+          if (status !== navermaps.Service.Status.OK) {
+            return alert('Something wrong!');
+          }
+          const result = response.result;
+          const items = result.items;
+          console.log(
+            '위도 = ',
+            items[0].point.y,
+            ' 경도 = ',
+            items[0].point.x
+          );
+          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
+        }
+      );
+  }, [userAddress]);
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
@@ -121,20 +160,6 @@ const Home = () => {
   // const handleCenter = value => setCenterPoint(value);
 
   const HOME_PATH = window.HOME_PATH || '.';
-
-  const geocoder = navermaps.Service.geocode(
-    {
-      address: '대구광역시 남구 대명9동 앞산순환로',
-    },
-    function (status, response) {
-      if (status !== navermaps.Service.Status.OK) {
-        return alert('Something wrong!');
-      }
-      const result = response.result;
-      const items = result.items;
-      // console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
-    }
-  );
 
   if (homeMartList.length === 0) return;
 
@@ -247,6 +272,7 @@ const Home = () => {
           setIsSearchClicked={setIsSearchClicked}
           homeMartList={homeMartList}
           setSelectedMart={setSelectedMart}
+          center={center}
         />
       )}
     </div>
