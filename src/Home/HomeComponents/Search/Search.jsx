@@ -38,6 +38,7 @@ const Search = ({
   const onClickBack = e => {
     e.preventDefault();
     setIsSearchClicked(false);
+    setNewKeyword('');
   };
 
   const onClickKeyword = (id, text) => {
