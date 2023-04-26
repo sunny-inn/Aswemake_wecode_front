@@ -10,6 +10,7 @@ import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
+import Search from './Home/HomeComponents/Search/Search';
 
 const Router = () => {
   return (
@@ -30,6 +31,7 @@ const Router = () => {
         />
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </BrowserRouter>
   );
