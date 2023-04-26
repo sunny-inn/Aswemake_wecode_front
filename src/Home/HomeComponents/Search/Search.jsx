@@ -28,14 +28,12 @@ const Search = ({
     setIsSubmitted(false);
   };
 
-  const filteredList = homeMartList
-    .filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword) ||
-        mart.martRoadNameAddress.includes(newKeyword)
-    )
-    .slice(-3);
+  const filteredList = homeMartList.filter(
+    mart =>
+      mart.martName.includes(newKeyword) ||
+      mart.martNumberAddress.includes(newKeyword) ||
+      mart.martRoadNameAddress.includes(newKeyword)
+  );
 
   console.log(filteredList);
 
@@ -133,7 +131,7 @@ const Search = ({
             <S.KeywordTitle>최근 검색어</S.KeywordTitle>
             <ul>
               {keywords.length > 0 ? (
-                keywords.map(({ id, text }) => (
+                keywords.slice(-3).map(({ id, text }) => (
                   <S.KeywordItem key={id}>
                     <p onClick={() => onClickKeyword(id, text)}>{text}</p>
                     <S.DeleteBtn
