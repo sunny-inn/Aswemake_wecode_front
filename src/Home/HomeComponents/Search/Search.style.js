@@ -48,10 +48,18 @@ export const KeywordTitle = styled.h1`
 `;
 
 export const KeywordItem = styled.li`
+  ${flex('space-between', 'center', null)}
   padding: 5px;
   border-top: 1px solid #dbdbdb;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
   color: #252525;
+`;
+
+export const DeleteBtn = styled.button`
+  width: 24px;
+  height: 24px;
+  background-color: none;
+  border-style: none;
 `;

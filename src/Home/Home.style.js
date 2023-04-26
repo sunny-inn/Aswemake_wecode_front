@@ -96,8 +96,8 @@ export const SearchBar = styled.input`
 `;
 
 export const CurrentLocation = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   z-index: 10;
   cursor: pointer;
 `;

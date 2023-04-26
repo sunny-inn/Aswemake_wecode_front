@@ -10,6 +10,8 @@ const Search = ({
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const { id, text } = newKeyword;
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const result = localStorage.getItem('keywords') || '[]';
@@ -35,7 +37,7 @@ const Search = ({
     setIsSearchClicked(false);
   };
 
-  const handleAddKeyword = (e, text) => {
+  const handleAddKeyword = e => {
     e.preventDefault();
     const newKeyword = {
       id: Date.now(),
@@ -43,6 +45,8 @@ const Search = ({
     };
     setKeywords([newKeyword, ...keywords]);
     setIsSubmitted(true);
+
+    console.log(text);
   };
 
   const handleRemoveKeyword = id => {
@@ -53,12 +57,12 @@ const Search = ({
   };
 
   console.log('새 키워드', newKeyword);
-  console.log('검색했던', keywords.length);
+  console.log('검색했던', keywords);
   console.log('필터', filteredList);
 
   return (
     <S.SearchBox>
-      <form onSubmit={handleAddKeyword}>
+      <form onSubmit={e => handleAddKeyword(e)}>
         <S.HeaderBox>
           <S.Back
             alt="arrow"
@@ -67,7 +71,7 @@ const Search = ({
           />
           <S.SearchBar
             type="text"
-            value={newKeyword.text}
+            value={text}
             placeholder="동주소, 마트 검색"
             onChange={handleKeyword}
           />
