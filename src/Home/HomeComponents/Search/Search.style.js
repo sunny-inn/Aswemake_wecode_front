@@ -5,7 +5,7 @@ export const SearchBox = styled.div`
   width: 360px;
   height: 800px;
   background-color: #ffffff;
-  z-index: 11;
+  z-index: 1000;
   overflow-y: scroll;
 `;
 
