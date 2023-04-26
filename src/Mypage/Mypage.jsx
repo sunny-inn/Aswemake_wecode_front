@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API } from '../config/config';
 import Header from '../Components/Header/Header';
-import FlyersList from './MypageComponents/FlyersList/FlyersList';
+import FlyersStatus from './MypageComponents/FlyersStatus/FlyersStatus';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import MartInfoStatus from './MypageComponents/MartInfoStatus/MartInfoStatus';
 import Terms from '../Components/Terms/Terms';
@@ -9,12 +9,12 @@ import * as S from './Mypage.style';
 
 const Mypage = () => {
   const [user, setUser] = useState();
-  const [isFlyersList, setIsFlyersList] = useState(false);
+  const [isFlyersStatus, setIsFlyersStatus] = useState(false);
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [isMartInfoStatus, setIsMartInfoStatus] = useState(false);
   const [isTerms, setIsTerms] = useState(false);
 
-  const toFlyersList = () => setIsFlyersList(prev => !prev);
+  const toFlyersStatus = () => setIsFlyersStatus(prev => !prev);
   const toWithdraw = () => setIsWithdraw(prev => !prev);
   const toMartInfoStatus = () => setIsMartInfoStatus(prev => !prev);
   const onClickTerms = () => setIsTerms(prev => !prev);
@@ -40,6 +40,7 @@ const Mypage = () => {
   return (
     <S.MypageBox>
       {isMartInfoStatus && <MartInfoStatus />}
+      {isFlyersStatus && <FlyersStatus />}
       <Header type="mypage" />
       <S.InfoBox>
         <S.NameBox>
@@ -57,7 +58,7 @@ const Mypage = () => {
       </S.InfoBox>
       <S.MenuBox>
         <S.MenuBtn>포인트 인출</S.MenuBtn>
-        <S.MenuBtn>전단등록 현황</S.MenuBtn>
+        <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
         <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
         <S.MenuBtn>계좌 등록</S.MenuBtn>
         <S.MenuBtn>계좌 변경</S.MenuBtn>

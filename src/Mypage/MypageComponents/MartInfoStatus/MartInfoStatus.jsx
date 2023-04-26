@@ -6,13 +6,15 @@ import * as S from './MartInfoStatus.style';
 const MartInfoStatus = () => {
   const [onScreen, setOnScreen] = useState('1');
 
+  const onClickBack = () => {};
+
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
   };
 
   return (
     <S.MartInfoStatus>
-      <Header type="martInfoStatus" />
+      <Header type="martInfoStatus" onClickBack={onClickBack} />
       <S.MartInfoStatusBody>
         <S.CategoryButtonWrap role="tablist">
           <button
