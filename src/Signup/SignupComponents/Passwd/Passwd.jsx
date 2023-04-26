@@ -17,7 +17,7 @@ const Passwd = ({
 
   return (
     <S.PasswdBox>
-      <div>
+      <S.PasswdInputBox>
         <S.PasswdInput
           name="passwd"
           value={passwd}
@@ -37,8 +37,8 @@ const Passwd = ({
         {passwd !== '' && isValidPasswd && (
           <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>
         )}
-      </div>
-      <div>
+      </S.PasswdInputBox>
+      <S.PasswdInputBox>
         <S.PasswdCheckInput
           name="passwdCheck"
           value={passwdCheck}
@@ -65,7 +65,7 @@ const Passwd = ({
           ) : (
             <S.ConfirmMsg>비밀번호가 일치합니다.</S.ConfirmMsg>
           ))}
-      </div>
+      </S.PasswdInputBox>
     </S.PasswdBox>
   );
 };
