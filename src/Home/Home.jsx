@@ -129,7 +129,7 @@ const Home = () => {
   const token = localStorage.getItem('token');
   // console.log(token);
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/home', {
+    fetch('./data/MhomeData.json', {
       method: 'GET',
       credentials: 'include',
       headers: {
