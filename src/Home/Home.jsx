@@ -15,7 +15,6 @@ import Search from './HomeComponents/Search/Search';
 import * as S from './Home.style';
 
 const Home = () => {
-  const navigate = useNavigate();
   // useEffect(()=>{
   //   if (인터넷연결 확인 = true)
   //   {navigate("스플래시 링크")}
@@ -203,10 +202,7 @@ const Home = () => {
   };
 
   // 검색 기능
-  const handleSearch = () => {
-    setIsSearchClicked(true);
-    navigate('/search');
-  };
+  const handleSearch = () => setIsSearchClicked(true);
 
   console.log(homeMartList);
 

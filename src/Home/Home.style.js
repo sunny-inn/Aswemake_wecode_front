@@ -79,16 +79,17 @@ export const ModalUploadButton = styled.button`
 export const SearchBox = styled.div`
   ${flex('space-between', 'center', null)}
   position: absolute;
-  width: 360px;
-  padding: 0px 10px;
   top: 20px;
+  width: 360px;
+  padding: 0px 15px;
 `;
 
 export const SearchBar = styled.input`
   width: 270px;
   height: 50px;
-  padding-left: 30px;
-  background: url('./images/home/search.png') left no-repeat;
+  padding-left: 40px;
+  background: url('./images/home/search.png') 10px no-repeat;
+  background-position-x: 10px;
   background-color: #ffffff;
   border: 1px solid #dbdbdb;
   box-shadow: 0px 4px 8px rgba(37, 37, 37, 0.08);
