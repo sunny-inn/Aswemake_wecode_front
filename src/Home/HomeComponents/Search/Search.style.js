@@ -114,7 +114,7 @@ export const DeleteBtn = styled.button`
   border-style: none;
 `;
 
-export const EmptyList = styled.p`
+export const EmptyList = styled.div`
   ${flex('center', 'center', null)}
   height: 200px;
   color: #bcbcbc;
