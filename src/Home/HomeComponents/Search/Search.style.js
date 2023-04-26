@@ -54,7 +54,7 @@ export const KeywordTitle = styled.h1`
 `;
 
 export const SearchedList = styled.ul`
-  ${flex('center', 'center', null)}
+  ${flex('center', 'center', 'column')}
   gap: 5px;
 `;
 
@@ -62,6 +62,7 @@ export const SearchedItem = styled.li`
   ${flex('space-between', 'center', null)}
   width: 328px;
   height: 80px;
+  padding: 10px;
   border: 1px solid #ececec;
   border-radius: 12px;
 `;
