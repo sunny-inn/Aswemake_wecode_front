@@ -143,7 +143,7 @@ const Home = () => {
       });
   }, []);
 
-  console.log('마트리스트', homeMartList);
+  // console.log('마트리스트', homeMartList);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -203,8 +203,6 @@ const Home = () => {
 
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
-
-  console.log(homeMartList);
 
   return (
     <div>

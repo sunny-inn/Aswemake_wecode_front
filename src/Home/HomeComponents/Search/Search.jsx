@@ -35,8 +35,6 @@ const Search = ({
       mart.martRoadNameAddress.includes(newKeyword)
   );
 
-  console.log(filteredList);
-
   const onClickBack = e => {
     e.preventDefault();
     setIsSearchClicked(false);
@@ -80,6 +78,8 @@ const Search = ({
   //     if()
   //   });
   // };
+
+  console.log(keywords);
 
   return (
     <S.SearchBox>
