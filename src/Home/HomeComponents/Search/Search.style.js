@@ -116,7 +116,7 @@ export const DeleteBtn = styled.button`
 
 export const EmptyList = styled.div`
   ${flex('center', 'center', null)}
-  height: 200px;
+  height: 500px;
   color: #bcbcbc;
   font-weight: 500;
   font-size: 17px;
