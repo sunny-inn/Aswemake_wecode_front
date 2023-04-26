@@ -44,9 +44,11 @@ const FlyersStatus = () => {
           <S.FlyersStatusLi>
             <S.FlyersStatusTitleWrap>
               <S.FlyersStatusTitle>등록 반려</S.FlyersStatusTitle>
-              <S.FlyersStatusSubTitle marginTop="4px">
-                사유 : 전단 사진 2장 화질이 흐림.
-              </S.FlyersStatusSubTitle>
+              {onScreen === '3' && (
+                <S.FlyersStatusSubTitle marginTop="4px">
+                  사유 : 전단 사진 2장 화질이 흐림.
+                </S.FlyersStatusSubTitle>
+              )}
             </S.FlyersStatusTitleWrap>
             <article>
               <S.FlyersStatusImgWrap>

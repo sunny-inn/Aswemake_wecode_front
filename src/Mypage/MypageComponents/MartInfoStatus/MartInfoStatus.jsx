@@ -46,9 +46,11 @@ const MartInfoStatus = () => {
           <S.MartInfoStatusLi>
             <S.MartInfoStatusTitleWrap>
               <S.MartInfoStatusTitle>수정 심사 중</S.MartInfoStatusTitle>
-              {/* <S.MartInfoStatusSubTitle>
-                사유 : 마트 전화번호가 유효하지 않음.
-              </S.MartInfoStatusSubTitle> */}
+              {onScreen === '3' && (
+                <S.MartInfoStatusSubTitle>
+                  사유 : 마트 전화번호가 유효하지 않음.
+                </S.MartInfoStatusSubTitle>
+              )}
             </S.MartInfoStatusTitleWrap>
             <article>
               <S.MartStatusImgWrap>
