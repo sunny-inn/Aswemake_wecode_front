@@ -10,8 +10,8 @@
       "endDate": "2023-04-30",
       "martFlyerImages": "0",
       "favoriteCheck": "0",
-      "lat": 0,
-      "lng": 0
+      "lat": 37.506432,
+      "lng": 127.052843
     },
     {
       "martId": 2,
@@ -23,8 +23,8 @@
       "endDate": "2023-04-29",
       "martFlyerImages": "[{\"imageId\": 1, \"imageUrl\": \"./images/logo.png\"}, {\"imageId\": 2, \"imageUrl\": \"./images/marker.png\"}, {\"imageId\": 3, \"imageUrl\": \"./images/favorite.png\"}, {\"imageId\": 4, \"imageUrl\": \"./images/location.png\"}]",
       "favoriteCheck": "0",
-      "lat": 0,
-      "lng": 0
+      "lat": 37.4857243,
+      "lng": 126.927663
     },
     {
       "martId": 3,
@@ -36,8 +36,8 @@
       "endDate": "0",
       "martFlyerImages": "0",
       "favoriteCheck": "0",
-      "lat": 0,
-      "lng": 0
+      "lat": 37.4826243,
+      "lng": 126.926784
     }
   ]
 }

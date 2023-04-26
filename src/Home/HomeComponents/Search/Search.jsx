@@ -6,6 +6,7 @@ const Search = ({
   setNewKeyword,
   setIsSearchClicked,
   homeMartList,
+  setSelectedMart,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -52,6 +53,15 @@ const Search = ({
     setKeywords(nextKeyword);
   };
 
+  const onClickMart = (e, martId) => {
+    e.preventDefault();
+    const selectedMart = homeMartList.filter(mart => {
+      return mart.martId === martId;
+    });
+    setIsSearchClicked(false);
+    setSelectedMart(selectedMart);
+  };
+
   return (
     <S.SearchBox>
       <form onSubmit={e => handleAddKeyword(e)}>
@@ -76,11 +86,14 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredList.length > 0 ? (
               <S.SearchedList>
-                {filteredList.map(mart => (
-                  <S.SearchedItem key={mart.martId}>
+                {filteredList.map(({ martId, martName, martNumberAddress }) => (
+                  <S.SearchedItem
+                    key={martId}
+                    onClick={(e, martId) => onClickMart(e, martId)}
+                  >
                     <div>
-                      <S.MartName>{mart.martName}</S.MartName>
-                      <S.MartAddress>{mart.martRoadNameAddress}</S.MartAddress>
+                      <S.MartName>{martName}</S.MartName>
+                      <S.MartAddress>{martNumberAddress}</S.MartAddress>
                     </div>
                     <S.Distance>거리</S.Distance>
                   </S.SearchedItem>

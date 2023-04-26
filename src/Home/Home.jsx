@@ -35,9 +35,11 @@ const Home = () => {
     lat: 37.4857254,
     lng: 126.9276657,
   });
+  // 검색 기능 관련 state
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [newKeyword, setNewKeyword] = useState('');
+  const [searchedMart, setSearchedMart] = useState({});
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
@@ -89,7 +91,10 @@ const Home = () => {
   useEffect(() => {
     if (mapRef.current) {
       // console.log('이동', mapRef.current);
-      const newCenter = new navermaps.LatLng(selectedMart.y, selectedMart.x);
+      const newCenter = new navermaps.LatLng(
+        selectedMart.lng,
+        selectedMart.lat
+      );
       // console.log('좌표', newCenter);
       mapRef.current.setCenter(newCenter);
     }
@@ -148,6 +153,7 @@ const Home = () => {
       },
       error => {
         setError(error.message);
+        alert(error);
       }
     );
   };
@@ -155,11 +161,8 @@ const Home = () => {
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
 
-  // const filteredMartList = newKeyword.filter(el => {
-  //   return newKeyword === homeMartList.martName;
-  // });
-
   console.log(homeMartList);
+  console.log('검색 후 선택된 마트', selectedMart);
 
   return (
     <div>
@@ -227,6 +230,7 @@ const Home = () => {
           setNewKeyword={setNewKeyword}
           setIsSearchClicked={setIsSearchClicked}
           homeMartList={homeMartList}
+          setSelectedMart={setSelectedMart}
         />
       )}
     </div>
