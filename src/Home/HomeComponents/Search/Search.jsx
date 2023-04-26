@@ -75,17 +75,17 @@ const Search = ({
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredList.length > 0 ? (
-              <ul>
+              <S.SearchedList>
                 {filteredList.map(mart => (
-                  <li key={mart.martId}>
+                  <S.SearchedItem key={mart.martId}>
                     <div>
-                      <p>{mart.martName}</p>
-                      <p>{mart.martAddress}</p>
+                      <S.MartName>{mart.martName}</S.MartName>
+                      <S.MartAddress>{mart.martAddress}</S.MartAddress>
                     </div>
-                    <p>거리</p>
-                  </li>
+                    <S.Distance>거리</S.Distance>
+                  </S.SearchedItem>
                 ))}
-              </ul>
+              </S.SearchedList>
             ) : (
               <p>검색 결과가 없어요! 다른 마트를 검색해주세요.</p>
             )}

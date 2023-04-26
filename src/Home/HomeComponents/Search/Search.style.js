@@ -26,6 +26,11 @@ export const SearchBar = styled.input`
   width: 280px;
   height: 30px;
   border-style: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #252525;
 
   ::placeholder {
     font-weight: 500;
@@ -40,6 +45,7 @@ export const KeywordBox = styled.div`
 `;
 
 export const KeywordTitle = styled.h1`
+  margin-bottom: 10px;
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
@@ -47,14 +53,56 @@ export const KeywordTitle = styled.h1`
   color: #252525;
 `;
 
+export const SearchedList = styled.ul`
+  ${flex('center', 'center', null)}
+  gap: 5px;
+`;
+
+export const SearchedItem = styled.li`
+  ${flex('space-between', 'center', null)}
+  width: 328px;
+  height: 80px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+`;
+
+export const MartName = styled.p`
+  margin-bottom: 5px;
+  color: #000000;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 20px;
+`;
+
+export const MartAddress = styled.p`
+  color: #707070;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+`;
+
+export const Distance = styled.p`
+  color: #707070;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+`;
+
 export const KeywordItem = styled.li`
   ${flex('space-between', 'center', null)}
-  padding: 5px;
+  padding: 10px;
   border-top: 1px solid #dbdbdb;
+  color: #252525;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
-  color: #252525;
+
+  p {
+    color: #252525;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+  }
 `;
 
 export const DeleteBtn = styled.button`
