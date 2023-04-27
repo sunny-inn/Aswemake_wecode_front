@@ -98,3 +98,11 @@ export const MartInfoStatusEtc = styled.p`
   line-height: 15.6px;
   color: #707070;
 `;
+
+export const NoContents = styled.div`
+  margin-top: 190px;
+  color: #bcbcbc;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+`;

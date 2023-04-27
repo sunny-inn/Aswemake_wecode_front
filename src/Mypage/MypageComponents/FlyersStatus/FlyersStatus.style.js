@@ -103,10 +103,18 @@ export const ReRegistBtn = styled.button`
   width: 100%;
   height: 50px;
   margin-top: 12px;
-  background: #dbdbdb;
-  border: none;
+  background: #fff;
+  border: 1px solid #ff6a21;
   border-radius: 8px;
-  color: white;
+  color: #ff6a21;
   font-size: 17px;
   font-weight: 700;
+`;
+
+export const NoContents = styled.div`
+  margin-top: 190px;
+  color: #bcbcbc;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
 `;

@@ -9,5 +9,16 @@
       "imageUrl": "bbbbb",
       "rejectReason": null
     }
+  ],
+  "result2": [
+    {
+      "statusId": 1,
+      "approvalStatus": "심사중",
+      "imageUrl": ["mart1url1", "mart1url2", "mart1url3", "mart1url4"],
+      "martName": "독산로마트",
+      "martAddress": "독산로110",
+      "martPhoneNumber": "0323334444",
+      "rejectReason": null
+    }
   ]
 }
