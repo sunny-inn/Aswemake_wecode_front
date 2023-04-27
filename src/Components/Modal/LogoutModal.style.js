@@ -3,6 +3,16 @@ import { flex } from '../../Styles/Mixin';
 
 export const LogoutModal = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 616px;
+  background: rgba(25, 25, 25, 0.35);
+  z-index: 10;
+`;
+
+export const LogoutModalContents = styled.div`
+  position: absolute;
   top: 48%;
   left: 50%;
   width: 288px;
