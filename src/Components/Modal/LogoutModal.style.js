@@ -6,7 +6,7 @@ export const LogoutModal = styled.div`
   top: 0;
   left: 0;
   width: 360px;
-  height: 616px;
+  height: 670px;
   background: rgba(25, 25, 25, 0.35);
   z-index: 10;
 `;
