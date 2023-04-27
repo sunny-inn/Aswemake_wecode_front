@@ -73,15 +73,14 @@ export const MenuBtn = styled.div`
   cursor: pointer;
 `;
 
-export const LogoutBtn = styled.p`
+export const LogoutBtnWrap = styled.p`
   margin: 30px auto;
   text-align: center;
+`;
 
-  button {
-    background: none;
-    border: none;
-    color: #bcbcbc;
-    font-size: 11px;
-    font-weight: 500;
-  }
+export const LogoutBtn = styled.button`
+  background: none;
+  border: none;
+  color: #bcbcbc;
+  font-size: 11px;
 `;

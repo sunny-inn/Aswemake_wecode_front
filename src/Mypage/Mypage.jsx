@@ -6,7 +6,7 @@ import FlyersList from './MypageComponents/FlyersList/FlyersList';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import Switch from './MypageComponents/Switch/Switch';
 import Terms from '../Components/Terms/Terms';
-import Modal from '../Components/Modal/Modal';
+import LogoutModal from '../Components/Modal/LogoutModal';
 import * as S from './Mypage.style';
 
 const Mypage = () => {
@@ -47,7 +47,6 @@ const Mypage = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    // refresh token(document.cookie) cookie 에서 삭제
     return navigate('/');
   };
 
@@ -80,16 +79,15 @@ const Mypage = () => {
           <S.MenuBtn onClick={onClickTerms}>큐마켓 전단지도 이용약관</S.MenuBtn>
           {/* {isTerms && <Terms onClickTerms={onClickTerms} />} */}
         </S.MenuBox>
-        <S.LogoutBtn>
-          <button onClick={handleModal}>로그아웃</button>
+        <S.LogoutBtnWrap>
+          <S.LogoutBtn onClick={handleModal}>로그아웃</S.LogoutBtn>
           {openModal && (
-            <Modal
+            <LogoutModal
               handleLogout={handleLogout}
               handleModal={handleModal}
-              type="logout"
             />
           )}
-        </S.LogoutBtn>
+        </S.LogoutBtnWrap>
       </S.MenuBoxWrap>
     </S.MypageBox>
   );
