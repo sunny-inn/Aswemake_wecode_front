@@ -29,7 +29,7 @@ const ModifyInfo = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setUserInfo(data.result(0));
+        setUserInfo(data.result[0]);
         setModalOpen(prev => !prev);
       });
   };

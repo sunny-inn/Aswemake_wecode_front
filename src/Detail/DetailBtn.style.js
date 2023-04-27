@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FavoriteButton = styled.button`
-  width: 328px;
+  width: 160px;
   height: 50px;
   border: 1px solid #bcbcbc;
   border-radius: 8px;

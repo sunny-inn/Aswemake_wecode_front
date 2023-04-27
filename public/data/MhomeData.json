@@ -1,34 +1,82 @@
 {
   "martList": [
     {
-      "id": 1,
-      "name": "신림1번 마트",
-      "phoneNumber": "01023456879",
-      "address": "서울특별시 관악구 신림동5길 33",
-      "ratings": "4.5",
-      "x": 126.9276657,
-      "y": 37.4857254,
-      "distance": 0.054
+      "martId": 1,
+      "martName": "선릉 1호 마트",
+      "martPhoneNumber": "021234567",
+      "martNumberAddress": "서울특별시 강남구 삼성동 143-35",
+      "martRoadNameAddress": "서울특별시 강남구 테헤란로69길 8 플젠마트",
+      "startDate": "2023-04-22",
+      "endDate": "2023-04-30",
+      "martFlyerImages": "0",
+      "favoriteCheck": "0",
+      "lat": 37.506432,
+      "lng": 127.052843
     },
     {
-      "id": 2,
-      "name": "신림2번 마트",
-      "phoneNumber": "0109876543",
-      "address": "서울특별시 관악구 신원로5길 39 ",
-      "ratings": "3.5",
-      "x": 126.9267807,
-      "y": 37.4826241,
-      "distance": 0.407
+      "martId": 2,
+      "martName": "신림 1호 마트",
+      "martPhoneNumber": "01011112222",
+      "martNumberAddress": "서울특별시 관악구 신림동 1432-135",
+      "martRoadNameAddress": "서울특별시 관악구 신림동5길 33",
+      "startDate": "2023-04-15",
+      "endDate": "2023-04-29",
+      "martFlyerImages": "[{\"imageId\": 1, \"imageUrl\": \"./images/logo.png\"}, {\"imageId\": 2, \"imageUrl\": \"./images/marker.png\"}, {\"imageId\": 3, \"imageUrl\": \"./images/favorite.png\"}, {\"imageId\": 4, \"imageUrl\": \"./images/location.png\"}]",
+      "favoriteCheck": "0",
+      "lat": 37.4857243,
+      "lng": 126.927663
     },
     {
-      "id": 4,
-      "name": "봉천동 1번 마트",
-      "phoneNumber": "01045938423",
-      "address": "서울특별시 관악구 장군봉1길 53",
-      "ratings": "4.5",
-      "x": 126.9430084,
-      "y": 37.4817238,
-      "distance": 1.44
+      "martId": 3,
+      "martName": "신림 2호 마트",
+      "martPhoneNumber": "01012345678",
+      "martNumberAddress": "서울특별시 관악구 신림동 1595-1",
+      "martRoadNameAddress": "서울특별시 관악구 신원로5길 39",
+      "startDate": "0",
+      "endDate": "0",
+      "martFlyerImages": "0",
+      "favoriteCheck": "0",
+      "lat": 37.4826243,
+      "lng": 126.926784
+    },
+    {
+      "martId": 4,
+      "martName": "선릉 1호 마트",
+      "martPhoneNumber": "021234567",
+      "martNumberAddress": "서울특별시 강남구 삼성동 143-35",
+      "martRoadNameAddress": "서울특별시 강남구 테헤란로69길 8 플젠마트",
+      "startDate": "2023-04-22",
+      "endDate": "2023-04-30",
+      "martFlyerImages": "0",
+      "favoriteCheck": "0",
+      "lat": 37.506432,
+      "lng": 127.052843
+    },
+    {
+      "martId": 5,
+      "martName": "신림 1호 마트",
+      "martPhoneNumber": "01011112222",
+      "martNumberAddress": "서울특별시 관악구 신림동 1432-135",
+      "martRoadNameAddress": "서울특별시 관악구 신림동5길 33",
+      "startDate": "2023-04-15",
+      "endDate": "2023-04-29",
+      "martFlyerImages": "[{\"imageId\": 1, \"imageUrl\": \"./images/logo.png\"}, {\"imageId\": 2, \"imageUrl\": \"./images/marker.png\"}, {\"imageId\": 3, \"imageUrl\": \"./images/favorite.png\"}, {\"imageId\": 4, \"imageUrl\": \"./images/location.png\"}]",
+      "favoriteCheck": "0",
+      "lat": 37.4857243,
+      "lng": 126.927663
+    },
+    {
+      "martId": 6,
+      "martName": "신림 2호 마트",
+      "martPhoneNumber": "01012345678",
+      "martNumberAddress": "서울특별시 관악구 신림동 1595-1",
+      "martRoadNameAddress": "서울특별시 관악구 신원로5길 39",
+      "startDate": "0",
+      "endDate": "0",
+      "martFlyerImages": "0",
+      "favoriteCheck": "0",
+      "lat": 37.4826243,
+      "lng": 126.926784
     }
   ]
 }
