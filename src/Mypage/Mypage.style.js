@@ -54,7 +54,6 @@ export const Points = styled.span`
 
 export const MenuBox = styled.div`
   ${flex(null, 'flex-start', 'column')}
-  gap : 10px;
 `;
 
 export const MenuBtn = styled.div`

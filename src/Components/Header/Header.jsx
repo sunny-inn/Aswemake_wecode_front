@@ -9,6 +9,8 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     upload: UPLOAD_HEADER,
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
+    martInfoStatus: MART_INFO_STATUS_HEADER,
+    flyerStatus: FLYER_STATUS_HEADER,
     suggest: SUGGEST_HEADER,
     suggestCompleted: SUGGEST_COMPLET_HEADER,
   };
@@ -62,6 +64,15 @@ const MYPAGE_HEADER = {
   button: false,
 };
 
+const MART_INFO_STATUS_HEADER = {
+  title: '마트 정보 수정 현황',
+  button: true,
+};
+
+const FLYER_STATUS_HEADER = {
+  title: '전단등록 현황',
+  button: true,
+};
 const SUGGEST_HEADER = {
   title: '정보 수정 제안',
   button: true,
