@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import Modal from '../../../Components/Modal/Modal';
 import ModifyInfoDetail from './ModifyInfoDetail';
+import ModifyInfoModal from './ModifyInfoModal';
 import * as S from './ModifyInfo.style';
 
 const ModifyInfo = () => {
