@@ -37,7 +37,7 @@ const ModifyInfo = () => {
 
   return (
     <S.ModifyInfo>
-      {/* 비밀번호 일치하지 않으면 {modalOpen && <Modal handleModal={handleModal} type="modify" />} 띄우고 맞으면 아래 모달 띄우기 */}
+      {/* 비밀번호 일치하지 않으면 {modalOpen && <ModifyInfoModal handleModal={handleModal} />} 띄우고 맞으면 아래 모달 띄우기 */}
       {modalOpen && <ModifyInfoDetail />}
       <Header type="modifyInfo" />
       <S.ModifyInfoBody>
