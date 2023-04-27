@@ -107,6 +107,7 @@ const Phone = ({
         <S.CodeInput
           name="code"
           type="text"
+          ㄴ
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
