@@ -61,10 +61,10 @@ export const ConfirmBtn = styled.button`
   left: 16px;
   width: 328px;
   height: 50px;
-  background: #dbdbdb;
+  background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
-  color: white;
+  color: #fff;
   font-size: 17px;
   font-weight: 700;
 `;

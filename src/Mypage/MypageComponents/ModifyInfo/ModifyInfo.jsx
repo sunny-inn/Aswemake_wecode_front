@@ -28,7 +28,10 @@ const ModifyInfo = () => {
       }),
     })
       .then(response => response.json())
-      .then(data => setUserInfo(data.result(0)));
+      .then(data => {
+        setUserInfo(data.result(0));
+        setModalOpen(prev => !prev);
+      });
   };
 
   return (
@@ -62,7 +65,9 @@ const ModifyInfo = () => {
           />
         </S.PasswordInputWrap>
       </S.ModifyInfoBody>
-      <S.ConfirmBtn onClick={handleModal}>확인</S.ConfirmBtn>
+      <S.ConfirmBtn onClick={handleModal} disabled={!password}>
+        확인
+      </S.ConfirmBtn>
     </S.ModifyInfo>
   );
 };
