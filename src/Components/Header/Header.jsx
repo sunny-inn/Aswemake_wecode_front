@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Header.style';
 
-const Header = ({ type, onClickBack }) => {
+const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
   const headerList = {
     signup: SIGNUP_HEADER,
     terms: TERMS_HEADER,
@@ -11,6 +11,8 @@ const Header = ({ type, onClickBack }) => {
     mypage: MYPAGE_HEADER,
     martInfoStatus: MART_INFO_STATUS_HEADER,
     flyerStatus: FLYER_STATUS_HEADER,
+    suggest: SUGGEST_HEADER,
+    suggestCompleted: SUGGEST_COMPLET_HEADER,
   };
 
   return (
@@ -70,4 +72,13 @@ const MART_INFO_STATUS_HEADER = {
 const FLYER_STATUS_HEADER = {
   title: '전단등록 현황',
   button: true,
+};
+const SUGGEST_HEADER = {
+  title: '정보 수정 제안',
+  button: true,
+};
+
+const SUGGEST_COMPLET_HEADER = {
+  title: '정보 수정 제안 완료',
+  button: false,
 };

@@ -19,7 +19,6 @@ const PhoneInput = css`
   width: 204px;
   height: 50px;
   padding-left: 10px;
-  background: #f9f9f9;
   border-radius: 8px;
 
   ::placeholder {
@@ -51,8 +50,15 @@ export const CodeBtn = styled.button`
 `;
 
 export const CodeInput = styled.input`
+  position: relative;
   ${PhoneInput}
   border: 1px solid ${({ alertMsg }) => (alertMsg ? '#ff6a21' : '#dbdbdb')};
+`;
+
+export const Timer = styled.p`
+  position: absolute;
+  left: 47%;
+  color: #ff6a21;
 `;
 
 export const VerificationBtn = styled.button`

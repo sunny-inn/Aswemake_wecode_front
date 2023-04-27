@@ -10,6 +10,8 @@ export const SignupBox = styled.div`
   padding: 10px;
   background: #ffffff;
   backdrop-filter: blur(2px);
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 export const FormBox = styled.form`
@@ -17,62 +19,15 @@ export const FormBox = styled.form`
   gap: 10px;
 `;
 
-export const InputTitle = styled.h2`
+export const InputTitle = styled.label`
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
   color: #252525;
 `;
 
-export const PasswdInput = styled.input`
-  position: relative;
-  width: 328px;
-  height: 50px;
-  padding-left: 10px;
-  background-color: #ffffff;
-  border: 1px solid #dbdbdb;
-  border-radius: 8px;
-
-  ::placeholder {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-    color: #dbdbdb;
-  }
-`;
-
-export const PasswdCheckInput = styled.input`
-  position: relative;
-  width: 328px;
-  height: 50px;
-  padding-left: 10px;
-  background-color: #ffffff;
-  border: 1px solid
-    ${({ correctPasswd, passwdCheck }) =>
-      !passwdCheck || correctPasswd ? '#dbdbdb' : '#ff6a21'};
-  border-radius: 8px;
-
-  ::placeholder {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-    color: #dbdbdb;
-  }
-`;
-
-export const PasswdImg = styled.img`
-  position: absolute;
-  top: 35.5%;
-  right: 10%;
-`;
-
-export const CheckedImg = styled.img`
-  position: absolute;
-  top: 50.5%;
-  right: 10%;
-`;
-
 export const AlertMsg = styled.p`
+  padding: 10px 0px;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
@@ -206,6 +161,11 @@ export const TermsBtn = styled.button`
   line-height: 20px;
   text-decoration-line: underline;
   color: #252525;
+`;
+
+export const CheckBox = styled.div`
+  ${flex(null, 'center', null)}
+  gap:5px;
 `;
 
 export const SubmitBtn = styled.button`
