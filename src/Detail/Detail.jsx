@@ -5,6 +5,7 @@ import DetailNav from './DetailNav';
 import DetailBtn from './DetailBtn';
 import CallModal from './CallModal';
 import DetailToast from './DetailToast';
+import KakaoShare from './KakaoShare';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import * as S from './Detail.style';
 
@@ -16,6 +17,7 @@ const Detail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // const [showSuggestModal, setShowSuggestModal] = useState(false); //suggest 모달로 띄울때
   const navigate = useNavigate();
+  const url = 'https://flyers.qmarket.me/detail';
 
   const handleImageClick = index => {
     setCurrentImageIndex(index);
@@ -65,19 +67,29 @@ const Detail = () => {
     }
   };
   //공유하기 로직
-  const url = 'https://flyers.qmarket.me/detail';
-  const title = '떙땡마트 행사중이래~';
-
-  const onClickShare = () => {
-    navigator
-      .share({
-        title: '큐마켓',
-        text: '들어와서 확인해보자!!',
-        url: url,
-      })
-      .then(() => alert('Successful share'))
-      .catch(error => alert('Error sharing', error));
+  const [isShared, setIsShared] = useState(false);
+  const onClickShared = () => {
+    setIsShared(true);
+    KakaoShare(url, '제목', argumentKey, detailMartList);
   };
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
+
+  //공유하기 시도2
+  const [argumentKey, setArgumentKey] = useState(null);
+
+  useEffect(() => {
+    if (detailMartList.length > 0) {
+      setArgumentKey({
+        mart_flyer_image_url: detailMartList[0].martFlyerImages[0],
+      });
+    }
+  }, [detailMartList]);
 
   useEffect(() => {
     fetch('./data/MhomeData.json')
@@ -105,9 +117,9 @@ const Detail = () => {
             <S.MartTitle>{list.martName}</S.MartTitle>
             <S.MartDetailBox>
               <S.MartDetailText>
-                주소 : {list.martAddress}
+                주소 : {list.martNumberAddress}
                 <CopyToClipboard
-                  text={list.martAddress}
+                  text={list.martNumberAddress}
                   onCopy={handleAddressCopy}
                 >
                   <S.MartDetailContentImg
@@ -137,12 +149,17 @@ const Detail = () => {
                 />
               </S.MartDetailText>
               <S.ShareAndFavoriteBox>
+                {/* <KakaoShare /> */}
                 <DetailBtn
-                  onClickShare={onClickShare}
+                  isShared={isShared}
+                  detailMartList={detailMartList}
+                  KakaoShare={KakaoShare}
                   type="share"
                   onClick={() => {
-                    onClickShare();
+                    KakaoShare(url, list, onClickShared, detailMartList);
+                    onClickShared();
                   }}
+                  onClickShared={onClickShared}
                 />
                 <DetailBtn
                   type="favorite"
