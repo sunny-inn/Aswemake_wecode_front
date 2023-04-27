@@ -19,6 +19,8 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     flyerStatus: FLYER_STATUS_HEADER,
     suggest: SUGGEST_HEADER,
     suggestCompleted: SUGGEST_COMPLET_HEADER,
+    withdrawPoint: WITHDRAW_HEADER,
+    accountRegi: ACCOUNTREGI_HEADER,
   };
 
   return (
@@ -116,4 +118,13 @@ const SUGGEST_HEADER = {
 const SUGGEST_COMPLET_HEADER = {
   title: '정보 수정 제안 완료',
   button: false,
+};
+const WITHDRAW_HEADER = {
+  title: '포인트 인출',
+  button: true,
+};
+
+const ACCOUNTREGI_HEADER = {
+  title: '계좌 등록',
+  button: true,
 };

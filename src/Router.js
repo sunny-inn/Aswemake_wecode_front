@@ -8,9 +8,15 @@ import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
+<<<<<<< HEAD
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
 import Search from './Home/HomeComponents/Search/Search';
+import WithdrawPoint from './WithdrawPoint/WithdrawPoint';
+=======
+>>>>>>> 1e3d006 (ADD:계좌변경 first commit)
+import AccountRegi from './AccountRegi/AccountRegi';
+import SetAccount from './AccountRegi/Component/SetAccount';
 
 const Router = () => {
   return (
@@ -32,6 +38,9 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/withdrawpoint" element={<WithdrawPoint />} />
+        <Route path="/accountregi" element={<AccountRegi />} />
+        <Route path="/setaccount" element={<SetAccount />} />
       </Routes>
     </BrowserRouter>
   );
