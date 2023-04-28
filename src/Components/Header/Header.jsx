@@ -9,6 +9,7 @@ const Header = ({ type, onClickBack }) => {
     upload: UPLOAD_HEADER,
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
+    withdraw: WITHDRAW_HEADER,
   };
 
   return (
@@ -58,4 +59,9 @@ const PHOTO_HEADER = {
 const MYPAGE_HEADER = {
   title: '마이페이지',
   button: false,
+};
+
+const WITHDRAW_HEADER = {
+  title: '포인트 인출',
+  button: true,
 };

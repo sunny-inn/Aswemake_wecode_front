@@ -8,6 +8,7 @@ import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
+import WithdrawPoint from './WithdrawPoint/WithdrawPoint';
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
+        <Route path="/withdrawpoint" element={<WithdrawPoint />} />
       </Routes>
     </BrowserRouter>
   );
