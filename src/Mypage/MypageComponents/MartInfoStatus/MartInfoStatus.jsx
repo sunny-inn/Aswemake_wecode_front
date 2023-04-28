@@ -15,9 +15,7 @@ const MartInfoStatus = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyNjU1ODE2LCJleHAiOjE2ODI2NTc2MTZ9.prAfmgbVBW4rSMHkmo5atM1t1LpXBmsIdxMBwKL-J50',
-        //authorization: localStorage.getItem('token'),
+        authorization: localStorage.getItem('token'),
       },
     })
       .then(response => response.json())
@@ -33,9 +31,7 @@ const MartInfoStatus = () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyNjU1ODE2LCJleHAiOjE2ODI2NTc2MTZ9.prAfmgbVBW4rSMHkmo5atM1t1LpXBmsIdxMBwKL-J50',
-          //authorization: localStorage.getItem('token'),
+          authorization: localStorage.getItem('token'),
         },
       }
     )
