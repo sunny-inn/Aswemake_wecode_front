@@ -63,3 +63,17 @@ export const Withdraw = styled.input`
     /* margin: 16px 13px 283px 22px; */
   }
 `;
+
+export const FinBtn = styled.button`
+  width: 328px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  background-color: #dbdbdb;
+  margin-top: 260px;
+  color: white;
+  ::placeholder {
+    font-weight: 700;
+    font-size: 17px;
+  }
+`;

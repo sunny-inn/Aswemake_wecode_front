@@ -30,6 +30,7 @@ const WithdrawPoint = () => {
             <S.WithdrawPoint placeholder="0원" />
           </div>
         </S.Wrapper>
+        <S.FinBtn>인출 요청</S.FinBtn>
       </div>
     </>
   );
