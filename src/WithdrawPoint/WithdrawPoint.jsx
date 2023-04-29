@@ -20,7 +20,7 @@ const WithdrawPoint = () => {
     setOverPrice(parseInt(value, 10) > 150000);
   };
 
-  const handleBlur = () => {
+  const showCurrency = () => {
     setInputValue(prevValue => {
       if (prevValue === '') {
         return '';
@@ -52,7 +52,7 @@ const WithdrawPoint = () => {
             <S.WithdrawPoint
               value={inputValue}
               onChange={handleInputChange}
-              onBlur={handleBlur}
+              showCurrency={showCurrency}
               onFocus={handleFocus}
               placeholder="0원"
             />
