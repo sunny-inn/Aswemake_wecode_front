@@ -64,6 +64,12 @@ export const Withdraw = styled.input`
   }
 `;
 
+export const AlertMsg = styled.div`
+  color: #e40303;
+  margin-top: 8px;
+  font-size: 13px;
+`;
+
 export const FinBtn = styled.button`
   width: 328px;
   height: 50px;
