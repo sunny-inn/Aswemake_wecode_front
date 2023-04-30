@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import ModifyPassword from './ModifyPassword/ModifyPassword';
 import ModifyAddress from './ModifyAddress/ModifyAddress';
@@ -6,22 +6,13 @@ import ModifyPhone from './ModifyPhone/ModifyPhone';
 import DropOut from './DropOut/DropOut';
 import * as S from './ModifyInfoDetail.style';
 
-const ModifyInfoDetail = () => {
+const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
-  const [userInfo, setUserInfo] = useState({});
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('/data/ModifyInfoData.json')
-      .then(response => response.json())
-      .then(data => {
-        setUserInfo(data.result[0]);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div>Loading</div>;
+  const onClickBack = () => {
+    setDetailModalOpen(prev => !prev);
+  };
 
   const handleModal = e => {
     setSelectedType(e.target.value);
@@ -42,7 +33,7 @@ const ModifyInfoDetail = () => {
   return (
     <S.ModifyInfoDetail>
       {modalComponent}
-      <Header type="modifyInfo" />
+      <Header type="modifyInfo" onClickBack={onClickBack} />
       <S.ModifyInfoDetailUpperBody>
         <h2>{userInfo.name}</h2>
         <h4>
@@ -58,6 +49,7 @@ const ModifyInfoDetail = () => {
         <S.IdAddInput placeholder={userInfo.identification} readOnly />
         <S.ModifyDetailTitle>비밀번호</S.ModifyDetailTitle>
         <S.InputBtnWrap>
+          {/* placeholder={pw length} 길이만큼 •••••••• */}
           <input placeholder="••••••••" readOnly />
           <button onClick={handleModal} value="1">
             변경

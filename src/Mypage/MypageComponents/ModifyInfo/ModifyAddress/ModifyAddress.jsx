@@ -54,7 +54,7 @@ const ModifyAddress = ({ setModalOpen }) => {
 
   // 확인 버튼 클릭시 적용되는 함수
   const toModifyAddress = () => {
-    fetch('{PORT}/api/users/addressModify', {
+    fetch('https://flyers.qmarket.me/api/users/addressModify', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -69,6 +69,14 @@ const ModifyAddress = ({ setModalOpen }) => {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'USER_ADDRESS_MODIFIED') {
+          // localStorage.setItem(
+          //   'address',
+          //   JSON.stringify({
+          //     zipCode: postalCode,
+          //     address: address,
+          //     detailAddress: addressDetail,
+          //   })
+          // );
           setModalOpen(prev => !prev);
         }
       });
@@ -97,7 +105,7 @@ const ModifyAddress = ({ setModalOpen }) => {
           color="#252525"
         />
       </S.ModifyAddressBody>
-      <S.ConfirmBtn disabled={addressDetail === ''} onClick={onClickBack}>
+      <S.ConfirmBtn disabled={addressDetail === ''} onClick={toModifyAddress}>
         확인
       </S.ConfirmBtn>
     </S.ModifyAddress>

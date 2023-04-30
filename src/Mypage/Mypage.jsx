@@ -15,6 +15,7 @@ const Mypage = () => {
   const [isMartInfoStatus, setIsMartInfoStatus] = useState(false);
   const [isTerms, setIsTerms] = useState(false);
   const [modifyInfo, setModifyInfo] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const toFlyersStatus = () => setIsFlyersStatus(prev => !prev);
   const toWithdraw = () => setIsWithdraw(prev => !prev);
@@ -22,8 +23,6 @@ const Mypage = () => {
   const onClickTerms = () => setIsTerms(prev => !prev);
   const goToModifyInfo = () => setModifyInfo(prev => !prev);
 
-  //FIXME: 디자인 수정 중
-  //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
   // useEffect(() => {
   //   fetch('https://flyers.qmarket.me/api/users/details', {
   //     method: 'GET',
@@ -35,14 +34,17 @@ const Mypage = () => {
   //     .then(response => response.json())
   //     .then(data => {
   //       setUser(data.userInfo);
+  //       setLoading(false);
   //     });
   // }, []);
+
+  // if (loading) return <div>Loading</div>;
 
   // const totalPoints = user && Math.trunc(user.totalPoints);
 
   return (
     <S.MypageBox>
-      {modifyInfo && <ModifyInfo />}
+      {modifyInfo && <ModifyInfo setModifyInfo={setModifyInfo} />}
       {isMartInfoStatus && <MartInfoStatus />}
       {isFlyersStatus && <FlyersStatus />}
       <Header type="mypage" />
