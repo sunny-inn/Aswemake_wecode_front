@@ -1,15 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import Header from '../../../Components/Header/Header';
 import ModifyInfoDetail from './ModifyInfoDetail';
 import ModifyInfoModal from './ModifyInfoModal';
+import { loginedState } from '../../../recoil/atoms';
 import * as S from './ModifyInfo.style';
 
 const ModifyInfo = ({ setModifyInfo }) => {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
   const [password, setPassword] = useState('');
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useRecoilState(loginedState);
 
   const onClickBack = () => {
     setModifyInfo(prev => !prev);

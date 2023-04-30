@@ -4,7 +4,7 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyAddress.style';
 
-const ModifyAddress = ({ setModalOpen }) => {
+const ModifyAddress = ({ setModalOpen, userInfo }) => {
   const [modifyAddress, setModifyAddress] = useState({
     postalCode: '',
     address: '',
@@ -69,6 +69,9 @@ const ModifyAddress = ({ setModalOpen }) => {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'USER_ADDRESS_MODIFIED') {
+          userInfo.zip_code = postalCode;
+          userInfo.address = address;
+          userInfo.detail_address = addressDetail;
           // localStorage.setItem(
           //   'address',
           //   JSON.stringify({

@@ -23,7 +23,9 @@ const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
   if (modalOpen && selectedType === '1') {
     modalComponent = <ModifyPassword setModalOpen={setModalOpen} />;
   } else if (modalOpen && selectedType === '2') {
-    modalComponent = <ModifyAddress setModalOpen={setModalOpen} />;
+    modalComponent = (
+      <ModifyAddress setModalOpen={setModalOpen} userInfo={userInfo} />
+    );
   } else if (modalOpen && selectedType === '3') {
     modalComponent = <ModifyPhone setModalOpen={setModalOpen} />;
   } else if (modalOpen && selectedType === '4') {
