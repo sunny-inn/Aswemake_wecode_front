@@ -14,19 +14,20 @@ import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
-<<<<<<< HEAD
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
 import Search from './Home/HomeComponents/Search/Search';
-=======
 import Input from './Components/Input/Input';
-<<<<<<< HEAD
 import Withdraw from './Mypage/MypageComponents/Withdraw/Withdraw';
 import WithdrawNoti from './Withdraw/WithdrawNotify';
 import WithdrawNotify from './Withdraw/WithdrawNotify';
->>>>>>> 4d463b4 (ADD : 비밀번호 재설정 페이지 기능 구현 완료)
-=======
->>>>>>> 6a5c1a3 (ADD : component reuse)
+
+
+
+
+import AccountRegi from './AccountRegi/AccountRegi';
+import SetAccount from './AccountRegi/Component/SetAccount';
+
 
 const Router = () => {
   return (
@@ -55,6 +56,8 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/accountregi" element={<AccountRegi />} />
+        <Route path="/setaccount" element={<SetAccount />} />
       </Routes>
     </BrowserRouter>
   );
