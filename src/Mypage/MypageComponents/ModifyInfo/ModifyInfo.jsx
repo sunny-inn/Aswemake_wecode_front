@@ -25,50 +25,45 @@ const ModifyInfo = ({ setModifyInfo }) => {
   let modifyInfoComponent = null;
 
   const toVerifyPassword = () => {
-    //'https://flyers.qmarket.me/api/users/userCheck'
-    fetch(
-      '/data/ModifyInfoData.json'
-      // , {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json;charset=utf-8',
-      //     authorization: localStorage.getItem('token'),
-      //   },
-      //   body: JSON.stringify({
-      //     password: password,
-      //   }),
-      // }
-    )
+    //'/data/ModifyInfoData.json'
+    fetch('https://flyers.qmarket.me/api/users/userCheck', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({
+        password: password,
+      }),
+    })
       .then(response => response.json())
       .then(data => {
-        // if (data.message === 'YOU NEED TOKENS, PLEASE LOGIN') {
-        //   return navigate('/');
-        // } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
-        //   modifyInfoComponent = <ModifyInfoModal handleModal={handleModal} />;
-        // } else {
-        //   modifyInfoComponent = (
-        //     <ModifyInfoDetail
-        //       userInfo={userInfo}
-        //       setDetailModalOpen={setDetailModalOpen}
-        //     />
-        //   );
-        //   setUserInfo(data.result[0]);
-        //   setDetailModalOpen(prev => !prev);
-        // }
-        setUserInfo(data.result[0]);
-        setDetailModalOpen(prev => !prev);
+        if (data.message === 'YOU NEED TOKENS, PLEASE LOGIN') {
+          return navigate('/');
+        } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
+          modifyInfoComponent = <ModifyInfoModal handleModal={handleModal} />;
+        } else {
+          modifyInfoComponent = (
+            <ModifyInfoDetail
+              userInfo={userInfo}
+              setDetailModalOpen={setDetailModalOpen}
+            />
+          );
+          setUserInfo(data.result[0]);
+          setDetailModalOpen(prev => !prev);
+        }
       });
   };
 
   return (
     <S.ModifyInfo>
-      {/* {detailModalOpen && modifyInfoComponent} */}
-      {detailModalOpen && (
+      {detailModalOpen && modifyInfoComponent}
+      {/* {detailModalOpen && (
         <ModifyInfoDetail
           userInfo={userInfo}
           setDetailModalOpen={setDetailModalOpen}
         />
-      )}
+      )} */}
       <Header type="modifyInfo" onClickBack={onClickBack} />
       <S.ModifyInfoBody>
         <p>
