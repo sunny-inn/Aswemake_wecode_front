@@ -143,7 +143,7 @@ const Upload = () => {
     // });
   };
 
-  console.log(uploadInfo.imageUrl);
+  console.log(uploadInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>

@@ -70,7 +70,7 @@ const HomeCarousel = ({
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
-                    <li>주소 : {mart.martAddress}</li>
+                    <li>주소 : {mart.martNumberAddress}</li>
                     <li>연락처 : {mart.martPhoneNumber}</li>
                   </S.MartContentBox>
                 </S.CarouselContent>
