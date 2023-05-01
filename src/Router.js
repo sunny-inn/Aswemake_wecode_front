@@ -9,6 +9,8 @@ import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
 import WithdrawPoint from './WithdrawPoint/WithdrawPoint';
+import SetPoint from './WithdrawPoint/SetPoint';
+import AccountChange from './WithdrawPoint/AccountChange';
 
 const Router = () => {
   return (
@@ -25,6 +27,8 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/withdrawpoint" element={<WithdrawPoint />} />
+        <Route path="/setpoint" element={<SetPoint />} />
+        <Route path="/accountchange" element={<AccountChange />} />
       </Routes>
     </BrowserRouter>
   );

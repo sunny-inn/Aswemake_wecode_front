@@ -10,6 +10,7 @@ const Header = ({ type, onClickBack }) => {
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
     withdraw: WITHDRAW_HEADER,
+    accountChange: ACCOUNTCHANGE_HEADER,
   };
 
   return (
@@ -63,5 +64,10 @@ const MYPAGE_HEADER = {
 
 const WITHDRAW_HEADER = {
   title: '포인트 인출',
+  button: true,
+};
+
+const ACCOUNTCHANGE_HEADER = {
+  title: '계좌변경',
   button: true,
 };

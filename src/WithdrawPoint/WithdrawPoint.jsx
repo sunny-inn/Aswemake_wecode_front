@@ -10,13 +10,15 @@ const WithdrawPoint = () => {
     e.preventDefault();
     navigate('/');
   };
+
   const [inputValue, setInputValue] = useState('');
   const [overPrice, setOverPrice] = useState(false);
   const [accountInfo, setAccountInfo] = useState(null);
   const [holdingPoint, setHoldingPoint] = useState(0);
+  const [overHoldingPoint, setOverHoldingPoint] = useState(false);
 
   useEffect(() => {
-    fetch('/api/account') // 계좌 정보를 받아오는 API 엔드포인트
+    fetch('/api/account')
       .then(response => response.json())
       .then(data => {
         setAccountInfo(data); // 계좌 정보를 state에 저장
@@ -48,6 +50,7 @@ const WithdrawPoint = () => {
     // 숫자 외의 문자 제거
     setInputValue(value);
     setOverPrice(parseInt(value, 10) > 150000);
+    setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
   };
 
   const showCurrency = () => {
@@ -95,7 +98,9 @@ const WithdrawPoint = () => {
             {overPrice && (
               <S.AlertMsg>1회 최대 인출 금액은 150,000원 입니다!</S.AlertMsg>
             )}
-            <S.AlertMsg>보유 포인트 보다 많은 금액을 입력했어요!</S.AlertMsg>
+            {overHoldingPoint && (
+              <S.AlertMsg>보유 포인트 보다 많은 금액을 입력했어요!</S.AlertMsg>
+            )}
           </div>
         </S.Wrapper>
         <S.FinBtn>인출 요청</S.FinBtn>
