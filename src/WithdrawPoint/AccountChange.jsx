@@ -56,13 +56,13 @@ const AccountChange = () => {
     <>
       <Header type="accountChange" onClickBack={onClickBack} />
       <div style={{ marginLeft: '16px', marginTop: '22px' }}>
-        <div>현재 등록된 계좌를 먼저 확인해 주세요.</div>
-        <S.TitleMyPoint>{accountData.bank}</S.TitleMyPoint>
-        <S.Withdraw />
-        <S.TitleMyPoint>{accountData.accountNumber}</S.TitleMyPoint>
-        <S.Withdraw />
-        <S.TitleMyPoint>{accountData.accountHolder}</S.TitleMyPoint>
-        <S.Withdraw />
+        {/* <div>현재 등록된 계좌를 먼저 확인해 주세요.</div> */}
+        <S.TitleMyPoint>은행</S.TitleMyPoint>
+        <S.Withdraw value={accountData.bank} />
+        <S.TitleMyPoint>계좌번호</S.TitleMyPoint>
+        <S.Withdraw value={accountData.accountNumber} />
+        <S.TitleMyPoint>예금주</S.TitleMyPoint>
+        <S.Withdraw value={accountData.accountHolder} />
 
         <S.FinBtn
           style={{ backgroundColor: allInputsFilled ? '#FF6A21' : '#dbdbdb' }}
