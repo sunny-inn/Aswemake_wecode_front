@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const TitleMyPoint = styled.span`
   font-weight: 700;
@@ -82,4 +82,10 @@ export const FinBtn = styled.button`
     font-weight: 700;
     font-size: 17px;
   }
+  ${props =>
+    !props.overPrice &&
+    !props.overHoldingPoint &&
+    css`
+      background-color: #ff6a21;
+    `}
 `;

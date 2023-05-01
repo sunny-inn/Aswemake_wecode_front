@@ -17,6 +17,20 @@ const AccountChange = () => {
     accountHolder: '',
   });
 
+  const checkAllInputsFilled = () => {
+    if (
+      accountData.bank &&
+      accountData.accountNumber &&
+      accountData.accountHolder
+    ) {
+      setAllInputsFilled(true);
+    } else {
+      setAllInputsFilled(false);
+    }
+  };
+
+  const [allInputsFilled, setAllInputsFilled] = useState(false);
+
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/accounts//checkCurrentAccount', {
       headers: {
@@ -31,6 +45,7 @@ const AccountChange = () => {
           accountNumber: data.accountNumber,
           accountHolder: data.accountHolder,
         });
+        checkAllInputsFilled();
       })
       .catch(error => {
         console.error('Error fetching holding point:', error);
@@ -41,6 +56,7 @@ const AccountChange = () => {
     <>
       <Header type="accountChange" onClickBack={onClickBack} />
       <div style={{ marginLeft: '16px', marginTop: '22px' }}>
+        <div>현재 등록된 계좌를 먼저 확인해 주세요.</div>
         <S.TitleMyPoint>{accountData.bank}</S.TitleMyPoint>
         <S.Withdraw />
         <S.TitleMyPoint>{accountData.accountNumber}</S.TitleMyPoint>
@@ -48,7 +64,11 @@ const AccountChange = () => {
         <S.TitleMyPoint>{accountData.accountHolder}</S.TitleMyPoint>
         <S.Withdraw />
 
-        <S.FinBtn>다음으로</S.FinBtn>
+        <S.FinBtn
+          style={{ backgroundColor: allInputsFilled ? '#FF6A21' : '#dbdbdb' }}
+        >
+          다음으로
+        </S.FinBtn>
       </div>
     </>
   );

@@ -11,6 +11,16 @@ const WithdrawPoint = () => {
     navigate('/');
   };
 
+  const requestWithdraw = () => {
+    if (!overPrice && !overHoldingPoint) {
+      navigate('/setpoint');
+    }
+  };
+
+  const handleWithdrawRequest = () => {
+    requestWithdraw();
+  };
+
   const [inputValue, setInputValue] = useState('');
   const [overPrice, setOverPrice] = useState(false);
   const [accountInfo, setAccountInfo] = useState(null);
@@ -103,7 +113,13 @@ const WithdrawPoint = () => {
             )}
           </div>
         </S.Wrapper>
-        <S.FinBtn>인출 요청</S.FinBtn>
+        <S.FinBtn
+          onClick={handleWithdrawRequest}
+          overPrice={overPrice}
+          overHoldingPoint={overHoldingPoint}
+        >
+          인출 요청
+        </S.FinBtn>
       </div>
     </>
   );
