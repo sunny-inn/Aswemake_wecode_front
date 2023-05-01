@@ -5,31 +5,13 @@ import {
   Marker,
   useNavermaps,
 } from 'react-naver-maps';
+import { flex } from '../Styles/Mixin';
 
 export const MapBox = styled(MapDiv)`
+  position: relative;
   height: 616px;
   width: 360px;
 `;
-
-//** Marker css인데 적용안됨
-// export const MarkerBox = styled.button`
-//   border: 1px solid red;
-// `;
-
-// export const MarkerOrder = styled.div`
-//   text-align: center;
-//   line-height: 30px;
-//   width: 25px;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
-//   background-color: blue;
-//   color: white;
-//   border-radius: 50%;
-//   position: absolute;
-// `;
-
-//Modal style임
 
 export const ModalContainer = styled.div`
   width: 288px;
@@ -92,4 +74,32 @@ export const ModalUploadButton = styled.button`
   color: #fff;
   cursor: pointer;
   margin-left: 8px;
+`;
+
+export const SearchBox = styled.div`
+  ${flex('space-between', 'center', null)}
+  position: absolute;
+  top: 20px;
+  width: 360px;
+  padding: 0px 15px;
+`;
+
+export const SearchBar = styled.input`
+  width: 270px;
+  height: 50px;
+  padding-left: 40px;
+  background: url('./images/home/search.png') 10px no-repeat;
+  background-position-x: 10px;
+  background-color: #ffffff;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0px 4px 8px rgba(37, 37, 37, 0.08);
+  border-radius: 16px;
+  z-index: 10;
+`;
+
+export const CurrentLocation = styled.img`
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  cursor: pointer;
 `;

@@ -8,61 +8,64 @@ const Phone = ({
   setCode,
   verification,
   setVerification,
+  AlertMsg,
 }) => {
-  const [codeBtn, setCodeBtn] = useState(false);
-  const [timer, setTimer] = useState(180);
-  const [alertMsg, setAlertMsg] = useState(false);
+  const [codeBtn, setCodeBtn] = useState(0);
+  const [showTimer, setShowTimer] = useState(false);
+  const [seconds, setSeconds] = useState(180);
 
   const handleCode = e => setCode(e.target.value);
 
-  const handleCodeBtn = phoneNumber.length === 11;
+  const handleCodeBtn =
+    phoneNumber.includes('010') &&
+    (phoneNumber.length === 10 || phoneNumber.length === 11);
 
-  const id = useRef(null);
+  useEffect(() => {
+    const timer =
+      codeBtn &&
+      setInterval(() => {
+        setSeconds(prev => prev - 1);
+      }, 1000);
+    setTimeout(() => {
+      clearInterval(timer);
+    }, 10000);
+  }, [codeBtn]);
 
-  const reset = () => {
-    window.clearInterval(id.current);
+  const formatTime = () => {
+    const minutes = Math.floor(seconds / 60);
+    const secondsLeft = seconds % 60;
+    return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
   };
 
-  // TODO: 인증번호
   const onClickCode = e => {
     e.preventDefault();
     setCodeBtn(true);
+    setShowTimer(true);
+    setSeconds(180);
 
-    //https://flyers.qmarket.me/api/verificationCode/send
-    //http://172.30.1.41:8000/api/verificationCode/send
-
-    fetch('https://flyers.qmarket.me/api/verificationCode/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        phoneNumber: phoneNumber,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.message === 'message sent successfully') {
-          codeBtn && timer === 0
-            ? reset()
-            : (id.current = setInterval(() => {
-                setTimer(time => time - 1);
-              }));
-        } else {
-          alert('실패');
-        }
-      });
-    return () => reset();
+    codeBtn === true &&
+      fetch('http://10.58.52.174:8000/api/verificationCode/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          phoneNumber: phoneNumber,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.message !== 'message sent successfully') {
+            alert('인증번호 전송 실패');
+          }
+        });
   };
 
   //Btn 휴대폰번호 & 인증번호 post
   const onClickVerification = e => {
     e.preventDefault();
 
-    //https://flyers.qmarket.me/api/verificationCode/check
-    //http://172.30.1.41:8000/api/verificationCode/check
-
-    fetch('https://flyers.qmarket.me/api/verificationCode/check', {
+    fetch('http://10.58.52.174:8000/api/verificationCode/check', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -76,10 +79,8 @@ const Phone = ({
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
-          setAlertMsg(false);
         } else {
           setVerification(false);
-          setAlertMsg(true);
         }
       });
   };
@@ -109,18 +110,19 @@ const Phone = ({
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
-          alertMsg={alertMsg}
+          AlertMsg={AlertMsg}
         />
+        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
           onClick={onClickVerification}
-          disabled={code && phoneNumber ? false : true}
-          code={code}
-          phoneNumber={phoneNumber}
+          disabled={verification ? false : true}
+          verification={verification}
+          AlertMsg={AlertMsg}
         >
           확인
         </S.VerificationBtn>
       </S.PhoneBtnBox>
-      {alertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
+      {AlertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
     </S.PhoneBox>
   );
 };

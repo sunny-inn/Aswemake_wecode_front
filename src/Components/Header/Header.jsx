@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Header.style';
 
-const Header = ({ type, onClickBack }) => {
+const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
   const headerList = {
     signup: SIGNUP_HEADER,
     terms: TERMS_HEADER,
@@ -9,6 +9,16 @@ const Header = ({ type, onClickBack }) => {
     upload: UPLOAD_HEADER,
     photo: PHOTO_HEADER,
     mypage: MYPAGE_HEADER,
+    modifyInfo: MODIFY_INFO_HEADER,
+    modifyPassword: MODIFY_PASSWORD_HEADER,
+    modifyAddress: MODIFY_ADDRESS_HEADER,
+    modifyPhone: MODIFY_PHONE_HEADER,
+    dropOut: DROPOUT_HEADER,
+    dropOutSuccess: DROPOUT_SUCCESS_HEADER,
+    martInfoStatus: MART_INFO_STATUS_HEADER,
+    flyerStatus: FLYER_STATUS_HEADER,
+    suggest: SUGGEST_HEADER,
+    suggestCompleted: SUGGEST_COMPLET_HEADER,
   };
 
   return (
@@ -57,5 +67,53 @@ const PHOTO_HEADER = {
 
 const MYPAGE_HEADER = {
   title: '마이페이지',
+  button: false,
+};
+
+const MODIFY_INFO_HEADER = {
+  title: '내 정보 수정',
+  button: true,
+};
+
+const MODIFY_PASSWORD_HEADER = {
+  title: '비밀번호 변경',
+  button: true,
+};
+
+const MODIFY_ADDRESS_HEADER = {
+  title: '주소 변경',
+  button: true,
+};
+
+const MODIFY_PHONE_HEADER = {
+  title: '휴대전화 변경',
+  button: true,
+};
+
+const DROPOUT_HEADER = {
+  title: '회원탈퇴',
+  button: true,
+};
+
+const DROPOUT_SUCCESS_HEADER = {
+  title: '회원탈퇴 완료',
+};
+
+const MART_INFO_STATUS_HEADER = {
+  title: '마트 정보 수정 현황',
+  button: true,
+};
+
+const FLYER_STATUS_HEADER = {
+  title: '전단등록 현황',
+  button: true,
+};
+const SUGGEST_HEADER = {
+  title: '정보 수정 제안',
+  button: true,
+};
+
+const SUGGEST_COMPLET_HEADER = {
+  title: '정보 수정 제안 완료',
   button: false,
 };
