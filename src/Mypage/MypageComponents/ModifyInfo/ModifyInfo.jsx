@@ -1,17 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/Header/Header';
 import ModifyInfoDetail from './ModifyInfoDetail';
 import ModifyInfoModal from './ModifyInfoModal';
-import { loginedState } from '../../../recoil/atoms';
 import * as S from './ModifyInfo.style';
 
 const ModifyInfo = ({ setModifyInfo }) => {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
   const [password, setPassword] = useState('');
-  const [userInfo, setUserInfo] = useRecoilState(loginedState);
+  const [userInfo, setUserInfo] = useState({});
+  const navigate = useNavigate();
 
   const onClickBack = () => {
     setModifyInfo(prev => !prev);
@@ -22,9 +22,8 @@ const ModifyInfo = ({ setModifyInfo }) => {
   };
 
   // 확인 버튼 눌렀을 때 적용되는 함수
-  // let modifyInfoComponent = null
-  // if(response status error) modifyInfoComponent = <ModifyInfoModal/>
-  // else modifyInfoComponent = <ModifyInfoDetail/>
+  let modifyInfoComponent = null;
+
   const toVerifyPassword = () => {
     //'https://flyers.qmarket.me/api/users/userCheck'
     fetch(
@@ -42,6 +41,20 @@ const ModifyInfo = ({ setModifyInfo }) => {
     )
       .then(response => response.json())
       .then(data => {
+        // if (data.message === 'YOU NEED TOKENS, PLEASE LOGIN') {
+        //   return navigate('/');
+        // } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
+        //   modifyInfoComponent = <ModifyInfoModal handleModal={handleModal} />;
+        // } else {
+        //   modifyInfoComponent = (
+        //     <ModifyInfoDetail
+        //       userInfo={userInfo}
+        //       setDetailModalOpen={setDetailModalOpen}
+        //     />
+        //   );
+        //   setUserInfo(data.result[0]);
+        //   setDetailModalOpen(prev => !prev);
+        // }
         setUserInfo(data.result[0]);
         setDetailModalOpen(prev => !prev);
       });
@@ -49,7 +62,7 @@ const ModifyInfo = ({ setModifyInfo }) => {
 
   return (
     <S.ModifyInfo>
-      {/* 비밀번호 일치하지 않으면 {detailModalOpen && <ModifyInfoModal handleModal={handleModal} />} 띄우고 맞으면 아래 모달 띄우기 */}
+      {/* {detailModalOpen && modifyInfoComponent} */}
       {detailModalOpen && (
         <ModifyInfoDetail
           userInfo={userInfo}

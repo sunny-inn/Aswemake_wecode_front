@@ -124,7 +124,7 @@ const ModifyPassword = ({ setModalOpen }) => {
       </S.ModifyPasswordBody>
       <S.ConfirmBtn
         disabled={!correctPassword || !isActive}
-        onClick={onClickBack}
+        onClick={toModifyPassword}
       >
         확인
       </S.ConfirmBtn>

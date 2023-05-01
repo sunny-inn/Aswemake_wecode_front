@@ -23,24 +23,24 @@ const Mypage = () => {
   const onClickTerms = () => setIsTerms(prev => !prev);
   const goToModifyInfo = () => setModifyInfo(prev => !prev);
 
-  // useEffect(() => {
-  //   fetch('https://flyers.qmarket.me/api/users/details', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       authorization: localStorage.getItem('token'),
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setUser(data.userInfo);
-  //       setLoading(false);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch('https://flyers.qmarket.me/api/users/details', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUser(data.userInfo);
+        setLoading(false);
+      });
+  }, []);
 
-  // if (loading) return <div>Loading</div>;
+  if (loading) return <div>Loading</div>;
 
-  // const totalPoints = user && Math.trunc(user.totalPoints);
+  const totalPoints = user && Math.trunc(user.totalPoints);
 
   return (
     <S.MypageBox>
@@ -58,22 +58,20 @@ const Mypage = () => {
             </S.ModifyInfo>
           </div>
           <p>
-            {/* <span>{user.name}</span>님 */}
-            <S.Name>성이름</S.Name>님
+            <S.Name>{user.name}</S.Name>님{/* <S.Name>성이름</S.Name>님 */}
           </p>
         </S.NameBox>
         <S.PointBox>
           <S.PointTitle>보유포인트</S.PointTitle>
-          {/* <S.Point>{totalPoints} P</S.Point> */}
-          <S.Points>3,000 P</S.Points>
+          <S.Point>{totalPoints} P</S.Point>
+          {/* <S.Points>3,000 P</S.Points> */}
         </S.PointBox>
       </S.InfoBox>
       <S.MenuBox>
         <S.MenuBtn>포인트 인출</S.MenuBtn>
         <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
         <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
-        <S.MenuBtn>계좌 등록</S.MenuBtn>
-        <S.MenuBtn>계좌 변경</S.MenuBtn>
+        <S.MenuBtn>계좌 등록/변경</S.MenuBtn>
         <S.MenuBtn>이용약관</S.MenuBtn>
       </S.MenuBox>
     </S.MypageBox>

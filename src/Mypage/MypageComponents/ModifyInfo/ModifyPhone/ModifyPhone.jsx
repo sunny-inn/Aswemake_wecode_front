@@ -130,6 +130,7 @@ const ModifyPhone = ({ setModalOpen }) => {
             value={code}
             onChange={handleCode}
           />
+          {/* <S.Timer>3:00</S.Timer> */}
           <S.GetNumBtn
             onClick={toVerifyCode}
             disabled={code && phoneNumber ? false : true}

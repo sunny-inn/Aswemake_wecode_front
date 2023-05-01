@@ -51,7 +51,6 @@ const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
         <S.IdAddInput placeholder={userInfo.identification} readOnly />
         <S.ModifyDetailTitle>비밀번호</S.ModifyDetailTitle>
         <S.InputBtnWrap>
-          {/* placeholder={pw length} 길이만큼 •••••••• */}
           <input placeholder="••••••••" readOnly />
           <button onClick={handleModal} value="1">
             변경
