@@ -63,7 +63,7 @@ const AccountChangeInput = () => {
         .then(res => res.json())
         .then(data => {
           console.log(data);
-          navigate('/setaccount', {
+          navigate('/setaccountchange', {
             state: { accountHolderName: accountName },
           });
         })
@@ -152,7 +152,7 @@ const AccountChangeInput = () => {
           style={{ backgroundColor: areInputsFilled ? '#FF6A21' : '#DBDBDB' }}
           onClick={submitRegi}
         >
-          등록
+          변경하기
         </S.EnrollBtn>
         {modalOpen && (
           <Modal

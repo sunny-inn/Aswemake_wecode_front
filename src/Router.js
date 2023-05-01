@@ -12,6 +12,7 @@ import WithdrawPoint from './WithdrawPoint/WithdrawPoint';
 import SetPoint from './WithdrawPoint/SetPoint';
 import AccountChange from './WithdrawPoint/AccountChange';
 import AccountChangeInput from './AccountChange/AccountChageInput';
+import SetAccountChange from './AccountChange/SetAccountChange';
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
         <Route path="/setpoint" element={<SetPoint />} />
         <Route path="/accountchange" element={<AccountChange />} />
         <Route path="/accountchangeinput" element={<AccountChangeInput />} />
+        <Route path="/setaccountchange" element={<SetAccountChange />} />
       </Routes>
     </BrowserRouter>
   );
