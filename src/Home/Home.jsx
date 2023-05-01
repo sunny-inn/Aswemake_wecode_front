@@ -25,8 +25,9 @@ const Home = () => {
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [center, setCenter] = useState({
     lat: 37.5568439,
-    lng: 126.919976,
+    longitude: 126.919976,
   });
+
   // 검색 기능 관련 state
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
@@ -147,9 +148,10 @@ const Home = () => {
     if (mapRef.current) {
       console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
-        selectedMart.lng,
-        selectedMart.lat
+        selectedMart.lat,
+        selectedMart.longitude
       );
+
       console.log('좌표', newCenter);
       mapRef.current.setCenter(newCenter);
     }
