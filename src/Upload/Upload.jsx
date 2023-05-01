@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Calendar from './UploadComponents/Calendar/Calendar';
+import Modal from '../Components/Modal/Modal';
 import * as S from './Upload.style';
-import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
-  const [isCloseClicked, setIsCloseClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [uploadInfo, setUploadInfo] = useState({
     martId: 0,
@@ -18,6 +18,7 @@ const Upload = () => {
     startDate: '',
     endDate: '',
   });
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const { martId, imageUrl, startDate, endDate } = uploadInfo;
 
@@ -145,7 +146,7 @@ const Upload = () => {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'success') {
-          navigate('/home-warming-list');
+          setIsUploaded(true);
         } else {
           alert('실패');
         }
@@ -155,6 +156,7 @@ const Upload = () => {
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
+      <button onClick={() => setIsUploaded(true)}>테스트</button>
       <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
       <S.PhoneInput
         type="text"
@@ -244,6 +246,7 @@ const Upload = () => {
       <S.SubmitBtn disabled={handelDisabled ? true : false}>
         전단 등록 요청
       </S.SubmitBtn>
+      {isUploaded && <Modal type="upload" />}
     </S.UploadForm>
   );
 };
