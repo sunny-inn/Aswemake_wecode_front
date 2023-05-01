@@ -4,6 +4,7 @@ import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Calendar from './UploadComponents/Calendar/Calendar';
 import * as S from './Upload.style';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -48,8 +49,6 @@ const Upload = () => {
       .then(data => setMarts(data.martList));
   }, []);
 
-  console.log('y', window.scrollY);
-
   const filteredMart =
     phoneNumber && marts.filter(mart => mart.phoneNumber === phoneNumber);
 
@@ -62,7 +61,7 @@ const Upload = () => {
   // 전화번호 유효성 검사
   const handleAlertMsg = phoneNumber && filteredMart.length === 0;
 
-  const onClickClose = () => setIsCloseClicked(prev => !prev);
+  // const onClickClose = () => setIsCloseClicked(prev => !prev);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -128,28 +127,30 @@ const Upload = () => {
     isCheckboxClicked
   );
 
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+
   const onSubmitFlyers = e => {
     e.preventDefault();
 
     //TODO: POST하는 api
-    // fetch(`${API.POSTS}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     enctype: 'multipart/form-data',
-    //     authorization: Token,
-    //   },
-    //   body: uploadForm,
-    // }).then(response => response.json());
-    // .then(data => {
-    //   if (data.message === 'success') {
-    //     navigate('/home-warming-list');
-    //   } else {
-    //     alert('실패');
-    //   }
-    // });
+    fetch('', {
+      method: 'POST',
+      headers: {
+        enctype: 'multipart/form-data',
+        authorization: token,
+      },
+      body: uploadForm,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'success') {
+          navigate('/home-warming-list');
+        } else {
+          alert('실패');
+        }
+      });
   };
-
-  console.log(uploadInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
