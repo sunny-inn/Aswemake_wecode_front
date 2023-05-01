@@ -13,8 +13,6 @@ const Passwd = ({
 
   const onClickPasswdEye = () => setIsPasswdEyeClicked(prev => !prev);
 
-  console.log(isValidPasswd);
-
   return (
     <S.PasswdBox>
       <S.PasswdInputBox>
