@@ -82,7 +82,7 @@ const Phone = ({
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
-          showTimer(false);
+          setShowTimer(false);
         } else {
           setVerification(false);
           setAlertMsg(true);
