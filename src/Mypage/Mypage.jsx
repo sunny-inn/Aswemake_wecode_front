@@ -51,8 +51,18 @@ const Mypage = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    return navigate('/');
+    fetch('https://flyers.qmarket.me/api/users/logout', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        localStorage.removeItem('token');
+        return navigate('/');
+      });
   };
 
   return (
