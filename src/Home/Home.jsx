@@ -14,15 +14,6 @@ import Search from './HomeComponents/Search/Search';
 import * as S from './Home.style';
 
 const Home = () => {
-  // useEffect(()=>{
-  //   if (인터넷연결 확인 = true)
-  //   {navigate("스플래시 링크")}
-  //   else {
-  //     alert("문제 발생")
-  //     앱종료되는 로직
-  //   }
-  // },[])
-
   //MockData시작
   const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
