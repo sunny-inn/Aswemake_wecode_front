@@ -14,16 +14,16 @@ const Favorite = () => {
       });
   }, []);
 
-  // const hasFavorite = addedFavoriteList.some(item => item.favoriteCheck === 1);
+  const hasFavorite = addedFavoriteList.some(item => item.favoriteCheck === 1);
 
   return (
     <div>
       <FavoriteNav />
-      {/* {hasFavorite ? (
+      {hasFavorite ? (
         <FavoriteList favoriteList={addedFavoriteList} />
       ) : (
         <FavoriteEmpty />
-      )} */}
+      )}
     </div>
   );
 };

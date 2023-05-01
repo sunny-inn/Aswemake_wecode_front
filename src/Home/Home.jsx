@@ -4,7 +4,6 @@ import HomeCarousel from './HomeCarousel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Modal from '../Components/Modal/Modal';
-import Footer from '../Components/Footer/Footer';
 import {
   Container as MapDiv,
   NaverMap,
@@ -15,15 +14,6 @@ import Search from './HomeComponents/Search/Search';
 import * as S from './Home.style';
 
 const Home = () => {
-  // useEffect(()=>{
-  //   if (인터넷연결 확인 = true)
-  //   {navigate("스플래시 링크")}
-  //   else {
-  //     alert("문제 발생")
-  //     앱종료되는 로직
-  //   }
-  // },[])
-
   //MockData시작
   const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
@@ -131,20 +121,25 @@ const Home = () => {
   const token = localStorage.getItem('token');
   // console.log(token);
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/home/marts', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setHomeMartList(data.martList);
-      });
-  }, []);
+    if (center) {
+      fetch(
+        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: token,
+          },
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setHomeMartList(data.martList);
+        });
+    }
+  }, [center]);
 
   // console.log('마트리스트', homeMartList);
 
@@ -165,7 +160,7 @@ const Home = () => {
 
   const HOME_PATH = window.HOME_PATH || '.';
 
-  // if (homeMartList.length === 0) return;
+  if (homeMartList.length === 0) return;
 
   const changeCenterByCarousel = (smIndex, e) => {
     console.log(e);
@@ -207,6 +202,27 @@ const Home = () => {
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
 
+  // 위도와 경도 간 거리를 계산하는 함수
+  const getDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371; // 지구의 반지름 (km)
+    const dLat = deg2rad(lat2 - lat1);
+    const dLng = deg2rad(lng2 - lng1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // km
+    return distance;
+  };
+
+  // 각도를 라디안으로 변환하는 함수
+  const deg2rad = deg => {
+    return deg * (Math.PI / 180);
+  };
+
   return (
     <div>
       {!isSearchClicked ? (
@@ -214,6 +230,7 @@ const Home = () => {
           {homeMartList.length > 1 && (
             <>
               <NaverMap
+                // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
                 center={center}
                 defaultZoom={15}
                 // onCenterChanged={handleCenter} 중심좌표구할때
@@ -224,6 +241,13 @@ const Home = () => {
                 zoomControl={false}
               >
                 {homeMartList.map((mart, index) => {
+                  const distance = getDistance(
+                    center.lat,
+                    center.lng,
+                    mart.lat,
+                    mart.lng
+                  );
+                  if (distance > 2) return null;
                   //2일전계산
                   const now = new Date();
                   const end = new Date(mart.endDate);
@@ -236,7 +260,7 @@ const Home = () => {
                       key={mart.id}
                       title={mart.name}
                       icon={
-                        mart.martFlyerImages === '0'
+                        isAlmostEnd && mart.martFlyerImages === '0'
                           ? isMarkerClicked[index]
                             ? './images/almostEndFlyerClicked.png'
                             : './images/almostEndFlyer.png'
