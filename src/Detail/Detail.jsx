@@ -55,17 +55,50 @@ const Detail = () => {
     setOpenCallModal(prev => !prev);
   };
 
+  //https://flyers.qmarket.me/api/favorite/1
   //즐겨찾기 눌렀을때 로직들
   const [isFavorite, setIsFavorite] = useState(false);
   const onClickFavorite = () => {
     if (isFavorite) {
       setIsFavorite(false);
       handleToast('favoriteRemoved');
+      fetch('https://flyers.qmarket.me/api/favorite/1', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ favoriteCheck: 0 }),
+      }).then(response => {
+        if (response.ok) {
+          console.log('favorite removed successfully');
+        } else {
+          console.error('failed to remove favorite');
+        }
+      });
     } else {
       setIsFavorite(true);
       handleToast('favorite');
+      fetch('https://flyers.qmarket.me/api/favorite/1', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ favoriteCheck: 1 }),
+      }).then(response => {
+        if (response.ok) {
+          console.log('favorite added successfully');
+        } else {
+          console.error('failed to add favorite');
+        }
+      });
     }
   };
+
+  // const onClickFavorite = () => {
+  //   if (isFavorite) {
+  //     setIsFavorite(false);
+  //     handleToast('favoriteRemoved');
+  //   } else {
+  //     setIsFavorite(true);
+  //     handleToast('favorite');
+  //   }
+  // };
   //공유하기 로직
   const [isShared, setIsShared] = useState(false);
   const onClickShared = () => {
