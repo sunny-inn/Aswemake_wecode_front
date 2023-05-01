@@ -14,15 +14,6 @@ import Search from './HomeComponents/Search/Search';
 import * as S from './Home.style';
 
 const Home = () => {
-  // useEffect(()=>{
-  //   if (인터넷연결 확인 = true)
-  //   {navigate("스플래시 링크")}
-  //   else {
-  //     alert("문제 발생")
-  //     앱종료되는 로직
-  //   }
-  // },[])
-
   //MockData시작
   const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
@@ -130,20 +121,25 @@ const Home = () => {
   const token = localStorage.getItem('token');
   // console.log(token);
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/home/marts', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setHomeMartList(data.martList);
-      });
-  }, []);
+    if (center) {
+      fetch(
+        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: token,
+          },
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setHomeMartList(data.martList);
+        });
+    }
+  }, [center]);
 
   // console.log('마트리스트', homeMartList);
 
