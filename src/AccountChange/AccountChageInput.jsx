@@ -97,7 +97,7 @@ const AccountChangeInput = () => {
   };
   return (
     <>
-      <Header type="accountRegi" />
+      {/* <Header type="accountRegi" /> */}
       <S.Layout>
         <S.InputTitle>
           <label>은행</label>
@@ -111,7 +111,7 @@ const AccountChangeInput = () => {
           />
         </S.InputWrapper>
         <S.ToggleBtn type="button" onClick={handleToggleClick}>
-          <S.Toggle alt="arrow" src="/images/arrow.png" />
+          <S.Toggle alt="arrow" src="/images/signup/arrow.png" />
         </S.ToggleBtn>
         <S.InputTitle>
           <label>계좌번호</label>
