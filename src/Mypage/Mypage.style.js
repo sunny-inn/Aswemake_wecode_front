@@ -23,7 +23,7 @@ export const NameBox = styled.div`
   p {
     font-weight: 500;
     font-size: 15px;
-    line-height: 18px;
+    line-height: 22.8px;
     color: #252525;
   }
 `;
@@ -50,6 +50,7 @@ export const PointBox = styled.div`
   width: 328px;
   height: 64px;
   padding: 16px;
+  margin: 0 auto;
   background: #fff8f5;
   border: 1px solid #fff1eb;
   border-radius: 8px;
@@ -70,6 +71,11 @@ export const Points = styled.span`
   color: #ff6a21;
 `;
 
+export const MenuBoxWrap = styled.div`
+  height: 335px;
+  overflow: auto;
+`;
+
 export const MenuBox = styled.div`
   ${flex(null, 'flex-start', 'column')}
 `;
@@ -83,4 +89,16 @@ export const MenuBtn = styled.div`
   font-size: 15px;
   line-height: 17.9px;
   cursor: pointer;
+`;
+
+export const LogoutBtnWrap = styled.p`
+  margin: 30px auto;
+  text-align: center;
+`;
+
+export const LogoutBtn = styled.button`
+  background: none;
+  border: none;
+  color: #bcbcbc;
+  font-size: 11px;
 `;

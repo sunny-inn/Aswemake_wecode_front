@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
 import Birth from './SignupComponents/Birth/Birth';
@@ -18,7 +18,7 @@ const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
     id: '',
     passwd: '',
-    gender: '',
+    gender: '여자',
     name: '',
     birth: '',
     address: '',
@@ -30,7 +30,6 @@ const Signup = () => {
   const [passwdCheck, setPasswdCheck] = useState('');
   const [isIdDisabled, setIsIdDisabled] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [counter, setCounter] = useState(180);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
@@ -96,18 +95,18 @@ const Signup = () => {
     const day = e.target.value;
     const formattedDay = formatDay(day);
     setDate(formattedDay);
-    if (date) {
-      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
-    }
   };
 
-  const birthDate = year && month && date && year + month + birth;
-
-  console.log(signupInfo);
+  useEffect(() => {
+    if (year && month && date) {
+      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+    }
+  }, [date]);
 
   // 성별
   const handleGender = e => {
-    setSignupInfo(prev => ({ ...prev, gender: e.target.value }));
+    const { value } = e.target;
+    setSignupInfo(prev => ({ ...prev, gender: value }));
   };
 
   // 주소
@@ -171,9 +170,12 @@ const Signup = () => {
   const handleDisabled = !(
     isFilled === true &&
     isIdDisabled === false &&
+    isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    birth !== '' &&
+    year !== '' &&
+    month !== '' &&
+    date !== '' &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
@@ -196,7 +198,7 @@ const Signup = () => {
         identification: id,
         password: passwd,
         name: name,
-        birth: birthDate,
+        birth: year + month + date,
         phoneNumber: phoneNumber,
         gender: gender,
         zipCode: postalCode,
@@ -259,6 +261,7 @@ const Signup = () => {
             value="남자"
             name="gender"
             onChange={handleGender}
+            checked={gender === '남자'}
           />
           <S.GenderLabel htmlFor="male">남자</S.GenderLabel>
           <S.Gender
@@ -267,7 +270,7 @@ const Signup = () => {
             value="여자"
             name="gender"
             onChange={handleGender}
-            checked
+            checked={gender === '여자'}
           />
           <S.GenderLabel htmlFor="female">여자</S.GenderLabel>
         </S.GenderBox>

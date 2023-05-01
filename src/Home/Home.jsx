@@ -30,7 +30,7 @@ const Home = () => {
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [shopModal, setShopModal] = useState(false);
-  // const [centerPoint, setCenterPoint] = useState(null);
+  const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [center, setCenter] = useState({
@@ -44,20 +44,20 @@ const Home = () => {
   const [searchedMart, setSearchedMart] = useState({});
 
   // 회원 주소지 받는 기능
-  useEffect(() => {
-    fetch('', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        setUserAddress(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('', {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: token,
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setUserAddress(data);
+  //     });
+  // }, []);
 
   // 회원 주소지 좌표값으로 바꾸는 기능
   // const geocoder = navermaps.Service.geocode(
@@ -122,6 +122,8 @@ const Home = () => {
     }
   }, [homeMartList]);
 
+  //http://172.30.1.80:8000/api/users/login
+  //https://flyers.qmarket.me/api/home/marts
   //./data/MhomeData.json
   //172.30.1.87
   //http://172.30.1.87:8000/api/home
@@ -129,7 +131,7 @@ const Home = () => {
   const token = localStorage.getItem('token');
   // console.log(token);
   useEffect(() => {
-    fetch('./data/MhomeData.json', {
+    fetch('https://flyers.qmarket.me/api/home/marts', {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -148,18 +150,18 @@ const Home = () => {
 
   useEffect(() => {
     if (mapRef.current) {
-      // console.log('이동', mapRef.current);
+      console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
         selectedMart.lng,
         selectedMart.lat
       );
-      // console.log('좌표', newCenter);
+      console.log('좌표', newCenter);
       mapRef.current.setCenter(newCenter);
     }
   }, [selectedMart]);
   const navermaps = useNavermaps();
 
-  // const handleCenter = value => setCenterPoint(value);
+  const handleCenter = value => setCenterPoint(value);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
@@ -223,15 +225,29 @@ const Home = () => {
                 zoomControl={false}
               >
                 {homeMartList.map((mart, index) => {
+                  //2일전계산
+                  const now = new Date();
+                  const end = new Date(mart.endDate);
+                  const diff = end.getTime() - now.getTime();
+                  const twoDaysInMillis = 2 * 24 * 60 * 60 * 1000; // 2일을 밀리초로 변환
+                  const isAlmostEnd = diff <= twoDaysInMillis;
                   return (
                     <Marker
-                      position={new navermaps.LatLng(mart.y, mart.x)}
+                      position={new navermaps.LatLng(mart.lat, mart.lng)}
                       key={mart.id}
                       title={mart.name}
                       icon={
-                        isMarkerClicked[index]
+                        isAlmostEnd && mart.martFlyerImages === '0'
+                          ? isMarkerClicked[index]
+                            ? './images/almostEndFlyerClicked.png'
+                            : './images/almostEndFlyer.png'
+                          : mart.martFlyerImages === '0'
+                          ? isMarkerClicked[index]
+                            ? './images/flyernoneClickedMarker.png'
+                            : './images/flyernoneMarker.png'
+                          : isMarkerClicked[index]
                           ? './images/clickedMarker.png'
-                          : './images/marker.png'
+                          : './images/orangeMarker.png'
                       }
                       onClick={e => handleMarkerClick(e, mart, index)}
                     />

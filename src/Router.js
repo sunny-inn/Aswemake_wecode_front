@@ -11,6 +11,8 @@ import Detail from './Detail/Detail';
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
 import Search from './Home/HomeComponents/Search/Search';
+import AccountRegi from './AccountRegi/AccountRegi';
+import SetAccount from './AccountRegi/Component/SetAccount';
 
 const Router = () => {
   return (
@@ -32,6 +34,8 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/accountregi" element={<AccountRegi />} />
+        <Route path="/setaccount" element={<SetAccount />} />
       </Routes>
     </BrowserRouter>
   );

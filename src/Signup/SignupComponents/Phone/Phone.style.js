@@ -63,8 +63,10 @@ export const Timer = styled.p`
 
 export const VerificationBtn = styled.button`
   ${PhoneBtn}
-  background: ${({ code, phoneNumber }) =>
-    code && phoneNumber ? '#ff6a21' : '#dbdbdb'}
+  background:  ${({ handleVerificationBtn }) => {
+    const backgroundColor = handleVerificationBtn ? '#ff6a21' : '#dbdbdb';
+    return backgroundColor;
+  }};
 `;
 
 export const AlertMsg = styled.p`
