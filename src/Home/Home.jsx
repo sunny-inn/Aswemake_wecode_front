@@ -4,7 +4,6 @@ import HomeCarousel from './HomeCarousel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Modal from '../Components/Modal/Modal';
-import Footer from '../Components/Footer/Footer';
 import {
   Container as MapDiv,
   NaverMap,
@@ -207,6 +206,27 @@ const Home = () => {
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
 
+  // 위도와 경도 간 거리를 계산하는 함수
+  const getDistance = (lat1, lng1, lat2, lng2) => {
+    const R = 6371; // 지구의 반지름 (km)
+    const dLat = deg2rad(lat2 - lat1);
+    const dLng = deg2rad(lng2 - lng1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+        Math.sin(dLng / 2) *
+        Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // km
+    return distance;
+  };
+
+  // 각도를 라디안으로 변환하는 함수
+  const deg2rad = deg => {
+    return deg * (Math.PI / 180);
+  };
+
   return (
     <div>
       {!isSearchClicked ? (
@@ -225,6 +245,13 @@ const Home = () => {
                 zoomControl={false}
               >
                 {homeMartList.map((mart, index) => {
+                  const distance = getDistance(
+                    center.lat,
+                    center.lng,
+                    mart.lat,
+                    mart.lng
+                  );
+                  if (distance > 2) return null;
                   //2일전계산
                   const now = new Date();
                   const end = new Date(mart.endDate);
