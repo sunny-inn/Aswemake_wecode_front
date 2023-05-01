@@ -55,9 +55,11 @@ const Mypage = () => {
 
   return (
     <S.MypageBox>
+      {isMartInfoStatus && (
+        <MartInfoStatus setIsMartInfoStatus={setIsMartInfoStatus} />
+      )}
+      {isFlyersStatus && <FlyersStatus setIsFlyersStatus={setIsFlyersStatus} />}
       {modifyInfo && <ModifyInfo />}
-      {isMartInfoStatus && <MartInfoStatus />}
-      {isFlyersStatus && <FlyersStatus />}
       <Header type="mypage" />
       <S.InfoBox>
         <S.NameBox>
