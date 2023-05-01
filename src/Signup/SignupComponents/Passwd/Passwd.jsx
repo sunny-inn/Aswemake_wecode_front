@@ -33,9 +33,10 @@ const Passwd = ({
           onClick={onClickPasswdEye}
         />
       </S.PasswdInputBox>
-      {passwd !== '' && isValidPasswd && (
-        <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>
+      {passwd !== '' && !isValidPasswd && (
+        <S.AlertMsg>비밀번호 형식이 올바르지 않습니다.</S.AlertMsg>
       )}
+      {isValidPasswd && <S.ConfirmMsg>사용가능한 비밀번호입니다.</S.ConfirmMsg>}
       <S.PasswdInputBox>
         <S.PasswdCheckInput
           name="passwdCheck"

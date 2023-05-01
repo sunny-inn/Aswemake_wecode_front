@@ -170,6 +170,7 @@ const Signup = () => {
   const handleDisabled = !(
     isFilled === true &&
     isIdDisabled === false &&
+    isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
     birth !== '' &&
