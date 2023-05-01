@@ -44,20 +44,20 @@ const Home = () => {
   const [searchedMart, setSearchedMart] = useState({});
 
   // 회원 주소지 받는 기능
-  useEffect(() => {
-    fetch('', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        setUserAddress(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch('', {
+  //     method: 'GET',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: token,
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setUserAddress(data);
+  //     });
+  // }, []);
 
   // 회원 주소지 좌표값으로 바꾸는 기능
   // const geocoder = navermaps.Service.geocode(
@@ -122,6 +122,8 @@ const Home = () => {
     }
   }, [homeMartList]);
 
+  //http://172.30.1.80:8000/api/users/login
+  //https://flyers.qmarket.me/api/home/marts
   //./data/MhomeData.json
   //172.30.1.87
   //http://172.30.1.87:8000/api/home
