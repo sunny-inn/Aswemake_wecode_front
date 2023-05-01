@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
-import Photo from './UploadComponents/Photo/Photo';
 import Calendar from './UploadComponents/Calendar/Calendar';
 import * as S from './Upload.style';
 
@@ -36,6 +35,11 @@ const Upload = () => {
 
   // 마트 정보 FIXME: api로 수정
   useEffect(() => {
+    let scrollPosition = window.pageYOffset;
+    if (scrollPosition !== 0) {
+      window.scrollTo(0, 0);
+    }
+
     fetch(
       '/data/MhomeData.json'
       // , {method: 'GET', }
@@ -43,6 +47,8 @@ const Upload = () => {
       .then(res => res.json())
       .then(data => setMarts(data.martList));
   }, []);
+
+  console.log('y', window.scrollY);
 
   const filteredMart =
     phoneNumber && marts.filter(mart => mart.phoneNumber === phoneNumber);
@@ -87,7 +93,7 @@ const Upload = () => {
 
     setUploadInfo(prev => ({
       ...prev,
-      imageUrl: [...uploadInfo.imageUrl, files[0]],
+      imageUrl: files,
     }));
   };
 

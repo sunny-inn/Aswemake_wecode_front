@@ -5,7 +5,7 @@ import { flex } from '../../Styles/Mixin';
 export const TermsBox = styled(ReactModal)`
   ${flex('flex-start', null, 'column')}
   width: 360px;
-  height: 100%;
+  height: 616px;
   background: #ffffff;
 `;
 

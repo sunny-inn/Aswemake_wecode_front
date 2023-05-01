@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import { flex } from '../Styles/Mixin';
-import Slider from 'react-slick';
 
 const UploadInput = css`
   width: 328px;
@@ -24,9 +23,8 @@ export const UploadForm = styled.form`
   ${flex(null, null, 'column')}
   padding: 10px;
   gap: 15px;
+  width: 360px;
   height: 616px;
-  overflow-x: hidden;
-  overflow-y: scroll;
 `;
 
 export const PhoneInput = styled.input`
