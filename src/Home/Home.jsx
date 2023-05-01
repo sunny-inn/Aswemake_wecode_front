@@ -165,7 +165,7 @@ const Home = () => {
 
   const HOME_PATH = window.HOME_PATH || '.';
 
-  if (homeMartList.length === 0) return;
+  // if (homeMartList.length === 0) return;
 
   const changeCenterByCarousel = (smIndex, e) => {
     console.log(e);
