@@ -13,6 +13,7 @@ import SetPoint from './WithdrawPoint/SetPoint';
 import AccountChange from './WithdrawPoint/AccountChange';
 import AccountChangeInput from './AccountChange/AccountChageInput';
 import SetAccountChange from './AccountChange/SetAccountChange';
+import FindId from './Login/FindId/FindId';
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
           <Route path="/detail" element={<Detail />} />
         </Route>
         <Route path="/" element={<Login />} />
+        <Route path="/findid" element={<FindId />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/withdrawpoint" element={<WithdrawPoint />} />
