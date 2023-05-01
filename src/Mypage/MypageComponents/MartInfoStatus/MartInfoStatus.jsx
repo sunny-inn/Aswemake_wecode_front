@@ -4,11 +4,10 @@ import { useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import * as S from './MartInfoStatus.style';
 
-const MartInfoStatus = () => {
+const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
   const [martStatusData, setMartStatusData] = useState({});
-
-  const onClickBack = () => {};
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/evaluation/marts?sort=1', {
@@ -19,8 +18,13 @@ const MartInfoStatus = () => {
       },
     })
       .then(response => response.json())
-      .then(data => setMartStatusData(data.result[0]));
+      .then(data => {
+        setMartStatusData(data.result[0]);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <div>Loading...</div>;
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
@@ -37,6 +41,10 @@ const MartInfoStatus = () => {
     )
       .then(response => response.json())
       .then(data => setMartStatusData(data.result[0]));
+  };
+
+  const onClickBack = () => {
+    setIsMartInfoStatus(prev => !prev);
   };
 
   let noContents = null;

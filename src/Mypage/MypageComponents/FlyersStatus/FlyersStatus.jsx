@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import Header from '../../../Components/Header/Header';
 import * as S from './FlyersStatus.style';
 
-const FlyersStatus = () => {
+const FlyersStatus = ({ setIsFlyersStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
   const [flyersStatusData, setFlyersStatusData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/evaluation/flyers?sort=1', {
@@ -16,8 +17,13 @@ const FlyersStatus = () => {
       },
     })
       .then(response => response.json())
-      .then(data => setFlyersStatusData(data.result[0]));
+      .then(data => {
+        setFlyersStatusData(data.result[0]);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <div>Loading...</div>;
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
@@ -36,6 +42,10 @@ const FlyersStatus = () => {
       .then(data => setFlyersStatusData(data.result[0]));
   };
 
+  const onClickBack = () => {
+    setIsFlyersStatus(prev => !prev);
+  };
+
   let noContents = null;
   if (onScreen === '1') {
     noContents = <S.NoContents>심사중인 전단등록 요청이 없어요!</S.NoContents>;
@@ -45,7 +55,6 @@ const FlyersStatus = () => {
     noContents = <S.NoContents>등록 반려된 전단이 없어요!</S.NoContents>;
   }
 
-  const onClickBack = () => {};
   return (
     <S.FlyersStatus>
       <Header type="flyerStatus" onClickBack={onClickBack} />
