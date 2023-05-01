@@ -226,18 +226,18 @@ const Home = () => {
               >
                 {homeMartList.map((mart, index) => {
                   //2일전계산
-                  const now = new Date();
-                  const end = new Date(mart.endDate);
-                  const diff = end.getTime() - now.getTime();
-                  const twoDaysInMillis = 2 * 24 * 60 * 60 * 1000; // 2일을 밀리초로 변환
-                  const isAlmostEnd = diff <= twoDaysInMillis;
+                  // const now = new Date();
+                  // const end = new Date(mart.endDate);
+                  // const diff = end.getTime() - now.getTime();
+                  // const twoDaysInMillis = 2 * 24 * 60 * 60 * 1000; // 2일을 밀리초로 변환
+                  // const isAlmostEnd = diff <= twoDaysInMillis;
                   return (
                     <Marker
                       position={new navermaps.LatLng(mart.lat, mart.lng)}
                       key={mart.id}
                       title={mart.name}
                       icon={
-                        isAlmostEnd && mart.martFlyerImages === '0'
+                        mart.martFlyerImages === '0'
                           ? isMarkerClicked[index]
                             ? './images/almostEndFlyerClicked.png'
                             : './images/almostEndFlyer.png'
