@@ -30,7 +30,7 @@ const Home = () => {
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [shopModal, setShopModal] = useState(false);
-  // const [centerPoint, setCenterPoint] = useState(null);
+  const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [center, setCenter] = useState({
@@ -150,18 +150,18 @@ const Home = () => {
 
   useEffect(() => {
     if (mapRef.current) {
-      // console.log('이동', mapRef.current);
+      console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
         selectedMart.lng,
         selectedMart.lat
       );
-      // console.log('좌표', newCenter);
+      console.log('좌표', newCenter);
       mapRef.current.setCenter(newCenter);
     }
   }, [selectedMart]);
   const navermaps = useNavermaps();
 
-  // const handleCenter = value => setCenterPoint(value);
+  const handleCenter = value => setCenterPoint(value);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
