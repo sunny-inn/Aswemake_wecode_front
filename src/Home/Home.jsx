@@ -130,20 +130,25 @@ const Home = () => {
   const token = localStorage.getItem('token');
   // console.log(token);
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/home/marts', {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setHomeMartList(data.martList);
-      });
-  }, []);
+    if (center) {
+      fetch(
+        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: token,
+          },
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setHomeMartList(data.martList);
+        });
+    }
+  }, [center]);
 
   // console.log('마트리스트', homeMartList);
 
