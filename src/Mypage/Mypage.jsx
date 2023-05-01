@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API } from '../config/config';
 import Header from '../Components/Header/Header';
 import FlyersStatus from './MypageComponents/FlyersStatus/FlyersStatus';
 import Withdraw from './MypageComponents/Withdraw/Withdraw';
 import MartInfoStatus from './MypageComponents/MartInfoStatus/MartInfoStatus';
 import Terms from '../Components/Terms/Terms';
+import LogoutModal from '../Components/Modal/LogoutModal';
 import ModifyInfo from './MypageComponents/ModifyInfo/ModifyInfo';
 import * as S from './Mypage.style';
 
@@ -14,6 +16,8 @@ const Mypage = () => {
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [isMartInfoStatus, setIsMartInfoStatus] = useState(false);
   const [isTerms, setIsTerms] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
   const [modifyInfo, setModifyInfo] = useState(false);
 
   const toFlyersStatus = () => setIsFlyersStatus(prev => !prev);
@@ -40,6 +44,15 @@ const Mypage = () => {
 
   // const totalPoints = user && Math.trunc(user.totalPoints);
 
+  const handleModal = () => {
+    setOpenModal(prev => !prev);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    return navigate('/');
+  };
+
   return (
     <S.MypageBox>
       {modifyInfo && <ModifyInfo />}
@@ -56,7 +69,7 @@ const Mypage = () => {
             </S.ModifyInfo>
           </div>
           <p>
-            {/* <span>{user.name}</span>님 */}
+            {/* <S.Name>{user.name}</S.Name>님 */}
             <S.Name>성이름</S.Name>님
           </p>
         </S.NameBox>
@@ -66,14 +79,25 @@ const Mypage = () => {
           <S.Points>3,000 P</S.Points>
         </S.PointBox>
       </S.InfoBox>
-      <S.MenuBox>
-        <S.MenuBtn>포인트 인출</S.MenuBtn>
-        <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
-        <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
-        <S.MenuBtn>계좌 등록</S.MenuBtn>
-        <S.MenuBtn>계좌 변경</S.MenuBtn>
-        <S.MenuBtn>이용약관</S.MenuBtn>
-      </S.MenuBox>
+      <S.MenuBoxWrap>
+        <S.MenuBox>
+          <S.MenuBtn>포인트 인출</S.MenuBtn>
+          <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
+          <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
+          <S.MenuBtn>계좌 등록</S.MenuBtn>
+          <S.MenuBtn>계좌 변경</S.MenuBtn>
+          <S.MenuBtn>이용약관</S.MenuBtn>
+        </S.MenuBox>
+        <S.LogoutBtnWrap>
+          <S.LogoutBtn onClick={handleModal}>로그아웃</S.LogoutBtn>
+          {openModal && (
+            <LogoutModal
+              handleLogout={handleLogout}
+              handleModal={handleModal}
+            />
+          )}
+        </S.LogoutBtnWrap>
+      </S.MenuBoxWrap>
     </S.MypageBox>
   );
 };
