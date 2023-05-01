@@ -63,7 +63,7 @@ const Mypage = () => {
         </S.NameBox>
         <S.PointBox>
           <S.PointTitle>보유포인트</S.PointTitle>
-          <S.Point>{totalPoints} P</S.Point>
+          <S.Points>{totalPoints} P</S.Points>
           {/* <S.Points>3,000 P</S.Points> */}
         </S.PointBox>
       </S.InfoBox>
