@@ -36,7 +36,7 @@ const ModifyPassword = ({ setModalOpen }) => {
 
   // 확인 버튼 눌렀을 때 실행되는 함수
   const toModifyPassword = () => {
-    fetch('{PORT}/api/users/changeUserPw', {
+    fetch('https://flyers.qmarket.me/api/users/changeUserPw', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -124,7 +124,7 @@ const ModifyPassword = ({ setModalOpen }) => {
       </S.ModifyPasswordBody>
       <S.ConfirmBtn
         disabled={!correctPassword || !isActive}
-        onClick={onClickBack}
+        onClick={toModifyPassword}
       >
         확인
       </S.ConfirmBtn>

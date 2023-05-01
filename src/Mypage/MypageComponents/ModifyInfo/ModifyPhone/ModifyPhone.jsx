@@ -83,7 +83,7 @@ const ModifyPhone = ({ setModalOpen }) => {
 
   //전화번호 수정 확인 버튼 눌렀을 때 실행되는 함수
   const toModifyPhone = () => {
-    fetch('{PORT}/api/users/phoneNumberModify', {
+    fetch('https://flyers.qmarket.me/api/users/phoneNumberModify', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -130,6 +130,7 @@ const ModifyPhone = ({ setModalOpen }) => {
             value={code}
             onChange={handleCode}
           />
+          {/* <S.Timer>3:00</S.Timer> */}
           <S.GetNumBtn
             onClick={toVerifyCode}
             disabled={code && phoneNumber ? false : true}

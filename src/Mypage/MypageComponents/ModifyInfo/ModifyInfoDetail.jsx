@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import ModifyPassword from './ModifyPassword/ModifyPassword';
 import ModifyAddress from './ModifyAddress/ModifyAddress';
@@ -6,22 +6,13 @@ import ModifyPhone from './ModifyPhone/ModifyPhone';
 import DropOut from './DropOut/DropOut';
 import * as S from './ModifyInfoDetail.style';
 
-const ModifyInfoDetail = () => {
+const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
-  const [userInfo, setUserInfo] = useState({});
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('/data/ModifyInfoData.json')
-      .then(response => response.json())
-      .then(data => {
-        setUserInfo(data.result[0]);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div>Loading</div>;
+  const onClickBack = () => {
+    setDetailModalOpen(prev => !prev);
+  };
 
   const handleModal = e => {
     setSelectedType(e.target.value);
@@ -32,7 +23,9 @@ const ModifyInfoDetail = () => {
   if (modalOpen && selectedType === '1') {
     modalComponent = <ModifyPassword setModalOpen={setModalOpen} />;
   } else if (modalOpen && selectedType === '2') {
-    modalComponent = <ModifyAddress setModalOpen={setModalOpen} />;
+    modalComponent = (
+      <ModifyAddress setModalOpen={setModalOpen} userInfo={userInfo} />
+    );
   } else if (modalOpen && selectedType === '3') {
     modalComponent = <ModifyPhone setModalOpen={setModalOpen} />;
   } else if (modalOpen && selectedType === '4') {
@@ -42,7 +35,7 @@ const ModifyInfoDetail = () => {
   return (
     <S.ModifyInfoDetail>
       {modalComponent}
-      <Header type="modifyInfo" />
+      <Header type="modifyInfo" onClickBack={onClickBack} />
       <S.ModifyInfoDetailUpperBody>
         <h2>{userInfo.name}</h2>
         <h4>
