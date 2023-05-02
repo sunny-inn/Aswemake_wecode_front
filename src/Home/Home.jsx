@@ -209,22 +209,6 @@ const Home = () => {
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
 
-  // 위도와 경도 간 거리를 계산하는 함수
-  // const getDistance = (lat1, lng1, lat2, lng2) => {
-  //   const R = 6371; // 지구의 반지름 (km)
-  //   const dLat = deg2rad(lat2 - lat1);
-  //   const dLng = deg2rad(lng2 - lng1);
-  //   const a =
-  //     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-  //     Math.cos(deg2rad(lat1)) *
-  //       Math.cos(deg2rad(lat2)) *
-  //       Math.sin(dLng / 2) *
-  //       Math.sin(dLng / 2);
-  //   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  //   const distance = R * c; // km
-  //   return distance;
-  // };
-
   // 각도를 라디안으로 변환하는 함수
   const deg2rad = deg => {
     return deg * (Math.PI / 180);
@@ -248,13 +232,6 @@ const Home = () => {
                 zoomControl={false}
               >
                 {homeMartList.map((mart, index) => {
-                  // const distance = getDistance(
-                  //   center.lat,
-                  //   center.lng,
-                  //   mart.lat,
-                  //   mart.lng
-                  // );
-                  // if (distance > 2) return null;
                   //2일전계산
                   const now = new Date();
                   const end = new Date(mart.endDate);
@@ -267,15 +244,15 @@ const Home = () => {
                       key={mart.martId}
                       title={mart.name}
                       icon={
-                        isAlmostEnd && mart.martFlyerImages === '0'
-                          ? isMarkerClicked[index]
-                            ? './images/almostEndFlyerClicked.png'
-                            : './images/almostEndFlyer.png'
-                          : mart.martFlyerImages === '0'
-                          ? isMarkerClicked[index]
+                        mart.martFlyerImages === '0' // martFlyerImages가 0인 경우
+                          ? isAlmostEnd // endDate가 2일 이내인 경우
+                            ? isMarkerClicked[index]
+                              ? './images/almostEndFlyerClicked.png'
+                              : './images/almostEndFlyer.png'
+                            : isMarkerClicked[index]
                             ? './images/flyernoneClickedMarker.png'
                             : './images/flyernoneMarker.png'
-                          : isMarkerClicked[index]
+                          : isMarkerClicked[index] // martFlyerImages가 0이 아닌 경우
                           ? './images/clickedMarker.png'
                           : './images/orangeMarker.png'
                       }
