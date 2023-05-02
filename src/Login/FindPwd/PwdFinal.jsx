@@ -3,6 +3,7 @@ import * as S from './PwdFinal.style';
 import Header from '../../Components/Header/Header';
 import { Link, useNavigate } from 'react-router-dom';
 import SubmitIdButton from '../Component/SubmitIdButton';
+import LoginLayout from '../Component/LoginLayout';
 
 const PwdFinal = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const PwdFinal = () => {
   };
 
   return (
-    <div>
+    <LoginLayout>
       <Header type="pwdresetting" onClickBack={onClickBack} />
       <S.ContentBox>
         <S.Content>
@@ -23,7 +24,7 @@ const PwdFinal = () => {
           <SubmitIdButton>로그인하러 가기</SubmitIdButton>
         </Link>
       </S.ContentBox>
-    </div>
+    </LoginLayout>
   );
 };
 
