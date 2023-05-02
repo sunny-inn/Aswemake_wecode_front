@@ -106,7 +106,8 @@ export const SubmitBtn = styled.button`
   width: 328px;
   padding: 15px;
   margin: 20px 0px;
-  background: #dbdbdb;
+  background: ${({ handelDisabled }) =>
+    handelDisabled ? '#dbdbdb' : '#ff6a21'};
   border: none;
   border-radius: 8px;
   font-weight: 700;
