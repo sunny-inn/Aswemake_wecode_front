@@ -18,6 +18,7 @@ const FlyersCarousel = ({ detailMartList, handleImageClick }) => {
   const onClickClose = prev => {
     setShowBigImage(!prev);
   };
+  console.log('flyercarousel', detailMartList);
 
   let settings = {
     dots: false,
