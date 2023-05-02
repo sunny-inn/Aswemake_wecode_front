@@ -5,6 +5,7 @@ import * as S from './DetailModal.style';
 const DetailModal = ({ handleModal }) => {
   const navigate = useNavigate();
   const params = useParams();
+  console.log('params: ', params);
   return (
     <S.ModalContainer>
       <S.ModalContentBox>

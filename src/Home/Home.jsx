@@ -235,7 +235,7 @@ const Home = () => {
     <div>
       {!isSearchClicked ? (
         <S.MapBox>
-          {homeMartList.length > 1 && (
+          {homeMartList?.length > 1 && (
             <>
               <NaverMap
                 // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
