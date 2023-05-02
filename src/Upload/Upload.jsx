@@ -26,7 +26,7 @@ const Upload = () => {
   const uploadForm = new FormData();
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
   //FIXME: for (let i = 0; i < 4; i++)
-  uploadForm.append('imagesUrl', uploadInfo.images);
+  uploadForm.append('images', uploadInfo.images);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
