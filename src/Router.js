@@ -16,9 +16,6 @@ import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
 import WithdrawPoint from './WithdrawPoint/WithdrawPoint';
 import SetPoint from './WithdrawPoint/SetPoint';
-import AccountChange from './WithdrawPoint/AccountChange';
-import AccountChangeInput from './AccountChange/AccountChageInput';
-import SetAccountChange from './AccountChange/SetAccountChange';
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
 import Search from './Home/HomeComponents/Search/Search';
@@ -52,9 +49,6 @@ const Router = () => {
         <Route path="/upload" element={<Upload />} />
         <Route path="/withdrawpoint" element={<WithdrawPoint />} />
         <Route path="/setpoint" element={<SetPoint />} />
-        <Route path="/accountchange" element={<AccountChange />} />
-        <Route path="/accountchangeinput" element={<AccountChangeInput />} />
-        <Route path="/setaccountchange" element={<SetAccountChange />} />
         <Route path="/search" element={<Search />} />
         <Route path="/accountregi" element={<AccountRegi />} />
         <Route path="/setaccount" element={<SetAccount />} />

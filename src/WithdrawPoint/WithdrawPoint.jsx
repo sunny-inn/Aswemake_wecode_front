@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import * as S from './WithdrawPoint.style';
+import LoginLayout from '../Login/Component/LoginLayout';
 
 const WithdrawPoint = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const WithdrawPoint = () => {
   const [inputValue, setInputValue] = useState('');
   const [overPrice, setOverPrice] = useState(false);
   const [accountInfo, setAccountInfo] = useState(null);
-  const [holdingPoint, setHoldingPoint] = useState(0);
+  const [holdingPoint, setHoldingPoint] = useState(10);
   const [overHoldingPoint, setOverHoldingPoint] = useState(false);
 
   useEffect(() => {
@@ -78,8 +79,8 @@ const WithdrawPoint = () => {
 
   return (
     <>
-      <Header type="withdraw" onClickBack={onClickBack} />
-      <div style={{ marginLeft: '16px', marginTop: '22px' }}>
+      <Header type="withdrawPoint" onClickBack={onClickBack} />
+      <LoginLayout>
         <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
         <S.FromMyPoint>로</S.FromMyPoint>
         <S.Withdraw
@@ -120,7 +121,7 @@ const WithdrawPoint = () => {
         >
           인출 요청
         </S.FinBtn>
-      </div>
+      </LoginLayout>
     </>
   );
 };
