@@ -24,10 +24,7 @@ const Home = () => {
   const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
-  const [center, setCenter] = useState({
-    lat: 37.5568439,
-    longitude: 126.919976,
-  });
+  const [center, setCenter] = useState(null);
 
   // 검색 기능 관련 state
   const [error, setError] = useState('');
@@ -71,6 +68,30 @@ const Home = () => {
   //     setCenter({ lat: items[0].point.x, lng: items[0].point.y });
   //   }
   // );
+
+  useEffect(() => {
+    if (userAddress) {
+      navermaps.Service.geocode(
+        {
+          address: userAddress,
+        },
+        function (status, response) {
+          if (status !== navermaps.Service.Status.OK) {
+            return alert('Something wrong!');
+          }
+          const result = response.result;
+          const items = result.items;
+          console.log(
+            '위도 = ',
+            items[0].point.y,
+            ' 경도 = ',
+            items[0].point.x
+          );
+          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
+        }
+      );
+    }
+  }, [userAddress]);
 
   useEffect(() => {
     userAddress &&
@@ -131,14 +152,17 @@ const Home = () => {
   //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
   useEffect(() => {
     if (center) {
-      fetch(`https://flyers.qmarket.me/api/home`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: token,
-        },
-      })
+      fetch(
+        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: token,
+          },
+        }
+      )
         .then(response => response.json())
         .then(data => {
           console.log('데이터받아오기', data);
@@ -209,22 +233,6 @@ const Home = () => {
   // 검색 기능
   const handleSearch = () => setIsSearchClicked(true);
 
-  // 위도와 경도 간 거리를 계산하는 함수
-  // const getDistance = (lat1, lng1, lat2, lng2) => {
-  //   const R = 6371; // 지구의 반지름 (km)
-  //   const dLat = deg2rad(lat2 - lat1);
-  //   const dLng = deg2rad(lng2 - lng1);
-  //   const a =
-  //     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-  //     Math.cos(deg2rad(lat1)) *
-  //       Math.cos(deg2rad(lat2)) *
-  //       Math.sin(dLng / 2) *
-  //       Math.sin(dLng / 2);
-  //   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  //   const distance = R * c; // km
-  //   return distance;
-  // };
-
   // 각도를 라디안으로 변환하는 함수
   const deg2rad = deg => {
     return deg * (Math.PI / 180);
@@ -248,13 +256,6 @@ const Home = () => {
                 zoomControl={false}
               >
                 {homeMartList.map((mart, index) => {
-                  // const distance = getDistance(
-                  //   center.lat,
-                  //   center.lng,
-                  //   mart.lat,
-                  //   mart.lng
-                  // );
-                  // if (distance > 2) return null;
                   //2일전계산
                   const now = new Date();
                   const end = new Date(mart.endDate);
