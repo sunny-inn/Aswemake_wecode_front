@@ -102,6 +102,7 @@ const FindPwd = () => {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         if (data.message === 'verification code matches') {
           alert('인증번호 확인 완료');
           setAlerMsg(true);
@@ -126,7 +127,7 @@ const FindPwd = () => {
         authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
-        id: input.id,
+        identification: input.id,
         name: input.name,
         phoneNumber: input.phoneNumber,
       }),
@@ -138,6 +139,8 @@ const FindPwd = () => {
           navigate('/pwdresetting');
         } else if (data.message === 'INVALID INFORMATION') {
           alert('일치하는 정보가 없어 비밀번호를 재설정 할 수 없습니다.');
+        } else if (data.message === 'PLEASE FILL IN ALL BLANKS') {
+          alert('입력값을 모두 채워주세요.');
         }
       })
       .catch(error => {
@@ -181,15 +184,12 @@ const FindPwd = () => {
         <S.ButtonTwo onClick={onCodeBtn} disabled={codeBtnChange}>
           확인
         </S.ButtonTwo>
-        {alertMsg === true && <div>인증번호 완료 </div>}
-        {alertMsg === false && <div>인증번호 실패 </div>}
+        {alertMsg === true && <div>인증번호 인증 완료 </div>}
+        {alertMsg === false && <div>인증번호 인증 실패 </div>}
 
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
 
-        <S.FindPwdSubmit
-          style={{ backgroundColor: alertMsg === true ? 'FF6A21' : '' }}
-          onClick={forSetPwd}
-        >
+        <S.FindPwdSubmit confirmed={alertMsg === true} onClick={forSetPwd}>
           확인
         </S.FindPwdSubmit>
       </LoginLayout>
