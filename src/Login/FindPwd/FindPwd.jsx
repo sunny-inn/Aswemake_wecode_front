@@ -32,8 +32,7 @@ const FindPwd = () => {
   // 인증번호 색깔 변하게..
   const codeBtnChange = input.phoneNumber === '' || input.code === '';
 
-  const handleCode = e =>
-    setInput(prevInput => ({ ...prevInput, code: e.target.value }));
+  const handleCode = e => setInput(prev => ({ ...prev, code: e.target.value }));
 
   useEffect(() => {
     let timer;
@@ -60,6 +59,7 @@ const FindPwd = () => {
     input.phoneNumber.includes('010') &&
     (input.phoneNumber.length === 10 || input.phoneNumber.length === 11);
 
+  //인증번호 전송
   const onClickCode = e => {
     e.preventDefault();
     setCodeBtn(true);
@@ -70,6 +70,7 @@ const FindPwd = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         phoneNumber: input.phoneNumber,
@@ -83,6 +84,7 @@ const FindPwd = () => {
       });
   };
 
+  //인증번호 받기
   const onCodeBtn = e => {
     e.preventDefault();
 
@@ -90,6 +92,7 @@ const FindPwd = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         phoneNumber: input.phoneNumber,
@@ -115,9 +118,12 @@ const FindPwd = () => {
   const forSetPwd = e => {
     e.preventDefault();
 
-    fetch('https://flyers.qmarket.me/api/', {
+    fetch('https://flyers.qmarket.me/api/users/checkUserPw', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
       body: JSON.stringify({
         id: input.id,
         name: input.name,
@@ -130,7 +136,7 @@ const FindPwd = () => {
         if (data.message === 'CAN CHANGE PASSWORD') {
           navigate('/pwdresetting');
         } else if (data.message === 'INVALID INFORMATION') {
-          alert('비밀번호를 재설정 할 수 없습니다.');
+          alert('일치하는 정보가 없어 비밀번호를 재설정 할 수 없습니다.');
         }
       })
       .catch(error => {
@@ -141,8 +147,8 @@ const FindPwd = () => {
 
   return (
     <div>
+      <Header type="findpwd" onClickBack={onClickBack} />
       <LoginLayout>
-        <Header type="findpwd" onClickBack={onClickBack} />
         <Input type="id" name="id" value={input.id} onChange={saveInput} />
         <Input
           type="name"

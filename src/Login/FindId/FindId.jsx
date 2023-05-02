@@ -53,8 +53,8 @@ const FindId = () => {
 
   return (
     <div>
+      <Header type="findid" onClickBack={onClickBack} />
       <LoginLayout>
-        <Header type="findid" onClickBack={onClickBack} />
         <Input
           type="name"
           name="name"
