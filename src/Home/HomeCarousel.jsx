@@ -56,13 +56,13 @@ const HomeCarousel = ({
       >
         {selectedMartList &&
           selectedMartList.map(mart => (
-            <S.MartBox key={mart.id}>
+            <S.MartBox key={mart.martId}>
               <S.CarouselBox>
                 <div>
                   <S.CarouselImg
                     src="./images/thirdRec.png"
                     alt="전단지"
-                    onClick={onClickMartItem(mart.id)}
+                    onClick={onClickMartItem(mart.martId)}
                   />
                 </div>
                 <S.CarouselContent>
@@ -74,7 +74,7 @@ const HomeCarousel = ({
                           ? './images/clickedFavorite.png'
                           : './images/favorite.png'
                       }
-                      onClick={() => handleFavorite(mart.id)}
+                      onClick={() => handleFavorite(mart.martId)}
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
