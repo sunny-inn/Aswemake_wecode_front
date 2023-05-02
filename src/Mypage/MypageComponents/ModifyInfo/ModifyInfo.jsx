@@ -11,7 +11,6 @@ const ModifyInfo = ({ setModifyInfo }) => {
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
-  const [modifyInfoComponent, setModifyInfoComponent] = useState(null);
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(undefined);
   const navigate = useNavigate();
 
@@ -41,37 +40,26 @@ const ModifyInfo = ({ setModifyInfo }) => {
           return navigate('/');
         } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
           setIsPasswordCorrect(false);
-          setDetailModalOpen(true);
+          setDetailModalOpen(prev => !prev);
         } else {
           setUserInfo(data.result[0]);
           setIsPasswordCorrect(true);
-          setDetailModalOpen(true);
+          setDetailModalOpen(prev => !prev);
         }
       });
   };
 
-  if (detailModalOpen && isPasswordCorrect) {
-    return setModifyInfoComponent(
-      <ModifyInfoDetail
-        userInfo={userInfo}
-        setDetailModalOpen={setDetailModalOpen}
-      />
-    );
-  } else if (detailModalOpen && !isPasswordCorrect) {
-    return setModifyInfoComponent(
-      <ModifyInfoModal handleModal={handleModal} />
-    );
-  }
-
   return (
     <S.ModifyInfo>
-      {modifyInfoComponent}
-      {/* {detailModalOpen && (
+      {detailModalOpen && isPasswordCorrect && (
         <ModifyInfoDetail
           userInfo={userInfo}
           setDetailModalOpen={setDetailModalOpen}
         />
-      )} */}
+      )}
+      {detailModalOpen && !isPasswordCorrect && (
+        <ModifyInfoModal handleModal={handleModal} />
+      )}
       <Header type="modifyInfo" onClickBack={onClickBack} />
       <S.ModifyInfoBody>
         <p>
