@@ -12,21 +12,21 @@ const Upload = () => {
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
+  //FIXME: 마트 전화번호는 -포함되어 전송하기
   const [uploadInfo, setUploadInfo] = useState({
-    martId: 0,
-    imageUrl: [],
+    martPhoneNumber: '02-501-6988',
+    images: [],
     startDate: '',
     endDate: '',
   });
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const { martId, imageUrl, startDate, endDate } = uploadInfo;
+  const { martId, images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
-  uploadForm.append('martId', uploadInfo.martId);
   uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
   //FIXME: for (let i = 0; i < 4; i++)
-  uploadForm.append('imagesUrl', uploadInfo.imageUrl);
+  uploadForm.append('imagesUrl', uploadInfo.images);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
@@ -93,7 +93,7 @@ const Upload = () => {
 
     setUploadInfo(prev => ({
       ...prev,
-      imageUrl: files,
+      images: files,
     }));
   };
 
@@ -122,7 +122,7 @@ const Upload = () => {
   const handelDisabled = !(
     filteredMartName &&
     filteredMartAddress &&
-    uploadInfo.imageUrl.length === 4 &&
+    uploadInfo.images.length === 4 &&
     startDate &&
     endDate &&
     isCheckboxClicked
@@ -145,7 +145,7 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === 'success') {
+        if (data.message === 'UPLOAD IS SUCCESS') {
           setIsUploaded(true);
         } else {
           alert('실패');
@@ -193,23 +193,23 @@ const Upload = () => {
         )}
       </S.PhotoBox>
       <div>
-        {imageUrl.length === 4 ? (
+        {images.length === 4 ? (
           <Slider {...settings}>
             <S.UploadedImg
               alt="flyer1"
-              src={`${URL.createObjectURL(imageUrl[0])}`}
+              src={`${URL.createObjectURL(images[0])}`}
             />
             <S.UploadedImg
               alt="flyer2"
-              src={`${URL.createObjectURL(imageUrl[1])}`}
+              src={`${URL.createObjectURL(images[1])}`}
             />
             <S.UploadedImg
               alt="flyer3"
-              src={`${URL.createObjectURL(imageUrl[2])}`}
+              src={`${URL.createObjectURL(images[2])}`}
             />
             <S.UploadedImg
               alt="flyer4"
-              src={`${URL.createObjectURL(imageUrl[3])}`}
+              src={`${URL.createObjectURL(images[3])}`}
             />
           </Slider>
         ) : (
