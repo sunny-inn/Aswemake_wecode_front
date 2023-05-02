@@ -87,7 +87,7 @@ const Home = () => {
             ' 경도 = ',
             items[0].point.x
           );
-          setCenter({ lat: homeMartList.lat, lng: homeMartList.lng });
+          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
         }
       );
   }, [userAddress]);
