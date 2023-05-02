@@ -12,6 +12,7 @@ import {
 } from 'react-naver-maps';
 import Search from './HomeComponents/Search/Search';
 import * as S from './Home.style';
+import DetailModal from './DetailModal';
 
 const Home = () => {
   //MockData시작
@@ -306,8 +307,12 @@ const Home = () => {
                   changeCenterByCarousel={changeCenterByCarousel}
                 />
               </NaverMap>
-              {openModal && <Modal handleModal={handleModal} type="map" />}
-              {shopModal && <Modal handleModal={handleModal} type="shop" />}
+              {openModal && (
+                <DetailModal
+                  handleModal={handleModal}
+                  goToDetail={goToDetail}
+                />
+              )}
             </>
           )}
         </S.MapBox>
