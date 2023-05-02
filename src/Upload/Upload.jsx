@@ -8,7 +8,7 @@ import Modal from '../Components/Modal/Modal';
 import * as S from './Upload.style';
 
 const Upload = () => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [martPhoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
@@ -24,9 +24,9 @@ const Upload = () => {
   const { martId, images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
-  uploadForm.append('phoneNumber', uploadInfo.phoneNumber);
+  uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
   //FIXME: for (let i = 0; i < 4; i++)
-  uploadForm.append('imagesUrl', uploadInfo.images);
+  uploadForm.append('images', uploadInfo.images);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
@@ -51,7 +51,8 @@ const Upload = () => {
   }, []);
 
   const filteredMart =
-    phoneNumber && marts.filter(mart => mart.phoneNumber === phoneNumber);
+    martPhoneNumber &&
+    marts.filter(mart => mart.martPhoneNumber === martPhoneNumber);
 
   const filteredMartName =
     filteredMart && filteredMart.length > 0 ? filteredMart[0].name : null;
@@ -60,7 +61,7 @@ const Upload = () => {
     filteredMart && filteredMart.length > 0 ? filteredMart[0].address : null;
 
   // 전화번호 유효성 검사
-  const handleAlertMsg = phoneNumber && filteredMart.length === 0;
+  const handleAlertMsg = martPhoneNumber && filteredMart.length === 0;
 
   // const onClickClose = () => setIsCloseClicked(prev => !prev);
 
@@ -70,11 +71,11 @@ const Upload = () => {
 
   useEffect(
     prev => {
-      phoneNumber &&
+      martPhoneNumber &&
         filteredMart.length > 0 &&
         setUploadInfo({ ...prev, martId: filteredMart[0].id });
     },
-    [phoneNumber]
+    [martPhoneNumber]
   );
 
   // 이미지 넣기
@@ -119,23 +120,23 @@ const Upload = () => {
     setIsCheckboxClicked(prev => !prev);
   };
 
+  // filteredMartName &&
+  // filteredMartAddress &&
+
   const handelDisabled = !(
-    filteredMartName &&
-    filteredMartAddress &&
     uploadInfo.images.length === 4 &&
     startDate &&
     endDate &&
-    isCheckboxClicked
+    isCheckboxClicked === true
   );
 
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
 
   const onSubmitFlyers = e => {
     e.preventDefault();
 
     //TODO: POST하는 api
-    fetch('', {
+    fetch('https://flyers.qmarket.me/api/flyer', {
       method: 'POST',
       headers: {
         enctype: 'multipart/form-data',
@@ -156,11 +157,10 @@ const Upload = () => {
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
-      <button onClick={() => setIsUploaded(true)}>테스트</button>
       <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
       <S.PhoneInput
         type="text"
-        value={phoneNumber}
+        value={martPhoneNumber}
         placeholder='전화번호를 "-"없이 입력해주세요'
         onChange={handlePhoneNumber}
         handleAlertMsg={handleAlertMsg}
@@ -243,7 +243,10 @@ const Upload = () => {
           등록 요청 후, 해당 건의 내용 수정은 불가합니다.
         </S.CheckBoxMsg>
       </S.CheckBox>
-      <S.SubmitBtn disabled={handelDisabled ? true : false}>
+      <S.SubmitBtn
+        disabled={handelDisabled ? true : false}
+        handelDisabled={handelDisabled}
+      >
         전단 등록 요청
       </S.SubmitBtn>
       {isUploaded && <Modal type="upload" />}
