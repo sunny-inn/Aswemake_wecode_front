@@ -68,7 +68,7 @@ const FindId = () => {
           value={phone}
           onChange={e => setPhone(e.target.value)}
         />
-        <SubmitIdButton onclick={findIdSend} disabled={isDisabled}>
+        <SubmitIdButton onClick={findIdSend} disabled={isDisabled}>
           확인
         </SubmitIdButton>
       </LoginLayout>
