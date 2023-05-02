@@ -6,6 +6,9 @@ import Login from './Login/Login';
 import FindId from './Login/FindId/FindId';
 import NotifyId from './Login/FindId/NotifyId';
 import CntFindId from './Login/FindId/CntFindId';
+import FindPwd from './Login/FindPwd/FindPwd';
+import PwdReSetting from './Login/FindPwd/PwdReSetting';
+import PwdFinal from './Login/FindPwd/PwdFinal';
 import Signup from './Signup/Signup';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
@@ -37,6 +40,9 @@ const Router = () => {
         <Route path="/findid" element={<FindId />} />
         <Route path="/notifyid" element={<NotifyId />} />
         <Route path="/cntfindid" element={<CntFindId />} />
+        <Route path="/findpwd" element={<PwdFinal />} />
+        <Route path="/pwdresetting" element={<PwdReSetting />} />
+        <Route path="/pwdfinal" element={<PwdFinal />} />
         <Route path="/suggest" element={<Suggest />} />
         <Route
           path="/suggest/suggestCompleted"

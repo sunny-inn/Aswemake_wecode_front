@@ -22,6 +22,8 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     withdrawPoint: WITHDRAW_HEADER,
     accountRegi: ACCOUNTREGI_HEADER,
     findid: FINDID_HEADER,
+    findpwd: FINDPWD_HEADER,
+    pwdresetting: PWDRESETTING_HEADER,
   };
 
   return (
@@ -132,5 +134,15 @@ const ACCOUNTREGI_HEADER = {
 
 const FINDID_HEADER = {
   title: '아이디 찾기',
+  button: true,
+};
+
+const FINDPWD_HEADER = {
+  title: '비밀번호 찾기',
+  button: true,
+};
+
+const PWDRESETTING_HEADER = {
+  title: '비밀번호 재설정',
   button: true,
 };
