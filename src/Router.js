@@ -15,12 +15,14 @@ import Mypage from './Mypage/Mypage';
 import Favorite from './Favorite/Favorite';
 import Detail from './Detail/Detail';
 import WithdrawPoint from './WithdrawPoint/WithdrawPoint';
+import WithdrawNotify from './WithdrawPoint/WithdrawNotify';
 import SetPoint from './WithdrawPoint/SetPoint';
 import Suggest from './Suggest/Suggest';
 import SuggestCompleted from './Suggest/SuggestCompleted';
 import Search from './Home/HomeComponents/Search/Search';
 import AccountRegi from './AccountRegi/AccountRegi';
 import SetAccount from './AccountRegi/Component/SetAccount';
+import AccountChange from './AccountChange/AccountChange';
 
 const Router = () => {
   return (
@@ -47,11 +49,13 @@ const Router = () => {
         />
         <Route path="/signup" element={<Signup />} />
         <Route path="/upload" element={<Upload />} />
+        <Route path="/withdrawnotify" element={<WithdrawNotify />} />
         <Route path="/withdrawpoint" element={<WithdrawPoint />} />
         <Route path="/setpoint" element={<SetPoint />} />
         <Route path="/search" element={<Search />} />
         <Route path="/accountregi" element={<AccountRegi />} />
         <Route path="/setaccount" element={<SetAccount />} />
+        <Route path="/accountchange" element={<AccountChange />} />
       </Routes>
     </BrowserRouter>
   );
