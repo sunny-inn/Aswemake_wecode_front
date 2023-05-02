@@ -93,6 +93,7 @@ const AccountRegi = () => {
     )
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setAccountVerified(data.message === accountName);
         setAreInputsVerified(data.message === accountName);
       });
