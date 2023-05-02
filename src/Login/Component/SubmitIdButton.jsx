@@ -1,8 +1,12 @@
 import React from 'react';
 import * as S from './SubmitIdButton.style';
 
-const SubmitIdButton = ({ disabled, children }) => {
-  return <S.SubmitId disabled={disabled}>{children}</S.SubmitId>;
+const SubmitIdButton = ({ onClick, disabled, children }) => {
+  return (
+    <S.SubmitId onClikc={onClick} disabled={disabled}>
+      {children}
+    </S.SubmitId>
+  );
 };
 
 export default SubmitIdButton;
