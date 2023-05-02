@@ -152,7 +152,7 @@ const Home = () => {
         });
     }
   }, [center]);
-  console.log('이게센터??', new navermaps.LatLng(centerPoint.y, centerPoint.y));
+
   // console.log('마트리스트', homeMartList);
 
   useEffect(() => {
