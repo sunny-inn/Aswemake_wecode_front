@@ -40,7 +40,7 @@ const Router = () => {
         <Route path="/findid" element={<FindId />} />
         <Route path="/notifyid" element={<NotifyId />} />
         <Route path="/cntfindid" element={<CntFindId />} />
-        <Route path="/findpwd" element={<PwdFinal />} />
+        <Route path="/findpwd" element={<FindPwd />} />
         <Route path="/pwdresetting" element={<PwdReSetting />} />
         <Route path="/pwdfinal" element={<PwdFinal />} />
         <Route path="/suggest" element={<Suggest />} />

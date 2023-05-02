@@ -61,6 +61,7 @@ export const KeepLoginBox = styled.div`
   display: flex;
   margin-bottom: 20px;
 `;
+
 export const CheckboxImg = styled.img`
   width: 20px;
   height: 20px;
@@ -73,6 +74,27 @@ export const KeepLoginSpan = styled.p`
   margin: 0 0 0 10px;
   padding-top: 3px;
   color: #707070;
+`;
+
+export const FindBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 16px 28px 16px 0;
+  font-size: 14px;
+  font-weight: 400;
+  font-size: 14px;
+`;
+export const FindId = styled.div`
+  padding-right: 8px;
+`;
+
+export const Division = styled.div`
+  font-weight: 400;
+  color: #707070;
+`;
+
+export const FindPwd = styled.div`
+  padding-left: 8px;
 `;
 
 export const Button = styled.button`

@@ -156,12 +156,22 @@ const Login = () => {
               />
               <S.KeepLoginSpan>로그인 상태 유지</S.KeepLoginSpan>
             </S.KeepLoginBox>
+
             <S.Button
               onClick={() => goToHome()}
               disabled={input.id.length < 2 || input.pw.length < 2}
             >
               <span>로그인</span>
             </S.Button>
+            <S.FindBlock>
+              <Link to="/findid">
+                <S.FindId>아이디 찾기</S.FindId>
+              </Link>
+              <S.Division>|</S.Division>
+              <Link to="findpwd">
+                <S.FindPwd>비밀번호 찾기</S.FindPwd>
+              </Link>
+            </S.FindBlock>
             <S.LineHr />
             <Link to="/signup">
               <S.Button
