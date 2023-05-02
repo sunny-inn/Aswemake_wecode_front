@@ -177,25 +177,6 @@ const Detail = () => {
     }
   }, [detailMartList]);
 
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.170:8000/api/detail/${params.martId}`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setDetailMartList([data.martList.find(mart => mart.martId === 1)]);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.170:8000/api/detail/${params.martId}`)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setDetailMartList([data]);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }, [params.martId]);
-
   return (
     <S.DetailContainer>
       <DetailNav />
