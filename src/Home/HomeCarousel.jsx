@@ -10,7 +10,6 @@ const HomeCarousel = ({
   selectedMart,
   handleModal,
   changeCenterByCarousel,
-  goToDetail,
 }) => {
   const settings = {
     infinite: true,
@@ -34,6 +33,9 @@ const HomeCarousel = ({
 
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
+  };
+  const goToDetail = id => {
+    navigate(`detail/${id}`);
   };
 
   useEffect(() => {
