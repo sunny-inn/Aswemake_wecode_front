@@ -21,6 +21,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     suggestCompleted: SUGGEST_COMPLET_HEADER,
     withdrawPoint: WITHDRAW_HEADER,
     accountRegi: ACCOUNTREGI_HEADER,
+    findid: FINDID_HEADER,
   };
 
   return (
@@ -126,5 +127,10 @@ const WITHDRAW_HEADER = {
 
 const ACCOUNTREGI_HEADER = {
   title: '계좌 등록',
+  button: true,
+};
+
+const FINDID_HEADER = {
+  title: '아이디 찾기',
   button: true,
 };
