@@ -109,10 +109,10 @@ const AccountChangeInput = () => {
             value={selectBank ? selectBank.name : ''}
             readOnly
           />
+          <S.ToggleBtn type="button" onClick={handleToggleClick}>
+            <S.Toggle alt="arrow" src="images/arrow.png" />
+          </S.ToggleBtn>
         </S.InputWrapper>
-        <S.ToggleBtn type="button" onClick={handleToggleClick}>
-          <S.Toggle alt="arrow" src="/images/signup/arrow.png" />
-        </S.ToggleBtn>
         <S.InputTitle>
           <label>계좌번호</label>
         </S.InputTitle>

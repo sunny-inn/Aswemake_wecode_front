@@ -24,7 +24,14 @@ export const Input = styled.input`
   }
 `;
 
-export const ToggleBtn = styled.button``;
+export const ToggleBtn = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
 
 export const Toggle = styled.img`
   width: 24px;
@@ -80,4 +87,5 @@ export const AlertNotVerify = styled.div`
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
