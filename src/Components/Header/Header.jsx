@@ -24,6 +24,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     findid: FINDID_HEADER,
     findpwd: FINDPWD_HEADER,
     pwdresetting: PWDRESETTING_HEADER,
+    accountChange: ACCOUNTCHANGE_HEADER,
   };
 
   return (
@@ -144,5 +145,10 @@ const FINDPWD_HEADER = {
 
 const PWDRESETTING_HEADER = {
   title: '비밀번호 재설정',
+  button: true,
+};
+
+const ACCOUNTCHANGE_HEADER = {
+  title: '계좌 변경',
   button: true,
 };

@@ -65,6 +65,31 @@ const Mypage = () => {
       });
   };
 
+  const handleAccountCheck = () => {
+    fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (
+          data.result.bankName === '0' &&
+          data.result.accountName === '0' &&
+          data.result.accountHolderName === '0'
+        ) {
+          navigate('/accountregi');
+        } else {
+          navigate('/accountchange');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching account data:', error);
+      });
+  };
+
   return (
     <S.MypageBox>
       {modifyInfo && <ModifyInfo setModifyInfo={setModifyInfo} />}
@@ -94,10 +119,12 @@ const Mypage = () => {
       </S.InfoBox>
       <S.MenuBoxWrap>
         <S.MenuBox>
-          <S.MenuBtn>포인트 인출</S.MenuBtn>
+          <S.MenuBtn onClick={() => navigate('/withdrawnotify')}>
+            포인트 인출
+          </S.MenuBtn>
           <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
           <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
-          <S.MenuBtn>계좌 등록/변경</S.MenuBtn>
+          <S.MenuBtn onClick={handleAccountCheck}>계좌 등록/변경</S.MenuBtn>
           <S.MenuBtn>이용약관</S.MenuBtn>
         </S.MenuBox>
         <S.LogoutBtnWrap>
