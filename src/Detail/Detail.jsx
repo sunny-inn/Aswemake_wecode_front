@@ -66,7 +66,7 @@ const Detail = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setDetailMartList([data]);
+        setDetailMartList(data);
         console.log('이게맞아??', detailMartList);
       })
       .catch(error => {
