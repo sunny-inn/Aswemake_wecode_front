@@ -21,7 +21,7 @@ const ModifyInfo = ({ setModifyInfo }) => {
     setDetailModalOpen(prev => !prev);
   };
 
-  // 확인 버튼 눌렀을 때 적용되는 함수
+  // 확인 버튼 눌렀을 때 적용되는 함수!
   let modifyInfoComponent = null;
 
   const toVerifyPassword = () => {
