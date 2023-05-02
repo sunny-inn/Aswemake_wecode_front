@@ -237,6 +237,7 @@ const Home = () => {
                 mapDataControl={false}
                 zoomControl={false}
               >
+                console.log('센터가이건가??',onCenterChanged)
                 {homeMartList.map((mart, index) => {
                   //2일전계산
                   const now = new Date();
@@ -281,7 +282,6 @@ const Home = () => {
                     onClick={getCurrentPosition}
                   />
                 </S.SearchBox>
-
                 <HomeCarousel
                   homeMartList={homeMartList}
                   selectedMart={selectedMart}
