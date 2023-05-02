@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Container from './Components/Container/Container';
 import Home from './Home/Home';
 import Login from './Login/Login';
+import FindId from './Login/FindId/FindId';
 import Signup from './Signup/Signup';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
@@ -31,6 +32,7 @@ const Router = () => {
         </Route>
         <Route path="/detail" element={<Detail />} />
         <Route path="/" element={<Login />} />
+        <Route path="/findid" element={<FindId />} />
         <Route path="/suggest" element={<Suggest />} />
         <Route
           path="/suggest/suggestCompleted"
