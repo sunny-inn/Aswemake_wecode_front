@@ -23,6 +23,8 @@ import Search from './Home/HomeComponents/Search/Search';
 import AccountRegi from './AccountRegi/AccountRegi';
 import SetAccount from './AccountRegi/Component/SetAccount';
 import AccountChange from './AccountChange/AccountChange';
+import AccountChangeInput from './AccountChange/AccountChangeInput';
+import SetAccountChange from './AccountChange/SetAccountChange';
 
 const Router = () => {
   return (
@@ -56,6 +58,8 @@ const Router = () => {
         <Route path="/accountregi" element={<AccountRegi />} />
         <Route path="/setaccount" element={<SetAccount />} />
         <Route path="/accountchange" element={<AccountChange />} />
+        <Route path="/accountchangeinput" element={<AccountChangeInput />} />
+        <Route path="/setaccountchange" element={<SetAccountChange />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './AccountChangeInput.style';
 import Header from '../Components/Header/Header';
-import Modal from './Modal';
+import Modal from '../AccountRegi/Component/Modal';
 import { useNavigate } from 'react-router-dom';
 
 const AccountChangeInput = () => {
@@ -97,7 +97,7 @@ const AccountChangeInput = () => {
   };
   return (
     <>
-      {/* <Header type="accountRegi" /> */}
+      <Header type="accountChange" />
       <S.Layout>
         <S.InputTitle>
           <label>은행</label>
