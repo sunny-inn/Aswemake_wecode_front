@@ -58,6 +58,7 @@ const Detail = () => {
 
   useEffect(() => {
     fetch(`https://flyers.qmarket.me/api/home/martDetail/${params.id}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
@@ -280,31 +281,3 @@ const Detail = () => {
 };
 
 export default Detail;
-{
-  /* 이거는 없을꺼 */
-}
-{
-  /* {showBigFlyerModal && (
-        <S.ModalContainer>
-          <S.CloseButton
-            src="./images/closeImg.png"
-            onClick={() => showBigFlyerModal(false)}
-          />
-          <S.BigImage
-            src={
-              detailMartList[currentImageIndex].xmartFlyerImages === '0'
-                ? './images/flyernone.png'
-                : detailMartList[currentImageIndex].martFlyerImages[0].imageUrl
-            }
-            alt="큰 전단지"
-          />
-        </S.ModalContainer>
-      )} */
-}
-
-{
-  /* //suggest modal로 만들고싶을때 */
-}
-{
-  /* {showSuggestModal && <Suggest onClose={handleSuggestModalClose} />}  */
-}
