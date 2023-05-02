@@ -57,7 +57,7 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/detail/${params.id}`)
+    fetch(`https://flyers.qmarket.me/api/home/martDetail/${params.id}`)
       .then(response => response.json())
       .then(data => {
         setDetailMartList([data]);
