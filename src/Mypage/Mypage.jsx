@@ -78,7 +78,7 @@ const Mypage = () => {
         console.log(data);
         if (
           data.result.bankName === '0' &&
-          data.result.accountName === '0' &&
+          data.result.accountNumber === '0' &&
           data.result.accountHolderName === '0'
         ) {
           navigate('/accountregi');
