@@ -222,10 +222,7 @@ const Detail = () => {
               </S.MartDetailText>
               <S.MartDetailText>
                 연락처 : &nbsp;
-                {list.martPhoneNumber.replace(
-                  /(\d{2})(\d{3,4})(\d{4})/,
-                  '$1-$2-$3'
-                )}
+                {list.martPhoneNumber}
                 <S.MartDetailContentImg
                   src="./images/phone.png"
                   alt="전화걸기"
