@@ -70,30 +70,6 @@ const Home = () => {
   // );
 
   useEffect(() => {
-    if (userAddress) {
-      navermaps.Service.geocode(
-        {
-          address: userAddress,
-        },
-        function (status, response) {
-          if (status !== navermaps.Service.Status.OK) {
-            return alert('Something wrong!');
-          }
-          const result = response.result;
-          const items = result.items;
-          console.log(
-            '위도 = ',
-            items[0].point.y,
-            ' 경도 = ',
-            items[0].point.x
-          );
-          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
-        }
-      );
-    }
-  }, [userAddress]);
-
-  useEffect(() => {
     userAddress &&
       navermaps.Service.geocode(
         {
@@ -111,7 +87,7 @@ const Home = () => {
             ' 경도 = ',
             items[0].point.x
           );
-          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
+          setCenter({ lat: homeMartList.lat, lng: homeMartList.lng });
         }
       );
   }, [userAddress]);
@@ -152,17 +128,14 @@ const Home = () => {
   //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
   useEffect(() => {
     if (center) {
-      fetch(
-        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            authorization: token,
-          },
-        }
-      )
+      fetch(`https://flyers.qmarket.me/api/home`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+      })
         .then(response => response.json())
         .then(data => {
           console.log('데이터받아오기', data);
