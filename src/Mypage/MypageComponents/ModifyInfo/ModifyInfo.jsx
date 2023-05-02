@@ -11,6 +11,7 @@ const ModifyInfo = ({ setModifyInfo }) => {
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
+  const [modifyInfoComponent, setModifyInfoComponent] = useState(null);
   const navigate = useNavigate();
 
   const onClickBack = () => {
@@ -22,7 +23,6 @@ const ModifyInfo = ({ setModifyInfo }) => {
   };
 
   // 확인 버튼 눌렀을 때 적용되는 함수!
-  let modifyInfoComponent = null;
 
   const toVerifyPassword = () => {
     //'/data/ModifyInfoData.json'
@@ -41,9 +41,9 @@ const ModifyInfo = ({ setModifyInfo }) => {
         if (data.message === 'YOU NEED TOKENS, PLEASE LOGIN') {
           return navigate('/');
         } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
-          modifyInfoComponent = <ModifyInfoModal handleModal={handleModal} />;
+          setModifyInfoComponent(<ModifyInfoModal handleModal={handleModal} />);
         } else {
-          modifyInfoComponent = (
+          setModifyInfoComponent(
             <ModifyInfoDetail
               userInfo={userInfo}
               setDetailModalOpen={setDetailModalOpen}
