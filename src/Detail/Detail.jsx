@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import FlyersCarousel from './FlyersCarousel';
 import DetailNav from './DetailNav';
 import DetailBtn from './DetailBtn';
@@ -17,6 +17,7 @@ const Detail = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // const [showSuggestModal, setShowSuggestModal] = useState(false); //suggest 모달로 띄울때
   const navigate = useNavigate();
+  const params = useParams();
   const url = 'https://flyers.qmarket.me/detail';
 
   const handleImageClick = index => {
@@ -161,13 +162,35 @@ const Detail = () => {
     }
   }, [detailMartList]);
 
+  // useEffect(() => {
+  //   fetch(`http://10.58.52.170:8000/api/detail/${params.martId}`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setDetailMartList([data.martList.find(mart => mart.martId === 1)]);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch('./data/MhomeData.json')
+    fetch(`http://10.58.52.170:8000/api/detail/${params.id}`)
       .then(response => response.json())
       .then(data => {
-        setDetailMartList([data.martList.find(mart => mart.martId === 1)]);
+        setDetailMartList([data]);
+      })
+      .catch(error => {
+        console.error(error);
       });
-  }, []);
+  }, [params.id]);
+
+  // useEffect(() => {
+  //   fetch(`http://10.58.52.170:8000/api/detail/${params.martId}`)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setDetailMartList([data]);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, [params.martId]);
 
   return (
     <S.DetailContainer>

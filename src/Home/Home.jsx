@@ -33,6 +33,11 @@ const Home = () => {
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [newKeyword, setNewKeyword] = useState('');
   const [searchedMart, setSearchedMart] = useState({});
+  const navigate = useNavigate();
+
+  const goToDetail = id => {
+    navigate(`detail/${id}`);
+  };
 
   // 회원 주소지 받는 기능
   // useEffect(() => {

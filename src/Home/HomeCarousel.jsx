@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './HomeCarousel.style';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -9,6 +10,7 @@ const HomeCarousel = ({
   selectedMart,
   handleModal,
   changeCenterByCarousel,
+  goToDetail,
 }) => {
   const settings = {
     infinite: true,
@@ -28,6 +30,7 @@ const HomeCarousel = ({
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
   const selectedMartList = selectedMart ? homeMartList : [];
+  const navigate = useNavigate();
 
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);

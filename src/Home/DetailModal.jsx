@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './DetailModal.style';
 
 const DetailModal = ({ handleModal }) => {
+  const navigate = useNavigate();
+  const params = useParams();
   return (
     <S.ModalContainer>
       <S.ModalContentBox>
@@ -12,7 +15,13 @@ const DetailModal = ({ handleModal }) => {
           전단을 등록하러 가볼까요?
         </S.ModalText>
         <S.ModalButtonBox>
-          <S.ModalInfoButton>마트 정보 보기</S.ModalInfoButton>
+          <S.ModalInfoButton
+            onClick={() => {
+              navigate(`/detail/${params.id}`);
+            }}
+          >
+            마트 정보 보기
+          </S.ModalInfoButton>
           <S.ModalUploadButton>전단 등록 하기</S.ModalUploadButton>
         </S.ModalButtonBox>
       </S.ModalContentBox>
