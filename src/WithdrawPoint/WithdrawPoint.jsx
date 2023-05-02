@@ -12,16 +12,6 @@ const WithdrawPoint = () => {
     navigate('/');
   };
 
-  const requestWithdraw = () => {
-    if (!overPrice && !overHoldingPoint) {
-      navigate('/setpoint');
-    }
-  };
-
-  const handleWithdrawRequest = () => {
-    requestWithdraw();
-  };
-
   const [inputValue, setInputValue] = useState('');
   const [overPrice, setOverPrice] = useState(false);
   const [accountInfo, setAccountInfo] = useState(null);
@@ -31,8 +21,8 @@ const WithdrawPoint = () => {
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/accounts//checkCurrentAccount', {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMjQ3NTUwLCJleHAiOjE2ODIyNDc2NzB9.8HTVkLVVnLIf_VLS7MdRZ2kN1tQb2VgNG3IPAOPQMvM',
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
       },
     })
       .then(response => response.json())
@@ -48,9 +38,10 @@ const WithdrawPoint = () => {
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/points', {
+      method: 'GET',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMTU3MDY2LCJleHAiOjE2ODIxNTcxODZ9.pBMBta2yD-pn2Bodq4vbj6qMCXhrh4L_UnlpVzW6Gr0',
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
       },
     })
       .then(response => response.json())
@@ -62,6 +53,40 @@ const WithdrawPoint = () => {
         console.error('Error fetching holding point:', error);
       });
   }, []);
+
+  const handleWithdrawRequest = e => {
+    e.preventDefault();
+
+    if (overPrice || overHoldingPoint) {
+      return; // Prevent the request if overPrice or overHoldingPoint are true
+    }
+
+    const withdrawalPoints = parseInt(inputValue.replace(/[^0-9]/g, ''), 10);
+
+    fetch('https://flyers.qmarket.me/api/points/withdrawal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+      body: JSON.stringify({ withdrawalPoints: withdrawalPoints }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if (data.message) {
+          setHoldingPoint(
+            prevHoldingPoint => prevHoldingPoint - withdrawalPoints
+          );
+          setInputValue('');
+          navigate('/setpoint', { state: { withdrawalPoints } });
+        }
+      })
+      .catch(error => {
+        console.error('Error submitting withdrawal request:', error);
+        alert('인출 요청에 실패했습니다. 다시 시도해주세요.');
+      });
+  };
 
   const handleInputChange = e => {
     const value = e.target.value.replace(/[^0-9]/g, '');
