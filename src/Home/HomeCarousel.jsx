@@ -59,7 +59,7 @@ const HomeCarousel = ({
                 </div>
                 <S.CarouselContent>
                   <S.MartTitleLi>
-                    <S.MartTitle>{mart.name}</S.MartTitle>
+                    <S.MartTitle>{mart.martName}</S.MartTitle>
                     <S.StarImg
                       src={
                         checked
@@ -70,8 +70,8 @@ const HomeCarousel = ({
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
-                    <li>주소 : {mart.address}</li>
-                    <li>연락처 : {mart.phoneNumber}</li>
+                    <li>주소 : {mart.martNumberAddress}</li>
+                    <li>연락처 : {mart.martPhoneNumber}</li>
                   </S.MartContentBox>
                 </S.CarouselContent>
               </S.CarouselBox>

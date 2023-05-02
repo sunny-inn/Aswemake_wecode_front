@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
+import { useNavigate } from 'react-router-dom';
 import Birth from './SignupComponents/Birth/Birth';
 import Terms from '../Components/Terms/Terms';
 import Id from './SignupComponents/Id/Id';
 import Submit from './SignupComponents/Submit/Submit';
-import * as S from './Signup.style';
 import Header from '../Components/Header/Header';
-import { useNavigate } from 'react-router-dom';
 import Phone from './SignupComponents/Phone/Phone';
+import Passwd from './SignupComponents/Passwd/Passwd';
+import * as S from './Signup.style';
 
 const Signup = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [date, setDate] = useState('');
 
-  const birthDate = year && month && date && year + month + date;
-
   const [signupInfo, setSignupInfo] = useState({
     id: '',
     passwd: '',
-    passwdCheck: '',
-    gender: '',
+    gender: '여자',
     name: '',
-    birth: '19900101',
+    birth: '',
     address: '',
     addressDetail: '',
     phoneNumber: '',
     postalCode: '',
   });
-
-  // 유효성 검사
+  const [isValidPasswd, setIsValidPasswd] = useState(false);
+  const [passwdCheck, setPasswdCheck] = useState('');
   const [isIdDisabled, setIsIdDisabled] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [isPasswdEyeClicked, setIsPasswdEyeClicked] = useState(false);
-  const [counter, setCounter] = useState(180);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
@@ -43,7 +39,6 @@ const Signup = () => {
   const {
     id,
     passwd,
-    passwdCheck,
     birth,
     gender,
     name,
@@ -64,15 +59,16 @@ const Signup = () => {
   // 비번
   const handlePasswd = e => {
     setSignupInfo(prev => ({ ...prev, passwd: e.target.value }));
+
+    setIsValidPasswd(
+      /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=\+\\|;:'"<>,\./\?]{8,20}$/.test(
+        e.target.value
+      )
+    );
   };
 
-  const handlePasswdCheck = e => {
-    setSignupInfo(prev => ({ ...prev, passwdCheck: e.target.value }));
-  };
-
+  const handlePasswdCheck = e => setPasswdCheck(e.target.value);
   const correctPasswd = passwd !== '' && passwd === passwdCheck;
-
-  const onClickPasswdEye = () => setIsPasswdEyeClicked(prev => !prev);
 
   // 이름
   const handleName = e => {
@@ -101,9 +97,16 @@ const Signup = () => {
     setDate(formattedDay);
   };
 
+  useEffect(() => {
+    if (year && month && date) {
+      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+    }
+  }, [date]);
+
   // 성별
   const handleGender = e => {
-    setSignupInfo(prev => ({ ...prev, gender: e.target.value }));
+    const { value } = e.target;
+    setSignupInfo(prev => ({ ...prev, gender: value }));
   };
 
   // 주소
@@ -167,9 +170,12 @@ const Signup = () => {
   const handleDisabled = !(
     isFilled === true &&
     isIdDisabled === false &&
+    isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    birth !== '' &&
+    year !== '' &&
+    month !== '' &&
+    date !== '' &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
@@ -192,7 +198,7 @@ const Signup = () => {
         identification: id,
         password: passwd,
         name: name,
-        birth: birthDate,
+        birth: year + month + date,
         phoneNumber: phoneNumber,
         gender: gender,
         zipCode: postalCode,
@@ -214,9 +220,7 @@ const Signup = () => {
     <S.SignupBox>
       <Header type="signup" onClickBack={onClickBack} />
       <S.FormBox>
-        <S.InputTitle>
-          <label>아이디</label>
-        </S.InputTitle>
+        <S.InputTitle>아이디</S.InputTitle>
         <Id
           id={id}
           handleId={handleId}
@@ -224,56 +228,16 @@ const Signup = () => {
           isIdDisabled={isIdDisabled}
           setIsIdDisabled={setIsIdDisabled}
         />
-        <S.InputTitle>
-          <label>비밀번호</label>
-        </S.InputTitle>
-        <S.PasswdInput
-          name="passwd"
-          value={passwd}
-          type={isPasswdEyeClicked ? 'text' : 'password'}
-          placeholder="비밀번호를 입력해주세요."
-          onChange={handlePasswd}
+        <S.InputTitle>비밀번호</S.InputTitle>
+        <Passwd
+          passwd={passwd}
+          handlePasswd={handlePasswd}
+          isValidPasswd={isValidPasswd}
+          passwdCheck={passwdCheck}
+          handlePasswdCheck={handlePasswdCheck}
+          correctPasswd={correctPasswd}
         />
-        <S.PasswdImg
-          alt="eye"
-          src={
-            isPasswdEyeClicked
-              ? 'images/signup/showpasswd.png'
-              : 'images/signup/passwd.png'
-          }
-          onClick={onClickPasswdEye}
-        />
-        <S.InputTitle>
-          <label>비밀번호 확인</label>
-        </S.InputTitle>
-        <div>
-          <S.PasswdCheckInput
-            name="passwdCheck"
-            value={passwdCheck}
-            type={isPasswdEyeClicked ? 'text' : 'password'}
-            placeholder="비밀번호를 확인해주세요."
-            onChange={handlePasswdCheck}
-            correctPasswd={correctPasswd}
-            passwdCheck={passwdCheck}
-          />
-          <S.CheckedImg
-            alt="eye"
-            src={
-              isPasswdEyeClicked
-                ? 'images/signup/showpasswd.png'
-                : 'images/signup/passwd.png'
-            }
-            onClick={onClickPasswdEye}
-          />
-          {!correctPasswd && passwdCheck !== '' && (
-            <S.AlertMsg correctPasswd={correctPasswd}>
-              비밀번호가 일치하지 않습니다.
-            </S.AlertMsg>
-          )}
-        </div>
-        <S.InputTitle>
-          <label>이름</label>
-        </S.InputTitle>
+        <S.InputTitle>이름</S.InputTitle>
         <S.SignupInput
           name="name"
           value={name}
@@ -281,9 +245,7 @@ const Signup = () => {
           placeholder="이름을 입력해주세요."
           onChange={handleName}
         />
-        <S.InputTitle>
-          <label>생년월일</label>
-        </S.InputTitle>
+        <S.InputTitle>생년월일</S.InputTitle>
         <Birth
           year={year}
           date={date}
@@ -291,9 +253,7 @@ const Signup = () => {
           handleMonth={handleMonth}
           handleDate={handleDate}
         />
-        <S.InputTitle>
-          <p>성별</p>
-        </S.InputTitle>
+        <S.InputTitle>성별</S.InputTitle>
         <S.GenderBox>
           <S.Gender
             id="male"
@@ -301,6 +261,7 @@ const Signup = () => {
             value="남자"
             name="gender"
             onChange={handleGender}
+            checked={gender === '남자'}
           />
           <S.GenderLabel htmlFor="male">남자</S.GenderLabel>
           <S.Gender
@@ -309,13 +270,12 @@ const Signup = () => {
             value="여자"
             name="gender"
             onChange={handleGender}
+            checked={gender === '여자'}
           />
           <S.GenderLabel htmlFor="female">여자</S.GenderLabel>
         </S.GenderBox>
         <S.AddressBox>
-          <S.InputTitle>
-            <label>주소</label>
-          </S.InputTitle>
+          <S.InputTitle>주소</S.InputTitle>
           <S.BtnBox>
             <input name="postalCode" value={postalCode} readOnly />
             <button type="button" onClick={handleAddressClick}>
@@ -336,9 +296,7 @@ const Signup = () => {
             placeholder="상세 주소를 입력해주세요."
           />
         </S.AddressBox>
-        <S.InputTitle>
-          <label>휴대전화</label>
-        </S.InputTitle>
+        <S.InputTitle>휴대전화</S.InputTitle>
         <Phone
           phoneNumber={phoneNumber}
           handlePhoneNumber={handlePhoneNumber}
@@ -348,12 +306,10 @@ const Signup = () => {
           setVerification={setVerification}
         />
         <S.TermsBox>
-          <S.InputTitle>
-            <label>이용 약관</label>
-          </S.InputTitle>
+          <S.InputTitle>이용 약관</S.InputTitle>
           <S.TermsBtn onClick={onClickTerms}>서비스 이용약관 보기</S.TermsBtn>
           {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
-          <div>
+          <S.CheckBox>
             <img
               alt="checkbox"
               src={
@@ -364,7 +320,7 @@ const Signup = () => {
               onClick={onClickCheckbox}
             />
             <label>서비스 이용 약관에 동의합니다.</label>
-          </div>
+          </S.CheckBox>
         </S.TermsBox>
         <S.SubmitBtn
           onClick={onSubmit}

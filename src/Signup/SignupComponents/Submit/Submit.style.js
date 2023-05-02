@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import { flex } from '../../../Styles/Mixin';
 
 export const SubmitBox = styled(ReactModal)`
-  ${flex('flex-start', 'center', 'column')}
+  ${flex('space-between', 'center', 'column')}
   width: 360px;
   height: 616px;
   background: #ffffff;

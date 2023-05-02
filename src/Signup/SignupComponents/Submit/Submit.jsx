@@ -11,7 +11,7 @@ const Submit = ({ setIsSubmitOpen }) => {
 
   const toLogin = e => {
     e.preventDefault();
-    navigate('/login');
+    navigate('/');
   };
 
   return (

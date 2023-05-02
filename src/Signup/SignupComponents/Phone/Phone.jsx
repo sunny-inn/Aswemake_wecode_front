@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Phone.style';
 
 const Phone = ({
@@ -10,26 +10,39 @@ const Phone = ({
   setVerification,
 }) => {
   const [codeBtn, setCodeBtn] = useState(false);
-  const [timer, setTimer] = useState(180);
+  const [showTimer, setShowTimer] = useState(false);
+  const [seconds, setSeconds] = useState(180);
   const [alertMsg, setAlertMsg] = useState(false);
 
   const handleCode = e => setCode(e.target.value);
 
-  const handleCodeBtn = phoneNumber.length === 11;
+  // 인증번호 받기 활성화 조건
+  const handleCodeBtn =
+    phoneNumber.includes('010') &&
+    (phoneNumber.length === 10 || phoneNumber.length === 11);
 
-  const id = useRef(null);
-
-  const reset = () => {
-    window.clearInterval(id.current);
+  const formatTime = () => {
+    const minutes = Math.floor(seconds / 60);
+    const secondsLeft = seconds % 60;
+    return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
   };
 
-  // TODO: 인증번호
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSeconds(c => c - 1);
+    }, 1000);
+    if (seconds === 0) {
+      clearInterval(id);
+    }
+    return () => clearInterval(id);
+  }, [codeBtn, seconds]);
+
+  // 인증번호 버튼 클릭 시 로직
   const onClickCode = e => {
     e.preventDefault();
     setCodeBtn(true);
-
-    //https://flyers.qmarket.me/api/verificationCode/send
-    //http://172.30.1.41:8000/api/verificationCode/send
+    setShowTimer(true);
+    setSeconds(180);
 
     fetch('https://flyers.qmarket.me/api/verificationCode/send', {
       method: 'POST',
@@ -42,25 +55,18 @@ const Phone = ({
     })
       .then(res => res.json())
       .then(data => {
-        if (data.message === 'message sent successfully') {
-          codeBtn && timer === 0
-            ? reset()
-            : (id.current = setInterval(() => {
-                setTimer(time => time - 1);
-              }));
-        } else {
-          alert('실패');
+        if (data.message !== 'message sent successfully') {
+          alert('인증번호 전송 실패');
         }
       });
-    return () => reset();
   };
 
-  //Btn 휴대폰번호 & 인증번호 post
+  // 확인 버튼 활성화 조건
+  const handleVerificationBtn = code && phoneNumber;
+
+  //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
     e.preventDefault();
-
-    //https://flyers.qmarket.me/api/verificationCode/check
-    //http://172.30.1.41:8000/api/verificationCode/check
 
     fetch('https://flyers.qmarket.me/api/verificationCode/check', {
       method: 'POST',
@@ -76,7 +82,7 @@ const Phone = ({
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
-          setAlertMsg(false);
+          setShowTimer(false);
         } else {
           setVerification(false);
           setAlertMsg(true);
@@ -106,16 +112,19 @@ const Phone = ({
         <S.CodeInput
           name="code"
           type="text"
+          ㄴ
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
           alertMsg={alertMsg}
         />
+        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
           onClick={onClickVerification}
-          disabled={code && phoneNumber ? false : true}
-          code={code}
-          phoneNumber={phoneNumber}
+          disabled={handleVerificationBtn ? false : true}
+          verification={verification}
+          alertMsg={alertMsg}
+          handleVerificationBtn={handleVerificationBtn}
         >
           확인
         </S.VerificationBtn>

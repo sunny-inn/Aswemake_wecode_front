@@ -1,0 +1,16 @@
+{
+  "result": [
+    {
+      "name": "김은경",
+      "birth": "19991011",
+      "gender": "여자",
+      "identification": "dmsrud123",
+      "password": "$2b$12$G7NsW3M9FUI4dLlu0gOHS.sd2XxPgtwqqK17sWa3u9l1ud2wrtala",
+      "phone_number": "01011112222",
+      "zip_code": 12346,
+      "address": "부산광역시 어딘가",
+      "detail_address": "좋은아파트 어딘가",
+      "point": null
+    }
+  ]
+}

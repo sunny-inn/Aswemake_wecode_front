@@ -102,6 +102,12 @@ const Login = () => {
       });
   };
 
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     navigate('/home');
+  //   }
+  // }, []);
+
   useEffect(() => {
     setTimeout(() => {
       setShowSplash(false);
