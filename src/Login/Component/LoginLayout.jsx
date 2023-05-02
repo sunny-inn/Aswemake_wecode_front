@@ -10,4 +10,3 @@ const LoginLayout = ({ children }) => {
 };
 
 export default LoginLayout;
-
