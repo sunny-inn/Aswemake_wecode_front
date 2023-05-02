@@ -75,6 +75,7 @@ const Mypage = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         if (
           data.result.bankName === '0' &&
           data.result.accountName === '0' &&
