@@ -32,7 +32,7 @@ const Router = () => {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/favorite" element={<Favorite />} />
         </Route>
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/" element={<Login />} />
         <Route path="/findid" element={<FindId />} />
         <Route path="/notifyid" element={<NotifyId />} />

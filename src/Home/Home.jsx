@@ -12,6 +12,7 @@ import {
 } from 'react-naver-maps';
 import Search from './HomeComponents/Search/Search';
 import * as S from './Home.style';
+import DetailModal from './DetailModal';
 
 const Home = () => {
   //MockData시작
@@ -33,6 +34,11 @@ const Home = () => {
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [newKeyword, setNewKeyword] = useState('');
   const [searchedMart, setSearchedMart] = useState({});
+  const navigate = useNavigate();
+
+  const goToDetail = id => {
+    navigate(`detail/${id}`);
+  };
 
   // 회원 주소지 받는 기능
   // useEffect(() => {
@@ -121,19 +127,18 @@ const Home = () => {
   //https://flyers.qmarket.me/api/home
   const token = localStorage.getItem('token');
   // console.log(token);
+  //api/home
+  //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
   useEffect(() => {
     if (center) {
-      fetch(
-        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            authorization: token,
-          },
-        }
-      )
+      fetch(`https://flyers.qmarket.me/api/home`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+      })
         .then(response => response.json())
         .then(data => {
           console.log(data);
@@ -229,7 +234,7 @@ const Home = () => {
     <div>
       {!isSearchClicked ? (
         <S.MapBox>
-          {homeMartList.length > 1 && (
+          {homeMartList?.length > 1 && (
             <>
               <NaverMap
                 // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
@@ -301,8 +306,12 @@ const Home = () => {
                   changeCenterByCarousel={changeCenterByCarousel}
                 />
               </NaverMap>
-              {openModal && <Modal handleModal={handleModal} type="map" />}
-              {shopModal && <Modal handleModal={handleModal} type="shop" />}
+              {openModal && (
+                <DetailModal
+                  handleModal={handleModal}
+                  goToDetail={goToDetail}
+                />
+              )}
             </>
           )}
         </S.MapBox>
