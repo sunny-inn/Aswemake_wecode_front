@@ -85,9 +85,6 @@ const Mypage = () => {
         } else {
           navigate('/accountchange');
         }
-      })
-      .catch(error => {
-        console.error('Error fetching account data:', error);
       });
   };
 

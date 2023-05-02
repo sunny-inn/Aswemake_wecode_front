@@ -50,10 +50,11 @@ const AccountRegi = () => {
   //최종 등록 버튼
   const submitRegi = () => {
     if (accountVerified) {
-      fetch('http://flyers.qmarket.me/api/accounts/registration', {
+      fetch('https://flyers.qmarket.me/api/accounts/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
         },
         body: JSON.stringify({
           accountHolderName: accountName,
@@ -81,7 +82,7 @@ const AccountRegi = () => {
   //예금주명 확인
   const checkAccountHolderName = () => {
     fetch(
-      'http://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
+      'https://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
         encodeURIComponent(accountName),
       {
         method: 'GET',
@@ -93,10 +94,12 @@ const AccountRegi = () => {
     )
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setAccountVerified(data.message === accountName);
         setAreInputsVerified(data.message === accountName);
       });
   };
+
   return (
     <>
       <Header type="accountRegi" />

@@ -32,18 +32,19 @@ const AccountChange = () => {
   const [allInputsFilled, setAllInputsFilled] = useState(false);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/accounts//checkCurrentAccount', {
+    fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
+      method: 'GET',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMjQ3NTUwLCJleHAiOjE2ODIyNDc2NzB9.8HTVkLVVnLIf_VLS7MdRZ2kN1tQb2VgNG3IPAOPQMvM',
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
       },
     })
       .then(response => response.json())
       .then(data => {
         setAccountData({
-          bank: data.bank,
-          accountNumber: data.accountNumber,
-          accountHolder: data.accountHolder,
+          bank: data.result.bankName,
+          accountNumber: data.result.accountName,
+          accountHolder: data.result.accountHolderName,
         });
         checkAllInputsFilled();
       })
