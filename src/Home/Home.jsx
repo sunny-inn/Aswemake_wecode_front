@@ -127,19 +127,18 @@ const Home = () => {
   //https://flyers.qmarket.me/api/home
   const token = localStorage.getItem('token');
   // console.log(token);
+  //api/home
+  //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
   useEffect(() => {
     if (center) {
-      fetch(
-        `https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}`,
-        {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            authorization: token,
-          },
-        }
-      )
+      fetch(`https://flyers.qmarket.me/api/home`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+      })
         .then(response => response.json())
         .then(data => {
           console.log(data);
