@@ -25,6 +25,7 @@ export const WithdrawPoint = styled.input`
   ::placeholder {
     font-weight: 700;
     font-size: 15px;
+    padding-left: 7px;
   }
 `;
 
