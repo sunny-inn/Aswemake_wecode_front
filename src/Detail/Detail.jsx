@@ -33,7 +33,7 @@ const Detail = () => {
   // const handleSuggestModalClose = () => {
   //   setShowSuggestModal(false);
   // };
-
+  const token = localStorage.getItem('token');
   const handleToast = type => {
     setShowToast({ show: true, type }); // showToast 상태값 변경
     let timer = setTimeout(() => {
@@ -57,7 +57,12 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/home/martDetail/${params.id}`)
+    fetch(`https://flyers.qmarket.me/api/home/martDetail/${params.id}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
       .then(response => response.json())
       .then(data => {
         setDetailMartList([data]);
@@ -65,13 +70,12 @@ const Detail = () => {
       .catch(error => {
         console.error(error);
       });
-  }, [params.id]);
+  }, [params.id, token]);
 
   //https://flyers.qmarket.me/api/favorite/1
   //즐겨찾기 눌렀을때 로직들
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteCheck, setFavoriteCheck] = useState(0);
-  const token = localStorage.getItem('token');
 
   const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
     fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
