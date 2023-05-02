@@ -4,6 +4,8 @@ import Container from './Components/Container/Container';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import FindId from './Login/FindId/FindId';
+import NotifyId from './Login/FindId/NotifyId';
+import CntFindId from './Login/FindId/CntFindId';
 import Signup from './Signup/Signup';
 import Upload from './Upload/Upload';
 import Mypage from './Mypage/Mypage';
@@ -33,6 +35,8 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/" element={<Login />} />
         <Route path="/findid" element={<FindId />} />
+        <Route path="/notifyid" element={<NotifyId />} />
+        <Route path="/cntfindid" element={<CntFindId />} />
         <Route path="/suggest" element={<Suggest />} />
         <Route
           path="/suggest/suggestCompleted"
