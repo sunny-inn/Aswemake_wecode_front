@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
-import Photo from './UploadComponents/Photo/Photo';
 import Calendar from './UploadComponents/Calendar/Calendar';
+import Modal from '../Components/Modal/Modal';
 import * as S from './Upload.style';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [marts, setMarts] = useState([]);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
-  const [isCloseClicked, setIsCloseClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [uploadInfo, setUploadInfo] = useState({
     martId: 0,
@@ -18,6 +18,7 @@ const Upload = () => {
     startDate: '',
     endDate: '',
   });
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const { martId, imageUrl, startDate, endDate } = uploadInfo;
 
@@ -36,6 +37,11 @@ const Upload = () => {
 
   // 마트 정보 FIXME: api로 수정
   useEffect(() => {
+    let scrollPosition = window.pageYOffset;
+    if (scrollPosition !== 0) {
+      window.scrollTo(0, 0);
+    }
+
     fetch(
       '/data/MhomeData.json'
       // , {method: 'GET', }
@@ -56,7 +62,7 @@ const Upload = () => {
   // 전화번호 유효성 검사
   const handleAlertMsg = phoneNumber && filteredMart.length === 0;
 
-  const onClickClose = () => setIsCloseClicked(prev => !prev);
+  // const onClickClose = () => setIsCloseClicked(prev => !prev);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -87,7 +93,7 @@ const Upload = () => {
 
     setUploadInfo(prev => ({
       ...prev,
-      imageUrl: [...uploadInfo.imageUrl, files[0]],
+      imageUrl: files,
     }));
   };
 
@@ -122,32 +128,35 @@ const Upload = () => {
     isCheckboxClicked
   );
 
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+
   const onSubmitFlyers = e => {
     e.preventDefault();
 
     //TODO: POST하는 api
-    // fetch(`${API.POSTS}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     enctype: 'multipart/form-data',
-    //     authorization: Token,
-    //   },
-    //   body: uploadForm,
-    // }).then(response => response.json());
-    // .then(data => {
-    //   if (data.message === 'success') {
-    //     navigate('/home-warming-list');
-    //   } else {
-    //     alert('실패');
-    //   }
-    // });
+    fetch('', {
+      method: 'POST',
+      headers: {
+        enctype: 'multipart/form-data',
+        authorization: token,
+      },
+      body: uploadForm,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'success') {
+          setIsUploaded(true);
+        } else {
+          alert('실패');
+        }
+      });
   };
-
-  console.log(uploadInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
+      <button onClick={() => setIsUploaded(true)}>테스트</button>
       <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
       <S.PhoneInput
         type="text"
@@ -237,6 +246,7 @@ const Upload = () => {
       <S.SubmitBtn disabled={handelDisabled ? true : false}>
         전단 등록 요청
       </S.SubmitBtn>
+      {isUploaded && <Modal type="upload" />}
     </S.UploadForm>
   );
 };

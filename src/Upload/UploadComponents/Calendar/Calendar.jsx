@@ -30,11 +30,11 @@ const Calendar = ({ setUploadInfo }) => {
     startDate &&
     startDate.getFullYear() +
       '-' +
-      (startDate.getMonth() + 1 < 9
+      (startDate.getMonth() + 1 <= 9
         ? '0' + (startDate.getMonth() + 1)
         : startDate.getMonth() + 1) +
       '-' +
-      (startDate.getDate() < 9
+      (startDate.getDate() <= 9
         ? '0' + startDate.getDate()
         : startDate.getDate());
 
@@ -42,19 +42,32 @@ const Calendar = ({ setUploadInfo }) => {
     endDate &&
     endDate.getFullYear() +
       '-' +
-      (endDate.getMonth() + 1 < 9
+      (endDate.getMonth() + 1 <= 9
         ? '0' + (endDate.getMonth() + 1)
         : endDate.getMonth() + 1) +
       '-' +
-      (endDate.getDate() < 9 ? '0' + endDate.getDate() : endDate.getDate());
+      (endDate.getDate() <= 9 ? '0' + endDate.getDate() : endDate.getDate());
 
-  if (formattedStart && formattedEnd) {
+  // if (formattedStart && formattedEnd) {
+  //   setUploadInfo(prev => ({
+  //     ...prev,
+  //     startDate: formattedStart,
+  //     endDate: formattedEnd,
+  //   }));
+  //   setOpen(false);
+  // }
+
+  useEffect(() => {
     setUploadInfo(prev => ({
       ...prev,
       startDate: formattedStart,
       endDate: formattedEnd,
     }));
-  }
+
+    if (formattedStart && formattedEnd) {
+      setOpen(false);
+    }
+  }, [startDate, endDate]);
 
   return (
     <S.CalendarBox>
