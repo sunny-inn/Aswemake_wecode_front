@@ -244,15 +244,15 @@ const Home = () => {
                       key={mart.martId}
                       title={mart.name}
                       icon={
-                        mart.martFlyerImages === '0' // martFlyerImages가 0인 경우
-                          ? isAlmostEnd // endDate가 2일 이내인 경우
-                            ? isMarkerClicked[index]
-                              ? './images/almostEndFlyerClicked.png'
-                              : './images/almostEndFlyer.png'
-                            : isMarkerClicked[index]
+                        mart.martFlyerImages === '0'
+                          ? isMarkerClicked[index]
                             ? './images/flyernoneClickedMarker.png'
                             : './images/flyernoneMarker.png'
-                          : isMarkerClicked[index] // martFlyerImages가 0이 아닌 경우
+                          : isAlmostEnd
+                          ? isMarkerClicked[index]
+                            ? './images/almostEndFlyerClicked.png'
+                            : './images/almostEndFlyer.png'
+                          : isMarkerClicked[index]
                           ? './images/clickedMarker.png'
                           : './images/orangeMarker.png'
                       }
