@@ -12,6 +12,7 @@ const ModifyInfo = ({ setModifyInfo }) => {
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
   const [modifyInfoComponent, setModifyInfoComponent] = useState(null);
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(undefined);
   const navigate = useNavigate();
 
   const onClickBack = () => {
@@ -23,9 +24,7 @@ const ModifyInfo = ({ setModifyInfo }) => {
   };
 
   // 확인 버튼 눌렀을 때 적용되는 함수!
-
   const toVerifyPassword = () => {
-    //'/data/ModifyInfoData.json'
     fetch('https://flyers.qmarket.me/api/users/userCheck', {
       method: 'POST',
       headers: {
@@ -41,23 +40,32 @@ const ModifyInfo = ({ setModifyInfo }) => {
         if (data.message === 'YOU NEED TOKENS, PLEASE LOGIN') {
           return navigate('/');
         } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
-          setModifyInfoComponent(<ModifyInfoModal handleModal={handleModal} />);
+          setIsPasswordCorrect(false);
+          setDetailModalOpen(true);
         } else {
-          setModifyInfoComponent(
-            <ModifyInfoDetail
-              userInfo={userInfo}
-              setDetailModalOpen={setDetailModalOpen}
-            />
-          );
           setUserInfo(data.result[0]);
-          setDetailModalOpen(prev => !prev);
+          setIsPasswordCorrect(true);
+          setDetailModalOpen(true);
         }
       });
   };
 
+  if (detailModalOpen && isPasswordCorrect) {
+    return setModifyInfoComponent(
+      <ModifyInfoDetail
+        userInfo={userInfo}
+        setDetailModalOpen={setDetailModalOpen}
+      />
+    );
+  } else if (detailModalOpen && !isPasswordCorrect) {
+    return setModifyInfoComponent(
+      <ModifyInfoModal handleModal={handleModal} />
+    );
+  }
+
   return (
     <S.ModifyInfo>
-      {detailModalOpen && modifyInfoComponent}
+      {modifyInfoComponent}
       {/* {detailModalOpen && (
         <ModifyInfoDetail
           userInfo={userInfo}
