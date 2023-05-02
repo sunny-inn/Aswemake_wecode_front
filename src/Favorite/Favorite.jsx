@@ -7,7 +7,7 @@ const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
 
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/favorite')
+    fetch('http://10.58.52.170:8000/api/favorite/1')
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.martList);

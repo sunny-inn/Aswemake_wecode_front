@@ -59,47 +59,73 @@ const Detail = () => {
   //https://flyers.qmarket.me/api/favorite/1
   //즐겨찾기 눌렀을때 로직들
   const [isFavorite, setIsFavorite] = useState(false);
-  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg) => {
-    fetch('http://10.58.52.170:8000/favorite', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+  const [favoriteCheck, setFavoriteCheck] = useState(0);
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyOTk2NjIwLCJleHAiOjE2ODMwODY2MjB9.pFnLIikUI8cOKDfOIlexjbhM7_bG-b3XJNMWHFRkDiE';
+  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
+    fetch('http://10.58.52.170:8000/api/favorite/1', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ favoriteCheck }),
-    }).then(response => {
-      if (response.ok) {
-        console.log(successMsg);
-      } else {
-        console.error(errorMsg);
-      }
-    });
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log(successMsg);
+        } else {
+          console.error(errorMsg);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   const handleFavoriteToast = isFavorite => {
     if (isFavorite) {
-      handleToast('favoriteRemoved');
-    } else {
       handleToast('favorite');
+    } else {
+      handleToast('favoriteRemoved');
     }
   };
 
   const onClickFavorite = () => {
-    if (isFavorite) {
-      setIsFavorite(false);
-      sendFavoriteRequest(
-        0,
-        'favorite removed successfully',
-        'failed to remove favorite'
-      );
-      handleFavoriteToast(false);
-    } else {
-      setIsFavorite(true);
-      sendFavoriteRequest(
-        1,
-        'favorite added successfully',
-        'failed to add favorite'
-      );
-      handleFavoriteToast(true);
-    }
+    const newFavoriteCheck = isFavorite ? 0 : 1;
+    setIsFavorite(!isFavorite);
+    sendFavoriteRequest(
+      newFavoriteCheck,
+      'favorite updated successfully',
+      'failed to update favorite',
+      token
+    );
+    handleFavoriteToast(!isFavorite);
   };
+
+  useEffect(() => {
+    fetch('http://10.58.52.170:8000/api/favorite/1', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Failed to get favorite check');
+        }
+      })
+      .then(data => {
+        setFavoriteCheck(data.favoriteCheck);
+        setIsFavorite(data.favoriteCheck === 1);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [token]);
 
   // const onClickFavorite = () => {
   //   if (isFavorite) {
