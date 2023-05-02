@@ -6,7 +6,7 @@ export const ModifyInfo = styled.div`
   top: 0;
   left: 0;
   width: 360px;
-  height: 616px;
+  height: 640px;
   z-index: 5;
   background: #fff;
 `;

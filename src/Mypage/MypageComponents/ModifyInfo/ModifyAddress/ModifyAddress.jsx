@@ -4,7 +4,7 @@ import { useDaumPostcodePopup } from 'react-daum-postcode';
 import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyAddress.style';
 
-const ModifyAddress = ({ setModalOpen }) => {
+const ModifyAddress = ({ setModalOpen, userInfo }) => {
   const [modifyAddress, setModifyAddress] = useState({
     postalCode: '',
     address: '',
@@ -54,7 +54,7 @@ const ModifyAddress = ({ setModalOpen }) => {
 
   // 확인 버튼 클릭시 적용되는 함수
   const toModifyAddress = () => {
-    fetch('{PORT}/api/users/addressModify', {
+    fetch('https://flyers.qmarket.me/api/users/addressModify', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -69,6 +69,17 @@ const ModifyAddress = ({ setModalOpen }) => {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'USER_ADDRESS_MODIFIED') {
+          userInfo.zip_code = postalCode;
+          userInfo.address = address;
+          userInfo.detail_address = addressDetail;
+          // localStorage.setItem(
+          //   'address',
+          //   JSON.stringify({
+          //     zipCode: postalCode,
+          //     address: address,
+          //     detailAddress: addressDetail,
+          //   })
+          // );
           setModalOpen(prev => !prev);
         }
       });
@@ -97,7 +108,7 @@ const ModifyAddress = ({ setModalOpen }) => {
           color="#252525"
         />
       </S.ModifyAddressBody>
-      <S.ConfirmBtn disabled={addressDetail === ''} onClick={onClickBack}>
+      <S.ConfirmBtn disabled={addressDetail === ''} onClick={toModifyAddress}>
         확인
       </S.ConfirmBtn>
     </S.ModifyAddress>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API } from '../config/config';
 import Header from '../Components/Header/Header';
@@ -19,6 +19,7 @@ const Mypage = () => {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
   const [modifyInfo, setModifyInfo] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const toFlyersStatus = () => setIsFlyersStatus(prev => !prev);
   const toWithdraw = () => setIsWithdraw(prev => !prev);
@@ -26,40 +27,51 @@ const Mypage = () => {
   const onClickTerms = () => setIsTerms(prev => !prev);
   const goToModifyInfo = () => setModifyInfo(prev => !prev);
 
-  //FIXME: 디자인 수정 중
-  //TODO: token 가져와서 이름이랑 포인트 정보 뿌려주기
-  // useEffect(() => {
-  //   fetch('https://flyers.qmarket.me/api/users/details', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       authorization: localStorage.getItem('token'),
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setUser(data.userInfo);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch('https://flyers.qmarket.me/api/users/details', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUser(data.userInfo);
+        setLoading(false);
+      });
+  }, []);
 
-  // const totalPoints = user && Math.trunc(user.totalPoints);
+  if (loading) return <div>Loading</div>;
+
+  const totalPoints = user && Math.trunc(user.totalPoints);
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    return navigate('/');
+    fetch('https://flyers.qmarket.me/api/users/logout', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        localStorage.removeItem('token');
+        return navigate('/');
+      });
   };
 
   return (
     <S.MypageBox>
+      {modifyInfo && <ModifyInfo setModifyInfo={setModifyInfo} />}
       {isMartInfoStatus && (
         <MartInfoStatus setIsMartInfoStatus={setIsMartInfoStatus} />
       )}
       {isFlyersStatus && <FlyersStatus setIsFlyersStatus={setIsFlyersStatus} />}
-      {modifyInfo && <ModifyInfo />}
       <Header type="mypage" />
       <S.InfoBox>
         <S.NameBox>
@@ -71,14 +83,13 @@ const Mypage = () => {
             </S.ModifyInfo>
           </div>
           <p>
-            {/* <S.Name>{user.name}</S.Name>님 */}
-            <S.Name>성이름</S.Name>님
+            <S.Name>{user.name}</S.Name>님{/* <S.Name>성이름</S.Name>님 */}
           </p>
         </S.NameBox>
         <S.PointBox>
           <S.PointTitle>보유포인트</S.PointTitle>
-          {/* <S.Point>{totalPoints} P</S.Point> */}
-          <S.Points>3,000 P</S.Points>
+          <S.Points>{totalPoints} P</S.Points>
+          {/* <S.Points>3,000 P</S.Points> */}
         </S.PointBox>
       </S.InfoBox>
       <S.MenuBoxWrap>
@@ -86,8 +97,7 @@ const Mypage = () => {
           <S.MenuBtn>포인트 인출</S.MenuBtn>
           <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
           <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
-          <S.MenuBtn>계좌 등록</S.MenuBtn>
-          <S.MenuBtn>계좌 변경</S.MenuBtn>
+          <S.MenuBtn>계좌 등록/변경</S.MenuBtn>
           <S.MenuBtn>이용약관</S.MenuBtn>
         </S.MenuBox>
         <S.LogoutBtnWrap>

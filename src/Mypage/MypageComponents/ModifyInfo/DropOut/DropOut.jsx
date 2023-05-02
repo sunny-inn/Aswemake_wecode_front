@@ -39,7 +39,7 @@ const DropOut = ({ setModalOpen }) => {
 
   //탈퇴하기 버튼 눌렀을 때 실행되는 함수
   const toDropOut = () => {
-    fetch('{PORT}/api/users/deleteRequest', {
+    fetch('https://flyers.qmarket.me/api/users/deleteRequest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

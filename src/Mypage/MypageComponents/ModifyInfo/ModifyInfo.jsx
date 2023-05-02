@@ -1,24 +1,32 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/Header/Header';
-import Modal from '../../../Components/Modal/Modal';
 import ModifyInfoDetail from './ModifyInfoDetail';
 import ModifyInfoModal from './ModifyInfoModal';
 import * as S from './ModifyInfo.style';
 
-const ModifyInfo = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+const ModifyInfo = ({ setModifyInfo }) => {
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
   const [password, setPassword] = useState('');
   const [userInfo, setUserInfo] = useState({});
+  const navigate = useNavigate();
 
-  const handleModal = () => {
-    setModalOpen(prev => !prev);
+  const onClickBack = () => {
+    setModifyInfo(prev => !prev);
   };
 
-  // 확인 버튼 눌렀을 때 적용되는 함수
+  const handleModal = () => {
+    setDetailModalOpen(prev => !prev);
+  };
+
+  // 확인 버튼 눌렀을 때 적용되는 함수!
+  let modifyInfoComponent = null;
+
   const toVerifyPassword = () => {
-    fetch('{PORT}/api/users/userCheck', {
+    //'/data/ModifyInfoData.json'
+    fetch('https://flyers.qmarket.me/api/users/userCheck', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -30,16 +38,33 @@ const ModifyInfo = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setUserInfo(data.result[0]);
-        setModalOpen(prev => !prev);
+        if (data.message === 'YOU NEED TOKENS, PLEASE LOGIN') {
+          return navigate('/');
+        } else if (data.message === 'PLEASE CHECK YOUR PASSWORD') {
+          modifyInfoComponent = <ModifyInfoModal handleModal={handleModal} />;
+        } else {
+          modifyInfoComponent = (
+            <ModifyInfoDetail
+              userInfo={userInfo}
+              setDetailModalOpen={setDetailModalOpen}
+            />
+          );
+          setUserInfo(data.result[0]);
+          setDetailModalOpen(prev => !prev);
+        }
       });
   };
 
   return (
     <S.ModifyInfo>
-      {/* 비밀번호 일치하지 않으면 {modalOpen && <ModifyInfoModal handleModal={handleModal} />} 띄우고 맞으면 아래 모달 띄우기 */}
-      {modalOpen && <ModifyInfoDetail />}
-      <Header type="modifyInfo" />
+      {detailModalOpen && modifyInfoComponent}
+      {/* {detailModalOpen && (
+        <ModifyInfoDetail
+          userInfo={userInfo}
+          setDetailModalOpen={setDetailModalOpen}
+        />
+      )} */}
+      <Header type="modifyInfo" onClickBack={onClickBack} />
       <S.ModifyInfoBody>
         <p>
           고객님의 정보를 안전하게 보호하기 위해
@@ -66,7 +91,7 @@ const ModifyInfo = () => {
           />
         </S.PasswordInputWrap>
       </S.ModifyInfoBody>
-      <S.ConfirmBtn onClick={handleModal} disabled={!password}>
+      <S.ConfirmBtn onClick={toVerifyPassword} disabled={!password}>
         확인
       </S.ConfirmBtn>
     </S.ModifyInfo>
