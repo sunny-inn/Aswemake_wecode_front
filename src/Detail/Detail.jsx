@@ -105,7 +105,7 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.170:8000/api/favorite/1', {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -171,7 +171,7 @@ const Detail = () => {
   // }, []);
 
   useEffect(() => {
-    fetch(`http://10.58.52.170:8000/api/detail/${params.id}`)
+    fetch(`https://flyers.qmarket.me/api/detail/${params.id}`)
       .then(response => response.json())
       .then(data => {
         setDetailMartList([data]);
