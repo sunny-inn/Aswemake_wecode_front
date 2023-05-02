@@ -141,7 +141,7 @@ const Home = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          console.log('데이터받아오기', data);
           setHomeMartList(data.martList);
         });
     }
@@ -167,7 +167,7 @@ const Home = () => {
 
   const HOME_PATH = window.HOME_PATH || '.';
 
-  // if (homeMartList.length === 0) return;
+  if (homeMartList.length === 0) return;
 
   const changeCenterByCarousel = (smIndex, e) => {
     console.log(e);
@@ -240,7 +240,7 @@ const Home = () => {
                 // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
                 center={center}
                 defaultZoom={15}
-                // onCenterChanged={handleCenter} 중심좌표구할때
+                onCenterChanged={handleCenter} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
                 logoControl={false}
@@ -264,7 +264,7 @@ const Home = () => {
                   return (
                     <Marker
                       position={new navermaps.LatLng(mart.lat, mart.lng)}
-                      key={mart.id}
+                      key={mart.martId}
                       title={mart.name}
                       icon={
                         isAlmostEnd && mart.martFlyerImages === '0'
