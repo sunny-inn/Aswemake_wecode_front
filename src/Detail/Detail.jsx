@@ -55,20 +55,30 @@ const Detail = () => {
   const handleModal = () => {
     setOpenCallModal(prev => !prev);
   };
-  //http://10.58.52.170:8000/
+
+  useEffect(() => {
+    fetch(`https://flyers.qmarket.me/api/detail/${params.id}`)
+      .then(response => response.json())
+      .then(data => {
+        setDetailMartList([data]);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [params.id]);
 
   //https://flyers.qmarket.me/api/favorite/1
   //즐겨찾기 눌렀을때 로직들
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteCheck, setFavoriteCheck] = useState(0);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyOTk2NjIwLCJleHAiOjE2ODMwODY2MjB9.pFnLIikUI8cOKDfOIlexjbhM7_bG-b3XJNMWHFRkDiE';
+  const token = localStorage.getItem('token');
+
   const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
-    fetch('http://10.58.52.170:8000/api/favorite/1', {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
       },
       body: JSON.stringify({ favoriteCheck }),
     })
@@ -169,17 +179,6 @@ const Detail = () => {
   //       setDetailMartList([data.martList.find(mart => mart.martId === 1)]);
   //     });
   // }, []);
-
-  useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/detail/${params.id}`)
-      .then(response => response.json())
-      .then(data => {
-        setDetailMartList([data]);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [params.id]);
 
   // useEffect(() => {
   //   fetch(`http://10.58.52.170:8000/api/detail/${params.martId}`)
