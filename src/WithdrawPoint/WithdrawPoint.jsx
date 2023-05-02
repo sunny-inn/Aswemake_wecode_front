@@ -29,9 +29,15 @@ const WithdrawPoint = () => {
   const [overHoldingPoint, setOverHoldingPoint] = useState(false);
 
   useEffect(() => {
-    fetch('/api/account')
+    fetch('https://flyers.qmarket.me/api/accounts//checkCurrentAccount', {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMjQ3NTUwLCJleHAiOjE2ODIyNDc2NzB9.8HTVkLVVnLIf_VLS7MdRZ2kN1tQb2VgNG3IPAOPQMvM',
+      },
+    })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setAccountInfo(data); // 계좌 정보를 state에 저장
         setInputValue(`${data.accountBank}, ${data.accountNumber}`); // 입력값을 계좌 정보로 초기화
       })
@@ -41,7 +47,7 @@ const WithdrawPoint = () => {
   }, []);
 
   useEffect(() => {
-    fetch('/api/points', {
+    fetch('https://flyers.qmarket.me/api/points', {
       headers: {
         Authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMTU3MDY2LCJleHAiOjE2ODIxNTcxODZ9.pBMBta2yD-pn2Bodq4vbj6qMCXhrh4L_UnlpVzW6Gr0',
@@ -49,6 +55,7 @@ const WithdrawPoint = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setHoldingPoint(data.point); // 포인트 정보를 state에 저장
       })
       .catch(error => {
