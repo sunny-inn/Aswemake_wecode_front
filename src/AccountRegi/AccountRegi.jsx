@@ -47,9 +47,10 @@ const AccountRegi = () => {
     }
   };
 
+  //최종 등록 버튼
   const submitRegi = () => {
     if (accountVerified) {
-      fetch('http://127.0.0.1:8000/api/accounts/registration', {
+      fetch('http://flyers.qmarket.me/api/accounts/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -77,15 +78,16 @@ const AccountRegi = () => {
     }
   };
 
+  //예금주명 확인
   const checkAccountHolderName = () => {
     fetch(
-      'http://127.0.0.1:8000/api/accounts/checkAccountHolderName?accountHolderName=' +
+      'http://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
         encodeURIComponent(accountName),
       {
         method: 'GET',
         headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMTU3MDY2LCJleHAiOjE2ODIxNTcxODZ9.pBMBta2yD-pn2Bodq4vbj6qMCXhrh4L_UnlpVzW6Gr0',
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
         },
       }
     )

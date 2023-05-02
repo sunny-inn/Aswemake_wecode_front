@@ -20,6 +20,7 @@ const FindPwd = () => {
     phoneNumber: '',
     code: '',
   });
+
   const saveInput = e => {
     setInput(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
