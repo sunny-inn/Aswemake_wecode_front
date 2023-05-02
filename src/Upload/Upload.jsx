@@ -136,7 +136,7 @@ const Upload = () => {
     e.preventDefault();
 
     //TODO: POST하는 api
-    fetch('', {
+    fetch('https://flyers.qmarket.me/api/flyer', {
       method: 'POST',
       headers: {
         enctype: 'multipart/form-data',
