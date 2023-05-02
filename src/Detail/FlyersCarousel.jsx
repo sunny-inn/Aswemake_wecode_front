@@ -112,7 +112,7 @@ const FlyersCarousel = ({ detailMartList, handleImageClick }) => {
           imageUrls={detailMartList.map(item =>
             item.martFlyerImages === '0'
               ? './images/flyernone.png'
-              : item.martFlyerImages.map(image => image.imageUrl)
+              : item.martFlyerImages.map(item => item.imageUrl)
           )}
         />
       )}
