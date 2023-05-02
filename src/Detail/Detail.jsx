@@ -54,39 +54,50 @@ const Detail = () => {
   const handleModal = () => {
     setOpenCallModal(prev => !prev);
   };
+  //http://10.58.52.170:8000/
 
   //https://flyers.qmarket.me/api/favorite/1
   //즐겨찾기 눌렀을때 로직들
   const [isFavorite, setIsFavorite] = useState(false);
+  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg) => {
+    fetch('http://10.58.52.170:8000/favorite', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ favoriteCheck }),
+    }).then(response => {
+      if (response.ok) {
+        console.log(successMsg);
+      } else {
+        console.error(errorMsg);
+      }
+    });
+  };
+
+  const handleFavoriteToast = isFavorite => {
+    if (isFavorite) {
+      handleToast('favoriteRemoved');
+    } else {
+      handleToast('favorite');
+    }
+  };
+
   const onClickFavorite = () => {
     if (isFavorite) {
       setIsFavorite(false);
-      handleToast('favoriteRemoved');
-      fetch('https://flyers.qmarket.me/api/favorite/1', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ favoriteCheck: 0 }),
-      }).then(response => {
-        if (response.ok) {
-          console.log('favorite removed successfully');
-        } else {
-          console.error('failed to remove favorite');
-        }
-      });
+      sendFavoriteRequest(
+        0,
+        'favorite removed successfully',
+        'failed to remove favorite'
+      );
+      handleFavoriteToast(false);
     } else {
       setIsFavorite(true);
-      handleToast('favorite');
-      fetch('https://flyers.qmarket.me/api/favorite/1', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ favoriteCheck: 1 }),
-      }).then(response => {
-        if (response.ok) {
-          console.log('favorite added successfully');
-        } else {
-          console.error('failed to add favorite');
-        }
-      });
+      sendFavoriteRequest(
+        1,
+        'favorite added successfully',
+        'failed to add favorite'
+      );
+      handleFavoriteToast(true);
     }
   };
 
