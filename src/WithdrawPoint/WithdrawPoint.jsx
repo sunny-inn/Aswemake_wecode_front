@@ -19,7 +19,7 @@ const WithdrawPoint = () => {
   const [overHoldingPoint, setOverHoldingPoint] = useState(false);
 
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/accounts//checkCurrentAccount', {
+    fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: localStorage.getItem('token'),
@@ -121,6 +121,7 @@ const WithdrawPoint = () => {
               ? `${accountInfo.accountBank}, ${accountInfo.accountNumber}`
               : ''
           }
+          onChange={e => {}}
         />
         <S.Wrapper>
           <S.TitleMyPoint>인출할 금액</S.TitleMyPoint>
