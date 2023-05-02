@@ -143,6 +143,7 @@ const Home = () => {
         .then(data => {
           console.log('데이터받아오기', data);
           setHomeMartList(data.martList);
+          console.log('센터다', center);
         });
     }
   }, [center]);
