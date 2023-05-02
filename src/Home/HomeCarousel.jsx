@@ -9,6 +9,7 @@ const HomeCarousel = ({
   homeMartList,
   selectedMart,
   handleModal,
+  onClickDetailPortal,
   changeCenterByCarousel,
 }) => {
   const settings = {
@@ -34,8 +35,10 @@ const HomeCarousel = ({
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
   };
-  const goToDetail = id => {
-    navigate(`detail/${id}`);
+
+  const onClickMartItem = id => e => {
+    onClickDetailPortal(id);
+    handleModal();
   };
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const HomeCarousel = ({
                   <S.CarouselImg
                     src="./images/thirdRec.png"
                     alt="전단지"
-                    onClick={handleModal}
+                    onClick={onClickMartItem(mart.id)}
                   />
                 </div>
                 <S.CarouselContent>

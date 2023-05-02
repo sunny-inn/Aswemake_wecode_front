@@ -2,10 +2,11 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './DetailModal.style';
 
-const DetailModal = ({ handleModal }) => {
+const DetailModal = ({ handleModal, currentId }) => {
   const navigate = useNavigate();
-  const params = useParams();
-  console.log('params: ', params);
+
+  console.log('currentId: ', currentId);
+
   return (
     <S.ModalContainer>
       <S.ModalContentBox>
@@ -18,7 +19,7 @@ const DetailModal = ({ handleModal }) => {
         <S.ModalButtonBox>
           <S.ModalInfoButton
             onClick={() => {
-              navigate(`/detail/${params.id}`);
+              navigate(`/detail/${currentId}`);
             }}
           >
             마트 정보 보기

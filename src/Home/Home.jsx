@@ -21,6 +21,7 @@ const Home = () => {
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [shopModal, setShopModal] = useState(false);
+  const [currentId, setCurrentId] = useState(Number.MAX_SAFE_INTEGER);
   const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
@@ -97,6 +98,10 @@ const Home = () => {
 
   const handleModal = () => {
     setOpenModal(prev => !prev);
+  };
+
+  const onClickDetailPortal = id => {
+    setCurrentId(id);
   };
 
   const handleMarkerClick = (e, mart, index) => {
@@ -281,11 +286,13 @@ const Home = () => {
                   homeMartList={homeMartList}
                   selectedMart={selectedMart}
                   handleModal={handleModal}
+                  onClickDetailPortal={onClickDetailPortal}
                   changeCenterByCarousel={changeCenterByCarousel}
                 />
               </NaverMap>
               {openModal && (
                 <DetailModal
+                  currentId={currentId}
                   handleModal={handleModal}
                   goToDetail={goToDetail}
                 />
