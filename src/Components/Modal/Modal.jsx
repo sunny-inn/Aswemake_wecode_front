@@ -10,21 +10,31 @@ const Modal = ({ handleModal, children, type }) => {
   };
 
   return (
-    <S.ModalContainer>
-      <S.ModalContentBox>
-        <span>{infoList[type].title}</span>
-        <button onClick={handleModal}>X</button>
-        <S.ModalText>{infoList[type].message1}</S.ModalText>
-        <S.ModalText>{infoList[type].message2}</S.ModalText>
-        <S.ModalButtonBox>
-          {infoList[type].button[1] && (
-            <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
-          )}
-          <S.ModalUploadButton>{infoList[type].button[0]}</S.ModalUploadButton>
-        </S.ModalButtonBox>
-      </S.ModalContentBox>
-      {/* {children} */}
-    </S.ModalContainer>
+    <S.ModalBackground>
+      <S.ModalContainer>
+        <S.ModalContentBox>
+          <S.ModalTitleBox>
+            <span>{infoList[type].title}</span>
+            <S.ModalCloseImg
+              src="./images/closeImg.png"
+              onClick={handleModal}
+              alt="닫기"
+            />
+          </S.ModalTitleBox>
+          <S.ModalText>{infoList[type].message1}</S.ModalText>
+          <S.ModalText>{infoList[type].message2}</S.ModalText>
+          <S.ModalButtonBox>
+            {infoList[type].button[1] && (
+              <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
+            )}
+            <S.ModalUploadButton>
+              {infoList[type].button[0]}
+            </S.ModalUploadButton>
+          </S.ModalButtonBox>
+        </S.ModalContentBox>
+        {/* {children} */}
+      </S.ModalContainer>
+    </S.ModalBackground>
   );
 };
 

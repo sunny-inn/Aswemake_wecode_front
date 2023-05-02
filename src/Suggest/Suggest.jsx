@@ -13,7 +13,7 @@ const Suggest = ({ onClose }) => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate('#');
+    navigate('/detail');
   };
 
   const onClickSuggestBtn = e => {
