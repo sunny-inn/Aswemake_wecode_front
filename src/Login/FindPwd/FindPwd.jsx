@@ -189,7 +189,7 @@ const FindPwd = () => {
 
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
 
-        <S.FindPwdSubmit confirmed={alertMsg === true} onClick={forSetPwd}>
+        <S.FindPwdSubmit confirmed={alertMsg !== null} onClick={forSetPwd}>
           확인
         </S.FindPwdSubmit>
       </LoginLayout>
