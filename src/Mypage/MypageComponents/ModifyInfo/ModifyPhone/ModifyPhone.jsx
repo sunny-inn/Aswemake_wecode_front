@@ -2,35 +2,45 @@ import React, { useState, useRef, useEffect } from 'react';
 import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyPhone.style';
 
-const ModifyPhone = ({ setModalOpen }) => {
+const ModifyPhone = ({ setModalOpen, userInfo }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [code, setCode] = useState(false);
   const [verification, setVerification] = useState(false);
   const [codeBtn, setCodeBtn] = useState(false);
-  const [timer, setTimer] = useState(180);
+  const [seconds, setSeconds] = useState(180);
+  const [showTimer, setShowTimer] = useState(false);
   const [alertMsg, setAlertMsg] = useState(false);
 
   const handleCode = e => setCode(e.target.value);
 
-  const handleCodeBtn = phoneNumber.length === 11;
+  const handleCodeBtn =
+    phoneNumber.includes('010') &&
+    (phoneNumber.length === 10 || phoneNumber.length === 11);
 
-  const id = useRef(null);
-
-  const reset = () => {
-    window.clearInterval(id.current);
+  const formatTime = () => {
+    const minutes = Math.floor(seconds / 60);
+    const secondsLeft = seconds % 60;
+    return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
   };
 
-  const handlePhoneNumber = e => {
-    setPhoneNumber(prev => ({ ...prev, modifyPhoneNum: e.target.value }));
-  };
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSeconds(c => c - 1);
+    }, 1000);
 
-  const onClickBack = () => {
-    setModalOpen(prev => !prev);
-  };
+    if (seconds === 0) {
+      clearInterval(id);
+    }
 
+    return () => clearInterval(id);
+  }, [codeBtn, seconds]);
+
+  // 인증번호 버튼 클릭 시 로직
   const toGetCode = e => {
     e.preventDefault();
     setCodeBtn(true);
+    setShowTimer(true);
+    setSeconds(180);
 
     fetch('https://flyers.qmarket.me/api/verificationCode/send', {
       method: 'POST',
@@ -43,19 +53,16 @@ const ModifyPhone = ({ setModalOpen }) => {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.message === 'message sent successfully') {
-          codeBtn && timer === 0
-            ? reset()
-            : (id.current = setInterval(() => {
-                setTimer(time => time - 1);
-              }));
-        } else {
-          alert('실패');
+        if (data.message !== 'message sent successfully') {
+          alert('인증번호 전송 실패');
         }
       });
-    return () => reset();
   };
 
+  // 확인 버튼 활성화 조건
+  const handleVerificationBtn = code && phoneNumber;
+
+  //확인 버튼 클릭 시 로직
   const toVerifyCode = e => {
     e.preventDefault();
 
@@ -72,6 +79,7 @@ const ModifyPhone = ({ setModalOpen }) => {
       .then(res => res.json())
       .then(data => {
         if (data.message === 'verification code matches') {
+          userInfo.phone_number = phoneNumber;
           setVerification(true);
           setAlertMsg(false);
         } else {
@@ -79,6 +87,20 @@ const ModifyPhone = ({ setModalOpen }) => {
           setAlertMsg(true);
         }
       });
+  };
+
+  const id = useRef(null);
+
+  const reset = () => {
+    window.clearInterval(id.current);
+  };
+
+  const handlePhoneNumber = e => {
+    setPhoneNumber(prev => ({ ...prev, phoneNumber: e.target.value }));
+  };
+
+  const onClickBack = () => {
+    setModalOpen(prev => !prev);
   };
 
   //전화번호 수정 확인 버튼 눌렀을 때 실행되는 함수
@@ -107,7 +129,7 @@ const ModifyPhone = ({ setModalOpen }) => {
       <S.ModifyPhoneBody>
         <S.ModifyPhoneTitle>휴대전화</S.ModifyPhoneTitle>
         <S.PhoneInputWrap>
-          <input
+          <S.PhoneInput
             placeholder="전화번호를 입력해주세요."
             name="phoneNumber"
             type="text"
@@ -116,34 +138,40 @@ const ModifyPhone = ({ setModalOpen }) => {
           />
           <S.GetNumBtn
             onClick={toGetCode}
-            disabled={handleCodeBtn ? false : true}
+            disabled={!handleCodeBtn}
             handleCodeBtn={handleCodeBtn}
           >
             인증번호 받기
           </S.GetNumBtn>
         </S.PhoneInputWrap>
         <S.PhoneInputWrap>
-          <input
+          <S.PhoneInput
             placeholder="인증번호를 입력해주세요."
             name="code"
             type="text"
             value={code}
             onChange={handleCode}
           />
-          {/* <S.Timer>3:00</S.Timer> */}
+          {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
           <S.GetNumBtn
             onClick={toVerifyCode}
-            disabled={code && phoneNumber ? false : true}
+            disabled={!handleVerificationBtn}
+            verification={verification}
+            alertMsg={alertMsg}
+            handleVerificationBtn={handleVerificationBtn}
           >
             확인
           </S.GetNumBtn>
         </S.PhoneInputWrap>
-        {alertMsg && (
+        {alertMsg ? (
           <S.PhoneCheckText>인증번호를 다시 확인해주세요.</S.PhoneCheckText>
+        ) : (
+          <S.PhoneCheckText>번호 인증이 완료되었습니다.</S.PhoneCheckText>
         )}
-        {/* <S.PhoneCheckText>번호 인증이 완료되었습니다.</S.PhoneCheckText> */}
       </S.ModifyPhoneBody>
-      <S.ConfirmBtn disabled>확인</S.ConfirmBtn>
+      <S.ConfirmBtn onClick={toModifyPhone} disabled={!handleVerificationBtn}>
+        확인
+      </S.ConfirmBtn>
     </S.ModifyPhone>
   );
 };

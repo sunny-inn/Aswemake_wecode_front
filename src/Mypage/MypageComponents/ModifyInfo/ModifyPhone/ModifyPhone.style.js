@@ -26,21 +26,27 @@ export const PhoneInputWrap = styled.div`
   margin-top: 8px;
   width: 328px;
   height: 50px;
+`;
 
-  input {
-    width: 204px;
-    height: 50px;
-    padding: 16px;
-    border: 1px solid #dbdbdb;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 15px;
-    color: #252525;
+export const PhoneInput = styled.input`
+  width: 204px;
+  height: 50px;
+  padding: 16px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #252525;
 
-    ::placeholder {
-      color: #dbdbdb;
-    }
+  ::placeholder {
+    color: #dbdbdb;
   }
+`;
+
+export const Timer = styled.p`
+  position: absolute;
+  left: 47%;
+  color: #ff6a21;
 `;
 
 export const GetNumBtn = styled.button`
