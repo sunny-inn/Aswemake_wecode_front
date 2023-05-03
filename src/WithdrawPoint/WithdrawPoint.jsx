@@ -93,19 +93,16 @@ const WithdrawPoint = () => {
 
     const fetchHoldingPoint = async () => {
       try {
-        const response = await fetch(
-          'https://flyers.qmarket.me/api/accounts/flyerRegistrationNumberIsMoreThan3',
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              authorization: localStorage.getItem('token'),
-            },
-          }
-        );
+        const response = await fetch('https://flyers.qmarket.me/api/points', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: localStorage.getItem('token'),
+          },
+        });
         const data = await response.json();
         console.log('points', data);
-        setHoldingPoint(data.result.withdrawalPoints);
+        setHoldingPoint(data.result.totalPoints);
       } catch (error) {
         console.error('Error fetching holding point:', error);
       }
@@ -203,7 +200,7 @@ const WithdrawPoint = () => {
               <S.HoldingPoint>원</S.HoldingPoint>
             </S.PointWrapper>
             <S.WithdrawPoint
-              value={inputValue}
+              // value={inputValue}
               onChange={handleInputChange}
               showCurrency={showCurrency}
               onFocus={handleFocus}
