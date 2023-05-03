@@ -63,7 +63,7 @@ const HomeCarousel = ({
                   <S.CarouselImg
                     src={
                       mart.martFlyerImages.length === '0'
-                        ? '/images/flyernone.png'
+                        ? './images/flyernone.png'
                         : mart.martFlyerImages[0].imageUrl
                     }
                     alt="전단지"
