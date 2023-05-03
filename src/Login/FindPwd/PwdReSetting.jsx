@@ -40,7 +40,6 @@ const PwdReSetting = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({ password, passwordConfirm }),
     })
