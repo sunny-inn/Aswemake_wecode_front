@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const FavoriteListContainer = styled.div`
   width: 360px;
   height: 616px;
-  margin-top: 56px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -16,6 +15,7 @@ export const MartBox = styled.div`
   border: 1px solid #ececec;
   box-shadow: 1px 1px 4px rgba(154, 154, 154, 0.1);
   border-radius: 12px;
+  margin-top: 15px;
 `;
 
 export const CarouselBox = styled.ul`
