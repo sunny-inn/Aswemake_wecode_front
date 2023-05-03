@@ -74,6 +74,5 @@ export const MartContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: auto;
-  border: 1px solid red;
+  height: 55%;
 `;
