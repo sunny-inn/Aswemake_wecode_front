@@ -8,7 +8,7 @@ const WithdrawNotify = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const remainingFlyers = location.state && location.state.remainingFlyers;
-
+  console.log(remainingFlyers);
   const onClickBack = e => {
     e.preventDefault();
     navigate('/mypage');
