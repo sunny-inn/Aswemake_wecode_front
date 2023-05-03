@@ -150,89 +150,94 @@ const Detail = () => {
   }, [detailMartList]);
 
   return (
-    <S.DetailContainer>
+    <>
       <Header type="martInfo" onClickBack={onClickBack} />
-      {detailMartList.map(list => {
-        return (
-          <div key={list.martId}>
-            {list.startDate ||
-              (list.endDate && (
-                <S.PromoStartDate>
-                  전단 행사기간 : {list.startDate} ~
-                  <S.PromoEndDate>{list.endDate}</S.PromoEndDate>
-                </S.PromoStartDate>
-              ))}
-            <FlyersCarousel
-              showBigFlyerModal={showBigFlyerModal}
-              handleImageClick={handleImageClick}
-              detailMartList={detailMartList}
-            />
-            <S.MartTitle>{list.martName}</S.MartTitle>
-            <S.MartDetailBox>
-              <S.MartDetailText>
-                주소 : {list.martNumberAddress}
-                <CopyToClipboard
-                  text={list.martNumberAddress}
-                  onCopy={handleAddressCopy}
-                >
+      <S.DetailContainer>
+        {detailMartList.map(list => {
+          return (
+            <div key={list.martId}>
+              {list.startDate ||
+                (list.endDate && (
+                  <S.PromoStartDate>
+                    전단 행사기간 : {list.startDate} ~
+                    <S.PromoEndDate>{list.endDate}</S.PromoEndDate>
+                  </S.PromoStartDate>
+                ))}
+              <FlyersCarousel
+                showBigFlyerModal={showBigFlyerModal}
+                handleImageClick={handleImageClick}
+                detailMartList={detailMartList}
+              />
+              <S.MartTitle>{list.martName}</S.MartTitle>
+              <S.MartDetailBox>
+                <S.MartDetailText>
+                  주소 : {list.martNumberAddress}
+                  <CopyToClipboard
+                    text={list.martNumberAddress}
+                    onCopy={handleAddressCopy}
+                  >
+                    <S.MartDetailContentImg
+                      src="/images/copy.png"
+                      alt="복사하기"
+                    />
+                  </CopyToClipboard>
+                </S.MartDetailText>
+                <S.MartDetailText>
+                  연락처 : &nbsp;
+                  {list.martPhoneNumber}
                   <S.MartDetailContentImg
-                    src="/images/copy.png"
-                    alt="복사하기"
+                    src="/images/phone.png"
+                    alt="전화걸기"
+                    onClick={handleModal}
                   />
-                </CopyToClipboard>
-              </S.MartDetailText>
-              <S.MartDetailText>
-                연락처 : &nbsp;
-                {list.martPhoneNumber}
-                <S.MartDetailContentImg
-                  src="/images/phone.png"
-                  alt="전화걸기"
-                  onClick={handleModal}
-                />
-              </S.MartDetailText>
-              <S.MartDetailText>
-                정보 수정 제안
-                <S.MartDetailContentImg
-                  src="/images/edit.png"
-                  alt="편집하기"
-                  onClick={onClickSuggestBtn}
-                />
-              </S.MartDetailText>
-              <S.ShareAndFavoriteBox>
-                {/* <KakaoShare /> */}
-                <DetailBtn
-                  isShared={isShared}
-                  detailMartList={detailMartList}
-                  KakaoShare={KakaoShare}
-                  type="share"
-                  onClick={() => {
-                    KakaoShare(url, list, onClickShared, detailMartList);
-                    onClickShared();
-                  }}
-                  onClickShared={onClickShared}
-                />
-                <DetailBtn
-                  type="favorite"
-                  onClickFavorite={onClickFavorite}
-                  isFavorite={isFavorite}
-                />
-              </S.ShareAndFavoriteBox>
-            </S.MartDetailBox>
-          </div>
-        );
-      })}
-      {openCallModal && (
-        <CallModal
-          handlePhoneNum={handlePhoneNum}
-          handleModal={handleModal}
-          detailMartList={detailMartList}
-          showToast={showToast}
-        />
-      )}
-      {showToast.show && (
-        <DetailToast onClickFavorite={onClickFavorite} type={showToast.type} />
-      )}
-    </S.DetailContainer>
+                </S.MartDetailText>
+                <S.MartDetailText>
+                  정보 수정 제안
+                  <S.MartDetailContentImg
+                    src="/images/edit.png"
+                    alt="편집하기"
+                    onClick={onClickSuggestBtn}
+                  />
+                </S.MartDetailText>
+                <S.ShareAndFavoriteBox>
+                  {/* <KakaoShare /> */}
+                  <DetailBtn
+                    isShared={isShared}
+                    detailMartList={detailMartList}
+                    KakaoShare={KakaoShare}
+                    type="share"
+                    onClick={() => {
+                      KakaoShare(url, list, onClickShared, detailMartList);
+                      onClickShared();
+                    }}
+                    onClickShared={onClickShared}
+                  />
+                  <DetailBtn
+                    type="favorite"
+                    onClickFavorite={onClickFavorite}
+                    isFavorite={isFavorite}
+                  />
+                </S.ShareAndFavoriteBox>
+              </S.MartDetailBox>
+            </div>
+          );
+        })}
+        {openCallModal && (
+          <CallModal
+            handlePhoneNum={handlePhoneNum}
+            handleModal={handleModal}
+            detailMartList={detailMartList}
+            showToast={showToast}
+          />
+        )}
+        {showToast.show && (
+          <DetailToast
+            onClickFavorite={onClickFavorite}
+            type={showToast.type}
+          />
+        )}
+      </S.DetailContainer>
+    </>
   );
 };
 
