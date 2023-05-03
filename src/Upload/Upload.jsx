@@ -23,12 +23,12 @@ const Upload = () => {
   const { images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
-  // uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
-  // for (const image of uploadInfo.images) {
-  //   uploadForm.append('images', image);
-  // }
-  // uploadForm.append('startDate', uploadInfo.startDate);
-  // uploadForm.append('endDate', uploadInfo.endDate);
+  uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
+  for (const image of uploadInfo.images) {
+    uploadForm.append('images', image);
+  }
+  uploadForm.append('startDate', uploadInfo.startDate);
+  uploadForm.append('endDate', uploadInfo.endDate);
 
   uploadForm.append('data', uploadInfo);
 
