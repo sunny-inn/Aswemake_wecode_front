@@ -90,7 +90,7 @@ const Upload = () => {
 
     setUploadInfo(prev => ({
       ...prev,
-      images: [files],
+      images: files,
     }));
   };
 
