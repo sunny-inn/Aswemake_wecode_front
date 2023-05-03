@@ -79,7 +79,6 @@ const Home = () => {
       }
     });
     setIsMarkerClicked(newToggles);
-    console.log('여기', isMarkerClicked[index]);
   };
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
