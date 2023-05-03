@@ -12,7 +12,6 @@ const Upload = () => {
   const [alertMsg, setAlertMsg] = useState(false);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
-  const [uploadedImgs, setUploadedImgs] = useState([]);
   const [uploadInfo, setUploadInfo] = useState({
     martPhoneNumber: '',
     images: [],
@@ -25,6 +24,7 @@ const Upload = () => {
 
   const uploadForm = new FormData();
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
+  uploadForm.append('images', JSON.stringify(uploadInfo.images));
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
@@ -55,17 +55,16 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         if (data.mart.length !== 0) {
           setMartInfo(data.mart[0]);
-          setUploadInfo(prev => ({
-            ...prev,
-            martPhoneNumber: phoneNumber,
-          }));
         } else {
           setAlertMsg(true);
         }
       });
   };
+
+  console.log(martInfo);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -83,19 +82,13 @@ const Upload = () => {
   // 이미지 state에 넣기
   const handleImg = e => {
     e.preventDefault();
-    const imageLists = e.target.files;
-    let imageUrlLists = [...uploadedImgs];
+    const files = e.target.files;
 
-    for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
-      uploadForm.append('images', imageLists[i]);
-    }
-    setUploadedImgs(imageUrlLists);
+    setUploadInfo(prev => ({
+      ...prev,
+      images: files,
+    }));
   };
-
-  console.log(uploadInfo);
-  console.log(uploadedImgs[0]);
 
   let settings = {
     dots: false,
@@ -121,6 +114,7 @@ const Upload = () => {
 
   const handelDisabled = !(
     martInfo &&
+    uploadInfo.images.length === 4 &&
     startDate &&
     endDate &&
     isCheckboxClicked === true
@@ -150,6 +144,8 @@ const Upload = () => {
         }
       });
   };
+
+  console.log(uploadInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
@@ -193,9 +189,22 @@ const Upload = () => {
       <div>
         {images.length === 4 ? (
           <Slider {...settings}>
-            {uploadedImgs.map(url => (
-              <S.UploadedImg key={url.id} alt="flyer1" src={url} />
-            ))}
+            <S.UploadedImg
+              alt="flyer1"
+              src={`${URL.createObjectURL(images[0])}`}
+            />
+            <S.UploadedImg
+              alt="flyer2"
+              src={`${URL.createObjectURL(images[1])}`}
+            />
+            <S.UploadedImg
+              alt="flyer3"
+              src={`${URL.createObjectURL(images[2])}`}
+            />
+            <S.UploadedImg
+              alt="flyer4"
+              src={`${URL.createObjectURL(images[3])}`}
+            />
           </Slider>
         ) : (
           <S.CameraBox onClick={onClickImg}>
