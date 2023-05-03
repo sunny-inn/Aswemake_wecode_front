@@ -102,32 +102,60 @@ const Home = () => {
   // console.log(token);
   //api/home
   //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
-  useEffect(() => {
-    if (center) {
-      fetch(`https://flyers.qmarket.me/api/home`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: token,
-        },
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('데이터받아오기', data);
-          setHomeMartList(data.martList);
-          console.log('센터다', center);
-        });
 
-      // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
-      if (homeMartList?.userPosition) {
-        setCenter({
-          lat: homeMartList.userPosition.lat,
-          lng: homeMartList.userPosition.lng,
-        });
-      }
+  // 해인님 코드
+  // useEffect(() => {
+  //   if (center) {
+  //     fetch(`https://flyers.qmarket.me/api/home`, {
+  //       method: 'GET',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //         authorization: token,
+  //       },
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         console.log('데이터받아오기', data);
+  //         setHomeMartList(data.martList);
+  //         console.log('센터다', center);
+  //       });
+
+  //     // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
+  //     if (homeMartList?.userPosition) {
+  //       setCenter({
+  //         lat: homeMartList.userPosition.lat,
+  //         lng: homeMartList.userPosition.lng,
+  //       });
+  //     }
+  //   }
+  // }, [center, token]);
+
+  // 은정 수정한 코드
+  useEffect(() => {
+    fetch(`https://flyers.qmarket.me/api/home`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('데이터받아오기', data);
+        setHomeMartList(data.martList);
+        console.log('센터다', center);
+      });
+
+    // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
+    if (homeMartList?.userPosition) {
+      setCenter({
+        lat: homeMartList.userPosition.lat,
+        lng: homeMartList.userPosition.lng,
+      });
     }
-  }, [center, token]);
+  }, []);
 
   useEffect(() => {
     if (mapRef.current) {
