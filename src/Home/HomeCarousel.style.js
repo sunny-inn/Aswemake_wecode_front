@@ -6,10 +6,6 @@ export const StarImg = styled.img`
   display: inline-block;
 `;
 
-export const RatingSpan = styled.span`
-  margin-left: 17px;
-`;
-
 export const CarouselWholeContainer = styled.div`
   width: 355px;
   height: 115px;

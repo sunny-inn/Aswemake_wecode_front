@@ -49,7 +49,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
                 <S.FlyerImage
                   src={
                     list.martFlyerImages === '0'
-                      ? './images/flyernone.png'
+                      ? '/images/flyernone.png'
                       : list.martFlyerImages
                   }
                   alt="전단지"

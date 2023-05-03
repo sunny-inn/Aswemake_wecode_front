@@ -19,7 +19,14 @@ const FavoriteList = ({ addedFavoriteList }) => {
               <S.MartBox>
                 <S.CarouselBox>
                   <div>
-                    <S.CarouselImg src={item.martFlyerImage} alt="전단지" />
+                    <S.CarouselImg
+                      src={
+                        item.martFlyerImage === '0'
+                          ? '/images/flyernone.png'
+                          : item.martFlyerImage[0]
+                      }
+                      alt="전단지"
+                    />
                   </div>
                   <S.CarouselContent>
                     <S.MartTitleLi>
