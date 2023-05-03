@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyPhone.style';
 
@@ -9,7 +9,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
   const [codeBtn, setCodeBtn] = useState(false);
   const [seconds, setSeconds] = useState(180);
   const [showTimer, setShowTimer] = useState(false);
-  const [alertMsg, setAlertMsg] = useState(false);
+  const [alertMsg, setAlertMsg] = useState(null);
 
   useEffect(() => {
     let timer;
@@ -90,6 +90,8 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
       });
   };
 
+  const handleCode = e => setCode(prev => ({ ...prev, code: e.target.value }));
+
   const handlePhoneNumber = e => {
     setPhoneNumber(prev => ({ ...prev, phoneNumber: e.target.value }));
   };
@@ -141,7 +143,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             name="code"
             type="text"
             value={code}
-            onChange={e => setCode(e.target.value)}
+            onChange={handleCode}
           />
           {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
           <S.GetNumBtn
