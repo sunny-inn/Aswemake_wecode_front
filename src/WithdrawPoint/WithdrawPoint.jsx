@@ -17,6 +17,7 @@ const WithdrawPoint = () => {
   const [accountInfo, setAccountInfo] = useState(null);
   const [holdingPoint, setHoldingPoint] = useState(10);
   const [overHoldingPoint, setOverHoldingPoint] = useState(false);
+  const [empty, setEmpty] = useState(true);
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
@@ -54,6 +55,7 @@ const WithdrawPoint = () => {
       });
   }, []);
 
+  //최종 인출 버튼 눌렀을 때
   const handleWithdrawRequest = e => {
     e.preventDefault();
 
@@ -88,10 +90,12 @@ const WithdrawPoint = () => {
       });
   };
 
+  //포인트 인출 입력 값 input 창 관리
   const handleInputChange = e => {
     const value = e.target.value.replace(/[^0-9]/g, '');
     // 숫자 외의 문자 제거
     setInputValue(value);
+    setEmpty(value === '');
     setOverPrice(parseInt(value, 10) > 150000);
     setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
   };
@@ -151,6 +155,7 @@ const WithdrawPoint = () => {
           onClick={handleWithdrawRequest}
           overPrice={overPrice}
           overHoldingPoint={overHoldingPoint}
+          empty={empty}
         >
           인출 요청
         </S.FinBtn>

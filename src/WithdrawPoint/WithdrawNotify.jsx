@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import * as S from './WithdrawNotify.style';
 import Header from '../Components/Header/Header';
 import LoginLayout from '../Login/Component/LoginLayout';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const WithdrawNotify = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const remainingFlyers = location.state && location.state.remainingFlyers;
 
+  const onClickBack = e => {
+    e.preventDefault();
+    navigate('/mypage');
+  };
   // useEffect(() => {
   //   fetch('https://example.com/api/remaining-flyers', {
   //     method: 'GET',
@@ -25,10 +30,10 @@ const WithdrawNotify = () => {
 
   return (
     <div>
-      <Header type="withdrawPoint" />
+      <Header type="withdrawPoint" onClickBack={onClickBack} />
       <LoginLayout>
         <S.TitleWrapper>
-          <S.Title> &nbsp; 인출가능까지</S.Title>
+          <S.Title> 인출가능까지</S.Title>
           <S.ColorTitle>전단 등록 {remainingFlyers} 회</S.ColorTitle>
           <S.Title>남았어요.</S.Title>
           <S.FinalTitle>내 주변 마트 전단을 등록해 보세요!</S.FinalTitle>

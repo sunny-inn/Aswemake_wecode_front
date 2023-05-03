@@ -28,6 +28,6 @@ export const EnrollBtn = styled.button`
   color: white;
   margin-top: 200px;
   background-color: #ff6a21;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
 `;
