@@ -29,6 +29,8 @@ const FindPwd = () => {
   const [showTimer, setShowTimer] = useState(false);
   const [seconds, setSeconds] = useState(180);
   const [alertMsg, setAlerMsg] = useState(null);
+  //타이머 0s 안돼서 추가
+  const [timerId, setTimerId] = useState(null);
 
   // 인증번호 색깔 변하게..
   const codeBtnChange = input.phoneNumber === '' || input.code === '';
@@ -43,6 +45,7 @@ const FindPwd = () => {
       timer = setInterval(() => {
         setSeconds(prev => (prev > 0 ? prev - 1 : 0));
       }, 1000);
+      setTimerId(timer);
     }
 
     return () => {
@@ -88,6 +91,10 @@ const FindPwd = () => {
   //인증번호 받기
   const onCodeBtn = e => {
     e.preventDefault();
+    //타이머 멈춤
+    clearInterval(timerId);
+    setShowTimer(false);
+    setSeconds(180);
 
     fetch('https://flyers.qmarket.me/api/verificationCode/check', {
       method: 'POST',

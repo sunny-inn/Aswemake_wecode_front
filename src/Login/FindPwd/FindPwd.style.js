@@ -54,8 +54,8 @@ export const ButtonTwo = styled.button`
   border: none;
   color: white;
   margin-left: 8px;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 17px;
 `;
 
 export const FindPwdSubmit = styled.button`
