@@ -59,15 +59,6 @@ const Search = ({
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
     setIsSubmitted(true);
-
-    marts &&
-      setFilteredMarts(
-        marts.filter(
-          mart =>
-            mart.martName.includes(newKeyword) ||
-            mart.martNumberAddress.includes(newKeyword)
-        )
-      );
   };
 
   // 최근 검색어 클릭 시 검색되는 기능
@@ -78,20 +69,12 @@ const Search = ({
     setNewKeyword(text);
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
-
-    marts &&
-      setFilteredMarts(
-        marts.filter(
-          mart =>
-            mart.martName.includes(newKeyword) ||
-            mart.martNumberAddress.includes(newKeyword)
-        )
-      );
   };
 
-  let result = marts.filter(mart => mart.martName.includes('마트'));
+  useEffect(() => {
+    setFilteredMarts(marts.filter(mart => mart.martName.includes('마트')));
+  }, [isSubmitted]);
 
-  console.log(result);
   console.log(marts);
   console.log(filteredMarts);
 
