@@ -94,7 +94,7 @@ const Upload = () => {
     setUploadInfo({ ...uploadInfo, ImgUrl: imageLists[0] });
   };
 
-  console.log(uploadedImgs);
+  console.log(uploadedImgs[0]);
 
   let settings = {
     dots: false,
@@ -193,10 +193,9 @@ const Upload = () => {
       <div>
         {images.length === 4 ? (
           <Slider {...settings}>
-            <S.UploadedImg alt="flyer1" src={uploadedImgs[0]} />
-            <S.UploadedImg alt="flyer2" src={uploadedImgs[1]} />
-            <S.UploadedImg alt="flyer3" src={uploadedImgs[2]} />
-            <S.UploadedImg alt="flyer4" src={uploadedImgs[3]} />
+            {uploadedImgs.map(url => (
+              <S.UploadedImg key={url.id} alt="flyer1" src={url} />
+            ))}
           </Slider>
         ) : (
           <S.CameraBox onClick={onClickImg}>
