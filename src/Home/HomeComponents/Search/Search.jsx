@@ -55,18 +55,19 @@ const Search = ({
 
   // 검색 기능
   let filteredList = [];
-
-  const handleAddKeyword = e => {
-    e.preventDefault();
-    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
-    setIsSubmitted(true);
-
+  useEffect(() => {
     filteredList = marts.filter(
       mart =>
         mart.martName.includes(newKeyword) ||
         mart.martNumberAddress.includes(newKeyword) ||
         mart.martRoadNameAddress.includes(newKeyword)
     );
+  }, [isSubmitted]);
+
+  const handleAddKeyword = e => {
+    e.preventDefault();
+    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
+    setIsSubmitted(true);
   };
 
   // 최근 검색어 클릭 시 검색되는 기능
@@ -77,13 +78,6 @@ const Search = ({
     setNewKeyword(text);
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
-
-    filteredList = marts.filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword) ||
-        mart.martRoadNameAddress.includes(newKeyword)
-    );
   };
 
   console.log(newKeyword);
