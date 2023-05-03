@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import * as S from './FavoriteList.style';
 
 const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
   const [checked, setChecked] = useState(false);
+  const params = useParams();
 
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
@@ -12,7 +14,7 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
   };
   const token = localStorage.getItem('token');
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/favorite', {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
