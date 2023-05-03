@@ -65,7 +65,8 @@ export const ModalUploadButton = styled.button`
 export const CloseBox = styled.div`
   width: 90%;
   height: 26px;
-  right: 0;
+  display: flex;
+  justify-content: end;
 `;
 
 export const CloseImg = styled.img`
