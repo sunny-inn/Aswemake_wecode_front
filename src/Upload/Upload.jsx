@@ -93,7 +93,8 @@ const Upload = () => {
     }));
 
     for (let i = 0; i < files.length; i++) {
-      uploadForm.append('images[]', files[i]);
+      uploadForm.append('images', files[i]);
+      console.log(files);
     }
   };
 
