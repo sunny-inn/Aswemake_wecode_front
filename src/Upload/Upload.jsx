@@ -220,6 +220,7 @@ const Upload = () => {
           </S.CameraBox>
         )}
         <input
+          ref={inputRef}
           type="file"
           multiple
           hidden
