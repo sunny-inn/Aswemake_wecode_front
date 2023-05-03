@@ -91,6 +91,10 @@ const FindPwd = () => {
   //인증번호 받기
   const onCodeBtn = e => {
     e.preventDefault();
+    setCodeBtn(false);
+    setAlerMsg(null);
+    setShowTimer(true);
+    setSeconds(180);
     //타이머 멈춤
     clearInterval(timerId);
     setShowTimer(false);
