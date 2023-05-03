@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './DetailModal.style';
 
-const DetailModal = ({ handleModal, currentId }) => {
+const DetailModal = ({ handleModal, currentId, homeMartList }) => {
   const navigate = useNavigate();
 
   console.log('currentId: ', currentId);
@@ -19,7 +19,7 @@ const DetailModal = ({ handleModal, currentId }) => {
         <S.ModalButtonBox>
           <S.ModalInfoButton
             onClick={() => {
-              navigate(`/detail/${currentId}`);
+              navigate(`/detail/${homeMartList.martId}`);
             }}
           >
             마트 정보 보기

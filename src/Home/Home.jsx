@@ -283,7 +283,6 @@ const Home = () => {
                   />
                 </S.SearchBox>
                 <HomeCarousel
-                  currentId={currentId}
                   homeMartList={homeMartList}
                   selectedMart={selectedMart}
                   handleModal={handleModal}
@@ -294,7 +293,8 @@ const Home = () => {
               {openModal && (
                 <DetailModal
                   handleModal={handleModal}
-                  goToDetail={goToDetail}
+                  homeMartList={homeMartList}
+                  // goToDetail={goToDetail}
                 />
               )}
             </>
