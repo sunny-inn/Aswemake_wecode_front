@@ -10,7 +10,7 @@ const Favorite = () => {
 
   const token = localStorage.getItem('token');
   useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/favorite`, {
+    fetch('https://flyers.qmarket.me/api/favorite', {
       method: 'GET',
       credentials: 'include',
       headers: {
