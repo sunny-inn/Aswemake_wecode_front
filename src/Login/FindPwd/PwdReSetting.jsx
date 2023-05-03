@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import * as S from './PwdReSetting.style';
 import Header from '../../Components/Header/Header';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SubmitIdButton from '../Component/SubmitIdButton';
 
 const PwdReSetting = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const userId = location.state.id;
+
   const [password, setPassword] = useState('');
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -36,12 +39,12 @@ const PwdReSetting = () => {
   const setPwd = e => {
     e.preventDefault();
 
-    fetch('https://flyers.qmarket.me/api/users/changeUserPw', {
+    fetch('https://flyers.qmarket.me/api/users/changeUserPwWithoutToken', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({ password, passwordConfirm }),
+      body: JSON.stringify({ identification: userId, password }),
     })
       .then(res => res.json())
       .then(data => {
