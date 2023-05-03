@@ -3,13 +3,26 @@ import Header from '../../../../Components/Header/Header';
 import * as S from './ModifyPhone.style';
 
 const ModifyPhone = ({ setModalOpen, userInfo }) => {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [code, setCode] = useState('');
   const [verification, setVerification] = useState(false);
   const [codeBtn, setCodeBtn] = useState(false);
   const [seconds, setSeconds] = useState(180);
   const [showTimer, setShowTimer] = useState(false);
   const [alertMsg, setAlertMsg] = useState(null);
+  const [modifyPhone, setModifyPhone] = useState({
+    phoneNumber: '',
+    code: '',
+  });
+
+  const onClickBack = () => {
+    setModalOpen(prev => !prev);
+  };
+
+  const handleCode = e =>
+    setModifyPhone(prev => ({ ...prev, code: e.target.value }));
+
+  const handlePhoneNumber = e => {
+    setModifyPhone(prev => ({ ...prev, phoneNumber: e.target.value }));
+  };
 
   useEffect(() => {
     let timer;
@@ -27,8 +40,9 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
   }, [codeBtn]);
 
   const handleCodeBtn =
-    phoneNumber.includes('010') &&
-    (phoneNumber.length === 10 || phoneNumber.length === 11);
+    modifyPhone.phoneNumber.includes('010') &&
+    (modifyPhone.phoneNumber.length === 10 ||
+      modifyPhone.phoneNumber.length === 11);
 
   const formatTime = () => {
     const minutes = Math.floor(seconds / 60);
@@ -49,7 +63,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        phoneNumber: phoneNumber,
+        phoneNumber: modifyPhone.phoneNumber,
       }),
     })
       .then(res => res.json())
@@ -61,7 +75,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
   };
 
   // 확인 버튼 활성화 조건
-  const handleVerificationBtn = code && phoneNumber;
+  const handleVerificationBtn = modifyPhone.code && modifyPhone.phoneNumber;
 
   //확인 버튼 클릭 시 로직
   const toVerifyCode = e => {
@@ -73,14 +87,14 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        phoneNumber: phoneNumber,
-        code: code,
+        phoneNumber: modifyPhone.phoneNumber,
+        code: modifyPhone.code,
       }),
     })
       .then(res => res.json())
       .then(data => {
         if (data.message === 'verification code matches') {
-          userInfo.phone_number = phoneNumber;
+          userInfo.phone_number = modifyPhone.phoneNumber;
           setVerification(true);
           setAlertMsg(false);
         } else {
@@ -88,16 +102,6 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
           setAlertMsg(true);
         }
       });
-  };
-
-  const handleCode = e => setCode(prev => ({ ...prev, code: e.target.value }));
-
-  const handlePhoneNumber = e => {
-    setPhoneNumber(prev => ({ ...prev, phoneNumber: e.target.value }));
-  };
-
-  const onClickBack = () => {
-    setModalOpen(prev => !prev);
   };
 
   //전화번호 수정 확인 버튼 눌렀을 때 실행되는 함수
@@ -109,7 +113,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
         authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
-        newPhoneNumber: phoneNumber,
+        newPhoneNumber: modifyPhone.phoneNumber,
       }),
     })
       .then(response => response.json())
@@ -130,7 +134,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             placeholder="전화번호를 입력해주세요."
             name="phoneNumber"
             type="text"
-            value={phoneNumber}
+            value={modifyPhone.phoneNumber}
             onChange={handlePhoneNumber}
           />
           <S.GetNumBtn onClick={toGetCode} disabled={!handleCodeBtn}>
@@ -142,7 +146,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             placeholder="인증번호를 입력해주세요."
             name="code"
             type="text"
-            value={code}
+            value={modifyPhone.code}
             onChange={handleCode}
           />
           {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
