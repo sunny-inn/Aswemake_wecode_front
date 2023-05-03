@@ -64,8 +64,7 @@ const Search = ({
       marts.filter(
         mart =>
           mart.martName.includes(newKeyword) ||
-          mart.martNumberAddress.includes(newKeyword) ||
-          mart.martRoadNameAddress.includes(newKeyword)
+          mart.martNumberAddress.includes(newKeyword)
       )
     );
   };
@@ -83,8 +82,7 @@ const Search = ({
       marts.filter(
         mart =>
           mart.martName.includes(newKeyword) ||
-          mart.martNumberAddress.includes(newKeyword) ||
-          mart.martRoadNameAddress.includes(newKeyword)
+          mart.martNumberAddress.includes(newKeyword)
       )
     );
   };
