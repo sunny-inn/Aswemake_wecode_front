@@ -169,7 +169,7 @@ const Detail = () => {
                   onCopy={handleAddressCopy}
                 >
                   <S.MartDetailContentImg
-                    src="./images/copy.png"
+                    src="/images/copy.png"
                     alt="복사하기"
                   />
                 </CopyToClipboard>
@@ -178,7 +178,7 @@ const Detail = () => {
                 연락처 : &nbsp;
                 {list.martPhoneNumber}
                 <S.MartDetailContentImg
-                  src="./images/phone.png"
+                  src="/images/phone.png"
                   alt="전화걸기"
                   onClick={handleModal}
                 />
@@ -186,7 +186,7 @@ const Detail = () => {
               <S.MartDetailText>
                 정보 수정 제안
                 <S.MartDetailContentImg
-                  src="./images/edit.png"
+                  src="/images/edit.png"
                   alt="편집하기"
                   onClick={onClickSuggestBtn}
                 />
