@@ -220,6 +220,9 @@ const Home = () => {
     return deg * (Math.PI / 180);
   };
 
+  console.log('selectedMart', selectedMart);
+  console.log('isMarkerClicked', isMarkerClicked);
+
   return (
     <div>
       {!isSearchClicked ? (
