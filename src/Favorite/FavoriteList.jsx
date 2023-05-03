@@ -9,13 +9,11 @@ const FavoriteList = ({ addedFavoriteList }) => {
   };
   console.log('favoriteList1', addedFavoriteList);
   console.log('favoriteList2', addedFavoriteList[0]);
-  console.log('favoriteList3', addedFavoriteList.data);
-  console.log('favoriteList4', addedFavoriteList.martId);
 
   return (
     <S.FavoriteListContainer>
       {addedFavoriteList.map(item => (
-        <div key={item.id}>
+        <div key={item.martId}>
           <S.MartBox>
             <S.CarouselBox>
               <div>
