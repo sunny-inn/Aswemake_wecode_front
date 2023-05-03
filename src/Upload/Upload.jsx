@@ -64,11 +64,6 @@ const Upload = () => {
       });
   };
 
-  useEffect(() => {
-    martInfo[0].martName = '';
-    martInfo[0].martAddress = '';
-  }, []);
-
   console.log(martInfo);
 
   const onClickTutorial = () => {
@@ -167,13 +162,13 @@ const Upload = () => {
       {alertMsg && <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>}
       <S.UplaodLabel>마트 이름</S.UplaodLabel>
       <S.MartInput
-        value={martInfo[0].martName}
+        value={martInfo}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
       <S.UplaodLabel>마트 주소</S.UplaodLabel>
       <S.MartInput
-        value={martInfo[0].martAddress}
+        value={martInfo}
         placeholder="주소를 입력해주세요."
         readOnly
       />
