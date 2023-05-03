@@ -41,11 +41,7 @@ const AccountRegi = () => {
   };
 
   const validateInputs = () => {
-    if (
-      selectBank &&
-      accountNumber.trim() !== '' &&
-      accountName.trim() !== ''
-    ) {
+    if (selectBank && accountNumber.trim() !== '') {
       setAreInputsFilled(true);
     } else {
       setAreInputsFilled(false);
@@ -148,7 +144,7 @@ const AccountRegi = () => {
         />
         <S.CodeBtn
           style={{
-            backgroundColor: areInputsFilled ? '#FF6A21' : '#dbdbdb',
+            backgroundColor: accountName.trim() !== '' ? '#FF6A21' : '#dbdbdb',
           }}
           onClick={checkAccountHolderName}
         >
@@ -164,7 +160,10 @@ const AccountRegi = () => {
         )}
 
         <S.EnrollBtn
-          style={{ backgroundColor: areInputsFilled ? '#FF6A21' : '#DBDBDB' }}
+          style={{
+            backgroundColor:
+              areInputsFilled && accountVerified ? '#FF6A21' : '#DBDBDB',
+          }}
           onClick={submitRegi}
         >
           등록
