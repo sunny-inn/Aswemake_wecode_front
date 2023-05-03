@@ -131,7 +131,7 @@ const Search = ({
                         <S.MartAddress>{martNumberAddress}</S.MartAddress>
                       </div>
                       <S.Distance>
-                        {Math.round(distance * 100) / 100}
+                        {Math.round(distance * 100) / 100}km
                       </S.Distance>
                     </S.SearchedItem>
                   )
