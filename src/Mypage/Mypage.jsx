@@ -85,9 +85,27 @@ const Mypage = () => {
         } else {
           navigate('/accountchange');
         }
-      })
-      .catch(error => {
-        console.error('Error fetching account data:', error);
+      });
+  };
+
+  const flyerCount = () => {
+    fetch('https://flyers.qmarket.me/api/points', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.result.flyerRegistrationCount < 3) {
+          navigate('/withdrawnotify', {
+            state: { remainingFlyers: data.result.flyerRegistrationCount },
+          });
+        } else {
+          navigate('/withdrawpoint');
+        }
       });
   };
 
@@ -120,9 +138,7 @@ const Mypage = () => {
       </S.InfoBox>
       <S.MenuBoxWrap>
         <S.MenuBox>
-          <S.MenuBtn onClick={() => navigate('/withdrawnotify')}>
-            포인트 인출
-          </S.MenuBtn>
+          <S.MenuBtn onClick={flyerCount}>포인트 인출</S.MenuBtn>
           <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
           <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
           <S.MenuBtn onClick={handleAccountCheck}>계좌 등록/변경</S.MenuBtn>
