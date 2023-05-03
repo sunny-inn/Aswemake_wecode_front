@@ -32,6 +32,7 @@ const HomeCarousel = ({
   const selectedMartList = selectedMart ? homeMartList : [];
   const navigate = useNavigate();
   console.log('선택', homeMartList);
+  console.log('selectedMart', selectedMart);
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
   };
