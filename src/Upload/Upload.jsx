@@ -90,7 +90,7 @@ const Upload = () => {
 
     setUploadInfo(prev => ({
       ...prev,
-      images: files,
+      images: [files],
     }));
   };
 
@@ -149,7 +149,7 @@ const Upload = () => {
       });
   };
 
-  console.log(uploadInfo);
+  console.log(uploadInfo.images);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
