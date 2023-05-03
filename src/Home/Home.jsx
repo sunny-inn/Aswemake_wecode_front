@@ -115,6 +115,9 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
   };
+  const handleDragEnd = navermaps => {
+    console.log(navermaps.getCenter());
+  };
 
   useEffect(() => {
     if (homeMartList) {
@@ -230,6 +233,7 @@ const Home = () => {
                 // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
                 center={center}
                 defaultZoom={15}
+                onDragEnd={handleDragEnd}
                 onCenterChanged={handleCenter} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
