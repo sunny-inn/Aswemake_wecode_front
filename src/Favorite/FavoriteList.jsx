@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import * as S from './FavoriteList.style';
 
 const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const params = useParams();
 
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    setChecked(prevChecked => !prevChecked);
+    // setChecked(prevChecked => !prevChecked);
   };
   const token = localStorage.getItem('token');
   useEffect(() => {
