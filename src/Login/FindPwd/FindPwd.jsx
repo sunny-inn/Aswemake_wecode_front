@@ -179,14 +179,12 @@ const FindPwd = () => {
           value={input.code}
           onChange={handleCode}
         />
+        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.ButtonTwo onClick={onCodeBtn} disabled={codeBtnChange}>
           확인
         </S.ButtonTwo>
         {alertMsg === true && <div>인증번호 인증 완료 </div>}
         {alertMsg === false && <div>인증번호 인증 실패 </div>}
-
-        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
-
         <S.FindPwdSubmit confirmed={alertMsg !== null} onClick={forSetPwd}>
           확인
         </S.FindPwdSubmit>

@@ -21,6 +21,7 @@ export const InputBox = styled.input`
   background: #ffffff;
   padding-left: 10px;
   margin-top: 8px;
+  position: relative;
 
   ::placeholder {
     padding: 3px;
@@ -67,4 +68,12 @@ export const FindPwdSubmit = styled.button`
   background-color: ${({ confirmed }) => (confirmed ? '#FF6A21' : '#dbdbdb')};
 `;
 
-export const Timer = styled.div``;
+export const Timer = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #252525;
+  font-weight: 600;
+  font-size: 14px;
+`;
