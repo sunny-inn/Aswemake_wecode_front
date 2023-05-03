@@ -59,7 +59,7 @@ const HomeCarousel = ({
 
   const token = localStorage.getItem('token');
   const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.martId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
