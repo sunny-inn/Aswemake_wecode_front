@@ -11,7 +11,7 @@ const HomeCarousel = ({
   handleModal,
   onClickDetailPortal,
   changeCenterByCarousel,
-  setSelectedMartList,
+  setSelectedMart,
   currentId,
 }) => {
   const settings = {
@@ -53,7 +53,7 @@ const HomeCarousel = ({
         return mart;
       }
     });
-    setSelectedMartList(newSelectedMartList);
+    setSelectedMart(newSelectedMartList);
     onClickFavorite();
   };
 
