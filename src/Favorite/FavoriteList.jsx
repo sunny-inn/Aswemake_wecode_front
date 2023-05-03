@@ -29,7 +29,7 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
       .then(data => {
         // do something with the response
       });
-  }, [imageStates]);
+  }, [handleFavorite]);
 
   return (
     <S.FavoriteListContainer>
