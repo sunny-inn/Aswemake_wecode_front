@@ -64,6 +64,7 @@ export const FindPwdSubmit = styled.button`
   border: none;
   color: white;
   border-radius: 8px;
+  background-color: ${({ confirmed }) => (confirmed ? '#FF6A21' : '#dbdbdb')};
 `;
 
 export const Timer = styled.div``;

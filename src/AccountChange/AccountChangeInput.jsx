@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import * as S from './AccountRegi.style';
+import * as S from './AccountChangeInput.style';
 import Header from '../Components/Header/Header';
-import Modal from './Component/Modal';
+import Modal from '../AccountRegi/Component/Modal';
 import { useNavigate } from 'react-router-dom';
 
-const AccountRegi = () => {
+const AccountChangeInput = () => {
   const navigate = useNavigate();
 
   const [correct, setCorrrect] = useState('');
@@ -47,14 +47,12 @@ const AccountRegi = () => {
     }
   };
 
-  //최종 등록 버튼
   const submitRegi = () => {
     if (accountVerified) {
-      fetch('https://flyers.qmarket.me/api/accounts/registration', {
+      fetch('http://127.0.0.1:8000/api/accounts/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          authorization: localStorage.getItem('token'),
         },
         body: JSON.stringify({
           accountHolderName: accountName,
@@ -65,7 +63,7 @@ const AccountRegi = () => {
         .then(res => res.json())
         .then(data => {
           console.log(data);
-          navigate('/setaccount', {
+          navigate('/setaccountchange', {
             state: { accountHolderName: accountName },
           });
         })
@@ -79,30 +77,27 @@ const AccountRegi = () => {
     }
   };
 
-  //예금주명 확인
   const checkAccountHolderName = () => {
     fetch(
-      'https://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
+      'http://127.0.0.1:8000/api/accounts/checkAccountHolderName?accountHolderName=' +
         encodeURIComponent(accountName),
       {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: localStorage.getItem('token'),
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMTU3MDY2LCJleHAiOjE2ODIxNTcxODZ9.pBMBta2yD-pn2Bodq4vbj6qMCXhrh4L_UnlpVzW6Gr0',
         },
       }
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setAccountVerified(data.message === accountName);
         setAreInputsVerified(data.message === accountName);
       });
   };
-
   return (
     <>
-      <Header type="accountRegi" />
+      <Header type="accountChange" />
       <S.Layout>
         <S.InputTitle>
           <label>은행</label>
@@ -116,7 +111,7 @@ const AccountRegi = () => {
           />
         </S.InputWrapper>
         <S.ToggleBtn type="button" onClick={handleToggleClick}>
-          <S.Toggle alt="arrow" src="/images/arrow.png" />
+          <S.Toggle alt="arrow" src="/images/signup/arrow.png" />
         </S.ToggleBtn>
         <S.InputTitle>
           <label>계좌번호</label>
@@ -157,7 +152,7 @@ const AccountRegi = () => {
           style={{ backgroundColor: areInputsFilled ? '#FF6A21' : '#DBDBDB' }}
           onClick={submitRegi}
         >
-          등록
+          변경하기
         </S.EnrollBtn>
         {modalOpen && (
           <Modal
@@ -171,4 +166,4 @@ const AccountRegi = () => {
   );
 };
 
-export default AccountRegi;
+export default AccountChangeInput;
