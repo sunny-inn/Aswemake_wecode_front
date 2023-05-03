@@ -9,7 +9,7 @@ const WithdrawPoint = () => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/');
+    navigate('/mypage');
   };
 
   const [inputValue, setInputValue] = useState('');
@@ -21,6 +21,7 @@ const WithdrawPoint = () => {
 
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: localStorage.getItem('token'),
@@ -29,8 +30,9 @@ const WithdrawPoint = () => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+
         setAccountInfo(data); // 계좌 정보를 state에 저장
-        setInputValue(`${data.accountBank}, ${data.accountNumber}`); // 입력값을 계좌 정보로 초기화
+        setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`); // 입력값을 계좌 정보로 초기화
       })
       .catch(error => {
         console.error('Error fetching account info:', error);
@@ -48,7 +50,7 @@ const WithdrawPoint = () => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        setHoldingPoint(data.point); // 포인트 정보를 state에 저장
+        setHoldingPoint(data.result.withdrawalPoints); // 포인트 정보를 state에 저장
       })
       .catch(error => {
         console.error('Error fetching holding point:', error);
@@ -81,7 +83,12 @@ const WithdrawPoint = () => {
             prevHoldingPoint => prevHoldingPoint - withdrawalPoints
           );
           setInputValue('');
-          navigate('/setpoint', { state: { withdrawalPoints } });
+          navigate('/setpoint', {
+            state: {
+              withdrawalPoints,
+              accountHolderName: accountInfo.result.accountHolderName,
+            },
+          });
         }
       })
       .catch(error => {
@@ -122,11 +129,12 @@ const WithdrawPoint = () => {
         <S.Withdraw
           value={
             accountInfo
-              ? `${accountInfo.accountBank}, ${accountInfo.accountNumber}`
+              ? `${accountInfo.result.bankName}, ${accountInfo.result.accountNumber}`
               : ''
           }
           onChange={e => {}}
         />
+
         <S.Wrapper>
           <S.TitleMyPoint>인출할 금액</S.TitleMyPoint>
           <S.FromMyPoint>을 입력해 주세요.</S.FromMyPoint>
