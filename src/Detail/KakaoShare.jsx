@@ -14,7 +14,7 @@ const KakaoShare = (url, title, argumentKey, detailMartList) => {
         imageUrl:
           detailMartList.length > 0
             ? detailMartList[0].martFlyerImages[0]
-            : './images/flyernone.png',
+            : '/images/flyernone.png',
         link: {
           mobileWebUrl: url,
           webUrl: url,

@@ -14,7 +14,7 @@ const FavoriteList = () => {
           <S.CarouselBox>
             <div>
               <S.CarouselImg
-                src="./images/thirdRec.png"
+                src="/images/thirdRec.png"
                 alt="전단지"
                 // onClick={}
               />
@@ -25,8 +25,8 @@ const FavoriteList = () => {
                 <S.StarImg
                   src={
                     checked
-                      ? './images/favorite.png'
-                      : './images/clickedFavorite.png'
+                      ? '/images/favorite.png'
+                      : '/images/clickedFavorite.png'
                   }
                   onClick={handleFavorite}
                 />

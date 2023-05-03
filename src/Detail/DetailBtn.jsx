@@ -13,9 +13,7 @@ const DetailBtn = ({ isFavorite, onClickFavorite, type, onClickShared }) => {
       <S.FavoriteContentBox>
         <S.MartFavoriteIcon
           src={
-            isFavorite
-              ? './images/clickedFavorite.png'
-              : buttonList[type].imgSrc
+            isFavorite ? '/images/clickedFavorite.png' : buttonList[type].imgSrc
           }
           alt="자주가요"
         />
@@ -28,11 +26,11 @@ const DetailBtn = ({ isFavorite, onClickFavorite, type, onClickShared }) => {
 export default DetailBtn;
 
 const SHARE_BUTTON = {
-  imgSrc: './images/share.png',
+  imgSrc: '/images/share.png',
   title: '공유하기',
 };
 
 const FAVORITE_BUTTON = {
-  imgSrc: './images/favorite.png',
+  imgSrc: '/images/favorite.png',
   title: '자주가요',
 };

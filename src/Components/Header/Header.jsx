@@ -32,7 +32,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
       {headerList[type].button === true ? (
         <S.Back
           alt="arrow"
-          src="images/signup/arrow.png"
+          src="/images/signup/arrow.png"
           onClick={onClickBack}
         />
       ) : (
