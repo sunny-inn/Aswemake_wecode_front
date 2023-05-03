@@ -98,7 +98,7 @@ const Search = ({
     setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
 
-    if (selectedMart) {
+    if (selectedMart !== null) {
       const newToggles = isMarkerClicked.map((toggle, i) => {
         if (i === index) {
           return !toggle;
