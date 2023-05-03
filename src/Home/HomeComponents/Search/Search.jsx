@@ -101,7 +101,7 @@ const Search = ({
     if (selectedMart !== null) {
       const newToggles = isMarkerClicked.map((toggle, i) => {
         if (i === index) {
-          return !toggle;
+          return true;
         } else {
           return isMarkerClicked[index] === false ? false : toggle;
         }

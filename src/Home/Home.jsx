@@ -120,7 +120,6 @@ const Home = () => {
   //         setHomeMartList(data.martList);
   //         console.log('센터다', center);
   //       });
-
   //     // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
   //     if (homeMartList?.userPosition) {
   //       setCenter({
@@ -143,13 +142,11 @@ const Home = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('데이터받아오기', data);
         setHomeMartList(data.martList);
         setCenter({
           lat: data.userPosition.lat,
           lng: data.userPosition.lng,
         });
-        console.log('센터다', center);
       });
   }, []);
 
@@ -313,6 +310,7 @@ const Home = () => {
           isMarkerClicked={isMarkerClicked}
           setIsMarkerClicked={setIsMarkerClicked}
           selectedMart={selectedMart}
+          handleMarkerClick={handleMarkerClick}
         />
       )}
     </div>
