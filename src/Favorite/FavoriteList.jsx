@@ -13,33 +13,37 @@ const FavoriteList = ({ addedFavoriteList }) => {
   };
   return (
     <S.FavoriteListContainer>
-      {addedFavoriteList.map(item => (
-        <div key={item.martId}>
-          <S.MartBox>
-            <S.CarouselBox>
-              <div>
-                <S.CarouselImg src={item.martFlyerImage} alt="전단지" />
-              </div>
-              <S.CarouselContent>
-                <S.MartTitleLi>
-                  <S.MartTitle>{item.martName}</S.MartTitle>
-                  <S.StarImg
-                    src={
-                      checked
-                        ? '/images/favorite.png'
-                        : '/images/clickedFavorite.png'
-                    }
-                    onClick={handleFavorite}
-                  />
-                </S.MartTitleLi>
-                <S.MartContentBox>
-                  <li>주소 :{item.martAddress}</li>
-                  <li>연락처 : {item.nartPhoneNumber}</li>
-                </S.MartContentBox>
-              </S.CarouselContent>
-            </S.CarouselBox>
-          </S.MartBox>
-        </div>
+      {addedFavoriteList.map((list, i) => (
+        <React.Fragment key={i}>
+          {list.map(item => (
+            <div key={item.martId}>
+              <S.MartBox>
+                <S.CarouselBox>
+                  <div>
+                    <S.CarouselImg src={item.martFlyerImage} alt="전단지" />
+                  </div>
+                  <S.CarouselContent>
+                    <S.MartTitleLi>
+                      <S.MartTitle>{item.martName}</S.MartTitle>
+                      <S.StarImg
+                        src={
+                          checked
+                            ? '/images/favorite.png'
+                            : '/images/clickedFavorite.png'
+                        }
+                        onClick={handleFavorite}
+                      />
+                    </S.MartTitleLi>
+                    <S.MartContentBox>
+                      <li>주소 :{item.martAddress}</li>
+                      <li>연락처 : {item.martPhoneNumber}</li>
+                    </S.MartContentBox>
+                  </S.CarouselContent>
+                </S.CarouselBox>
+              </S.MartBox>
+            </div>
+          ))}
+        </React.Fragment>
       ))}
     </S.FavoriteListContainer>
   );
