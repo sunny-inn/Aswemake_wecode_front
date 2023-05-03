@@ -139,7 +139,7 @@ const Upload = () => {
         enctype: 'multipart/form-data',
         authorization: token,
       },
-      body: uploadForm,
+      body: JSON.stringify({ data: uploadForm }),
     })
       .then(response => response.json())
       .then(data => {
