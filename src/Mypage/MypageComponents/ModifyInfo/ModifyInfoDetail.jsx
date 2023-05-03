@@ -27,7 +27,9 @@ const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
       <ModifyAddress setModalOpen={setModalOpen} userInfo={userInfo} />
     );
   } else if (modalOpen && selectedType === '3') {
-    modalComponent = <ModifyPhone setModalOpen={setModalOpen} />;
+    modalComponent = (
+      <ModifyPhone setModalOpen={setModalOpen} userInfo={userInfo} />
+    );
   } else if (modalOpen && selectedType === '4') {
     modalComponent = <DropOut setModalOpen={setModalOpen} />;
   }
