@@ -26,6 +26,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     pwdresetting: PWDRESETTING_HEADER,
     accountChange: ACCOUNTCHANGE_HEADER,
     martInfo: MART_INFO_HEADER,
+    favorite: FAVORITE_HEADER,
   };
 
   return (
@@ -156,4 +157,8 @@ const ACCOUNTCHANGE_HEADER = {
 const MART_INFO_HEADER = {
   title: '마트 정보',
   button: true,
+};
+const FAVORITE_HEADER = {
+  title: '자주가요',
+  button: false,
 };
