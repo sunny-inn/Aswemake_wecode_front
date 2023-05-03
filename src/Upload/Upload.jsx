@@ -60,16 +60,11 @@ const Upload = () => {
           setMartInfo(data.mart);
         } else {
           setAlertMsg(true);
+          martInfo[0].martName = '';
+          martInfo[0].martAddress = '';
         }
       });
   };
-
-  useEffect(() => {
-    if (martInfo.length === 0) {
-      martInfo[0].martName = '';
-      martInfo[0].martAddress = '';
-    }
-  }, [martInfo]);
 
   console.log(martInfo);
 
