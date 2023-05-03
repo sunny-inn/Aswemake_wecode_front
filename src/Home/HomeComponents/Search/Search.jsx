@@ -7,7 +7,10 @@ const Search = ({
   setIsSearchClicked,
   homeMartList,
   setSelectedMart,
-  center,
+  isMarkerClicked,
+  setIsMarkerClicked,
+  setCenter,
+  selectedMart,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -75,9 +78,6 @@ const Search = ({
     setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
   }, [isSubmitted]);
 
-  console.log(marts);
-  console.log(filteredMarts);
-
   // 검색어 삭제
   const handleRemoveKeyword = id => {
     const filteredKeyword = keywords.filter(keyword => {
@@ -87,21 +87,25 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = id => {
+  const onClickMart = (id, mart, index) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
     setNewKeyword('');
-  };
+    setSelectedMart(mart);
+    setCenter({ lat: mart.lat, lng: mart.lng });
 
-  // 중심에서 마트까지 거리 계산하는 기능
-  // const calculateDistance = () => {
-  //   filteredMarts.map(({ lat, lng }) => {
-  //     if()
-  //   });
-  // };
+    const newToggles = isMarkerClicked.map((toggle, i) => {
+      if (i === index) {
+        return !toggle;
+      } else {
+        return isMarkerClicked[index] === false ? false : toggle;
+      }
+    });
+    setIsMarkerClicked(newToggles);
+  };
 
   return (
     <S.SearchBox>
@@ -127,20 +131,20 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredMarts.map(
-                  ({ martId, martName, martNumberAddress }) => (
-                    <S.SearchedItem
-                      key={martId}
-                      onClick={() => onClickMart(martId)}
-                    >
-                      <div>
-                        <S.MartName>{martName}</S.MartName>
-                        <S.MartAddress>{martNumberAddress}</S.MartAddress>
-                      </div>
-                      <S.Distance>거리</S.Distance>
-                    </S.SearchedItem>
-                  )
-                )}
+                {filteredMarts.map((mart, index) => (
+                  <S.SearchedItem
+                    key={mart.martId}
+                    onClick={() => onClickMart(mart.martId, mart, index)}
+                  >
+                    <div>
+                      <S.MartName>{mart.martName}</S.MartName>
+                      <S.MartAddress>{mart.martNumberAddress}</S.MartAddress>
+                    </div>
+                    <S.Distance>
+                      {Math.round(mart.distance * 100) / 100}km
+                    </S.Distance>
+                  </S.SearchedItem>
+                ))}
               </S.SearchedList>
             ) : (
               <S.EmptyList>
@@ -153,7 +157,7 @@ const Search = ({
         ) : (
           <>
             <S.KeywordTitle>최근 검색어</S.KeywordTitle>
-            <ul>
+            <S.SearchedList>
               {keywords.length > 0 ? (
                 keywords.slice(0, 3).map(({ id, text }) => (
                   <S.KeywordItem key={id}>
@@ -169,13 +173,12 @@ const Search = ({
                   </S.KeywordItem>
                 ))
               ) : (
-                <div />
+                <S.KeywordItem />
               )}
-            </ul>
+            </S.SearchedList>
           </>
         )}
       </S.KeywordBox>
-      {/* <S.HideFooter /> */}
     </S.SearchBox>
   );
 };

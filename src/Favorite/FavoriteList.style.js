@@ -5,7 +5,6 @@ export const FavoriteListContainer = styled.div`
   height: 616px;
   display: flex;
   justify-content: center;
-  margin-top: 55px;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;

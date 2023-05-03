@@ -2,15 +2,15 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './DetailModal.style';
 
-const DetailModal = ({ handleModal, currentId }) => {
+const DetailModal = ({ handleModal, currentId, selectedMart }) => {
   const navigate = useNavigate();
-
-  console.log('currentId: ', currentId);
 
   return (
     <S.ModalContainer>
       <S.ModalContentBox>
-        <button onClick={handleModal}>X</button>
+        <S.CloseBox>
+          <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
+        </S.CloseBox>
         <S.ModalText>
           전단 등록이 필요한 마트에요.
           <br />
@@ -19,7 +19,7 @@ const DetailModal = ({ handleModal, currentId }) => {
         <S.ModalButtonBox>
           <S.ModalInfoButton
             onClick={() => {
-              navigate(`/detail/${currentId}`);
+              navigate(`/detail/${selectedMart.martId}`);
             }}
           >
             마트 정보 보기

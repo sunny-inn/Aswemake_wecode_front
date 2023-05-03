@@ -62,3 +62,15 @@ export const ModalUploadButton = styled.button`
   cursor: pointer;
   margin-left: 8px;
 `;
+export const CloseBox = styled.div`
+  width: 90%;
+  height: 26px;
+  display: flex;
+  justify-content: end;
+`;
+
+export const CloseImg = styled.img`
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+`;

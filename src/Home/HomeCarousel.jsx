@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './HomeCarousel.style';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -11,6 +11,8 @@ const HomeCarousel = ({
   handleModal,
   onClickDetailPortal,
   changeCenterByCarousel,
+  setSelectedMartList,
+  currentId,
 }) => {
   const settings = {
     infinite: true,
@@ -26,19 +28,80 @@ const HomeCarousel = ({
     },
   };
   const [slider, setSlider] = useState(null);
-  const [checked, setChecked] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
-  const selectedMartList = selectedMart ? homeMartList : [];
+  const selectedMartList = selectedMart
+    ? homeMartList.map(mart => ({
+        ...mart,
+        checked: false,
+        isFavorite: false, // 수정된 부분
+      }))
+    : [];
   const navigate = useNavigate();
+  const params = useParams();
 
-  const handleFavorite = () => {
-    setChecked(prevChecked => !prevChecked);
+  const handleFavorite = id => {
+    const newSelectedMartList = selectedMartList.map(mart => {
+      if (mart.martId === id) {
+        return {
+          ...mart,
+          checked: !mart.checked,
+          isFavorite: !mart.isFavorite, // 수정된 부분
+        };
+      } else {
+        return mart;
+      }
+    });
+    setSelectedMartList(newSelectedMartList);
+  };
+
+  const token = localStorage.getItem('token');
+  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+      body: JSON.stringify({ favoriteCheck }),
+    }).then(response => {
+      if (response.ok) {
+        console.log(successMsg);
+      } else {
+        console.error(errorMsg);
+      }
+    });
+  };
+
+  const onClickFavorite = id => {
+    const selectedMart = selectedMartList.find(mart => mart.martId === id);
+    const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분
+    const newSelectedMartList = selectedMartList.map(mart => {
+      if (mart.martId === id) {
+        return {
+          ...mart,
+          isFavorite: !mart.isFavorite,
+        };
+      } else {
+        return mart;
+      }
+    });
+    setSelectedMartList(newSelectedMartList);
+    sendFavoriteRequest(
+      newFavoriteCheck,
+      'favorite updated successfully',
+      'failed to update favorite',
+      token
+    );
   };
 
   const onClickMartItem = id => e => {
-    onClickDetailPortal(id);
-    handleModal();
+    const selectedMart = selectedMartList.find(mart => mart.martId === id);
+    if (selectedMart && selectedMart.martFlyerImages === '0') {
+      handleModal();
+    } else {
+      navigate(`/detail/${id}`);
+    }
   };
 
   useEffect(() => {
@@ -60,7 +123,11 @@ const HomeCarousel = ({
               <S.CarouselBox>
                 <div>
                   <S.CarouselImg
-                    src="./images/thirdRec.png"
+                    src={
+                      mart.martFlyerImages.length === '0'
+                        ? '/images/flyernone.png'
+                        : mart.martFlyerImages[0].imageUrl
+                    }
                     alt="전단지"
                     onClick={onClickMartItem(mart.martId)}
                   />
@@ -70,11 +137,11 @@ const HomeCarousel = ({
                     <S.MartTitle>{mart.martName}</S.MartTitle>
                     <S.StarImg
                       src={
-                        checked
+                        mart.checked
                           ? './images/clickedFavorite.png'
                           : './images/favorite.png'
                       }
-                      onClick={() => handleFavorite(mart.martId)}
+                      onClick={handleFavorite} // 수정된 부분
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>

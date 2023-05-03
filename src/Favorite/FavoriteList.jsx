@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import * as S from './FavoriteList.style';
 
 const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
+  const params = useParams();
 
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    setChecked(prevChecked => !prevChecked);
+    // setChecked(prevChecked => !prevChecked);
   };
   const token = localStorage.getItem('token');
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/favorite', {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -21,13 +23,16 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
       },
       body: JSON.stringify({
         imageStates,
+        handleFavorite,
       }),
     })
       .then(response => response.json())
       .then(data => {
         // do something with the response
       });
-  }, [imageStates]);
+  }, [handleFavorite]);
+
+  console.log('favoriteList', addedFavoriteList);
 
   return (
     <S.FavoriteListContainer>
@@ -42,7 +47,7 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
                       src={
                         item.martFlyerImage === '0'
                           ? '/images/flyernone.png'
-                          : item.martFlyerImage[0]
+                          : item.martFlyerImage
                       }
                       alt="전단지"
                     />

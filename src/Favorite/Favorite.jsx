@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import FavoriteNav from './FavoriteNav';
 import FavoriteEmpty from './FavoriteEmpty';
 import FavoriteList from './FavoriteList';
+import Header from '../Components/Header/Header';
 
 const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
   const [imageStates, setImageStates] = useState(
     Array(addedFavoriteList.length).fill(false)
   );
-  const params = useParams();
 
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -29,7 +27,7 @@ const Favorite = () => {
 
   return (
     <div>
-      <FavoriteNav />
+      <Header type="favorite" />
       {addedFavoriteList.length === 0 ? (
         <FavoriteEmpty />
       ) : (

@@ -100,6 +100,7 @@ export const SearchBar = styled.input`
 export const CurrentLocation = styled.img`
   width: 50px;
   height: 50px;
+  object-fit: cover;
   z-index: 10;
   cursor: pointer;
 `;

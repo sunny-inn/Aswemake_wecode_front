@@ -43,6 +43,7 @@ export const SearchBar = styled.input`
 export const KeywordBox = styled.div`
   position: fixed;
   padding: 10px 20px;
+  background-color: #ffffff;
   z-index: 10;
 `;
 
@@ -96,6 +97,7 @@ export const Distance = styled.p`
 export const KeywordItem = styled.li`
   ${flex('space-between', 'center', null)}
   padding: 10px;
+  width: 328px;
   border-top: 1px solid #dbdbdb;
   color: #252525;
   font-weight: 500;
