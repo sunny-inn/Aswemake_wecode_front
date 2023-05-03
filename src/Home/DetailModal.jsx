@@ -10,7 +10,9 @@ const DetailModal = ({ handleModal, currentId, selectedMart }) => {
   return (
     <S.ModalContainer>
       <S.ModalContentBox>
-        <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
+        <S.CloseBox>
+          <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
+        </S.CloseBox>
         <S.ModalText>
           전단 등록이 필요한 마트에요.
           <br />
