@@ -293,7 +293,6 @@ const Home = () => {
               </NaverMap>
               {openModal && (
                 <DetailModal
-                  currentId={currentId}
                   handleModal={handleModal}
                   goToDetail={goToDetail}
                 />
