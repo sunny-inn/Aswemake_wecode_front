@@ -139,6 +139,10 @@ const Upload = () => {
       .then(data => {
         if (data.message === 'UPLOAD IS SUCCESS') {
           setIsUploaded(true);
+          setUploadInfo(prev => ({
+            ...prev,
+            martPhoneNumber: phoneNumber,
+          }));
         } else {
           alert(data.message);
         }
