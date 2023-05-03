@@ -94,7 +94,6 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
       .then(res => res.json())
       .then(data => {
         if (data.message === 'verification code matches') {
-          userInfo.phone_number = modifyPhone.phoneNumber;
           setVerification(true);
           setAlertMsg(false);
         } else {
@@ -119,6 +118,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'USER_PHONE_NUMBER_MODIFIED') {
+          userInfo.phone_number = modifyPhone.phoneNumber;
           setModalOpen(prev => !prev);
         }
       });
@@ -159,7 +159,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             확인
           </S.GetNumBtn>
         </S.PhoneInputWrap>
-        {alertMsg && (
+        {alertMsg === true && (
           <S.PhoneCheckText color="#E40303">
             인증번호를 다시 확인해주세요.
           </S.PhoneCheckText>
@@ -170,7 +170,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
           </S.PhoneCheckText>
         )}
       </S.ModifyPhoneBody>
-      <S.ConfirmBtn onClick={toModifyPhone} disabled={!handleVerificationBtn}>
+      <S.ConfirmBtn onClick={toModifyPhone} disabled={!verification}>
         확인
       </S.ConfirmBtn>
     </S.ModifyPhone>
