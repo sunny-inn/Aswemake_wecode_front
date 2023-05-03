@@ -89,6 +89,7 @@ const Search = ({
     );
   };
 
+  console.log(marts);
   console.log(filteredMarts);
 
   // 검색어 삭제
