@@ -63,7 +63,7 @@ export const GetNumBtn = styled.button`
 
 export const PhoneCheckText = styled.h4`
   margin-top: 8px;
-  color: #ff6a21;
+  color: ${({ color }) => color};
   font-size: 13px;
   font-weight: 500;
 `;

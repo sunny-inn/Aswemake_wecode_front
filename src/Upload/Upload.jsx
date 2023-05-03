@@ -24,10 +24,9 @@ const Upload = () => {
 
   const uploadForm = new FormData();
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
+  uploadForm.append('images', JSON.stringify(uploadInfo.images));
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
-
-  console.log(uploadForm.values);
 
   // 전화번호
   const handlePhoneNumber = e => {
@@ -56,17 +55,16 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         if (data.mart.length !== 0) {
           setMartInfo(data.mart[0]);
-          setUploadInfo(prev => ({
-            ...prev,
-            martPhoneNumber: phoneNumber,
-          }));
         } else {
           setAlertMsg(true);
         }
       });
   };
+
+  console.log(martInfo);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -90,10 +88,6 @@ const Upload = () => {
       ...prev,
       images: files,
     }));
-
-    for (let i = 0; i < files.length; i++) {
-      uploadForm.append('images', files[i]);
-    }
   };
 
   let settings = {
@@ -120,7 +114,7 @@ const Upload = () => {
 
   const handelDisabled = !(
     martInfo &&
-    images.length === 4 &&
+    uploadInfo.images.length === 4 &&
     startDate &&
     endDate &&
     isCheckboxClicked === true
@@ -150,6 +144,8 @@ const Upload = () => {
         }
       });
   };
+
+  console.log(uploadInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>

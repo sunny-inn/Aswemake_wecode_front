@@ -36,9 +36,12 @@ const PwdReSetting = () => {
   const setPwd = e => {
     e.preventDefault();
 
-    fetch('https://flyers', {
+    fetch('https://flyers.qmarket.me/api/users/changeUserPw', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
       body: JSON.stringify({ password, passwordConfirm }),
     })
       .then(res => res.json())
