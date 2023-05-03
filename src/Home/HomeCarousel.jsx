@@ -38,7 +38,7 @@ const HomeCarousel = ({
 
   const onClickMartItem = id => e => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
-    if (selectedMart && selectedMart.martFlyerImages.length === 0) {
+    if (selectedMart && selectedMart.martFlyerImages === '0') {
       handleModal();
     } else {
       navigate(`/detail/${currentId}`);
