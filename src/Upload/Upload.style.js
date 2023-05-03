@@ -25,13 +25,23 @@ export const UploadForm = styled.form`
   gap: 15px;
   width: 360px;
   height: 616px;
+  overflow-y: scroll;
+  padding-bottom: 60px;
+`;
+
+export const PhoneBox = styled.div`
+  ${flex('spacebetween', 'center', null)}
+  gap: 10px;
 `;
 
 export const PhoneInput = styled.input`
   ${UploadInput}
   background: #ffffff;
-  border: 1px solid
-    ${({ handleAlertMsg }) => (handleAlertMsg ? '#ff6a21' : '#dbdbdb')};
+  border: 1px solid ${({ alertMsg }) => (alertMsg ? '#ff6a21' : '#dbdbdb')};
+`;
+
+export const PhoneBtn = styled.button`
+  width: 50px;
 `;
 
 export const AlertMsg = styled.p`
