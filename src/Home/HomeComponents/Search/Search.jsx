@@ -96,17 +96,7 @@ const Search = ({
     setNewKeyword('');
     setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
-
-    if (selectedMart !== null) {
-      const newToggles = isMarkerClicked.map((toggle, i) => {
-        if (i === index) {
-          return true;
-        } else {
-          return isMarkerClicked[index] === false ? false : toggle;
-        }
-      });
-      setIsMarkerClicked(newToggles);
-    }
+    setIsMarkerClicked([true]);
   };
 
   return (
