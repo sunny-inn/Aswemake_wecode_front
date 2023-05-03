@@ -23,12 +23,18 @@ const Upload = () => {
   const { images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
-  uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
-  uploadForm.append('startDate', uploadInfo.startDate);
-  uploadForm.append('endDate', uploadInfo.endDate);
-  for (let i = 0; i < uploadInfo.images.length; i++) {
+  for (let i = 0; i < 4; i++) {
     uploadForm.append('images', uploadInfo.images[i]);
   }
+
+  uploadForm.append(
+    'data',
+    JSON.stringify({
+      martPhoneNumber: uploadInfo.martPhoneNumber,
+      startDate: uploadInfo.startDate,
+      endDate: uploadInfo.endDate,
+    })
+  );
 
   // 전화번호
   const handlePhoneNumber = e => {
