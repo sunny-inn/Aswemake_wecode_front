@@ -147,14 +147,15 @@ const Home = () => {
         setHomeMartList(data.martList);
         console.log('센터다', center);
       });
+  }, []);
 
-    // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
+  useEffect(() => {
     homeMartList &&
       setCenter({
         lat: homeMartList.userPosition.lat,
         lng: homeMartList.userPosition.lng,
       });
-  }, []);
+  }, [homeMartList]);
 
   useEffect(() => {
     if (mapRef.current) {
