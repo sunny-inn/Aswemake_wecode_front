@@ -6,6 +6,9 @@ import FavoriteList from './FavoriteList';
 
 const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
+  const [imageStates, setImageStates] = useState(
+    Array(addedFavoriteList.length).fill(false)
+  );
   const params = useParams();
 
   const token = localStorage.getItem('token');
@@ -30,7 +33,11 @@ const Favorite = () => {
       {addedFavoriteList.length === 0 ? (
         <FavoriteEmpty />
       ) : (
-        <FavoriteList addedFavoriteList={addedFavoriteList} f />
+        <FavoriteList
+          addedFavoriteList={addedFavoriteList}
+          setImageStates={setImageStates}
+          imageStates={imageStates}
+        />
       )}
     </div>
   );

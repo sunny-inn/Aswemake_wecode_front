@@ -9,6 +9,7 @@ export const FavoriteListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
+  padding-bottom: 15px;
 `;
 
 export const MartBox = styled.div`
