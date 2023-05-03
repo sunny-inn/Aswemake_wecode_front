@@ -83,6 +83,7 @@ const WithdrawPoint = () => {
           }
         );
         const data = await response.json();
+        console.log('checkCurrentAccount', data);
         setAccountInfo(data);
         setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`);
       } catch (error) {
@@ -100,6 +101,7 @@ const WithdrawPoint = () => {
           },
         });
         const data = await response.json();
+        console.log('points', data);
         setHoldingPoint(data.result.withdrawalPoints);
       } catch (error) {
         console.error('Error fetching holding point:', error);
