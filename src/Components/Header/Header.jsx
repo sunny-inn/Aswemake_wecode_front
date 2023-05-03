@@ -25,6 +25,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     findpwd: FINDPWD_HEADER,
     pwdresetting: PWDRESETTING_HEADER,
     accountChange: ACCOUNTCHANGE_HEADER,
+    martInfo: MART_INFO_HEADER,
   };
 
   return (
@@ -150,5 +151,9 @@ const PWDRESETTING_HEADER = {
 
 const ACCOUNTCHANGE_HEADER = {
   title: '계좌 변경',
+  button: true,
+};
+const MART_INFO_HEADER = {
+  title: '마트 정보',
   button: true,
 };

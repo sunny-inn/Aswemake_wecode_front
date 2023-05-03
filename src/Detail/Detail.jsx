@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import FlyersCarousel from './FlyersCarousel';
-import DetailNav from './DetailNav';
 import DetailBtn from './DetailBtn';
 import CallModal from './CallModal';
 import DetailToast from './DetailToast';
+import Header from '../Components/Header/Header';
 import KakaoShare from './KakaoShare';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import * as S from './Detail.style';
@@ -18,7 +18,7 @@ const Detail = () => {
   // const [showSuggestModal, setShowSuggestModal] = useState(false); //suggest 모달로 띄울때
   const navigate = useNavigate();
   const params = useParams();
-  const url = 'https://flyers.qmarket.me/detail';
+  const url = `https://flyers.qmarket.me/api/home/martDetail/${params.id}`;
 
   const handleImageClick = index => {
     setCurrentImageIndex(index);
@@ -27,7 +27,7 @@ const Detail = () => {
 
   const onClickSuggestBtn = e => {
     e.preventDefault();
-    navigate('/suggest');
+    navigate('/home');
     // setShowSuggestModal(true);
   };
   // const handleSuggestModalClose = () => {
@@ -54,6 +54,10 @@ const Detail = () => {
 
   const handleModal = () => {
     setOpenCallModal(prev => !prev);
+  };
+  const onClickBack = e => {
+    e.preventDefault();
+    navigate('/detail');
   };
 
   useEffect(() => {
@@ -147,7 +151,7 @@ const Detail = () => {
 
   return (
     <S.DetailContainer>
-      <DetailNav />
+      <Header type="martInfo" onClickBack={onClickBack} />
       {detailMartList.map(list => {
         return (
           <div key={list.martId}>
