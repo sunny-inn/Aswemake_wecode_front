@@ -88,10 +88,17 @@ const Upload = () => {
     e.preventDefault();
     const files = e.target.files;
 
-    setUploadInfo(prev => ({
-      ...prev,
-      images: files,
-    }));
+    // setUploadInfo(prev => ({
+    //   ...prev,
+    //   images: files,
+    // }));
+
+    for (let i = 0; i < files.length; i++) {
+      setUploadInfo(prev => ({
+        ...prev,
+        images: files[i],
+      }));
+    }
   };
 
   let settings = {
