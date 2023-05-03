@@ -8,12 +8,21 @@ const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
   const params = useParams();
 
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`)
+    fetch(`https://flyers.qmarket.me/api/favorite`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+    })
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.martList);
       });
+    console.log('자주가요데이터', addedFavoriteList);
   }, []);
 
   const hasFavorite = addedFavoriteList.some(item => item.favoriteCheck === 1);
