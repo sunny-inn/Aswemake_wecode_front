@@ -3,8 +3,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import 'react-spring-bottom-sheet/dist/style.css';
 import { ko } from 'date-fns/esm/locale';
 import DatePicker from 'react-datepicker';
-import getYear from 'date-fns/getYear';
-import getMonth from 'date-fns/getMonth';
 import * as S from './Calendar.style';
 
 const Calendar = ({ setUploadInfo }) => {
@@ -48,14 +46,28 @@ const Calendar = ({ setUploadInfo }) => {
       '-' +
       (endDate.getDate() <= 9 ? '0' + endDate.getDate() : endDate.getDate());
 
-  // if (formattedStart && formattedEnd) {
-  //   setUploadInfo(prev => ({
-  //     ...prev,
-  //     startDate: formattedStart,
-  //     endDate: formattedEnd,
-  //   }));
-  //   setOpen(false);
-  // }
+  // 날짜 비교
+  useEffect(() => {
+    setOpen(false);
+
+    let currentDate = new Date();
+    let formattedDate =
+      currentDate.getFullYear().toString() +
+      (currentDate.getMonth() + 1).toString().padStart(2, '0') +
+      currentDate.getDate().toString().padStart(2, '0');
+
+    let formattedEnd =
+      endDate &&
+      endDate.getFullYear() +
+        (endDate.getMonth() + 1 < 9
+          ? '0' + (endDate.getMonth() + 1)
+          : endDate.getMonth() + 1) +
+        (endDate.getDate() < 9 ? '0' + endDate.getDate() : endDate.getDate());
+
+    if (parseInt(formattedDate) > parseInt(formattedEnd)) {
+      setInvalidEndDate(true);
+    }
+  }, [endDate]);
 
   useEffect(() => {
     setUploadInfo(prev => ({
@@ -86,8 +98,14 @@ const Calendar = ({ setUploadInfo }) => {
           onClick={onClickDate}
           readOnly
           autoFocus="off"
+          invalidEndDate={invalidEndDate}
         />
       </S.DateRangeBox>
+      {invalidEndDate && (
+        <S.AlertMsg>
+          마감된 전단 행사입니다. 진행 중 또는 예정인 전단을 등록해주세요
+        </S.AlertMsg>
+      )}
 
       <S.BottomSheetBox open={open} onDismiss={onDismiss}>
         <S.CustomBox>
