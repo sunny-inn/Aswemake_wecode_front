@@ -139,7 +139,6 @@ const Home = () => {
   //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
   useEffect(() => {
     if (center) {
-      console.log('센터')
       fetch(`https://flyers.qmarket.me/api/home`, {
         method: 'GET',
         credentials: 'include',
@@ -160,6 +159,7 @@ const Home = () => {
   // console.log('마트리스트', homeMartList);
 
   useEffect(() => {
+    console.log('여기')
     if (mapRef.current) {
       console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
@@ -171,6 +171,7 @@ const Home = () => {
       mapRef.current.setCenter(newCenter);
     }
   }, [selectedMart]);
+
   const navermaps = useNavermaps();
 
   const handleCenter = value => setCenter(value);
