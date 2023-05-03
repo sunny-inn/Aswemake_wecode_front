@@ -25,7 +25,7 @@ export const UploadForm = styled.form`
   gap: 15px;
   width: 360px;
   height: 616px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   padding-bottom: 60px;
 `;
 

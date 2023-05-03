@@ -102,7 +102,7 @@ const WithdrawPoint = () => {
         });
         const data = await response.json();
         console.log('points', data);
-        setHoldingPoint(data.result.withdrawalPoints);
+        setHoldingPoint(data.result.totalPoints);
       } catch (error) {
         console.error('Error fetching holding point:', error);
       }
@@ -200,7 +200,7 @@ const WithdrawPoint = () => {
               <S.HoldingPoint>원</S.HoldingPoint>
             </S.PointWrapper>
             <S.WithdrawPoint
-              value={inputValue}
+              // value={inputValue}
               onChange={handleInputChange}
               showCurrency={showCurrency}
               onFocus={handleFocus}
