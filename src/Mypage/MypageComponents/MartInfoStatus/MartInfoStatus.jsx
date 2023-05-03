@@ -6,7 +6,7 @@ import * as S from './MartInfoStatus.style';
 
 const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
-  const [martStatusData, setMartStatusData] = useState({});
+  const [martStatusData, setMartStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
     })
       .then(response => response.json())
       .then(data => {
-        setMartStatusData(data.result[0]);
+        setMartStatusData(data.result);
         setLoading(false);
       });
   }, []);
@@ -40,7 +40,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
       }
     )
       .then(response => response.json())
-      .then(data => setMartStatusData(data.result[0]));
+      .then(data => setMartStatusData(data.result));
   };
 
   const onClickBack = () => {
@@ -86,14 +86,14 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
             수정 반려
           </button>
         </S.CategoryButtonWrap>
-        {Object.keys(martStatusData).length === 0 ? (
+        {martStatusData.length === 0 ? (
           noContents
         ) : (
           <ul>
             <S.MartInfoStatusLi>
               <S.MartInfoStatusTitleWrap>
                 <S.MartInfoStatusTitle>
-                  수정 {martStatusData.approvalStatus}
+                  수정 {martStatusData[0].approvalStatus}
                 </S.MartInfoStatusTitle>
                 {/* <S.MartInfoStatusTitle>수정 심사중</S.MartInfoStatusTitle> */}
                 {onScreen === '3' && (
@@ -104,22 +104,22 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
               </S.MartInfoStatusTitleWrap>
               <article>
                 <S.MartStatusImgWrap>
-                  <img src={martStatusData.imageUrl} alt="mart" />
+                  <img src={martStatusData[0].imageUrl} alt="mart" />
                   {/* <img src="/images/thirdRec.png" alt="mart" /> */}
                 </S.MartStatusImgWrap>
                 <S.MartStatusTextWrap>
                   <S.MartInfoStatusName>
-                    {martStatusData.martName}
+                    {martStatusData[0].martName}
                   </S.MartInfoStatusName>
                   {/* <S.MartInfoStatusName>애플마트 화양점</S.MartInfoStatusName> */}
                   <S.MartInfoStatusEtc marginBtm="22px">
-                    {martStatusData.martAddress}
+                    {martStatusData[0].martAddress}
                   </S.MartInfoStatusEtc>
                   {/* <S.MartInfoStatusEtc marginBtm="22px">
                     서울특별시 광진구 능동로19길 47 1층
                   </S.MartInfoStatusEtc> */}
                   <S.MartInfoStatusEtc>
-                    {martStatusData.martPhoneNumber}
+                    {martStatusData[0].martPhoneNumber}
                   </S.MartInfoStatusEtc>
                   {/* <S.MartInfoStatusEtc>02-461-6600</S.MartInfoStatusEtc> */}
                 </S.MartStatusTextWrap>

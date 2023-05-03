@@ -5,7 +5,7 @@ import * as S from './FlyersStatus.style';
 
 const FlyersStatus = ({ setIsFlyersStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
-  const [flyersStatusData, setFlyersStatusData] = useState({});
+  const [flyersStatusData, setFlyersStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
     })
       .then(response => response.json())
       .then(data => {
-        setFlyersStatusData(data.result[0]);
+        setFlyersStatusData(data.result);
         setLoading(false);
       });
   }, []);
@@ -39,7 +39,7 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
       }
     )
       .then(response => response.json())
-      .then(data => setFlyersStatusData(data.result[0]));
+      .then(data => setFlyersStatusData(data.result));
   };
 
   const onClickBack = () => {
@@ -85,14 +85,14 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
             등록 반려
           </button>
         </S.CategoryButtonWrap>
-        {Object.keys(flyersStatusData).length === 0 ? (
+        {flyersStatusData.length === 0 ? (
           noContents
         ) : (
           <ul>
             <S.FlyersStatusLi>
               <S.FlyersStatusTitleWrap>
                 <S.FlyersStatusTitle>
-                  등록 {flyersStatusData.approvalStatus}
+                  등록 {flyersStatusData[0].approvalStatus}
                 </S.FlyersStatusTitle>
                 {/* <S.FlyersStatusTitle>등록 반려</S.FlyersStatusTitle> */}
                 {onScreen === '3' && (
@@ -103,22 +103,22 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
               </S.FlyersStatusTitleWrap>
               <article>
                 <S.FlyersStatusImgWrap>
-                  <img src={flyersStatusData.imageUrl[0]} alt="mart" />
+                  <img src={flyersStatusData[0].imageUrl[0]} alt="mart" />
                   {/* <img src="/images/thirdRec.png" alt="mart" /> */}
                 </S.FlyersStatusImgWrap>
                 <S.FlyersStatusTextWrap>
                   <S.FlyersStatusName>
-                    {flyersStatusData.martName}
+                    {flyersStatusData[0].martName}
                   </S.FlyersStatusName>
                   {/* <S.FlyersStatusName>애플마트 화양점</S.FlyersStatusName> */}
                   <S.FlyersStatusEtc marginBtm="22px">
-                    {flyersStatusData.martAddress}
+                    {flyersStatusData[0].martAddress}
                   </S.FlyersStatusEtc>
                   {/* <S.FlyersStatusEtc marginBtm="22px">
                     서울특별시 광진구 능동로19길 47 1층
                   </S.FlyersStatusEtc> */}
                   <S.FlyersStatusEtc>
-                    {flyersStatusData.martPhoneNumber}
+                    {flyersStatusData[0].martPhoneNumber}
                   </S.FlyersStatusEtc>
                   {/* <S.FlyersStatusEtc>02-461-6600</S.FlyersStatusEtc> */}
                 </S.FlyersStatusTextWrap>
