@@ -56,7 +56,7 @@ const HomeCarousel = ({
     setSelectedMart(newSelectedMartList);
     onClickFavorite();
   };
-
+  console.log('파람', params);
   const token = localStorage.getItem('token');
   const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
     fetch(`https://flyers.qmarket.me/api/favorite/${params.martId}`, {
