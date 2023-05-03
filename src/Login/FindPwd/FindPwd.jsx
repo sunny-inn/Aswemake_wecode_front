@@ -41,7 +41,7 @@ const FindPwd = () => {
     if (codeBtn) {
       setShowTimer(true);
       timer = setInterval(() => {
-        setSeconds(prev => prev - 1);
+        setSeconds(prev => (prev > 0 ? prev - 1 : 0));
       }, 1000);
     }
 
