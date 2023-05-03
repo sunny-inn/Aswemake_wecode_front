@@ -64,6 +64,13 @@ const Upload = () => {
       });
   };
 
+  useEffect(() => {
+    if (martInfo.length === 0) {
+      martInfo[0].martName = '';
+      martInfo[0].martAddress = '';
+    }
+  }, [martInfo]);
+
   console.log(martInfo);
 
   const onClickTutorial = () => {
