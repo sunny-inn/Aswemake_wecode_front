@@ -90,9 +90,9 @@ const Upload = () => {
     for (let i = 0; i < imageLists.length; i++) {
       const currentImageUrl = URL.createObjectURL(imageLists[i]);
       imageUrlLists.push(currentImageUrl);
+      uploadForm.append('images', imageLists[i]);
     }
     setUploadedImgs(imageUrlLists);
-    setUploadInfo({ ...uploadInfo, images: imageLists[0] });
   };
 
   console.log(uploadInfo);
