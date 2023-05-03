@@ -150,10 +150,10 @@ const AccountRegi = () => {
         >
           확인
         </S.CodeBtn>
-        {accountVerified === true && (
+        {accountName.trim() !== '' && accountVerified === true && (
           <S.AlertVerify>본인 인증 계정과 예금주가 일치합니다.</S.AlertVerify>
         )}
-        {accountVerified === false && (
+        {accountName !== '' && accountVerified === false && (
           <S.AlertNotVerify>
             본인 인증 계정과 예금주가 일치하지 않습니다.
           </S.AlertNotVerify>
