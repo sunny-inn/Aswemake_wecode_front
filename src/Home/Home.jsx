@@ -132,8 +132,6 @@ const Home = () => {
     }
   }, [center, token]);
 
-  // console.log('마트리스트', homeMartList);
-
   useEffect(() => {
     if (mapRef.current) {
       console.log('이동', mapRef.current);
