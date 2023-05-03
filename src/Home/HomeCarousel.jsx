@@ -11,6 +11,7 @@ const HomeCarousel = ({
   handleModal,
   onClickDetailPortal,
   changeCenterByCarousel,
+  currentId,
 }) => {
   const settings = {
     infinite: true,
@@ -31,15 +32,17 @@ const HomeCarousel = ({
   const smIndex = homeMartList.indexOf(selectedMart);
   const selectedMartList = selectedMart ? homeMartList : [];
   const navigate = useNavigate();
-  console.log('선택', homeMartList);
-  console.log('selectedMart', selectedMart);
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
   };
 
   const onClickMartItem = id => e => {
-    onClickDetailPortal(id);
-    handleModal();
+    const selectedMart = selectedMartList.find(mart => mart.martId === id);
+    if (selectedMart && selectedMart.martFlyerImages.length === 0) {
+      handleModal();
+    } else {
+      navigate(`/detail/${currentId}`);
+    }
   };
 
   useEffect(() => {
@@ -63,7 +66,7 @@ const HomeCarousel = ({
                   <S.CarouselImg
                     src={
                       mart.martFlyerImages.length === '0'
-                        ? './images/flyernone.png'
+                        ? '/images/flyernone.png'
                         : mart.martFlyerImages[0].imageUrl
                     }
                     alt="전단지"

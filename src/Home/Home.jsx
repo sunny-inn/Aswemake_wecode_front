@@ -283,6 +283,7 @@ const Home = () => {
                   />
                 </S.SearchBox>
                 <HomeCarousel
+                  currentId={currentId}
                   homeMartList={homeMartList}
                   selectedMart={selectedMart}
                   handleModal={handleModal}
