@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './HomeCarousel.style';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -11,6 +11,7 @@ const HomeCarousel = ({
   handleModal,
   onClickDetailPortal,
   changeCenterByCarousel,
+  setSelectedMartList,
   currentId,
 }) => {
   const settings = {
@@ -28,12 +29,65 @@ const HomeCarousel = ({
   };
   const [slider, setSlider] = useState(null);
   const [checked, setChecked] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
-  const selectedMartList = selectedMart ? homeMartList : [];
+  // const selectedMartList = selectedMart ? homeMartList : [];
+  const selectedMartList = selectedMart
+    ? homeMartList.map(mart => ({
+        ...mart,
+        checked: false, // 새로운 프로퍼티인 checked를 추가하고, 기본값으로 false를 설정합니다.
+      }))
+    : [];
   const navigate = useNavigate();
+  const params = useParams();
+
   const handleFavorite = () => {
-    setChecked(prevChecked => !prevChecked);
+    const newSelectedMartList = selectedMartList.map(mart => {
+      if (mart.martId === currentId) {
+        return {
+          ...mart,
+          checked: !mart.checked, // 현재 마트의 checked 값을 변경합니다.
+        };
+      } else {
+        return mart;
+      }
+    });
+    setSelectedMartList(newSelectedMartList);
+    onClickFavorite();
+  };
+
+  const token = localStorage.getItem('token');
+  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+      body: JSON.stringify({ favoriteCheck }),
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log(successMsg);
+        } else {
+          console.error(errorMsg);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  const onClickFavorite = () => {
+    const newFavoriteCheck = isFavorite ? 0 : 1;
+    setIsFavorite(!isFavorite);
+    sendFavoriteRequest(
+      newFavoriteCheck,
+      'favorite updated successfully',
+      'failed to update favorite',
+      token
+    );
   };
 
   const onClickMartItem = id => e => {
@@ -78,7 +132,7 @@ const HomeCarousel = ({
                     <S.MartTitle>{mart.martName}</S.MartTitle>
                     <S.StarImg
                       src={
-                        checked
+                        mart.checked
                           ? './images/clickedFavorite.png'
                           : './images/favorite.png'
                       }
