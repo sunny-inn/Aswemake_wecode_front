@@ -104,10 +104,8 @@ const FindPwd = () => {
       .then(data => {
         console.log(data);
         if (data.message === 'verification code matches') {
-          alert('인증번호 확인 완료');
           setAlerMsg(true);
         } else {
-          alert('인증번호 확인 실패');
           setAlerMsg(false);
         }
       })
