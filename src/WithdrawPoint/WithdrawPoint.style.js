@@ -86,6 +86,7 @@ export const FinBtn = styled.button`
   ${props =>
     !props.overPrice &&
     !props.overHoldingPoint &&
+    !props.empty &&
     css`
       background-color: #ff6a21;
     `}

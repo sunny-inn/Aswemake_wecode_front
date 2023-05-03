@@ -22,7 +22,7 @@ const SetPoint = () => {
           <S.Name>{accountHolderName}</S.Name>
           <span>&nbsp;님</span>
 
-          <S.Inform>&nbsp;&nbsp;{withdrawalPoints}&nbsp;원</S.Inform>
+          <S.Inform>&nbsp;&nbsp;{withdrawalPoints} &nbsp;원</S.Inform>
           <S.Inform>&nbsp;&nbsp;인출 요청이 완료되었습니다!</S.Inform>
         </S.Container>
         <Link to="/">
