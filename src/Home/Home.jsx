@@ -149,12 +149,11 @@ const Home = () => {
       });
 
     // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
-    if (homeMartList?.userPosition) {
+    homeMartList &&
       setCenter({
         lat: homeMartList.userPosition.lat,
         lng: homeMartList.userPosition.lng,
       });
-    }
   }, []);
 
   useEffect(() => {
