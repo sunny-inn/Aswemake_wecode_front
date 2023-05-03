@@ -41,7 +41,7 @@ const HomeCarousel = ({
     if (selectedMart && selectedMart.martFlyerImages === '0') {
       handleModal();
     } else {
-      navigate(`/detail/${currentId}`);
+      navigate(`/detail/${id}`);
     }
   };
 
