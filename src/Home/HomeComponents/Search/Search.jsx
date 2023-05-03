@@ -55,6 +55,7 @@ const Search = ({
 
   // 검색 기능
   let filteredList = [];
+
   const handleAddKeyword = e => {
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
@@ -79,6 +80,13 @@ const Search = ({
     setNewKeyword(text);
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
+
+    filteredList = marts.filter(
+      mart =>
+        mart.martName.includes(newKeyword) ||
+        mart.martNumberAddress.includes(newKeyword) ||
+        mart.martRoadNameAddress.includes(newKeyword)
+    );
   };
 
   // 검색어 삭제
