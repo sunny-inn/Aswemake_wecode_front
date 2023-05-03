@@ -68,6 +68,9 @@ const Search = ({
     );
   };
 
+  console.log(marts);
+  console.log(newKeyword);
+
   // 최근 검색어 클릭 시 검색되는 기능
   const onClickKeyword = (id, text) => {
     const filteredKeyword = keywords.filter(keyword => {
