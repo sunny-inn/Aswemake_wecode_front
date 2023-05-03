@@ -175,7 +175,7 @@ const Search = ({
           </>
         )}
       </S.KeywordBox>
-      <S.HideFooter />
+      {/* <S.HideFooter /> */}
     </S.SearchBox>
   );
 };

@@ -125,11 +125,11 @@ export const EmptyList = styled.div`
   text-align: center;
 `;
 
-export const HideFooter = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  height: 80px;
-  background-color: #ffffff;
-  z-index: 10;
-`;
+// export const HideFooter = styled.div`
+//   position: fixed;
+//   bottom: 0;
+//   width: 100vw;
+//   height: 80px;
+//   background-color: #ffffff;
+//   z-index: 10;
+// `;
