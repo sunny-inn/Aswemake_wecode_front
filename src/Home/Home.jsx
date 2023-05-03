@@ -145,17 +145,13 @@ const Home = () => {
       .then(data => {
         console.log('데이터받아오기', data);
         setHomeMartList(data.martList);
+        setCenter({
+          lat: data.userPosition.lat,
+          lng: data.userPosition.lng,
+        });
         console.log('센터다', center);
       });
   }, []);
-
-  useEffect(() => {
-    homeMartList &&
-      setCenter({
-        lat: homeMartList.userPosition.lat,
-        lng: homeMartList.userPosition.lng,
-      });
-  }, [homeMartList]);
 
   useEffect(() => {
     if (mapRef.current) {
