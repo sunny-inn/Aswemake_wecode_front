@@ -72,4 +72,5 @@ export const CloseBox = styled.div`
 export const CloseImg = styled.img`
   width: 26px;
   height: 26px;
+  cursor: pointer;
 `;
