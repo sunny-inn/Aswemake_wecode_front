@@ -61,7 +61,11 @@ const HomeCarousel = ({
               <S.CarouselBox>
                 <div>
                   <S.CarouselImg
-                    src="/images/flyernone.png"
+                    src={
+                      mart.martFlyerImages.length === '0'
+                        ? '/images/flyernone.png'
+                        : mart.martFlyerImages[0].imageUrl
+                    }
                     alt="전단지"
                     onClick={onClickMartItem(mart.martId)}
                   />
