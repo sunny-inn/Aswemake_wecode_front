@@ -133,9 +133,13 @@ const WithdrawPoint = () => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        if (data.message) {
+        if (data.result) {
+          const { userName, withdrawalDate, withdrawalPoints } = data.result;
+          console.log(
+            `User: ${userName}, Date: ${withdrawalDate}, Withdrawal Points: ${withdrawalPoints}`
+          );
           setHoldingPoint(
-            prevHoldingPoint => prevHoldingPoint - withdrawalPoints
+            prevHoldingPoint => prevHoldingPoint - parseFloat(withdrawalPoints)
           );
           setInputValue('');
           navigate('/setpoint', {
