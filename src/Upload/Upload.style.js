@@ -37,7 +37,7 @@ export const PhoneBox = styled.div`
 export const PhoneInput = styled.input`
   ${UploadInput}
   background: #ffffff;
-  border: 1px solid ${({ alertMsg }) => (alertMsg ? '#ff6a21' : '#dbdbdb')};
+  border: 1px solid ${({ alertMsg }) => (alertMsg ? '#e40303' : '#dbdbdb')};
 `;
 
 export const PhoneBtn = styled.button`
@@ -49,7 +49,7 @@ export const AlertMsg = styled.p`
   font-size: 13px;
   line-height: 16px;
   letter-spacing: -0.02em;
-  color: #ff6a21;
+  color: '#e40303';
 `;
 
 export const MartInput = styled.input`

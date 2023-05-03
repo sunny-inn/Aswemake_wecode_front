@@ -8,7 +8,10 @@ import * as S from './Upload.style';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [martInfo, setMartInfo] = useState({});
+  const [martInfo, setMartInfo] = useState({
+    martName: '',
+    martAddress: '',
+  });
   const [alertMsg, setAlertMsg] = useState(false);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
@@ -55,7 +58,7 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data.mart.length);
+        console.log(data);
         if (data.mart.length !== 0) {
           setMartInfo(data.mart);
         } else {
@@ -160,13 +163,13 @@ const Upload = () => {
       {alertMsg && <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>}
       <S.UplaodLabel>마트 이름</S.UplaodLabel>
       <S.MartInput
-        value={martInfo}
+        value={martInfo.martName}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
       <S.UplaodLabel>마트 주소</S.UplaodLabel>
       <S.MartInput
-        value={martInfo}
+        value={martInfo.martAddress}
         placeholder="주소를 입력해주세요."
         readOnly
       />
