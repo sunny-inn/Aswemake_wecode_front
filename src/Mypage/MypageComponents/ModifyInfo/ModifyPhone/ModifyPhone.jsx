@@ -13,6 +13,21 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
 
   const handleCode = e => setCode(e.target.value);
 
+  useEffect(() => {
+    let timer;
+
+    if (codeBtn) {
+      setShowTimer(true);
+      timer = setInterval(() => {
+        setSeconds(prev => prev - 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [codeBtn]);
+
   const handleCodeBtn =
     phoneNumber.includes('010') &&
     (phoneNumber.length === 10 || phoneNumber.length === 11);
@@ -23,19 +38,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
     return `${minutes}:${secondsLeft < 10 ? '0' : ''}${secondsLeft}`;
   };
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setSeconds(c => c - 1);
-    }, 1000);
-
-    if (seconds === 0) {
-      clearInterval(id);
-    }
-
-    return () => clearInterval(id);
-  }, [codeBtn, seconds]);
-
-  // 인증번호 버튼 클릭 시 로직
+  // 인증번호 버튼 클릭 시
   const toGetCode = e => {
     e.preventDefault();
     setCodeBtn(true);
@@ -87,12 +90,6 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
           setAlertMsg(true);
         }
       });
-  };
-
-  const id = useRef(null);
-
-  const reset = () => {
-    window.clearInterval(id.current);
   };
 
   const handlePhoneNumber = e => {
