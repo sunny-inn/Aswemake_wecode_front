@@ -55,6 +55,7 @@ const Search = ({
 
   // 검색 기능
   let filteredList = [];
+
   useEffect(() => {
     filteredList = marts.filter(
       mart =>
@@ -62,7 +63,7 @@ const Search = ({
         mart.martNumberAddress.includes(newKeyword) ||
         mart.martRoadNameAddress.includes(newKeyword)
     );
-  }, [isSubmitted]);
+  }, [isSubmitted, marts, newKeyword]);
 
   const handleAddKeyword = e => {
     e.preventDefault();
@@ -81,7 +82,7 @@ const Search = ({
   };
 
   console.log(newKeyword);
-  console.log(filteredList);
+  console.log(marts);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
