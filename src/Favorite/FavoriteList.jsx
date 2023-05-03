@@ -7,27 +7,27 @@ const FavoriteList = ({ addedFavoriteList }) => {
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
   };
-  const token = localStorage.getItem('token');
-  useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/favorite', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-      body: JSON.stringify({ addedFavoriteList }),
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log(response.ok);
-        } else {
-          console.error(response.err);
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [handleFavorite]);
+  // const token = localStorage.getItem('token');
+  // useEffect(() => {
+  //   fetch('https://flyers.qmarket.me/api/favorite', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       Authorization: token,
+  //     },
+  //     body: JSON.stringify({ addedFavoriteList }),
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         console.log(response.ok);
+  //       } else {
+  //         console.error(response.err);
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, [handleFavorite]);
 
   return (
     <S.FavoriteListContainer>
