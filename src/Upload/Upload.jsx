@@ -24,6 +24,7 @@ const Upload = () => {
   const { images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
+  uploadForm.append('images', uploadInfo.images);
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
@@ -91,9 +92,10 @@ const Upload = () => {
       imageUrlLists.push(currentImageUrl);
     }
     setUploadedImgs(imageUrlLists);
-    setUploadInfo({ ...uploadInfo, ImgUrl: imageLists[0] });
+    setUploadInfo({ ...uploadInfo, images: imageLists[0] });
   };
 
+  console.log(uploadInfo);
   console.log(uploadedImgs[0]);
 
   let settings = {
