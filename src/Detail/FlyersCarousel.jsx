@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const FlyersCarousel = ({ detailMartList, handleImageClick }) => {
+const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
   const [showBigImage, setShowBigImage] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -19,6 +19,7 @@ const FlyersCarousel = ({ detailMartList, handleImageClick }) => {
     setShowBigImage(!prev);
   };
   console.log('flyercarousel', detailMartList);
+  console.log('list', list);
 
   let settings = {
     dots: false,

@@ -27,7 +27,7 @@ const Detail = () => {
 
   const onClickSuggestBtn = e => {
     e.preventDefault();
-    navigate('/home');
+    navigate('/suggest');
     // setShowSuggestModal(true);
   };
   // const handleSuggestModalClose = () => {
@@ -57,7 +57,7 @@ const Detail = () => {
   };
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/detail');
+    navigate('/home');
   };
 
   useEffect(() => {
@@ -164,6 +164,7 @@ const Detail = () => {
                   </S.PromoStartDate>
                 ))}
               <FlyersCarousel
+                list={list}
                 showBigFlyerModal={showBigFlyerModal}
                 handleImageClick={handleImageClick}
                 detailMartList={detailMartList}
