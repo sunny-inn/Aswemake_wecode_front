@@ -151,10 +151,6 @@ const FindPwd = () => {
         } else if (data.message === 'PLEASE FILL IN ALL BLANKS') {
           alert('입력값을 모두 채워주세요.');
         }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('서버와의 통신에 실패했습니다.');
       });
   };
 
