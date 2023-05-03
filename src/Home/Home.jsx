@@ -293,8 +293,7 @@ const Home = () => {
               {openModal && (
                 <DetailModal
                   handleModal={handleModal}
-                  homeMartList={homeMartList}
-                  // goToDetail={goToDetail}
+                  selectedMart={selectedMart}
                 />
               )}
             </>
