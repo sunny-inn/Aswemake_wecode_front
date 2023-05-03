@@ -24,13 +24,8 @@ const Upload = () => {
 
   const uploadForm = new FormData();
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
-  for (const image of uploadInfo.images) {
-    uploadForm.append('images', image);
-  }
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
-
-  uploadForm.append('data', uploadInfo);
 
   // 전화번호
   const handlePhoneNumber = e => {
@@ -96,6 +91,10 @@ const Upload = () => {
       ...prev,
       images: files,
     }));
+
+    for (let i = 0; i < files.length; i++) {
+      uploadForm.append('images[]', files[i]);
+    }
   };
 
   let settings = {
@@ -221,7 +220,6 @@ const Upload = () => {
           </S.CameraBox>
         )}
         <input
-          ref={inputRef}
           type="file"
           multiple
           hidden
