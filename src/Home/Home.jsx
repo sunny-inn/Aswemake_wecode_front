@@ -159,7 +159,6 @@ const Home = () => {
   // console.log('마트리스트', homeMartList);
 
   useEffect(() => {
-    console.log('여기')
     if (mapRef.current) {
       console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
