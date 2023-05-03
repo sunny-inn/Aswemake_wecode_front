@@ -126,6 +126,7 @@ const Upload = () => {
 
   const handelDisabled = !(
     martInfo &&
+    alertMsg === false &&
     uploadInfo.images.length === 4 &&
     startDate &&
     endDate &&
