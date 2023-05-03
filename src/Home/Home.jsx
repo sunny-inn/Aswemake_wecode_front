@@ -139,6 +139,7 @@ const Home = () => {
   //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
   useEffect(() => {
     if (center) {
+      console.log('센터')
       fetch(`https://flyers.qmarket.me/api/home`, {
         method: 'GET',
         credentials: 'include',
