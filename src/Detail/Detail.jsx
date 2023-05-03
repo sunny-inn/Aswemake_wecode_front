@@ -120,29 +120,29 @@ const Detail = () => {
     handleFavoriteToast(!isFavorite);
   };
 
-  useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Failed to get favorite check');
-        }
-      })
-      .then(data => {
-        setFavoriteCheck(data.favoriteCheck);
-        setIsFavorite(data.favoriteCheck === 1);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, [token]);
+  // useEffect(() => {
+  //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         throw new Error('Failed to get favorite check');
+  //       }
+  //     })
+  //     .then(data => {
+  //       setFavoriteCheck(data.favoriteCheck);
+  //       setIsFavorite(data.favoriteCheck === 1);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }, [token]);
 
   // const onClickFavorite = () => {
   //   if (isFavorite) {
