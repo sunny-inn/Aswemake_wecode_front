@@ -4,14 +4,12 @@ import * as S from './ModifyPhone.style';
 
 const ModifyPhone = ({ setModalOpen, userInfo }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [code, setCode] = useState(false);
+  const [code, setCode] = useState('');
   const [verification, setVerification] = useState(false);
   const [codeBtn, setCodeBtn] = useState(false);
   const [seconds, setSeconds] = useState(180);
   const [showTimer, setShowTimer] = useState(false);
   const [alertMsg, setAlertMsg] = useState(false);
-
-  const handleCode = e => setCode(e.target.value);
 
   useEffect(() => {
     let timer;
@@ -133,11 +131,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             value={phoneNumber}
             onChange={handlePhoneNumber}
           />
-          <S.GetNumBtn
-            onClick={toGetCode}
-            disabled={!handleCodeBtn}
-            handleCodeBtn={handleCodeBtn}
-          >
+          <S.GetNumBtn onClick={toGetCode} disabled={!handleCodeBtn}>
             인증번호 받기
           </S.GetNumBtn>
         </S.PhoneInputWrap>
@@ -147,7 +141,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             name="code"
             type="text"
             value={code}
-            onChange={handleCode}
+            onChange={e => setCode(e.target.value)}
           />
           {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
           <S.GetNumBtn
@@ -155,15 +149,18 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             disabled={!handleVerificationBtn}
             verification={verification}
             alertMsg={alertMsg}
-            handleVerificationBtn={handleVerificationBtn}
           >
             확인
           </S.GetNumBtn>
         </S.PhoneInputWrap>
         {alertMsg ? (
-          <S.PhoneCheckText>인증번호를 다시 확인해주세요.</S.PhoneCheckText>
+          <S.PhoneCheckText color="#E40303">
+            인증번호를 다시 확인해주세요.
+          </S.PhoneCheckText>
         ) : (
-          <S.PhoneCheckText>번호 인증이 완료되었습니다.</S.PhoneCheckText>
+          <S.PhoneCheckText color="#ff6a21">
+            번호 인증이 완료되었습니다.
+          </S.PhoneCheckText>
         )}
       </S.ModifyPhoneBody>
       <S.ConfirmBtn onClick={toModifyPhone} disabled={!handleVerificationBtn}>
