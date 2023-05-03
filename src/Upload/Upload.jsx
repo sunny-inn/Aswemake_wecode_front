@@ -8,10 +8,7 @@ import * as S from './Upload.style';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [martInfo, setMartInfo] = useState({
-    martName: '',
-    martAddress: '',
-  });
+  const [martInfo, setMartInfo] = useState({});
   const [alertMsg, setAlertMsg] = useState(false);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
@@ -66,6 +63,8 @@ const Upload = () => {
         }
       });
   };
+
+  console.log(martInfo);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -145,8 +144,6 @@ const Upload = () => {
         }
       });
   };
-
-  console.log(martInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
