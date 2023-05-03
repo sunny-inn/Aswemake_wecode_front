@@ -67,7 +67,7 @@ const Detail = () => {
       .then(response => response.json())
       .then(data => {
         setDetailMartList(data);
-        console.log('이게맞아??', data.martDetail.martId);
+        console.log('이게맞아??', data.martDetail);
       })
       .catch(error => {
         console.error(error);
