@@ -7,7 +7,9 @@ const Search = ({
   setIsSearchClicked,
   homeMartList,
   setSelectedMart,
-  center,
+  isMarkerClicked,
+  setIsMarkerClicked,
+  setCenter,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -75,9 +77,6 @@ const Search = ({
     setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
   }, [isSubmitted]);
 
-  console.log(marts);
-  console.log(filteredMarts);
-
   // 검색어 삭제
   const handleRemoveKeyword = id => {
     const filteredKeyword = keywords.filter(keyword => {
@@ -87,13 +86,24 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = id => {
+  const onClickMart = (id, mart, index) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
     setNewKeyword('');
+
+    setSelectedMart(mart);
+    const newToggles = isMarkerClicked.map((toggle, i) => {
+      if (i === index) {
+        return !toggle;
+      } else {
+        return isMarkerClicked[index] === false ? false : toggle;
+      }
+    });
+    setIsMarkerClicked(newToggles);
+    setCenter({ lat: mart.lat, lng: mart.lng });
   };
 
   return (
@@ -121,10 +131,14 @@ const Search = ({
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
                 {filteredMarts.map(
-                  ({ martId, martName, martNumberAddress, distance }) => (
+                  (
+                    mart,
+                    index,
+                    { martId, martName, martNumberAddress, distance }
+                  ) => (
                     <S.SearchedItem
                       key={martId}
-                      onClick={() => onClickMart(martId)}
+                      onClick={() => onClickMart(martId, mart, index)}
                     >
                       <div>
                         <S.MartName>{martName}</S.MartName>

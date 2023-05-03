@@ -307,7 +307,9 @@ const Home = () => {
           setIsSearchClicked={setIsSearchClicked}
           homeMartList={homeMartList}
           setSelectedMart={setSelectedMart}
-          center={center}
+          setCenter={setCenter}
+          isMarkerClicked={isMarkerClicked}
+          setIsMarkerClicked={setIsMarkerClicked}
         />
       )}
     </div>
