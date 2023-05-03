@@ -130,26 +130,20 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredMarts.map(
-                  (
-                    mart,
-                    index,
-                    { martId, martName, martNumberAddress, distance }
-                  ) => (
-                    <S.SearchedItem
-                      key={martId}
-                      onClick={() => onClickMart(martId, mart, index)}
-                    >
-                      <div>
-                        <S.MartName>{martName}</S.MartName>
-                        <S.MartAddress>{martNumberAddress}</S.MartAddress>
-                      </div>
-                      <S.Distance>
-                        {Math.round(distance * 100) / 100}km
-                      </S.Distance>
-                    </S.SearchedItem>
-                  )
-                )}
+                {filteredMarts.map((mart, index) => (
+                  <S.SearchedItem
+                    key={mart.martId}
+                    onClick={() => onClickMart(mart.martId, mart, index)}
+                  >
+                    <div>
+                      <S.MartName>{mart.martName}</S.MartName>
+                      <S.MartAddress>{mart.martNumberAddress}</S.MartAddress>
+                    </div>
+                    <S.Distance>
+                      {Math.round(mart.distance * 100) / 100}km
+                    </S.Distance>
+                  </S.SearchedItem>
+                ))}
               </S.SearchedList>
             ) : (
               <S.EmptyList>
