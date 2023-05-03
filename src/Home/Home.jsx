@@ -179,7 +179,7 @@ const Home = () => {
       nextIndex = smIndex + 1;
     }
     setSelectedMart(homeMartList[nextIndex]);
-    console.log('homeindex', homeMartList[nextIndex]);
+    console.log('homeindex', nextIndex);
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === nextIndex) {
         return true;

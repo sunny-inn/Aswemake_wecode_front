@@ -95,7 +95,7 @@ const Search = ({
     setSelectedMart(selectedMart);
     setNewKeyword('');
     setSelectedMart(mart[index]);
-    console.log('searchindex', mart[index]);
+    console.log('searchindex', index);
     setCenter({ lat: mart.lat, lng: mart.lng });
 
     if (selectedMart !== null) {
