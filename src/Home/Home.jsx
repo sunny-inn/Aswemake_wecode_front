@@ -288,6 +288,7 @@ const Home = () => {
                   handleModal={handleModal}
                   onClickDetailPortal={onClickDetailPortal}
                   changeCenterByCarousel={changeCenterByCarousel}
+                  currentId={currentId}
                 />
               </NaverMap>
               {openModal && (
