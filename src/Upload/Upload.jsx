@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
@@ -9,23 +8,22 @@ import * as S from './Upload.style';
 
 const Upload = () => {
   const [martPhoneNumber, setPhoneNumber] = useState('');
-  const [marts, setMarts] = useState([]);
+  const [martInfo, setMartInfo] = useState({});
+  const [alertMsg, setAlertMsg] = useState(false);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
-  //FIXME: 마트 전화번호는 -포함되어 전송하기
   const [uploadInfo, setUploadInfo] = useState({
-    martPhoneNumber: '02-501-6988',
+    martPhoneNumber: '',
     images: [],
     startDate: '',
     endDate: '',
   });
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const { martId, images, startDate, endDate } = uploadInfo;
+  const { images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
-  //FIXME: for (let i = 0; i < 4; i++)
   uploadForm.append('images', uploadInfo.images);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
@@ -35,48 +33,40 @@ const Upload = () => {
     setPhoneNumber(e.target.value);
   };
 
-  // 마트 정보 FIXME: api로 수정
+  // 스크롤 위치 조정
   useEffect(() => {
     let scrollPosition = window.pageYOffset;
     if (scrollPosition !== 0) {
       window.scrollTo(0, 0);
     }
-
-    fetch(
-      '/data/MhomeData.json'
-      // , {method: 'GET', }
-    )
-      .then(res => res.json())
-      .then(data => setMarts(data.martList));
   }, []);
 
-  const filteredMart =
-    martPhoneNumber &&
-    marts.filter(mart => mart.martPhoneNumber === martPhoneNumber);
+  // 전화번호로 마트 정보 받아오기
+  const onClickMart = e => {
+    e.preventDefault();
 
-  const filteredMartName =
-    filteredMart && filteredMart.length > 0 ? filteredMart[0].name : null;
-
-  const filteredMartAddress =
-    filteredMart && filteredMart.length > 0 ? filteredMart[0].address : null;
-
-  // 전화번호 유효성 검사
-  const handleAlertMsg = martPhoneNumber && filteredMart.length === 0;
-
-  // const onClickClose = () => setIsCloseClicked(prev => !prev);
+    fetch('https://flyers.qmarket.me/api/flyer/mart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: martPhoneNumber,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message === 'UPLOAD IS SUCCESS') {
+          console.log(data);
+          setMartInfo(data);
+        } else {
+          setAlertMsg(true);
+        }
+      });
+  };
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
   };
-
-  useEffect(
-    prev => {
-      martPhoneNumber &&
-        filteredMart.length > 0 &&
-        setUploadInfo({ ...prev, martId: filteredMart[0].id });
-    },
-    [martPhoneNumber]
-  );
 
   // 이미지 넣기
   const inputRef = useRef(null);
@@ -120,10 +110,8 @@ const Upload = () => {
     setIsCheckboxClicked(prev => !prev);
   };
 
-  // filteredMartName &&
-  // filteredMartAddress &&
-
   const handelDisabled = !(
+    martInfo &&
     uploadInfo.images.length === 4 &&
     startDate &&
     endDate &&
@@ -132,6 +120,7 @@ const Upload = () => {
 
   const token = localStorage.getItem('token');
 
+  // 전단 등록 요청
   const onSubmitFlyers = e => {
     e.preventDefault();
 
@@ -149,7 +138,7 @@ const Upload = () => {
         if (data.message === 'UPLOAD IS SUCCESS') {
           setIsUploaded(true);
         } else {
-          alert('실패');
+          alert(data.message);
         }
       });
   };
@@ -158,25 +147,26 @@ const Upload = () => {
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
       <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
-      <S.PhoneInput
-        type="text"
-        value={martPhoneNumber}
-        placeholder='전화번호를 "-"없이 입력해주세요'
-        onChange={handlePhoneNumber}
-        handleAlertMsg={handleAlertMsg}
-      />
-      {handleAlertMsg && (
-        <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>
-      )}
+      <S.PhoneBox>
+        <S.PhoneInput
+          type="text"
+          value={martPhoneNumber}
+          placeholder='전화번호를 "-"없이 입력해주세요'
+          onChange={handlePhoneNumber}
+          alertMsg={alertMsg}
+        />
+        <S.PhoneBtn onClick={onClickMart}>확인</S.PhoneBtn>
+      </S.PhoneBox>
+      {alertMsg && <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>}
       <S.UplaodLabel>마트 이름</S.UplaodLabel>
       <S.MartInput
-        value={filteredMartName}
+        value={martInfo}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
       <S.UplaodLabel>마트 주소</S.UplaodLabel>
       <S.MartInput
-        value={filteredMartAddress}
+        value={martInfo}
         placeholder="주소를 입력해주세요."
         readOnly
       />
