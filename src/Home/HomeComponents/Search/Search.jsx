@@ -69,9 +69,6 @@ const Search = ({
     );
   };
 
-  console.log(marts);
-  console.log(newKeyword);
-
   // 최근 검색어 클릭 시 검색되는 기능
   const onClickKeyword = (id, text) => {
     const filteredKeyword = keywords.filter(keyword => {
@@ -88,6 +85,9 @@ const Search = ({
         mart.martRoadNameAddress.includes(newKeyword)
     );
   };
+
+  console.log(newKeyword);
+  console.log(filteredList);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
