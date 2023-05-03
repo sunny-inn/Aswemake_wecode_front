@@ -55,7 +55,12 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        console.log(data.mart.length);
+        if (data.mart.length !== 0) {
+          setMartInfo(data.mart);
+        } else {
+          setAlertMsg(true);
+        }
       });
   };
 
