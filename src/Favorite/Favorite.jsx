@@ -20,7 +20,7 @@ const Favorite = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setAddedFavoriteList(data);
+        setAddedFavoriteList(data || []);
         console.log('콘솔첫번째', data);
       });
   }, []);
@@ -31,7 +31,7 @@ const Favorite = () => {
       {addedFavoriteList.length === 0 ? (
         <FavoriteEmpty />
       ) : (
-        <FavoriteList addedFavoriteList={addedFavoriteList} />
+        <FavoriteList addedFavoriteList={addedFavoriteList} f />
       )}
     </div>
   );
