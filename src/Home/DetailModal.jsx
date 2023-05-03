@@ -5,8 +5,6 @@ import * as S from './DetailModal.style';
 const DetailModal = ({ handleModal, currentId, selectedMart }) => {
   const navigate = useNavigate();
 
-  console.log('currentId: ', currentId);
-
   return (
     <S.ModalContainer>
       <S.ModalContentBox>
