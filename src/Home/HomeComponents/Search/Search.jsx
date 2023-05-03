@@ -32,8 +32,7 @@ const Search = ({
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        setMarts(data);
+        setMarts(data.allMarts);
       });
   }, []);
 
@@ -47,18 +46,26 @@ const Search = ({
     setIsSubmitted(false);
   };
 
-  // const filteredList = homeMartList.filter(
-  //   mart =>
-  //     mart.martName.includes(newKeyword) ||
-  //     mart.martNumberAddress.includes(newKeyword) ||
-  //     mart.martRoadNameAddress.includes(newKeyword)
-  // );
-
   // 검색창 닫기
   const onClickBack = e => {
     e.preventDefault();
     setIsSearchClicked(false);
     setNewKeyword('');
+  };
+
+  // 검색 기능
+  let filteredList = [];
+  const handleAddKeyword = e => {
+    e.preventDefault();
+    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
+    setIsSubmitted(true);
+
+    filteredList = marts.filter(
+      mart =>
+        mart.martName.includes(newKeyword) ||
+        mart.martNumberAddress.includes(newKeyword) ||
+        mart.martRoadNameAddress.includes(newKeyword)
+    );
   };
 
   // 최근 검색어 클릭 시 검색되는 기능
@@ -69,13 +76,6 @@ const Search = ({
     setNewKeyword(text);
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
-  };
-
-  // 검색어 추가
-  const handleAddKeyword = e => {
-    e.preventDefault();
-    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
-    setIsSubmitted(true);
   };
 
   // 검색어 삭제
