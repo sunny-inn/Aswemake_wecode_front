@@ -86,8 +86,10 @@ const Search = ({
     );
   };
 
+  let result = marts.filter(mart => mart.martName.includes('마트'));
+
   console.log(newKeyword);
-  console.log(filteredList);
+  console.log(result);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
