@@ -146,6 +146,7 @@ const Home = () => {
       mapRef.current.setCenter(newCenter);
     }
   }, [selectedMart]);
+
   const navermaps = useNavermaps();
 
   const handleCenter = value => setCenter(value);

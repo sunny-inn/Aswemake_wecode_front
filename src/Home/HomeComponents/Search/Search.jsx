@@ -87,7 +87,8 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = (id, mart, index) => {
+  const onClickMart = (e, id, mart, index) => {
+    e.preventDefault();
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
@@ -99,7 +100,6 @@ const Search = ({
     setCenter({ lat: mart.lat, lng: mart.lng });
 
     if (selectedMart !== null) {
-      console.log('여기!!');
       const newToggles = isMarkerClicked.map((toggle, i) => {
         if (i === index) {
           return !toggle;
@@ -138,7 +138,7 @@ const Search = ({
                 {filteredMarts.map((mart, index) => (
                   <S.SearchedItem
                     key={mart.martId}
-                    onClick={() => onClickMart(mart.martId, mart, index)}
+                    onClick={e => onClickMart(e, mart.martId, mart, index)}
                   >
                     <div>
                       <S.MartName>{mart.martName}</S.MartName>
