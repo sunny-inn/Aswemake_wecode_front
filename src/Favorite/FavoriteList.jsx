@@ -3,6 +3,7 @@ import * as S from './FavoriteList.style';
 
 const FavoriteList = ({ addedFavoriteList }) => {
   const [checked, setChecked] = useState(false);
+  console.log('FavoriteList', addedFavoriteList);
 
   const handleFavorite = martId => {
     setChecked(prevChecked => !prevChecked);
@@ -30,7 +31,7 @@ const FavoriteList = ({ addedFavoriteList }) => {
   return (
     <S.FavoriteListContainer>
       {addedFavoriteList.map(item => (
-        <div key={item.id}>
+        <div key={item.martId}>
           <S.MartBox>
             <S.CarouselBox>
               <div>

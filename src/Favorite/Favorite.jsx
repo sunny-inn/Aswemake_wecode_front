@@ -21,7 +21,6 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data || []);
-        console.log('콘솔첫번째', data);
       });
   }, []);
 
