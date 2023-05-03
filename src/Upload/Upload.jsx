@@ -57,7 +57,7 @@ const Upload = () => {
       .then(data => {
         console.log(data);
         if (data.mart.length !== 0) {
-          setMartInfo(data.mart);
+          setMartInfo(data.mart[0]);
         } else {
           setAlertMsg(true);
         }
