@@ -100,10 +100,6 @@ const Upload = () => {
       ...prev,
       images: files,
     }));
-
-    // for (let i = 0; i < files.length; i++) {
-    //   uploadForm.append('images', files[i]);
-    // }
   };
 
   let settings = {
@@ -160,8 +156,6 @@ const Upload = () => {
         }
       });
   };
-
-  console.log(uploadInfo);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>

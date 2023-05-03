@@ -49,7 +49,7 @@ export const AlertMsg = styled.p`
   font-size: 13px;
   line-height: 16px;
   letter-spacing: -0.02em;
-  color: '#e40303';
+  color: #e40303;
 `;
 
 export const MartInput = styled.input`
@@ -97,6 +97,7 @@ export const CameraBox = styled.div`
   background: #ffffff;
   border: 1px dashed #dbdbdb;
   border-radius: 16px;
+  cursor: pointer;
 `;
 
 export const CameraImg = styled.img`
