@@ -20,8 +20,8 @@ const Favorite = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setAddedFavoriteList(data.martList);
-        console.log('콘솔첫번째', data.martList);
+        setAddedFavoriteList(data);
+        console.log('콘솔첫번째', data);
       });
     console.log('자주가요데이터', addedFavoriteList);
   }, []);
