@@ -41,8 +41,8 @@ const FavoriteList = ({ addedFavoriteList }) => {
                       />
                     </S.MartTitleLi>
                     <S.MartContentBox>
-                      <li>주소 :{item.martAddress}</li>
-                      <li>연락처 : {item.martPhoneNumber}</li>
+                      <li>{item.martAddress}</li>
+                      <li>{item.martPhoneNumber}</li>
                     </S.MartContentBox>
                   </S.CarouselContent>
                 </S.CarouselBox>

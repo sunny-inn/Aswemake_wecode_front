@@ -72,4 +72,7 @@ export const MartContentBox = styled.div`
   font-weight: 500;
   font-size: 13px;
   line-height: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
