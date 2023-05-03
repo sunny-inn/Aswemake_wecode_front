@@ -31,6 +31,8 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
       });
   }, [handleFavorite]);
 
+  console.log('favoriteList', addedFavoriteList);
+
   return (
     <S.FavoriteListContainer>
       {addedFavoriteList.map((list, i) => (
