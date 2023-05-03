@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 const AccountRegi = () => {
   const navigate = useNavigate();
 
+  const onClickBack = e => {
+    e.preventDefault();
+    navigate('/mypage');
+  };
+
   const [correct, setCorrrect] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [selectBank, setSelectBank] = useState(null);
@@ -95,14 +100,19 @@ const AccountRegi = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        setAccountVerified(data.message === accountName);
-        setAreInputsVerified(data.message === accountName);
+        if (data.message === 'name matches') {
+          setAccountVerified(accountName);
+        } else if (data.message === 'ONLY YOUR ACCOUNT CAN BE REGISTERED') {
+          setAreInputsFilled(accountName);
+        }
+        // setAccountVerified(data.message === accountName);
+        // setAreInputsVerified(data.message === accountName);
       });
   };
 
   return (
     <>
-      <Header type="accountRegi" />
+      <Header type="accountRegi" onClickBack={onClickBack} />
       <S.Layout>
         <S.InputTitle>
           <label>은행</label>

@@ -83,7 +83,7 @@ const WithdrawPoint = () => {
           }
         );
         const data = await response.json();
-        console.log('checkCurrentAccount', data);
+        console.log(data);
         setAccountInfo(data);
         setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`);
       } catch (error) {
