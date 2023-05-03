@@ -120,7 +120,6 @@ const Upload = () => {
 
   const handelDisabled = !(
     martInfo &&
-    images.length === 4 &&
     startDate &&
     endDate &&
     isCheckboxClicked === true
