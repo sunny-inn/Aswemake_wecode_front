@@ -8,7 +8,6 @@ export const FavoriteListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
-  border: 1px solid red;
 `;
 
 export const MartBox = styled.div`
@@ -75,4 +74,6 @@ export const MartContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: auto;
+  border: 1px solid red;
 `;
