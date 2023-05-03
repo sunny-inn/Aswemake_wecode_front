@@ -26,9 +26,9 @@ const Upload = () => {
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
-  for (let i = 0; i < uploadInfo.images.length; i++) {
-    uploadForm.append('images', uploadInfo.images[i]);
-  }
+  // for (let i = 0; i < uploadInfo.images.length; i++) {
+  //   uploadForm.append('images', uploadInfo.images[i]);
+  // }
 
   // 전화번호
   const handlePhoneNumber = e => {
@@ -57,7 +57,6 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         if (data.mart.length !== 0) {
           setMartInfo(data.mart[0]);
           setUploadInfo(prev => ({
@@ -96,9 +95,9 @@ const Upload = () => {
       images: files,
     }));
 
-    // for (let i = 0; i < files.length; i++) {
-    //   uploadForm.append('images', files[i]);
-    // }
+    for (let i = 0; i < files.length; i++) {
+      uploadForm.append('images', files[i]);
+    }
   };
 
   let settings = {
