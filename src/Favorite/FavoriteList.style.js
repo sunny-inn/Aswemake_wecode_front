@@ -2,15 +2,17 @@ import styled from 'styled-components';
 
 export const FavoriteListContainer = styled.div`
   width: 360px;
-  height: 504px;
+  height: 616px;
   margin-top: 56px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+  border: 1px solid red;
 `;
 
 export const MartBox = styled.div`
-  cursor: pointer;
   border: 1px solid #ececec;
   box-shadow: 1px 1px 4px rgba(154, 154, 154, 0.1);
   border-radius: 12px;
