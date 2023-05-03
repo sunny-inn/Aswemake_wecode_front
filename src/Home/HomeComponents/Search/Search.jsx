@@ -111,7 +111,7 @@ const Search = ({
 
   // 중심에서 마트까지 거리 계산하는 기능
   // const calculateDistance = () => {
-  //   filteredList.map(({ lat, lng }) => {
+  //   filteredMarts.map(({ lat, lng }) => {
   //     if()
   //   });
   // };
@@ -138,20 +138,22 @@ const Search = ({
         {isSubmitted ? (
           <>
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
-            {filteredList.length > 0 ? (
+            {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredList.map(({ martId, martName, martNumberAddress }) => (
-                  <S.SearchedItem
-                    key={martId}
-                    onClick={() => onClickMart(martId)}
-                  >
-                    <div>
-                      <S.MartName>{martName}</S.MartName>
-                      <S.MartAddress>{martNumberAddress}</S.MartAddress>
-                    </div>
-                    <S.Distance>거리</S.Distance>
-                  </S.SearchedItem>
-                ))}
+                {filteredMarts.map(
+                  ({ martId, martName, martNumberAddress }) => (
+                    <S.SearchedItem
+                      key={martId}
+                      onClick={() => onClickMart(martId)}
+                    >
+                      <div>
+                        <S.MartName>{martName}</S.MartName>
+                        <S.MartAddress>{martNumberAddress}</S.MartAddress>
+                      </div>
+                      <S.Distance>거리</S.Distance>
+                    </S.SearchedItem>
+                  )
+                )}
               </S.SearchedList>
             ) : (
               <S.EmptyList>
