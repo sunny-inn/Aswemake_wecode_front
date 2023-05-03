@@ -96,13 +96,6 @@ const Search = ({
     setNewKeyword('');
   };
 
-  // 중심에서 마트까지 거리 계산하는 기능
-  // const calculateDistance = () => {
-  //   filteredMarts.map(({ lat, lng }) => {
-  //     if()
-  //   });
-  // };
-
   return (
     <S.SearchBox>
       <form onSubmit={e => handleAddKeyword(e)}>
@@ -128,7 +121,7 @@ const Search = ({
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
                 {filteredMarts.map(
-                  ({ martId, martName, martNumberAddress }) => (
+                  ({ martId, martName, martNumberAddress, distance }) => (
                     <S.SearchedItem
                       key={martId}
                       onClick={() => onClickMart(martId)}
@@ -137,7 +130,9 @@ const Search = ({
                         <S.MartName>{martName}</S.MartName>
                         <S.MartAddress>{martNumberAddress}</S.MartAddress>
                       </div>
-                      <S.Distance>거리</S.Distance>
+                      <S.Distance>
+                        {Math.round(distance * 100) / 100}
+                      </S.Distance>
                     </S.SearchedItem>
                   )
                 )}
@@ -153,7 +148,7 @@ const Search = ({
         ) : (
           <>
             <S.KeywordTitle>최근 검색어</S.KeywordTitle>
-            <ul>
+            <S.SearchedList>
               {keywords.length > 0 ? (
                 keywords.slice(0, 3).map(({ id, text }) => (
                   <S.KeywordItem key={id}>
@@ -169,9 +164,9 @@ const Search = ({
                   </S.KeywordItem>
                 ))
               ) : (
-                <div />
+                <S.KeywordItem />
               )}
-            </ul>
+            </S.SearchedList>
           </>
         )}
       </S.KeywordBox>
