@@ -101,12 +101,12 @@ const AccountRegi = () => {
       .then(data => {
         console.log(data);
         if (data.message === 'name matches') {
-          setAccountVerified(accountName);
-          setAreInputsFilled(accountName);
+          setAccountVerified(true);
+          setAreInputsFilled(true);
         } else if (data.message === 'ONLY YOUR ACCOUNT CAN BE REGISTERED') {
+          setAccountVerified(false);
+          setAreInputsFilled(false);
         }
-        // setAccountVerified(data.message === accountName);
-        // setAreInputsVerified(data.message === accountName);
       });
   };
 
