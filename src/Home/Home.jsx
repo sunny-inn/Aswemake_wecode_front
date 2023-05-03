@@ -169,7 +169,7 @@ const Home = () => {
   }, [selectedMart]);
   const navermaps = useNavermaps();
 
-  const handleCenter = value => setCenterPoint(value);
+  const handleCenter = value => setCenter(value);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
