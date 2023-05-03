@@ -49,7 +49,10 @@ const PwdReSetting = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        if (data.message === 'CHANGED SUCCESSFULLY WITHOUT TOKEN') {
+        if (
+          data.message === 'CHANGED SUCCESSFULLY' ||
+          data.message === 'CHANGED SUCCESSFULLY WITHOUT TOKEN'
+        ) {
           navigate('/cntfindid');
         } else {
           alert('비밀번호 변경에 실패했습니다.');
