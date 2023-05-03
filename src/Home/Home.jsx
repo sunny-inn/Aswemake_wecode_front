@@ -317,6 +317,7 @@ const Home = () => {
           setCenter={setCenter}
           isMarkerClicked={isMarkerClicked}
           setIsMarkerClicked={setIsMarkerClicked}
+          selectedMart={selectedMart}
         />
       )}
     </div>

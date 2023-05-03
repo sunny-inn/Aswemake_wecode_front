@@ -10,6 +10,7 @@ const Search = ({
   isMarkerClicked,
   setIsMarkerClicked,
   setCenter,
+  selectedMart,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -95,15 +96,18 @@ const Search = ({
     setNewKeyword('');
 
     setSelectedMart(mart);
-    const newToggles = isMarkerClicked.map((toggle, i) => {
-      if (i === index) {
-        return !toggle;
-      } else {
-        return isMarkerClicked[index] === false ? false : toggle;
-      }
-    });
-    setIsMarkerClicked(newToggles);
     setCenter({ lat: mart.lat, lng: mart.lng });
+
+    if (selectedMart) {
+      const newToggles = isMarkerClicked.map((toggle, i) => {
+        if (i === index) {
+          return !toggle;
+        } else {
+          return isMarkerClicked[index] === false ? false : toggle;
+        }
+      });
+      setIsMarkerClicked(newToggles);
+    }
   };
 
   return (
@@ -178,7 +182,6 @@ const Search = ({
           </>
         )}
       </S.KeywordBox>
-      {/* <S.HideFooter /> */}
     </S.SearchBox>
   );
 };
