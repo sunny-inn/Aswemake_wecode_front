@@ -5,7 +5,7 @@ export const FooterContainer = styled.div`
   height: 56px;
   background-color: white;
   position: absolute;
-  bottom: 34px;
+  bottom: 0;
 `;
 export const FooterUl = styled.ul`
   display: flex;
