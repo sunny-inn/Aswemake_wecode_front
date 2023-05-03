@@ -288,6 +288,7 @@ const Home = () => {
                   handleModal={handleModal}
                   onClickDetailPortal={onClickDetailPortal}
                   changeCenterByCarousel={changeCenterByCarousel}
+                  setSelectedMart={setSelectedMart} // setSelectedMartList prop 전달
                   currentId={currentId}
                 />
               </NaverMap>
