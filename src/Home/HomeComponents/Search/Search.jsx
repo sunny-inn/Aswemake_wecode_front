@@ -12,6 +12,7 @@ const Search = ({
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [marts, setMarts] = useState([]);
+  const [filteredMarts, setFilteredMarts] = useState([]);
 
   const token = localStorage.getItem('token');
 
@@ -54,18 +55,18 @@ const Search = ({
   };
 
   // 검색 기능
-  let filteredList = [];
-
   const handleAddKeyword = e => {
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
     setIsSubmitted(true);
 
-    filteredList = marts.filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword) ||
-        mart.martRoadNameAddress.includes(newKeyword)
+    setFilteredMarts(
+      marts.filter(
+        mart =>
+          mart.martName.includes(newKeyword) ||
+          mart.martNumberAddress.includes(newKeyword) ||
+          mart.martRoadNameAddress.includes(newKeyword)
+      )
     );
   };
 
@@ -78,18 +79,17 @@ const Search = ({
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
 
-    filteredList = marts.filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword) ||
-        mart.martRoadNameAddress.includes(newKeyword)
+    setFilteredMarts(
+      marts.filter(
+        mart =>
+          mart.martName.includes(newKeyword) ||
+          mart.martNumberAddress.includes(newKeyword) ||
+          mart.martRoadNameAddress.includes(newKeyword)
+      )
     );
   };
 
-  let result = marts.filter(mart => mart.martName.includes('마트'));
-
-  console.log(newKeyword);
-  console.log(result);
+  console.log(filteredMarts);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
