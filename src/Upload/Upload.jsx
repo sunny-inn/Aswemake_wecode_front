@@ -146,6 +146,8 @@ const Upload = () => {
       });
   };
 
+  console.log(martInfo);
+
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
