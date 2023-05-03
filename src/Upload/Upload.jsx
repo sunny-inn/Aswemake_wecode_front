@@ -24,7 +24,6 @@ const Upload = () => {
 
   const uploadForm = new FormData();
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
-  uploadForm.append('images', uploadInfo.images);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
@@ -92,6 +91,10 @@ const Upload = () => {
       ...prev,
       images: files,
     }));
+
+    for (let i = 0; i < files.length; i++) {
+      uploadForm.append('images', files[i]);
+    }
   };
 
   let settings = {
@@ -118,7 +121,7 @@ const Upload = () => {
 
   const handelDisabled = !(
     martInfo &&
-    uploadInfo.images.length === 4 &&
+    images.length === 4 &&
     startDate &&
     endDate &&
     isCheckboxClicked === true
@@ -148,8 +151,6 @@ const Upload = () => {
         }
       });
   };
-
-  console.log(uploadInfo.images);
 
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
