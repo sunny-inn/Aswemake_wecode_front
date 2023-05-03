@@ -66,8 +66,8 @@ const Detail = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setDetailMartList(data);
-        console.log('이게맞아??', data.martDetail[0]);
+        setDetailMartList(data.martDetail);
+        console.log('이게맞아??', data.martDetail);
       })
       .catch(error => {
         console.error(error);
@@ -120,39 +120,6 @@ const Detail = () => {
     handleFavoriteToast(!isFavorite);
   };
 
-  // useEffect(() => {
-  //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         throw new Error('Failed to get favorite check');
-  //       }
-  //     })
-  //     .then(data => {
-  //       setFavoriteCheck(data.favoriteCheck);
-  //       setIsFavorite(data.favoriteCheck === 1);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }, [token]);
-
-  // const onClickFavorite = () => {
-  //   if (isFavorite) {
-  //     setIsFavorite(false);
-  //     handleToast('favoriteRemoved');
-  //   } else {
-  //     setIsFavorite(true);
-  //     handleToast('favorite');
-  //   }
-  // };
   //공유하기 로직
   const [isShared, setIsShared] = useState(false);
   const onClickShared = () => {
