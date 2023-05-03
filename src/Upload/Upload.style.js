@@ -41,7 +41,16 @@ export const PhoneInput = styled.input`
 `;
 
 export const PhoneBtn = styled.button`
-  width: 50px;
+  width: 116px;
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  color: #707070;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
 `;
 
 export const AlertMsg = styled.p`

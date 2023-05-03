@@ -166,7 +166,7 @@ const Upload = () => {
         <S.PhoneInput
           type="text"
           value={phoneNumber}
-          placeholder='전화번호를 "-"없이 입력해주세요'
+          placeholder="(-) 포함해서 입력해주세요."
           onChange={handlePhoneNumber}
           alertMsg={alertMsg}
         />
