@@ -26,8 +26,8 @@ const Home = () => {
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
   const [center, setCenter] = useState({
-    lat: 37.5568439,
-    longitude: 126.919976,
+    lat: homeMartList.userPosition.lat,
+    longitude: homeMartList.userPosition.lng,
   });
 
   // 검색 기능 관련 state
@@ -40,38 +40,6 @@ const Home = () => {
   const goToDetail = id => {
     navigate(`detail/${id}`);
   };
-
-  // 회원 주소지 받는 기능
-  // useEffect(() => {
-  //   fetch('', {
-  //     method: 'GET',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       authorization: token,
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setUserAddress(data);
-  //     });
-  // }, []);
-
-  // 회원 주소지 좌표값으로 바꾸는 기능
-  // const geocoder = navermaps.Service.geocode(
-  //   {
-  //     address: userAddress,
-  //   },
-  //   function (status, response) {
-  //     if (status !== navermaps.Service.Status.OK) {
-  //       return alert('Something wrong!');
-  //     }
-  //     const result = response.result;
-  //     const items = result.items;
-  //     console.log('위도 = ', items[0].point.y, ' 경도 = ', items[0].point.x);
-  //     setCenter({ lat: items[0].point.x, lng: items[0].point.y });
-  //   }
-  // );
 
   useEffect(() => {
     userAddress &&
@@ -153,8 +121,16 @@ const Home = () => {
           setHomeMartList(data.martList);
           console.log('센터다', center);
         });
+
+      // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
+      if (homeMartList?.userPosition) {
+        setCenter({
+          lat: homeMartList.userPosition.lat,
+          lng: homeMartList.userPosition.lng,
+        });
+      }
     }
-  }, [center]);
+  }, [center, token]);
 
   // console.log('마트리스트', homeMartList);
 

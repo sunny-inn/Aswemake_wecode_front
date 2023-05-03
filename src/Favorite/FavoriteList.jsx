@@ -23,6 +23,7 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
       },
       body: JSON.stringify({
         imageStates,
+        handleFavorite,
       }),
     })
       .then(response => response.json())
