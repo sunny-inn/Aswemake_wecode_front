@@ -93,12 +93,10 @@ const Upload = () => {
     //   images: files,
     // }));
 
-    for (let i = 0; i < files.length; i++) {
-      setUploadInfo(prev => ({
-        ...prev,
-        images: files[i],
-      }));
-    }
+    setUploadInfo(prev => ({
+      ...prev,
+      images: files[0],
+    }));
   };
 
   let settings = {
