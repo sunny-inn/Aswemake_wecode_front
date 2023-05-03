@@ -28,10 +28,11 @@ const Home = () => {
   const [center, setCenter] = useState({});
 
   useEffect(() => {
-    setCenter({
-      lat: homeMartList.userPosition.lat,
-      longitude: homeMartList.userPosition.lng,
-    });
+    homeMartList.length !== 0 &&
+      setCenter({
+        lat: homeMartList.userPosition.lat,
+        longitude: homeMartList.userPosition.lng,
+      });
   }, [homeMartList]);
 
   // 검색 기능 관련 state
