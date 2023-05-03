@@ -27,7 +27,7 @@ const Upload = () => {
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
-  console.log(uploadForm);
+  console.log(uploadForm.values);
 
   // 전화번호
   const handlePhoneNumber = e => {
