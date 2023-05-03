@@ -23,18 +23,15 @@ const Favorite = () => {
         setAddedFavoriteList(data);
         console.log('콘솔첫번째', data);
       });
-    console.log('자주가요데이터', addedFavoriteList);
   }, []);
-
-  const hasFavorite = addedFavoriteList.some(item => item.favoriteCheck === 1);
 
   return (
     <div>
       <FavoriteNav />
-      {hasFavorite ? (
-        <FavoriteList favoriteList={addedFavoriteList} />
-      ) : (
+      {addedFavoriteList.length === 0 ? (
         <FavoriteEmpty />
+      ) : (
+        <FavoriteList addedFavoriteList={addedFavoriteList} />
       )}
     </div>
   );
