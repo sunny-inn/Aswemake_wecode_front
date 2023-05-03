@@ -23,7 +23,9 @@ const Upload = () => {
   const { images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
-  uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
+  for (const image of uploadInfo.images) {
+    uploadForm.append('images', image);
+  }
   uploadForm.append('images', JSON.stringify(uploadInfo.images));
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
@@ -68,7 +70,7 @@ const Upload = () => {
       });
   };
 
-  console.log(martInfo);
+  console.log(uploadInfo);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -88,14 +90,9 @@ const Upload = () => {
     e.preventDefault();
     const files = e.target.files;
 
-    // setUploadInfo(prev => ({
-    //   ...prev,
-    //   images: files,
-    // }));
-
     setUploadInfo(prev => ({
       ...prev,
-      images: files[0],
+      images: files,
     }));
   };
 
