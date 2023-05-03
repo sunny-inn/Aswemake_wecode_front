@@ -62,3 +62,8 @@ export const ModalUploadButton = styled.button`
   cursor: pointer;
   margin-left: 8px;
 `;
+
+const CloseImg = styled.img`
+  width: 26px;
+  height: 26px;
+`;
