@@ -7,6 +7,10 @@ const FavoriteList = ({ addedFavoriteList }) => {
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
   };
+  console.log('favoriteList1', addedFavoriteList);
+  console.log('favoriteList2', addedFavoriteList[0]);
+  console.log('favoriteList3', addedFavoriteList.data);
+  console.log('favoriteList4', addedFavoriteList.martId);
 
   return (
     <S.FavoriteListContainer>
