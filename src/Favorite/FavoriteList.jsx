@@ -46,7 +46,7 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
                       src={
                         item.martFlyerImage === '0'
                           ? '/images/flyernone.png'
-                          : item.martFlyerImage[0]
+                          : item.martFlyerImage
                       }
                       alt="전단지"
                     />
