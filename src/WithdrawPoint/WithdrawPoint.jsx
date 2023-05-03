@@ -19,42 +19,95 @@ const WithdrawPoint = () => {
   const [overHoldingPoint, setOverHoldingPoint] = useState(false);
   const [empty, setEmpty] = useState(true);
 
-  useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+  // useEffect(() => {
+  //   const fetchAccountInfo = async () => {
+  //     // Account info fetch logic
+  //   };
 
-        setAccountInfo(data); // 계좌 정보를 state에 저장
-        setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`); // 입력값을 계좌 정보로 초기화
-      })
-      .catch(error => {
+  //   const fetchHoldingPoint = async () => {
+  //     // Holding point fetch logic
+  //   };
+
+  //   fetchAccountInfo();
+  //   fetchHoldingPoint();
+  // }, []);
+
+  // useEffect(() => {
+  //   fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: localStorage.getItem('token'),
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setAccountInfo(data); // 계좌 정보를 state에 저장
+  //       setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`); // 입력값을 계좌 정보로 초기화
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching account info:', error);
+  //     });
+  // }, []);
+
+  // useEffect(() => {
+  //   fetch('https://flyers.qmarket.me/api/points', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: localStorage.getItem('token'),
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setHoldingPoint(data.result.withdrawalPoints); // 포인트 정보를 state에 저장
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching holding point:', error);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    const fetchAccountInfo = async () => {
+      try {
+        const response = await fetch(
+          'https://flyers.qmarket.me/api/accounts/checkCurrentAccount',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              authorization: localStorage.getItem('token'),
+            },
+          }
+        );
+        const data = await response.json();
+        setAccountInfo(data);
+        setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`);
+      } catch (error) {
         console.error('Error fetching account info:', error);
-      });
-  }, []);
+      }
+    };
 
-  useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/points', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setHoldingPoint(data.result.withdrawalPoints); // 포인트 정보를 state에 저장
-      })
-      .catch(error => {
+    const fetchHoldingPoint = async () => {
+      try {
+        const response = await fetch('https://flyers.qmarket.me/api/points', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: localStorage.getItem('token'),
+          },
+        });
+        const data = await response.json();
+        setHoldingPoint(data.result.withdrawalPoints);
+      } catch (error) {
         console.error('Error fetching holding point:', error);
-      });
+      }
+    };
+
+    fetchAccountInfo();
+    fetchHoldingPoint();
   }, []);
 
   //최종 인출 버튼 눌렀을 때
