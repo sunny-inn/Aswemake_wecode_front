@@ -72,7 +72,7 @@ const Search = ({
   };
 
   useEffect(() => {
-    setFilteredMarts(marts.filter(mart => mart.martName.includes('마트')));
+    setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
   }, [isSubmitted]);
 
   console.log(marts);
