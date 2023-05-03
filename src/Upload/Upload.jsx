@@ -27,6 +27,8 @@ const Upload = () => {
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
 
+  console.log(uploadForm);
+
   // 전화번호
   const handlePhoneNumber = e => {
     setPhoneNumber(e.target.value);
@@ -54,7 +56,6 @@ const Upload = () => {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         if (data.mart.length !== 0) {
           setMartInfo(data.mart[0]);
           setUploadInfo(prev => ({
@@ -66,8 +67,6 @@ const Upload = () => {
         }
       });
   };
-
-  console.log(martInfo);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
