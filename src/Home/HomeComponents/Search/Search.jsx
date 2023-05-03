@@ -11,36 +11,57 @@ const Search = ({
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [marts, setMarts] = useState([]);
+
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const result = localStorage.getItem('keywords') || '[]';
       setKeywords(JSON.parse(result));
     }
+
+    // 검색을 위한 마트 데이터 전체 불러오기
+    fetch('https://flyers.qmarket.me/api/home/allMarts', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setMarts(data);
+      });
   }, []);
 
   useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords));
   }, [keywords]);
 
+  // 검색어 저장
   const handleKeyword = e => {
     setNewKeyword(e.target.value);
     setIsSubmitted(false);
   };
 
-  const filteredList = homeMartList.filter(
-    mart =>
-      mart.martName.includes(newKeyword) ||
-      mart.martNumberAddress.includes(newKeyword) ||
-      mart.martRoadNameAddress.includes(newKeyword)
-  );
+  // const filteredList = homeMartList.filter(
+  //   mart =>
+  //     mart.martName.includes(newKeyword) ||
+  //     mart.martNumberAddress.includes(newKeyword) ||
+  //     mart.martRoadNameAddress.includes(newKeyword)
+  // );
 
+  // 검색창 닫기
   const onClickBack = e => {
     e.preventDefault();
     setIsSearchClicked(false);
     setNewKeyword('');
   };
 
+  // 최근 검색어 클릭 시 검색되는 기능
   const onClickKeyword = (id, text) => {
     const filteredKeyword = keywords.filter(keyword => {
       return keyword.id !== id;
@@ -50,12 +71,14 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
+  // 검색어 추가
   const handleAddKeyword = e => {
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
     setIsSubmitted(true);
   };
 
+  // 검색어 삭제
   const handleRemoveKeyword = id => {
     const filteredKeyword = keywords.filter(keyword => {
       return keyword.id !== id;
@@ -63,6 +86,7 @@ const Search = ({
     setKeywords(filteredKeyword);
   };
 
+  // 검색된 마트 클릭
   const onClickMart = id => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
