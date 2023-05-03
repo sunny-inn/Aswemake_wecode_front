@@ -41,7 +41,9 @@ export const SearchBar = styled.input`
 `;
 
 export const KeywordBox = styled.div`
+  position: fixed;
   padding: 10px 20px;
+  z-index: 10;
 `;
 
 export const KeywordTitle = styled.h1`
@@ -56,7 +58,7 @@ export const KeywordTitle = styled.h1`
 export const SearchedList = styled.ul`
   ${flex('flex-start', 'center', 'column')}
   gap: 5px;
-  height: 400px;
+  height: 560px;
   overflow-y: scroll;
 `;
 
@@ -117,19 +119,11 @@ export const DeleteBtn = styled.button`
 
 export const EmptyList = styled.div`
   ${flex('center', 'center', null)}
-  height: 500px;
+  height: 560px;
   color: #bcbcbc;
   font-weight: 500;
   font-size: 17px;
   line-height: 20px;
   text-align: center;
+  z-index: 10;
 `;
-
-// export const HideFooter = styled.div`
-//   position: fixed;
-//   bottom: 0;
-//   width: 100vw;
-//   height: 80px;
-//   background-color: #ffffff;
-//   z-index: 10;
-// `;
