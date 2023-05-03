@@ -24,7 +24,6 @@ const Upload = () => {
   const { images, startDate, endDate } = uploadInfo;
 
   const uploadForm = new FormData();
-  uploadForm.append('images', uploadInfo.images);
   uploadForm.append('martPhoneNumber', uploadInfo.martPhoneNumber);
   uploadForm.append('startDate', uploadInfo.startDate);
   uploadForm.append('endDate', uploadInfo.endDate);
