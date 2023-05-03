@@ -1,12 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './FavoriteList.style';
 
 const FavoriteList = ({ addedFavoriteList }) => {
   const [checked, setChecked] = useState(false);
 
-  const handleFavorite = () => {
+  const handleFavorite = martId => {
     setChecked(prevChecked => !prevChecked);
+    const token = localStorage.getItem('token');
+    fetch('https://flyers.qmarket.me/api/favorite', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+      body: JSON.stringify({ martId, checked }),
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log(response.ok);
+        } else {
+          console.error(response.err);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
+
   return (
     <S.FavoriteListContainer>
       {addedFavoriteList.map(item => (
@@ -25,7 +45,7 @@ const FavoriteList = ({ addedFavoriteList }) => {
                         ? '/images/favorite.png'
                         : '/images/clickedFavorite.png'
                     }
-                    onClick={handleFavorite}
+                    onClick={() => handleFavorite(item.martId)}
                   />
                 </S.MartTitleLi>
                 <S.MartContentBox>
