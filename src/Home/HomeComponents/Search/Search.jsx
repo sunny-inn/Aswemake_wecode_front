@@ -56,19 +56,17 @@ const Search = ({
   // 검색 기능
   let filteredList = [];
 
-  useEffect(() => {
+  const handleAddKeyword = e => {
+    e.preventDefault();
+    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
+    setIsSubmitted(true);
+
     filteredList = marts.filter(
       mart =>
         mart.martName.includes(newKeyword) ||
         mart.martNumberAddress.includes(newKeyword) ||
         mart.martRoadNameAddress.includes(newKeyword)
     );
-  }, [isSubmitted, marts, newKeyword]);
-
-  const handleAddKeyword = e => {
-    e.preventDefault();
-    setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
-    setIsSubmitted(true);
   };
 
   // 최근 검색어 클릭 시 검색되는 기능
@@ -79,10 +77,17 @@ const Search = ({
     setNewKeyword(text);
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
+
+    filteredList = marts.filter(
+      mart =>
+        mart.martName.includes(newKeyword) ||
+        mart.martNumberAddress.includes(newKeyword) ||
+        mart.martRoadNameAddress.includes(newKeyword)
+    );
   };
 
   console.log(newKeyword);
-  console.log(marts);
+  console.log(filteredList);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
