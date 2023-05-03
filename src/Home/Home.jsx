@@ -25,10 +25,7 @@ const Home = () => {
   const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
   const [isMarkerClicked, setIsMarkerClicked] = useState([]);
-  const [center, setCenter] = useState({
-    lat: homeMartList?.userPosition.lat,
-    longitude: homeMartList?.userPosition.lng,
-  });
+  const [center, setCenter] = useState({});
 
   // 검색 기능 관련 state
   const [error, setError] = useState('');
