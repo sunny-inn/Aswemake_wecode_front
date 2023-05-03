@@ -58,6 +58,10 @@ const Upload = () => {
         console.log(data);
         if (data.mart.length !== 0) {
           setMartInfo(data.mart[0]);
+          setUploadInfo(prev => ({
+            ...prev,
+            martPhoneNumber: phoneNumber,
+          }));
         } else {
           setAlertMsg(true);
         }
