@@ -99,7 +99,6 @@ const Search = ({
     setCenter({ lat: mart.lat, lng: mart.lng });
 
     if (selectedMart !== null) {
-      console.log('여기!!');
       const newToggles = isMarkerClicked.map((toggle, i) => {
         if (i === index) {
           return !toggle;
