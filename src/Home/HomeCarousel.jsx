@@ -31,7 +31,7 @@ const HomeCarousel = ({
   const smIndex = homeMartList.indexOf(selectedMart);
   const selectedMartList = selectedMart ? homeMartList : [];
   const navigate = useNavigate();
-
+  console.log('선택', homeMartList);
   const handleFavorite = () => {
     setChecked(prevChecked => !prevChecked);
   };
@@ -60,7 +60,7 @@ const HomeCarousel = ({
               <S.CarouselBox>
                 <div>
                   <S.CarouselImg
-                    src="./images/thirdRec.png"
+                    src="/images/flyernone.png"
                     alt="전단지"
                     onClick={onClickMartItem(mart.martId)}
                   />
