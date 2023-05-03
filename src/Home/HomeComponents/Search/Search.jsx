@@ -12,7 +12,7 @@ const Search = ({
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [marts, setMarts] = useState([]);
-  const [filteredMarts, setFilteredMarts] = useState([]);
+  const [filteredMarts, setFilteredMarts] = useState();
 
   const token = localStorage.getItem('token');
 
@@ -60,13 +60,14 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
     setIsSubmitted(true);
 
-    setFilteredMarts(
-      marts.filter(
-        mart =>
-          mart.martName.includes(newKeyword) ||
-          mart.martNumberAddress.includes(newKeyword)
-      )
-    );
+    marts &&
+      setFilteredMarts(
+        marts.filter(
+          mart =>
+            mart.martName.includes(newKeyword) ||
+            mart.martNumberAddress.includes(newKeyword)
+        )
+      );
   };
 
   // 최근 검색어 클릭 시 검색되는 기능
@@ -78,15 +79,19 @@ const Search = ({
     setIsSubmitted(true);
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
 
-    setFilteredMarts(
-      marts.filter(
-        mart =>
-          mart.martName.includes(newKeyword) ||
-          mart.martNumberAddress.includes(newKeyword)
-      )
-    );
+    marts &&
+      setFilteredMarts(
+        marts.filter(
+          mart =>
+            mart.martName.includes(newKeyword) ||
+            mart.martNumberAddress.includes(newKeyword)
+        )
+      );
   };
 
+  let result = marts.filter(mart => mart.martName.includes('마트'));
+
+  console.log(result);
   console.log(marts);
   console.log(filteredMarts);
 
