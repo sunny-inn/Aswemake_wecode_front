@@ -8,7 +8,9 @@ const SetPoint = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const accountHolderName = location.state?.accountHolderName || '';
-  const withdrawalPoints = location.state?.withdrawalPoints || 0;
+  const withdrawalPoints = location.state?.withdrawalPoints
+    ? parseInt(location.state.withdrawalPoints, 10)
+    : 0;
 
   const onClickBack = e => {
     e.preventDefault();

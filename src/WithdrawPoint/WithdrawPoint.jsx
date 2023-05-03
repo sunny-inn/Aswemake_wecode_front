@@ -144,7 +144,7 @@ const WithdrawPoint = () => {
           setInputValue('');
           navigate('/setpoint', {
             state: {
-              withdrawalPoints,
+              withdrawalPoints: withdrawalPoints,
               accountHolderName: accountInfo.result.accountHolderName,
             },
           });
