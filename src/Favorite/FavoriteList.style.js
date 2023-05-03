@@ -5,6 +5,7 @@ export const FavoriteListContainer = styled.div`
   height: 616px;
   display: flex;
   justify-content: center;
+  margin-top: 55px;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
@@ -64,6 +65,7 @@ export const StarImg = styled.img`
   width: 19px;
   height: 18px;
   display: inline-block;
+  cursor: pointer;
 `;
 
 export const MartContentBox = styled.div`
@@ -74,6 +76,5 @@ export const MartContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: auto;
-  border: 1px solid red;
+  height: 55%;
 `;

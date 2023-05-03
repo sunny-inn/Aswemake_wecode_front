@@ -3,18 +3,22 @@ import * as S from './FavoriteList.style';
 
 const FavoriteList = ({ addedFavoriteList }) => {
   const [checked, setChecked] = useState(false);
+  const [imageStates, setImageStates] = useState(
+    Array(addedFavoriteList.length).fill(false)
+  );
 
-  const handleFavorite = () => {
+  const handleFavorite = index => {
+    const newImageStates = [...imageStates];
+    newImageStates[index] = !newImageStates[index];
+    setImageStates(newImageStates);
     setChecked(prevChecked => !prevChecked);
   };
-  console.log('favoriteList1', addedFavoriteList);
-  console.log('favoriteList2', addedFavoriteList[0]);
 
   return (
     <S.FavoriteListContainer>
       {addedFavoriteList.map((list, i) => (
         <React.Fragment key={i}>
-          {list.map(item => (
+          {list.map((item, j) => (
             <div key={item.martId}>
               <S.MartBox>
                 <S.CarouselBox>
@@ -33,11 +37,11 @@ const FavoriteList = ({ addedFavoriteList }) => {
                       <S.MartTitle>{item.martName}</S.MartTitle>
                       <S.StarImg
                         src={
-                          checked
+                          imageStates[i * list.length + j]
                             ? '/images/favorite.png'
                             : '/images/clickedFavorite.png'
                         }
-                        onClick={handleFavorite}
+                        onClick={() => handleFavorite(i * list.length + j)}
                       />
                     </S.MartTitleLi>
                     <S.MartContentBox>
