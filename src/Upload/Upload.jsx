@@ -162,13 +162,13 @@ const Upload = () => {
       {alertMsg && <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>}
       <S.UplaodLabel>마트 이름</S.UplaodLabel>
       <S.MartInput
-        value={martInfo.martName}
+        value={martInfo[0].martName}
         placeholder="마트 이름을 입력해주세요."
         readOnly
       />
       <S.UplaodLabel>마트 주소</S.UplaodLabel>
       <S.MartInput
-        value={martInfo.martAddress}
+        value={martInfo[0].martAddress}
         placeholder="주소를 입력해주세요."
         readOnly
       />
