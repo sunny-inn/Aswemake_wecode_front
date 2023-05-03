@@ -7,7 +7,7 @@ import Modal from '../Components/Modal/Modal';
 import * as S from './Upload.style';
 
 const Upload = () => {
-  const [martPhoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [martInfo, setMartInfo] = useState({});
   const [alertMsg, setAlertMsg] = useState(false);
   const [isTutorialClicked, setIsTutorialClicked] = useState(false);
@@ -51,16 +51,11 @@ const Upload = () => {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: martPhoneNumber,
+      body: JSON.stringify({ martPhoneNumber: phoneNumber }),
     })
       .then(response => response.json())
       .then(data => {
-        if (data.message === 'UPLOAD IS SUCCESS') {
-          console.log(data);
-          setMartInfo(data);
-        } else {
-          setAlertMsg(true);
-        }
+        console.log(data);
       });
   };
 
@@ -150,7 +145,7 @@ const Upload = () => {
       <S.PhoneBox>
         <S.PhoneInput
           type="text"
-          value={martPhoneNumber}
+          value={phoneNumber}
           placeholder='전화번호를 "-"없이 입력해주세요'
           onChange={handlePhoneNumber}
           alertMsg={alertMsg}
