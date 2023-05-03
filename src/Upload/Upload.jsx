@@ -145,6 +145,8 @@ const Upload = () => {
       });
   };
 
+  console.log(uploadInfo);
+
   return (
     <S.UploadForm onSubmit={onSubmitFlyers}>
       <Header type="upload" />
