@@ -45,8 +45,10 @@ export const PhoneInput = styled.input`
 
 export const Timer = styled.p`
   position: absolute;
-  left: 47%;
+  right: 10px;
   color: #ff6a21;
+  font-size: 13px;
+  font-weight: 500;
 `;
 
 export const GetNumBtn = styled.button`
