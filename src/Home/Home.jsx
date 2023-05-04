@@ -203,7 +203,8 @@ const Home = () => {
                 center={center}
                 defaultZoom={15}
                 onDragEnd={handleDragEnd}
-                onCenterChanged={onCenterChanged} //중심좌표구할때
+                onCenterPointChanged={onCenterPointChanged}
+                // onCenterChanged={onCenterChanged} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
                 logoControl={false}
