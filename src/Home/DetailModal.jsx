@@ -24,7 +24,9 @@ const DetailModal = ({ handleModal, currentId, selectedMart }) => {
           >
             마트 정보 보기
           </S.ModalInfoButton>
-          <S.ModalUploadButton>전단 등록 하기</S.ModalUploadButton>
+          <S.ModalUploadButton onClick={navigate('/suggest')}>
+            전단 등록 하기
+          </S.ModalUploadButton>
         </S.ModalButtonBox>
       </S.ModalContentBox>
     </S.ModalContainer>

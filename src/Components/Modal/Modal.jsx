@@ -1,10 +1,9 @@
 import React from 'react';
 import * as S from './Modal.style';
 
-const Modal = ({ handleModal, type }) => {
+const Modal = ({ handleModal, type, handleSecModal }) => {
   const infoList = {
     map: MAP_MODAL_INFO,
-    shop: SHOP_MODAL_INFO,
     upload: UPLOAD,
   };
 
@@ -23,7 +22,9 @@ const Modal = ({ handleModal, type }) => {
         <S.ModalText>{infoList[type].message}</S.ModalText>
         <S.ModalButtonBox>
           {infoList[type].button[1] && (
-            <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
+            <S.ModalInfoButton onClick={handleSecModal}>
+              {infoList[type].button[1]}
+            </S.ModalInfoButton>
           )}
           <S.ModalUploadButton onClick={handleModal}>
             {infoList[type].button[0]}
@@ -39,15 +40,8 @@ export default Modal;
 const MAP_MODAL_INFO = {
   title: '전단 등록',
   close: true,
-  message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
-  button: ['전단 등록 하기', '마트 등록 하기'],
-};
-
-const SHOP_MODAL_INFO = {
-  title: '전단 등록',
-  close: true,
-  message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
-  button: ['전단 등록 하기'],
+  message: '전단등록이 필요한 마트에요.<br/>전단을 등록하러 가볼까요?',
+  button: ['전단 등록하기', '마트 정보 보기'],
 };
 
 const MODIFY_PASSWORD_MODAL_INFO = {

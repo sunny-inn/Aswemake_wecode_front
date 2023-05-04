@@ -72,6 +72,10 @@ const Home = () => {
     setOpenModal(prev => !prev);
   };
 
+  const handleSecModal = () => {
+    navigate('/suggest');
+  };
+
   const onClickDetailPortal = id => {
     setCurrentId(id);
   };
@@ -296,10 +300,15 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <DetailModal
+                <Modal
+                  type="map"
                   handleModal={handleModal}
-                  selectedMart={selectedMart}
+                  handleSecModal={handleSecModal}
                 />
+                // <DetailModal
+                //   handleModal={handleModal}
+                //   selectedMart={selectedMart}
+                // />
               )}
             </>
           )}
