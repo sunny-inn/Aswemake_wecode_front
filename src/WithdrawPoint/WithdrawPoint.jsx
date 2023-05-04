@@ -181,6 +181,10 @@ const WithdrawPoint = () => {
       <LoginLayout>
         <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
         <S.FromMyPoint>로</S.FromMyPoint>
+        {/* <S.ChangeAccount>
+          계좌변경
+          <S.Arrow />
+        </S.ChangeAccount> */}
         <S.Withdraw
           value={
             accountInfo

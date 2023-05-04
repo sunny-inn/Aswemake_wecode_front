@@ -10,6 +10,12 @@ export const FromMyPoint = styled.span`
   font-size: 15px;
 `;
 
+export const ChangeAccount = styled.div`
+  color: #bcbcbc;
+  font-size: 13px;
+  font-weight: 500;
+`;
+
 export const PointWrapper = styled.div`
   display: flex;
   flex-direction: row;
