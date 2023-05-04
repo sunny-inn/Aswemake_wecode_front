@@ -129,9 +129,9 @@ const Home = () => {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          authorization: JSON.stringify(changedCenter),
+          authorization: token,
         },
-        body: changedCenter,
+        body: JSON.stringify(changedCenter),
       })
         .then(response => response.json())
         .then(data => {
