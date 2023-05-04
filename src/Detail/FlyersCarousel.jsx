@@ -43,7 +43,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
     <>
       <S.FlyerCarouselContainer>
         <Slider {...settings}>
-          {detailMartList.map((list, index) => {
+          {/* {detailMartList.map((list, index) => {
             return (
               <div key={list.martId}>
                 <S.FlyerImage
@@ -59,7 +59,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
                 />
               </div>
             );
-          })}
+          })} */}
 
           {/* <S.FlyerImage
             onClick={() => {
@@ -90,7 +90,6 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             alt="전단지"
           /> */}
 
-          {/* 여기는 새로한 로직 
           {detailMartList.map((item, index) => (
             <S.FlyerImage
               key={index}
@@ -98,13 +97,13 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
                 onClickImage(index);
               }}
               src={
-                    list.martFlyerImages === '0'
-                      ? './images/flyernone.png'
-                      : list.martFlyerImages[0].imageUrl
-                  }
+                list.martFlyerImages === '0'
+                  ? './images/flyernone.png'
+                  : list.martFlyerImages[0].imageUrl
+              }
               alt={`전단지 ${index + 1}`}
             />
-          ))} */}
+          ))}
         </Slider>
       </S.FlyerCarouselContainer>
       {showBigImage && (
