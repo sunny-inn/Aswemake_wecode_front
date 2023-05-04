@@ -112,7 +112,9 @@ const Mypage = () => {
 
   return (
     <S.MypageBox>
-      {modifyInfo && <ModifyInfo setModifyInfo={setModifyInfo} />}
+      {modifyInfo && (
+        <ModifyInfo setModifyInfo={setModifyInfo} totalPoints={totalPoints} />
+      )}
       {isMartInfoStatus && (
         <MartInfoStatus setIsMartInfoStatus={setIsMartInfoStatus} />
       )}

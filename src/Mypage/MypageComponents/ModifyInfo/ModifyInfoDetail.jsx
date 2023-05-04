@@ -6,7 +6,7 @@ import ModifyPhone from './ModifyPhone/ModifyPhone';
 import DropOut from './DropOut/DropOut';
 import * as S from './ModifyInfoDetail.style';
 
-const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
+const ModifyInfoDetail = ({ userInfo, setDetailModalOpen, totalPoints }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
 
@@ -31,7 +31,9 @@ const ModifyInfoDetail = ({ userInfo, setDetailModalOpen }) => {
       <ModifyPhone setModalOpen={setModalOpen} userInfo={userInfo} />
     );
   } else if (modalOpen && selectedType === '4') {
-    modalComponent = <DropOut setModalOpen={setModalOpen} />;
+    modalComponent = (
+      <DropOut setModalOpen={setModalOpen} totalPoints={totalPoints} />
+    );
   }
 
   return (
