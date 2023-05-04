@@ -120,6 +120,7 @@ const Home = () => {
   }, []);
 
   //여기 센터주는거
+  const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
   useEffect(() => {
     center.lat &&
@@ -130,16 +131,15 @@ const Home = () => {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: token,
         },
-        body: JSON.stringify({
-          y: center.lat,
-          x: center.lng,
-        }),
+        body: JSON.stringify(changedCenter),
       })
         .then(response => response.json())
         .then(data => {
           setHomeMartList(data.martList);
+          console.log('콘솔찍었다.', data);
         });
   }, [center]);
+
   console.log('마트리스트들', homeMartList);
 
   useEffect(() => {
@@ -159,7 +159,13 @@ const Home = () => {
   // const onCenterChanged = value => setCenter(value);
   // console.log('센터바뀜?', center);
 
-  const onCenterPointChanged = value => setCenter(value);
+  const onCenterChanged = value => {
+    console.log('센터 확인 중', value);
+    setCenter({
+      lat: value.y,
+      lng: value.x,
+    });
+  };
   console.log('센터가??', center);
 
   const HOME_PATH = window.HOME_PATH || '.';
@@ -226,13 +232,14 @@ const Home = () => {
                 center={center}
                 defaultZoom={15}
                 onDragEnd={handleDragEnd}
-                onCenterPointChanged={onCenterPointChanged}
-                // onCenterChanged={onCenterChanged} //중심좌표구할때
+                // onCenterPointChanged={onCenterPointChanged}
+                onCenterChanged={onCenterChanged} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
                 logoControl={false}
                 mapDataControl={false}
                 zoomControl={false}
+                centerPoint={centerPoint}
               >
                 {homeMartList.map((mart, index) => {
                   //2일전계산

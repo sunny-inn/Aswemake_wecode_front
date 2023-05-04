@@ -95,6 +95,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
+          setShowTimer(false);
           setAlertMsg(false);
         } else {
           setVerification(false);
