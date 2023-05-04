@@ -48,7 +48,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
               <div key={list.martId}>
                 <S.FlyerImage
                   src={
-                    list.martFlyerImages === '0'
+                    list.martFlyerImages.length === 0
                       ? '/images/flyernone.png'
                       : list.martFlyerImages
                   }
