@@ -78,7 +78,6 @@ const Detail = () => {
       });
   }, [params.id, token]);
 
-  //https://flyers.qmarket.me/api/favorite/1
   //즐겨찾기 눌렀을때 로직들
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteCheck, setFavoriteCheck] = useState(0);
@@ -148,7 +147,7 @@ const Detail = () => {
       });
     }
   }, [detailMartList]);
-
+  console.log('디테일ㅇㅇㅇ', detailMartList);
   return (
     <>
       <Header type="martInfo" onClickBack={onClickBack} />
