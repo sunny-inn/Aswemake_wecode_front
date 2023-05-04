@@ -7,7 +7,7 @@ export const ModifyPhone = styled.div`
   left: 0;
   width: 360px;
   height: 616px;
-  z-index: 15;
+  z-index: 30;
   background: #fff;
 `;
 

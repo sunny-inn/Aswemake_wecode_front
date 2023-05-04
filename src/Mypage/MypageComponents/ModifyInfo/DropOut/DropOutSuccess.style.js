@@ -7,7 +7,7 @@ export const DropOutSuccess = styled.div`
   left: 0;
   width: 360px;
   height: 616px;
-  z-index: 20;
+  z-index: 40;
   background: #fff;
 `;
 
