@@ -34,8 +34,8 @@ export const MartDetailBox = styled.div`
 `;
 export const MartDetailText = styled.p`
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 15px;
+  line-height: 18px;
   margin-bottom: 15px;
 `;
 

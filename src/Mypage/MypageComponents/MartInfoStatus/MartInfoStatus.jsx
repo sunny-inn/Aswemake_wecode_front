@@ -24,7 +24,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return null;
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
