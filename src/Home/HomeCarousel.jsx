@@ -104,6 +104,7 @@ const HomeCarousel = ({
     } else {
       // navigate(`/detail/${id}`);
       navigate(`/detail/${selectedMart.martId}`);
+      console.log('이벤트!!!!!!', onClickMartItem.e);
     }
   };
 
