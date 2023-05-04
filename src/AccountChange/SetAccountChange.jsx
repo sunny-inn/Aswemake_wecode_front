@@ -17,7 +17,7 @@ const SetAccountChange = () => {
       <Header type="accountChange" onClickBack={onClickBack} />
       <LoginLayout>
         <S.Container>
-          <S.Name>{accountHolderName}</S.Name>
+          <S.Name>{accountHolderName} 님</S.Name>
           <S.Inform>&nbsp;&nbsp;계좌 변경이 완료되었습니다!</S.Inform>
         </S.Container>
         <Link to="/">

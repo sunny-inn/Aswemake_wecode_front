@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 218px;
 `;
 
-export const Name = styled.p`
+export const Name = styled.div`
   display: inline;
   font-size: 17px;
   font-weight: 500;
