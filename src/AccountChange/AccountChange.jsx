@@ -45,7 +45,7 @@ const AccountChange = () => {
         console.log(data);
         setAccountData({
           bank: data.result.bankName,
-          accountNumber: data.result.accountName,
+          accountNumber: data.result.accountNumber,
           accountHolder: data.result.accountHolderName,
         });
         checkAllInputsFilled();
