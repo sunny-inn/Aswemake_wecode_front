@@ -105,7 +105,7 @@ const Mypage = () => {
         console.log(data);
         if (data.message === 'YOU NEED TO REGISTER YOUR ACCOUNT') {
           navigate('/accountregi');
-        } else if (data.result.flyerRegistrationCount < 3) {
+        } else if (data.result.flyerRegistrationCount <= 3) {
           navigate('/withdrawnotify', {
             state: { remainingFlyers: data.result.flyerRegistrationCount },
           });

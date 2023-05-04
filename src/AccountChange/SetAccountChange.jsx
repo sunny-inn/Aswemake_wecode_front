@@ -20,7 +20,7 @@ const SetAccountChange = () => {
           <S.Name>{accountHolderName} 님</S.Name>
           <S.Inform>&nbsp;&nbsp;계좌 변경이 완료되었습니다!</S.Inform>
         </S.Container>
-        <Link to="/">
+        <Link to="/home">
           <S.FinBtn>확인</S.FinBtn>
         </Link>
       </LoginLayout>
