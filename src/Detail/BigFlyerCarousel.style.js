@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const BigCarouselContainer = styled.div`
-  width: 360px;
+  width: 364px;
   height: 616px;
   background-color: black;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -75px;
+  left: 0px;
 `;
 export const BigCarouselContentBox = styled.div`
   width: 100%;
@@ -31,6 +31,13 @@ export const ModalCloseImg = styled.img`
 `;
 
 export const FlyerImage = styled.img`
+  width: 100%;
+  height: 95%;
+`;
+export const BigFlyerImgBox = styled.div`
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 1;
   width: 100%;
   height: 95%;
 `;
