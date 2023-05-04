@@ -90,8 +90,10 @@ const Home = () => {
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
+    console.log('centerPoint이거는 함수안에', centerPoint);
   };
 
+  console.log('centerPoint', centerPoint);
   useEffect(() => {
     if (homeMartList) {
       setIsMarkerClicked(
@@ -234,6 +236,7 @@ const Home = () => {
                 logoControl={false}
                 mapDataControl={false}
                 zoomControl={false}
+                centerPoint={centerPoint}
               >
                 {homeMartList.map((mart, index) => {
                   //2일전계산
