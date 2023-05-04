@@ -27,7 +27,7 @@ const BigFlyerCarousel = ({
       },
     ],
   };
-  console.log('list큰이미지', list);
+
   return (
     <S.BigCarouselContainer>
       <S.BigCarouselContentBox>
@@ -40,13 +40,14 @@ const BigFlyerCarousel = ({
         </S.CloseButtonBox>
 
         <Slider {...settings}>
-          {list.map((item, index) => (
-            <S.FlyerImage
-              key={index}
-              src={item.martFlyerImages[currentImageIndex].imageUrl}
-              alt={`전단지 ${index + 1}`}
-            />
-          ))}
+          {Array.isArray(list) &&
+            list.map((item, index) => (
+              <S.FlyerImage
+                key={index}
+                src={item.martFlyerImages.map(item => item.imageUrl)}
+                alt={`전단지 ${index + 1}`}
+              />
+            ))}
         </Slider>
       </S.BigCarouselContentBox>
     </S.BigCarouselContainer>
