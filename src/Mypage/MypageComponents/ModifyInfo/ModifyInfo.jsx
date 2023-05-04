@@ -6,7 +6,7 @@ import ModifyInfoDetail from './ModifyInfoDetail';
 import ModifyInfoModal from './ModifyInfoModal';
 import * as S from './ModifyInfo.style';
 
-const ModifyInfo = ({ setModifyInfo }) => {
+const ModifyInfo = ({ setModifyInfo, totalPoints }) => {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [isPwEyeClicked, setIsPwEyeClicked] = useState(false);
   const [password, setPassword] = useState('');
@@ -55,6 +55,7 @@ const ModifyInfo = ({ setModifyInfo }) => {
         <ModifyInfoDetail
           userInfo={userInfo}
           setDetailModalOpen={setDetailModalOpen}
+          totalPoints={totalPoints}
         />
       )}
       {detailModalOpen && !isPasswordCorrect && (

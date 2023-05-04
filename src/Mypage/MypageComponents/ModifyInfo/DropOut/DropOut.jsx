@@ -4,7 +4,7 @@ import DropOutSuccess from './DropOutSuccess';
 import * as S from './DropOut.style';
 import { useEffect } from 'react';
 
-const DropOut = ({ setModalOpen }) => {
+const DropOut = ({ setModalOpen, totalPoints }) => {
   const [successDropOut, setSuccessDropOut] = useState(false);
   const [selected, setSelected] = useState('1');
   const [isClicked, setIsClicked] = useState(false);
@@ -64,7 +64,7 @@ const DropOut = ({ setModalOpen }) => {
       <S.DropOutBody>
         <S.DropOutText>
           그동안 전단지도를 이용해주셔서 감사합니다. <br />
-          탈퇴 시, 포인트 <b>12,000P</b>는 소멸됩니다.
+          탈퇴 시, 포인트 <b>{totalPoints}P</b>는 소멸됩니다.
         </S.DropOutText>
         <S.DropOutTitle margin="22px 0 25px 0">
           탈퇴하시려는 이유를 선택해주세요.
@@ -167,7 +167,7 @@ const DropOut = ({ setModalOpen }) => {
           </S.DropOutAgreeLabel>
         </S.DropOutAgree>
       </S.DropOutBody>
-      <S.ConfirmBtn onClick={handleModal} disabled={!isClicked}>
+      <S.ConfirmBtn onClick={toDropOut} disabled={!isClicked}>
         탈퇴하기
       </S.ConfirmBtn>
     </S.DropOut>

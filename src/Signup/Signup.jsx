@@ -60,12 +60,10 @@ const Signup = () => {
   const handlePasswd = e => {
     setSignupInfo(prev => ({ ...prev, passwd: e.target.value }));
 
-    setIsValidPasswd(
-      /^[A-Za-z0-9`~!@#\$%\^&\*\(\)\{\}\[\]\-_=\+\\|;:'"<>,\./\?]{8,20}$/.test(
-        e.target.value
-      )
-    );
+    setIsValidPasswd(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/.test(e.target.value));
   };
+
+  console.log(isValidPasswd);
 
   const handlePasswdCheck = e => setPasswdCheck(e.target.value);
   const correctPasswd = passwd !== '' && passwd === passwdCheck;
@@ -186,8 +184,6 @@ const Signup = () => {
   // 회원가입 완료
   const onSubmit = e => {
     e.preventDefault();
-    //https://flyers.qmarket.me/api/users/signUp
-    //http://172.30.1.41:8000/api/users/signup
 
     fetch('https://flyers.qmarket.me/api/users/signUp', {
       method: 'POST',

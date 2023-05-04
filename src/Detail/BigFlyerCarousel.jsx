@@ -4,7 +4,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const BigFlyerCarousel = ({ imageUrls, currentImageIndex, onClickClose }) => {
+const BigFlyerCarousel = ({
+  imageUrls,
+  currentImageIndex,
+  onClickClose,
+  list,
+}) => {
   let settings = {
     dots: true,
     infinite: false,
@@ -22,23 +27,23 @@ const BigFlyerCarousel = ({ imageUrls, currentImageIndex, onClickClose }) => {
       },
     ],
   };
-
+  console.log('list큰이미지', list);
   return (
     <S.BigCarouselContainer>
       <S.BigCarouselContentBox>
         <S.CloseButtonBox>
           <S.ModalCloseImg
-            src="./images/closeImg.png"
+            src="/images/closeImg.png"
             onClick={onClickClose}
             alt="닫기"
           />
         </S.CloseButtonBox>
 
         <Slider {...settings}>
-          {imageUrls.map((imageUrls, index) => (
+          {list.map((item, index) => (
             <S.FlyerImage
               key={index}
-              src={imageUrls}
+              src={item.martFlyerImages[currentImageIndex].imageUrl}
               alt={`전단지 ${index + 1}`}
             />
           ))}

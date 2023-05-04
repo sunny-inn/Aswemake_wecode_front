@@ -8,9 +8,6 @@ const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
     e.preventDefault();
     setIsClicked(true);
 
-    //https://flyers.qmarket.me/api/users/checkDuplicateId/${id}
-    //http://172.30.1.41:8000/api/users/checkDuplicateId/${id}
-
     fetch(`https://flyers.qmarket.me/api/users/checkDuplicateId/${id}`, {
       method: 'GET',
       headers: {

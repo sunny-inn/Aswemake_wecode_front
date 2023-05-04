@@ -14,9 +14,8 @@ export const DetailContainer = styled.div`
 export const PromoStartDate = styled.p`
   width: 95%;
   color: black;
-  margin: 75px 0px 10px 0px;
+  margin-bottom: 10px;
   padding-left: 10px;
-  border: 1px solid red;
 `;
 
 export const PromoEndDate = styled.span`

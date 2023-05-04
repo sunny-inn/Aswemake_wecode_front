@@ -16,7 +16,9 @@ export const PasswdInput = styled.input`
   height: 50px;
   padding-left: 10px;
   background-color: #ffffff;
-  border: 1px solid #dbdbdb;
+  border: 1px solid
+    ${({ passwd, isValidPasswd }) =>
+      passwd === '' || isValidPasswd ? '#dbdbdb' : '#e40303'};
   border-radius: 8px;
 
   ::placeholder {

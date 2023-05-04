@@ -15,7 +15,6 @@ const Detail = () => {
   const [showToast, setShowToast] = useState(false);
   const [showBigFlyerModal, setShowBigFlyerModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  // const [showSuggestModal, setShowSuggestModal] = useState(false); //suggest 모달로 띄울때
   const navigate = useNavigate();
   const params = useParams();
   const url = `https://flyers.qmarket.me/api/home/martDetail/${params.id}`;
@@ -28,11 +27,8 @@ const Detail = () => {
   const onClickSuggestBtn = e => {
     e.preventDefault();
     navigate('/suggest');
-    // setShowSuggestModal(true);
   };
-  // const handleSuggestModalClose = () => {
-  //   setShowSuggestModal(false);
-  // };
+
   const token = localStorage.getItem('token');
   const handleToast = type => {
     setShowToast({ show: true, type }); // showToast 상태값 변경
@@ -155,12 +151,13 @@ const Detail = () => {
         {detailMartList.map(list => {
           return (
             <div key={list.martId}>
-              {list.endDate && (
+              {list.endDate !== '0' && (
                 <S.PromoStartDate>
                   전단 행사기간 : {list.startDate} ~
                   <S.PromoEndDate>{list.endDate}</S.PromoEndDate>
                 </S.PromoStartDate>
               )}
+
               <FlyersCarousel
                 list={list}
                 showBigFlyerModal={showBigFlyerModal}
