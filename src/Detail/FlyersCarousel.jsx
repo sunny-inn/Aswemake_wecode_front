@@ -67,7 +67,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             }}
             src={
               list.martFlyerImages.length === 0
-                ? './images/flyernone.png'
+                ? '/images/flyernone.png'
                 : list.martFlyerImages[0].imageUrl
             }
             alt="전단지"
@@ -78,7 +78,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             }}
             src={
               list.martFlyerImages.length < 2
-                ? './images/flyernone.png'
+                ? '/images/flyernone.png'
                 : list.martFlyerImages[1].imageUrl
             }
             alt="전단지"
@@ -89,7 +89,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             }}
             src={
               list.martFlyerImages.length < 3
-                ? './images/flyernone.png'
+                ? '/images/flyernone.png'
                 : list.martFlyerImages[2].imageUrl
             }
             alt="전단지"
@@ -100,7 +100,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             }}
             src={
               list.martFlyerImages.length < 4
-                ? './images/flyernone.png'
+                ? '/images/flyernone.png'
                 : list.martFlyerImages[3].imageUrl
             }
             alt="전단지"
