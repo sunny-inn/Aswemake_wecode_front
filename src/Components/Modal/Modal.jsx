@@ -12,12 +12,12 @@ const Modal = ({ handleModal, type }) => {
     <S.ModalContainer>
       <S.ModalContentBox>
         <S.CloseBox>
-          <div />
-          <span>{infoList[type].title}</span>
+          <S.EmptyBox />
+          <S.ModalTitle>{infoList[type].title}</S.ModalTitle>
           {infoList[type].close ? (
             <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
           ) : (
-            <div />
+            <S.EmptyBox />
           )}
         </S.CloseBox>
         <S.ModalText>{infoList[type].message}</S.ModalText>

@@ -24,6 +24,19 @@ export const CloseBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 288px;
   padding: 0px 10px;
+  border-bottom: 1px solid #eeeeee;
+`;
+
+export const EmptyBox = styled.div`
+  width: 26px;
+  height: 26px;
+`;
+
+export const ModalTitle = styled.p`
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  color: #252525;
 `;
 
 export const CloseImg = styled.img`
