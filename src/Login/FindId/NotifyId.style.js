@@ -8,8 +8,16 @@ export const NotifyWrapper = styled.div`
   margin-top: 220px;
 `;
 
-export const Notify = styled.h1``;
+export const Notify = styled.div`
+  font-size: 17px;
+  font-weight: 500;
+`;
 
+export const Id = styled.span`
+  color: #ff6a21;
+  font-size: 17px;
+  font-weight: 500;
+`;
 export const GoToFindPwd = styled.div`
   font-size: 14px;
   margin-top: 195px;
