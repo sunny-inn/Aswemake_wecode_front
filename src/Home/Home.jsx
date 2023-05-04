@@ -164,7 +164,8 @@ const Home = () => {
   }, [selectedMart]);
   const navermaps = useNavermaps();
 
-  const handleCenter = value => setCenter(value);
+  const onCenterChanged = value => setCenter(value);
+  console.log('센터바뀜?', onCenterChanged);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
@@ -230,7 +231,7 @@ const Home = () => {
                 center={center}
                 defaultZoom={15}
                 onDragEnd={handleDragEnd}
-                onCenterChanged={handleCenter} //중심좌표구할때
+                onCenterChanged={onCenterChanged} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
                 logoControl={false}
