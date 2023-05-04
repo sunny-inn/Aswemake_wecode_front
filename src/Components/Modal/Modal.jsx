@@ -3,10 +3,26 @@ import * as S from './Modal.style';
 
 const Modal = ({ handleModal, children, type }) => {
   const infoList = {
-    map: MAP_MODAL_INFO,
-    logout: LOGOUT,
-    modify: MODIFY_PASSWORD_MODAL_INFO,
-    upload: UPLOAD,
+    map: {
+      title: '전단 등록',
+      message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
+      button: ['마트 정보 보기', '전단 등록 하기'],
+    },
+    logout: {
+      title: '로그아웃',
+      message: '정말 로그아웃 하시겠어요?',
+      button: ['로그아웃 하기'],
+    },
+    modify: {
+      title: '비밀번호 불일치',
+      message: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
+      button: ['확인'],
+    },
+    upload: {
+      title: '전단등록 요청 완료',
+      message: '전단등록 요청이 완료되었습니다.',
+      button: ['확인'],
+    },
   };
 
   return (
