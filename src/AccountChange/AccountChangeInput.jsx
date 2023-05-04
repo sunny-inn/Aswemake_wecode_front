@@ -36,11 +36,7 @@ const AccountChangeInput = () => {
   };
 
   const validateInputs = () => {
-    if (
-      selectBank &&
-      accountNumber.trim() !== '' &&
-      accountName.trim() !== ''
-    ) {
+    if (selectBank && accountNumber.trim() !== '') {
       setAreInputsFilled(true);
     } else {
       setAreInputsFilled(false);
@@ -78,6 +74,7 @@ const AccountChangeInput = () => {
     }
   };
 
+  //예금주명 확인
   const checkAccountHolderName = () => {
     fetch(
       'http://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
@@ -146,10 +143,11 @@ const AccountChangeInput = () => {
         >
           확인
         </S.CodeBtn>
-        {accountVerified === true && (
+
+        {accountName.trim() !== '' && accountVerified === true && (
           <S.AlertVerify>본인 인증 계정과 예금주가 일치합니다.</S.AlertVerify>
         )}
-        {accountVerified === false && (
+        {accountName !== '' && accountVerified === false && (
           <S.AlertNotVerify>
             본인 인증 계정과 예금주가 일치하지 않습니다.
           </S.AlertNotVerify>
