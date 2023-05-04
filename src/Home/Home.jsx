@@ -121,7 +121,7 @@ const Home = () => {
 
   //여기 센터주는거
   useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/home`, {
+    fetch(`https://flyers.qmarket.me/api/home/mart`, {
       method: 'POST',
       credentials: 'include',
       headers: {
