@@ -33,6 +33,7 @@ export const ModifyInfoDetailUpperBody = styled.div`
 export const ModifyInfoDetailUnderBody = styled.div`
   padding: 0 16px 22px 16px;
   border-bottom: 8px solid #f9f9f9;
+  background: #fff;
 `;
 
 export const ModifyDetailTitle = styled.h3`
