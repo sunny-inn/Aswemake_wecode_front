@@ -2,17 +2,16 @@ import styled from 'styled-components';
 import { flex } from '../../Styles/Mixin';
 
 export const ModalContainer = styled.div`
-  width: 288px;
-  height: 196px;
-  background-color: #ffffff;
-  border-radius: 8px;
+  ${flex('center', 'center', 'column')}
   position: absolute;
   top: 48%;
   left: 50%;
+  width: 288px;
+  height: 196px;
+  padding: 10px;
   transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 8px;
 `;
 export const ModalContentBox = styled.div`
   display: flex;
