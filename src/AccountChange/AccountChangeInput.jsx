@@ -135,9 +135,10 @@ const AccountChangeInput = () => {
           onChange={inputChange}
           placeholder="예금주명을 입력해 주세요."
         />
+
         <S.CodeBtn
           style={{
-            backgroundColor: areInputsFilled ? '#FF6A21' : '#dbdbdb',
+            backgroundColor: accountName.trim() !== '' ? '#FF6A21' : '#dbdbdb',
           }}
           onClick={checkAccountHolderName}
         >
@@ -154,7 +155,10 @@ const AccountChangeInput = () => {
         )}
 
         <S.EnrollBtn
-          style={{ backgroundColor: areInputsFilled ? '#FF6A21' : '#DBDBDB' }}
+          style={{
+            backgroundColor:
+              areInputsFilled && accountVerified ? '#FF6A21' : '#DBDBDB',
+          }}
           onClick={submitRegi}
         >
           변경하기
