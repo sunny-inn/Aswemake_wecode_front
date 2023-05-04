@@ -28,6 +28,10 @@ const BigFlyerCarousel = ({
     ],
   };
   console.log('list큰이미지', list);
+  if (!Array.isArray(list)) {
+    return;
+    console.log('list가 배열이 아닙니다!');
+  }
   return (
     <S.BigCarouselContainer>
       <S.BigCarouselContentBox>
