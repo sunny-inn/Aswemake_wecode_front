@@ -75,7 +75,7 @@ const Home = () => {
 
   const handleSecModal = () => {
     navigate({
-      pathname: '/suggest',
+      pathname: '/upload',
       state: {
         selectedMart: selectedMart,
       },
