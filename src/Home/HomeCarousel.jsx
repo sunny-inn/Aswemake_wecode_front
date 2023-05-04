@@ -27,6 +27,7 @@ const HomeCarousel = ({
       setCurrentSlide(next);
     },
   };
+  const [isFavorite, setIsFavorite] = useState(false);
   const [slider, setSlider] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
@@ -124,8 +125,8 @@ const HomeCarousel = ({
                 <div>
                   <S.CarouselImg
                     src={
-                      mart.martFlyerImages.length === '0'
-                        ? '/images/flyernone.png'
+                      mart.martFlyerImages === '0'
+                        ? './images/flyernone.png'
                         : mart.martFlyerImages[0].imageUrl
                     }
                     alt="전단지"
@@ -137,11 +138,11 @@ const HomeCarousel = ({
                     <S.MartTitle>{mart.martName}</S.MartTitle>
                     <S.StarImg
                       src={
-                        mart.checked
+                        mart.isFavorite
                           ? './images/clickedFavorite.png'
                           : './images/favorite.png'
                       }
-                      onClick={handleFavorite} // 수정된 부분
+                      onClick={() => onClickFavorite(mart.martId)}
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>

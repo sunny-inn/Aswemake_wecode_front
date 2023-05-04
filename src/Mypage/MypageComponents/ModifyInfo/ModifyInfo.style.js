@@ -7,7 +7,7 @@ export const ModifyInfo = styled.div`
   left: 0;
   width: 360px;
   height: 640px;
-  z-index: 5;
+  z-index: 15;
   background: #fff;
 `;
 

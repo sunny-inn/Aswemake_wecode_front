@@ -86,6 +86,7 @@ const Login = () => {
       body: JSON.stringify({
         identification: input.id,
         password: input.pw,
+        auto: checked,
       }),
     })
       .then(response => {

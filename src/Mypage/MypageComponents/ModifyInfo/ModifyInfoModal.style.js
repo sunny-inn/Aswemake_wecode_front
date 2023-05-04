@@ -8,7 +8,7 @@ export const ModifyInfoModal = styled.div`
   width: 360px;
   height: 640px;
   background-color: rgba(25, 25, 25, 0.35);
-  z-index: 10;
+  z-index: 20;
 `;
 
 export const ModifyInfoModalContents = styled.div`
