@@ -151,12 +151,13 @@ const Detail = () => {
         {detailMartList.map(list => {
           return (
             <div key={list.martId}>
-              {list.endDate && (
+              {list.endDate !== '0' && (
                 <S.PromoStartDate>
                   전단 행사기간 : {list.startDate} ~
                   <S.PromoEndDate>{list.endDate}</S.PromoEndDate>
                 </S.PromoStartDate>
               )}
+
               <FlyersCarousel
                 list={list}
                 showBigFlyerModal={showBigFlyerModal}
