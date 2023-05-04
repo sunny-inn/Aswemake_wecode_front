@@ -104,7 +104,7 @@ const HomeCarousel = ({
   const onClickMartItem = id => e => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
     if (selectedMart && selectedMart.martFlyerImages === '0') {
-      handleModal();
+      handleModal(true);
       afterhandleModal();
     } else {
       // navigate(`/detail/${id}`);
@@ -153,8 +153,8 @@ const HomeCarousel = ({
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
-                    <li>주소 : {mart.martNumberAddress}</li>
-                    <li>연락처 : {mart.martPhoneNumber}</li>
+                    <li>{mart.martNumberAddress}</li>
+                    <li>{mart.martPhoneNumber}</li>
                   </S.MartContentBox>
                 </S.CarouselContent>
               </S.CarouselBox>
