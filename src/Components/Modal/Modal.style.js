@@ -13,11 +13,11 @@ export const ModalContainer = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
 `;
-export const ModalContentBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// export const ModalContentBox = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 
 export const CloseBox = styled.div`
   ${flex('space-between', 'center', null)}
