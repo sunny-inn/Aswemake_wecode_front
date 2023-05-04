@@ -9,26 +9,28 @@ const Modal = ({ handleModal, type }) => {
   };
 
   return (
-    <S.ModalContainer>
-      <S.CloseBox>
-        <S.EmptyBox />
-        <S.ModalTitle>{infoList[type].title}</S.ModalTitle>
-        {infoList[type].close ? (
-          <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
-        ) : (
+    <S.Background>
+      <S.ModalContainer>
+        <S.CloseBox>
           <S.EmptyBox />
-        )}
-      </S.CloseBox>
-      <S.ModalText>{infoList[type].message}</S.ModalText>
-      <S.ModalButtonBox>
-        {infoList[type].button[1] && (
-          <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
-        )}
-        <S.ModalUploadButton onClick={handleModal}>
-          {infoList[type].button[0]}
-        </S.ModalUploadButton>
-      </S.ModalButtonBox>
-    </S.ModalContainer>
+          <S.ModalTitle>{infoList[type].title}</S.ModalTitle>
+          {infoList[type].close ? (
+            <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
+          ) : (
+            <S.EmptyBox />
+          )}
+        </S.CloseBox>
+        <S.ModalText>{infoList[type].message}</S.ModalText>
+        <S.ModalButtonBox>
+          {infoList[type].button[1] && (
+            <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
+          )}
+          <S.ModalUploadButton onClick={handleModal}>
+            {infoList[type].button[0]}
+          </S.ModalUploadButton>
+        </S.ModalButtonBox>
+      </S.ModalContainer>
+    </S.Background>
   );
 };
 

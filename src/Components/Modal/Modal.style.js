@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import { flex } from '../../Styles/Mixin';
 
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 670px;
+  background: rgba(25, 25, 25, 0.35);
+  z-index: 10;
+`;
+
 export const ModalContainer = styled.div`
   ${flex('center', 'center', 'column')}
   position: absolute;
