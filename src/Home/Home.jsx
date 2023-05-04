@@ -133,8 +133,11 @@ const Home = () => {
   }, [selectedMart]);
   const navermaps = useNavermaps();
 
-  const onCenterChanged = value => setCenter(value);
-  console.log('센터바뀜?', center);
+  // const onCenterChanged = value => setCenter(value);
+  // console.log('센터바뀜?', center);
+
+  const onCenterPointChanged = value => setCenter(value);
+  console.log('센터가??', center);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
@@ -263,11 +266,10 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <Modal type="map" handleModal={handleModal} />
-                // <DetailModal
-                //   handleModal={handleModal}
-                //   selectedMart={selectedMart}
-                // />
+                <DetailModal
+                  handleModal={handleModal}
+                  selectedMart={selectedMart}
+                />
               )}
             </>
           )}
