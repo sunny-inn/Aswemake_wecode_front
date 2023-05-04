@@ -46,7 +46,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
               onClickImage(0);
             }}
             src={
-              list.martFlyerImages.length < 1
+              list.martFlyerImages.length <= 1
                 ? '/images/flyernone.png'
                 : list.martFlyerImages[0].imageUrl
             }
