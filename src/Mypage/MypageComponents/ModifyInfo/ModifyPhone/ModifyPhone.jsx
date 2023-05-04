@@ -37,7 +37,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
     return () => {
       clearInterval(timer);
     };
-  }, [codeBtn]);
+  }, [codeBtn, seconds]);
 
   const handleCodeBtn =
     modifyPhone.phoneNumber.includes('010') &&
@@ -95,6 +95,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
+          setShowTimer(false);
           setAlertMsg(false);
         } else {
           setVerification(false);
