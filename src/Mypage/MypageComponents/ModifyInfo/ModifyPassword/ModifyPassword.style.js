@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { flex } from '../../../../Styles/Mixin';
 
 export const ModifyPassword = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 360px;
