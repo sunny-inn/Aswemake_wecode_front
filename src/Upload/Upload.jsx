@@ -153,6 +153,11 @@ const Upload = () => {
       });
   };
 
+  // modal 닫기
+  const handleModal = () => {
+    setIsUploaded(prev => !prev);
+  };
+
   return (
     <S.UploadForm onSubmit={onSubmitFlyers} id="scroller">
       <Header type="upload" />
@@ -249,7 +254,7 @@ const Upload = () => {
       >
         전단 등록 요청
       </S.SubmitBtn>
-      {isUploaded && <Modal type="upload" />}
+      {isUploaded && <Modal type="upload" handleModal={handleModal} />}
     </S.UploadForm>
   );
 };

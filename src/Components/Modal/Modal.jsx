@@ -1,10 +1,11 @@
 import React from 'react';
 import * as S from './Modal.style';
 
-const Modal = ({ handleModal, children, type }) => {
+const Modal = ({ handleModal, type }) => {
   const infoList = {
     map: MAP_MODAL_INFO,
     shop: SHOP_MODAL_INFO,
+    upload: UPLOAD,
   };
 
   return (
@@ -19,7 +20,6 @@ const Modal = ({ handleModal, children, type }) => {
             <div />
           )}
         </S.CloseBox>
-        {infoList[type].close && <button onClick={handleModal}>X</button>}
         <S.ModalText>{infoList[type].message}</S.ModalText>
         <S.ModalButtonBox>
           {infoList[type].button[1] && (
@@ -28,7 +28,6 @@ const Modal = ({ handleModal, children, type }) => {
           <S.ModalUploadButton>{infoList[type].button[0]}</S.ModalUploadButton>
         </S.ModalButtonBox>
       </S.ModalContentBox>
-      {/* {children} */}
     </S.ModalContainer>
   );
 };
