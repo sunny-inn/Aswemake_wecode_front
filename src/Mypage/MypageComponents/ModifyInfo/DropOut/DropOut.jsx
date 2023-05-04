@@ -167,7 +167,7 @@ const DropOut = ({ setModalOpen, totalPoints }) => {
           </S.DropOutAgreeLabel>
         </S.DropOutAgree>
       </S.DropOutBody>
-      <S.ConfirmBtn onClick={handleModal} disabled={!isClicked}>
+      <S.ConfirmBtn onClick={toDropOut} disabled={!isClicked}>
         탈퇴하기
       </S.ConfirmBtn>
     </S.DropOut>
