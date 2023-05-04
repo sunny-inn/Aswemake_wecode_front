@@ -61,36 +61,52 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             );
           })} */}
 
-          {/* <S.FlyerImage
-            onClick={() => {
-              onClickImage(0);
-            }}
-            src="./images/flyernone.png"
-            alt="전단지"
-          />
           <S.FlyerImage
             onClick={() => {
               onClickImage(0);
             }}
-            src="./images/flyernone.png"
+            src={
+              detailMartList[0].martFlyerImages.length === 0
+                ? './images/flyernone.png'
+                : detailMartList[0].martFlyerImages[0].imageUrl
+            }
             alt="전단지"
           />
           <S.FlyerImage
             onClick={() => {
-              onClickImage(0);
+              onClickImage(1);
             }}
-            src="./images/flyernone.png"
+            src={
+              detailMartList[0].martFlyerImages.length < 2
+                ? './images/flyernone.png'
+                : detailMartList[0].martFlyerImages[1].imageUrl
+            }
             alt="전단지"
           />
           <S.FlyerImage
             onClick={() => {
-              onClickImage(0);
+              onClickImage(2);
             }}
-            src="./images/flyernone.png"
+            src={
+              detailMartList[0].martFlyerImages.length < 3
+                ? './images/flyernone.png'
+                : detailMartList[0].martFlyerImages[2].imageUrl
+            }
             alt="전단지"
-          /> */}
+          />
+          <S.FlyerImage
+            onClick={() => {
+              onClickImage(3);
+            }}
+            src={
+              detailMartList[0].martFlyerImages.length < 4
+                ? './images/flyernone.png'
+                : detailMartList[0].martFlyerImages[3].imageUrl
+            }
+            alt="전단지"
+          />
 
-          {detailMartList.map((item, index) => (
+          {/* {detailMartList.map((item, index) => (
             <S.FlyerImage
               key={index}
               onClick={() => {
@@ -103,7 +119,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
               }
               alt={`전단지 ${index + 1}`}
             />
-          ))}
+          ))} */}
         </Slider>
       </S.FlyerCarouselContainer>
       {showBigImage && (
