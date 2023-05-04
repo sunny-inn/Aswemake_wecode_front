@@ -27,6 +27,7 @@ const HomeCarousel = ({
       setCurrentSlide(next);
     },
   };
+  const [isFavorite, setIsFavorite] = useState(false);
   const [slider, setSlider] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
@@ -124,8 +125,8 @@ const HomeCarousel = ({
                 <div>
                   <S.CarouselImg
                     src={
-                      mart.martFlyerImages.length === '0'
-                        ? '/images/flyernone.png'
+                      mart.martFlyerImages === '0'
+                        ? './images/flyernone.png'
                         : mart.martFlyerImages[0].imageUrl
                     }
                     alt="전단지"
