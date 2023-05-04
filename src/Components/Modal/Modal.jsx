@@ -10,8 +10,16 @@ const Modal = ({ handleModal, children, type }) => {
   return (
     <S.ModalContainer>
       <S.ModalContentBox>
-        <span>{infoList[type].title}</span>
-        <button onClick={handleModal}>X</button>
+        <S.CloseBox>
+          <div />
+          <span>{infoList[type].title}</span>
+          {infoList[type].close ? (
+            <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
+          ) : (
+            <div />
+          )}
+        </S.CloseBox>
+        {infoList[type].close && <button onClick={handleModal}>X</button>}
         <S.ModalText>{infoList[type].message}</S.ModalText>
         <S.ModalButtonBox>
           {infoList[type].button[1] && (
@@ -29,24 +37,28 @@ export default Modal;
 
 const MAP_MODAL_INFO = {
   title: '전단 등록',
+  close: true,
   message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
   button: ['전단 등록 하기', '마트 등록 하기'],
 };
 
 const SHOP_MODAL_INFO = {
   title: '전단 등록',
+  close: true,
   message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
   button: ['전단 등록 하기'],
 };
 
 const MODIFY_PASSWORD_MODAL_INFO = {
   title: '비밀번호 불일치',
+  close: false,
   message: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
   button: ['확인'],
 };
 
 const UPLOAD = {
   title: '전단등록 요청 완료',
+  close: false,
   message: '전단등록 요청이 완료되었습니다.',
   button: ['확인'],
 };
