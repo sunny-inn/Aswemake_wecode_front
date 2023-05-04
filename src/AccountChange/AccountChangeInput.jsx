@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 const AccountChangeInput = () => {
   const navigate = useNavigate();
 
+  const onClickBack = e => {
+    e.preventDefault();
+    navigate('/accountchange');
+  };
+
   const [correct, setCorrrect] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [selectBank, setSelectBank] = useState(null);
@@ -101,7 +106,7 @@ const AccountChangeInput = () => {
   };
   return (
     <>
-      <Header type="accountChange" />
+      <Header type="accountChange" onClickBack={onClickBack} />
       <S.Layout>
         <S.InputTitle>
           <label>은행</label>

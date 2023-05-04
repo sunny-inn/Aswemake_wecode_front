@@ -14,7 +14,7 @@ const SetPoint = () => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/');
+    navigate('/home');
   };
   return (
     <div>
