@@ -99,13 +99,13 @@ const Mypage = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        // if (data.result.flyerRegistrationCount < 3) {
-        //   navigate('/withdrawnotify', {
-        //     state: { remainingFlyers: data.result.flyerRegistrationCount },
-        //   });
-        // } else {
-        //   navigate('/withdrawpoint');
-        // }
+        if (data.result.flyerRegistrationCount < 3) {
+          navigate('/withdrawnotify', {
+            state: { remainingFlyers: data.result.flyerRegistrationCount },
+          });
+        } else {
+          navigate('/withdrawpoint');
+        }
       });
   };
 
