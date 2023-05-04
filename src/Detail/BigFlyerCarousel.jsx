@@ -40,10 +40,10 @@ const BigFlyerCarousel = ({
         </S.CloseButtonBox>
 
         <Slider {...settings}>
-          {imageUrls.map((imageUrls, index) => (
+          {list.map((item, index) => (
             <S.FlyerImage
               key={index}
-              src={imageUrls}
+              src={item.martFlyerImages.map(item => item.imageUrl)}
               alt={`전단지 ${index + 1}`}
             />
           ))}
