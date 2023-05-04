@@ -129,7 +129,7 @@ const Home = () => {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          authorization: token,
+          authorization: JSON.stringify(changedCenter),
         },
         body: changedCenter,
       })
