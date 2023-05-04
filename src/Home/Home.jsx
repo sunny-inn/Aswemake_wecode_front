@@ -39,7 +39,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (!localStorage.getItem('token')) {
       navigate('/');
     }
   }, []);
