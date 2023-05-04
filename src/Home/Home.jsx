@@ -120,6 +120,7 @@ const Home = () => {
   }, []);
 
   //여기 센터주는거
+  const changedCenter = { y: center.lat, x: center.lng };
 
   useEffect(() => {
     center.lat &&
@@ -130,10 +131,7 @@ const Home = () => {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: token,
         },
-        body: JSON.stringify({
-          y: 'center.lat',
-          x: 'center.lng',
-        }),
+        body: changedCenter,
       })
         .then(response => response.json())
         .then(data => {
