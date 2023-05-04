@@ -124,6 +124,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
       </S.FlyerCarouselContainer>
       {showBigImage && (
         <BigFlyerCarousel
+          list={list}
           onClickClose={onClickClose}
           currentImageIndex={currentImageIndex}
           imageUrls={detailMartList.map(item =>
