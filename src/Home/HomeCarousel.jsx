@@ -102,7 +102,8 @@ const HomeCarousel = ({
     if (selectedMart && selectedMart.martFlyerImages === '0') {
       handleModal();
     } else {
-      navigate(`/detail/${id}`);
+      // navigate(`/detail/${id}`);
+      navigate(`/detail/${selectedMart.martId}`);
     }
   };
 
