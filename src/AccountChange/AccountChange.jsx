@@ -55,6 +55,10 @@ const AccountChange = () => {
       });
   }, []);
 
+  useEffect(() => {
+    checkAllInputsFilled();
+  }, [accountData]);
+
   return (
     <>
       <Header type="accountChange" onClickBack={onClickBack} />
