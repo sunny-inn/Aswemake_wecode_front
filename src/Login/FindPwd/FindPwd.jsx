@@ -144,7 +144,7 @@ const FindPwd = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        if (data.result.id === 5) {
+        if (data.message === 'CAN CHANGE PASSWORD') {
           navigate('/pwdresetting', { state: { id: input.id } });
         } else if (data.message === 'INVALID INFORMATION') {
           alert('일치하는 정보가 없어 비밀번호를 재설정 할 수 없습니다.');
