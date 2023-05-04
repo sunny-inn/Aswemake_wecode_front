@@ -11,7 +11,7 @@ const Calendar = ({ setUploadInfo }) => {
   const [endDate, setEndDate] = useState('');
   const [invalidEndDate, setInvalidEndDate] = useState(false);
 
-  // bottom sheet 기능 함수
+  // bottom sheet 닫기
   const onDismiss = () => setOpen(false);
 
   // date picker 관련 함수
@@ -48,8 +48,6 @@ const Calendar = ({ setUploadInfo }) => {
 
   // 날짜 비교
   useEffect(() => {
-    setOpen(false);
-
     let currentDate = new Date();
     let formattedDate =
       currentDate.getFullYear().toString() +
