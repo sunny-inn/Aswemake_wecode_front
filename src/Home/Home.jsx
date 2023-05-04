@@ -69,11 +69,12 @@ const Home = () => {
   }, [userAddress]);
 
   const handleModal = () => {
-    setOpenModal(prev => !prev);
+    navigate('/suggest');
   };
 
   const handleSecModal = () => {
-    navigate('/suggest');
+    setOpenModal(prev => !prev);
+    navigate(`/detail/${selectedMart.martId}`);
   };
 
   const onClickDetailPortal = id => {
