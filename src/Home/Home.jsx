@@ -90,10 +90,8 @@ const Home = () => {
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
-    console.log('centerPoint이거는 함수안에', centerPoint);
   };
 
-  console.log('centerPoint', centerPoint);
   useEffect(() => {
     if (homeMartList) {
       setIsMarkerClicked(
@@ -162,7 +160,10 @@ const Home = () => {
   // const onCenterChanged = value => setCenter(value);
   // console.log('센터바뀜?', center);
 
-  const onCenterPointChanged = value => setCenter(value);
+  const onCenterPointChanged = value => {
+    console.log('벨류', value);
+    setCenter(value);
+  };
   console.log('센터가??', center);
 
   const HOME_PATH = window.HOME_PATH || '.';
