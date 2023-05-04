@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../Components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import * as S from './AccountChange.style';
+import LoginLayout from '../Login/Component/LoginLayout';
 
 const AccountChange = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AccountChange = () => {
     })
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setAccountData({
           bank: data.result.bankName,
           accountNumber: data.result.accountName,
@@ -56,7 +58,7 @@ const AccountChange = () => {
   return (
     <>
       <Header type="accountChange" onClickBack={onClickBack} />
-      <div style={{ marginLeft: '16px', marginTop: '22px' }}>
+      <LoginLayout>
         {/* <div>현재 등록된 계좌를 먼저 확인해 주세요.</div> */}
         <S.TitleMyPoint>은행</S.TitleMyPoint>
         <S.Withdraw value={accountData.bank} />
@@ -70,7 +72,7 @@ const AccountChange = () => {
         >
           다음으로
         </S.FinBtn>
-      </div>
+      </LoginLayout>
     </>
   );
 };

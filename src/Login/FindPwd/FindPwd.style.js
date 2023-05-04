@@ -58,6 +58,20 @@ export const ButtonTwo = styled.button`
   font-size: 17px;
 `;
 
+export const AlertMsg = styled.div`
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #ff6a21;
+`;
+
+export const FailAlertMsg = styled.div`
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #e40303;
+`;
+
 export const FindPwdSubmit = styled.button`
   width: 328px;
   height: 50px;
