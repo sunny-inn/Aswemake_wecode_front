@@ -138,11 +138,11 @@ const HomeCarousel = ({
                     <S.MartTitle>{mart.martName}</S.MartTitle>
                     <S.StarImg
                       src={
-                        mart.checked
+                        mart.isFavorite
                           ? './images/clickedFavorite.png'
                           : './images/favorite.png'
                       }
-                      onClick={onClickFavorite} // 수정된 부분
+                      onClick={() => onClickFavorite(mart.martId)}
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
