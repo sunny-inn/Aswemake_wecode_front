@@ -293,7 +293,7 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <Modal type="map" handleModal={{ handleModal }} />
+                <Modal type="upload" handleModal={handleModal} />
                 // <DetailModal
                 //   handleModal={handleModal}
                 //   selectedMart={selectedMart}
