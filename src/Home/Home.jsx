@@ -159,7 +159,7 @@ const Home = () => {
   // const onCenterChanged = value => setCenter(value);
   // console.log('센터바뀜?', center);
 
-  const onCenterPointChanged = value => {
+  const onCenterChanged = value => {
     console.log('센터 확인 중', value);
     setCenter({
       lat: value.y,
@@ -232,8 +232,8 @@ const Home = () => {
                 center={center}
                 defaultZoom={15}
                 onDragEnd={handleDragEnd}
-                onCenterPointChanged={onCenterPointChanged}
-                // onCenterChanged={onCenterChanged} //중심좌표구할때
+                // onCenterPointChanged={onCenterPointChanged}
+                onCenterChanged={onCenterChanged} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
                 logoControl={false}
