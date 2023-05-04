@@ -97,11 +97,15 @@ const HomeCarousel = ({
     );
   };
 
+  const afterhandleModal = () => {
+    navigate(`/detail/${selectedMart.martId}`);
+  };
+
   const onClickMartItem = id => e => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
     if (selectedMart && selectedMart.martFlyerImages === '0') {
-      // handleModal();
-      navigate(`/detail/${selectedMart.martId}`);
+      handleModal();
+      afterhandleModal();
     } else {
       // navigate(`/detail/${id}`);
       // navigate(`/detail/${selectedMart.martId}`);
