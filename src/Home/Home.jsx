@@ -293,10 +293,11 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <DetailModal
-                  handleModal={handleModal}
-                  selectedMart={selectedMart}
-                />
+                // <DetailModal
+                //   handleModal={handleModal}
+                //   selectedMart={selectedMart}
+                // />
+                <Modal type="map" />
               )}
             </>
           )}

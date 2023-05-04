@@ -42,8 +42,7 @@ export default Modal;
 
 const MAP_MODAL_INFO = {
   title: '전단 등록',
-  message1: '전단 등록이 필요한 마트에요.',
-  message2: ' 전단을 등록하러 가볼까요?',
+  message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
   button: ['마트 정보 보기', '전단 등록 하기'],
 };
 
