@@ -69,7 +69,7 @@ const Home = () => {
   }, [userAddress]);
 
   const handleModal = () => {
-    // navigate(`/detail/${selectedMart.martId}`);
+    navigate(`/detail/${selectedMart.martId}`);
     setOpenModal(prev => !prev);
   };
 
