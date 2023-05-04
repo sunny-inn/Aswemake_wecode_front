@@ -18,9 +18,9 @@ const SetAccount = () => {
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName} 님</S.Name>
-          <S.Inform>계좌 변경이 완료되었습니다!</S.Inform>
+          <S.Inform>계좌 등록이 완료되었습니다!</S.Inform>
         </S.Container>
-        <Link to="/">
+        <Link to="/home">
           <S.FinBtn>확인</S.FinBtn>
         </Link>
       </LoginLayout>
