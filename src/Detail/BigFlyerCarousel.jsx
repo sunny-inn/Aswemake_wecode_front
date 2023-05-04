@@ -43,7 +43,7 @@ const BigFlyerCarousel = ({
           {list.map((item, index) => (
             <S.FlyerImage
               key={index}
-              src={item.martFlyerImages.map(item => item.imageUrl)}
+              src={item.martFlyerImages[currentImageIndex].imageUrl}
               alt={`전단지 ${index + 1}`}
             />
           ))}
