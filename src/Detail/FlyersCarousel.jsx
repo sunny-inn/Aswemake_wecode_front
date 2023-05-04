@@ -50,7 +50,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
                   src={
                     list.martFlyerImages.length === 0
                       ? '/images/flyernone.png'
-                      : list.martFlyerImages
+                      : list.martFlyerImages.imageUrl
                   }
                   alt="전단지"
                   onClick={() => {
