@@ -190,8 +190,12 @@ const FindPwd = () => {
         <S.ButtonTwo onClick={onCodeBtn} disabled={codeBtnChange}>
           확인
         </S.ButtonTwo>
-        {alertMsg === true && <div>인증번호 인증 완료 </div>}
-        {alertMsg === false && <div>인증번호 인증 실패 </div>}
+        {alertMsg === true && (
+          <S.AlertMsg> 번호 인증이 완료 되었습니다. </S.AlertMsg>
+        )}
+        {alertMsg === false && (
+          <S.FailAlertMsg>인증번호를 다시 확인해 주세요. </S.FailAlertMsg>
+        )}
         <S.FindPwdSubmit confirmed={alertMsg !== null} onClick={forSetPwd}>
           확인
         </S.FindPwdSubmit>
