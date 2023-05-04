@@ -12,6 +12,7 @@ const HomeCarousel = ({
   onClickDetailPortal,
   changeCenterByCarousel,
   setSelectedMartList,
+  handleSecModal,
   currentId,
 }) => {
   const settings = {

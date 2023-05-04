@@ -69,8 +69,8 @@ const Home = () => {
   }, [userAddress]);
 
   const handleModal = () => {
-    navigate(`/detail/${selectedMart.martId}`);
-    // setOpenModal(prev => !prev);
+    // navigate(`/detail/${selectedMart.martId}`);
+    setOpenModal(prev => !prev);
   };
 
   const handleSecModal = () => {
@@ -291,6 +291,7 @@ const Home = () => {
                   />
                 </S.SearchBox>
                 <HomeCarousel
+                  handleSecModal={handleSecModal}
                   homeMartList={homeMartList}
                   selectedMart={selectedMart}
                   handleModal={handleModal}
