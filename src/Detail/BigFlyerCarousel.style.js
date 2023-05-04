@@ -13,8 +13,10 @@ export const BigCarouselContentBox = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
   justify-content: center;
-  align-items: flex-start; /* CloseButtonBox를 위쪽으로 정렬 */
+  align-items: flex-start;
+  overflow: hidden;
 `;
 
 export const CloseButtonBox = styled.div`
