@@ -130,10 +130,10 @@ const Home = () => {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: token,
         },
-        body: JSON.stringify({
+        body: {
           y: center.lat,
           x: center.lng,
-        }),
+        },
       })
         .then(response => response.json())
         .then(data => {
@@ -141,6 +141,7 @@ const Home = () => {
           console.log('콘솔찍었다.', data);
         });
   }, [center]);
+
   console.log('마트리스트들', homeMartList);
 
   useEffect(() => {
