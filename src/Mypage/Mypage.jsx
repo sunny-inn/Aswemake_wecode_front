@@ -65,7 +65,9 @@ const Mypage = () => {
       });
   };
 
-  const handleAccountCheck = () => {
+  const handleAccountCheck = e => {
+    e.preventDefault();
+
     fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
       method: 'GET',
       headers: {
@@ -159,9 +161,9 @@ const Mypage = () => {
             <S.Name>{user.name}</S.Name>님{/* <S.Name>성이름</S.Name>님 */}
           </p>
         </S.NameBox>
-        <S.PointBox>
+        <S.PointBox onClick={handlePointsClick}>
           <S.PointTitle>보유포인트</S.PointTitle>
-          <S.Points onClick={handlePointsClick}>{totalPoints} P</S.Points>
+          <S.Points>{totalPoints} P</S.Points>
           {/* <S.Points>3,000 P</S.Points> */}
         </S.PointBox>
       </S.InfoBox>
