@@ -77,7 +77,7 @@ const AccountChangeInput = () => {
   //예금주명 확인
   const checkAccountHolderName = () => {
     fetch(
-      'http://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
+      'https://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
         encodeURIComponent(accountName),
       {
         method: 'GET',
