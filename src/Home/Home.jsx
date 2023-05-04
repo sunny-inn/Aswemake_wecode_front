@@ -120,24 +120,27 @@ const Home = () => {
   }, []);
 
   //여기 센터주는거
+
   useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/home`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-      body: JSON.stringify({
-        y: center.lat,
-        x: center.lng,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        setHomeMartList(data.martList);
-      });
+    center.lat &&
+      fetch(`https://flyers.qmarket.me/api/home/mart`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+        body: JSON.stringify({
+          y: center.lat,
+          x: center.lng,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          setHomeMartList(data.martList);
+        });
   }, [center]);
+  console.log('마트리스트들', homeMartList);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -209,8 +212,8 @@ const Home = () => {
     return deg * (Math.PI / 180);
   };
 
-  console.log('selectedMart', selectedMart);
-  console.log('isMarkerClicked', isMarkerClicked);
+  // console.log('selectedMart', selectedMart);
+  // console.log('isMarkerClicked', isMarkerClicked);
 
   return (
     <div>
@@ -231,7 +234,6 @@ const Home = () => {
                 mapDataControl={false}
                 zoomControl={false}
               >
-                console.log('센터가이건가??',onCenterChanged)
                 {homeMartList.map((mart, index) => {
                   //2일전계산
                   const now = new Date();
