@@ -38,11 +38,12 @@ const Home = () => {
     navigate(`detail/${id}`);
   };
 
+  const token = localStorage.getItem('token');
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate('/');
     }
-  }, []);
+  }, [token, navigate]);
 
   useEffect(() => {
     userAddress &&
@@ -98,8 +99,6 @@ const Home = () => {
       );
     }
   }, [homeMartList]);
-
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     fetch(`https://flyers.qmarket.me/api/home`, {
