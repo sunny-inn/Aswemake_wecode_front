@@ -1,24 +1,30 @@
 import React, { useEffect } from 'react';
 import * as S from './NotifyId.style';
 import Header from '../../Components/Header/Header';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const NotifyId = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const userId = location.state?.userId || '';
   const userName = location.state?.userName || '';
+
+  const onClickBack = e => {
+    navigate('/findid');
+  };
 
   if (!userId || !userName) {
   }
 
   return (
     <>
-      <Header type="findid" />
+      <Header type="findid" onClickBack={onClickBack} />
       <S.NotifyWrapper>
+        <S.Notify>{userName}님의 아이디는</S.Notify>
         <S.Notify>
-          {userId}님의 아이디는{userName}입니다.
+          <S.Id>{userId} </S.Id>입니다.
         </S.Notify>
-        <Link to="/">
+        <Link to="/findpwd">
           <S.GoToFindPwd>비밀번호 찾기</S.GoToFindPwd>
         </Link>
         <Link to="/">

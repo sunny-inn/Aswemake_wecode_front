@@ -39,16 +39,18 @@ const BigFlyerCarousel = ({
           />
         </S.CloseButtonBox>
 
-        <Slider {...settings}>
-          {Array.isArray(list) &&
-            list.map((item, index) => (
-              <S.FlyerImage
-                key={index}
-                src={item.martFlyerImages.map(item => item.imageUrl)}
-                alt={`전단지 ${index + 1}`}
-              />
-            ))}
-        </Slider>
+        <S.BigFlyerImgBox>
+          <Slider {...settings}>
+            {Array.isArray(list) &&
+              list.map((item, index) => (
+                <S.FlyerImage
+                  key={index}
+                  src={item.martFlyerImages.map(item => item.imageUrl)}
+                  alt={`전단지 ${index + 1}`}
+                />
+              ))}
+          </Slider>
+        </S.BigFlyerImgBox>
       </S.BigCarouselContentBox>
     </S.BigCarouselContainer>
   );

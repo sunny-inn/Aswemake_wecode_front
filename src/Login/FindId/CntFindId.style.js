@@ -9,6 +9,8 @@ export const CntFindId = styled.div`
 
 export const NotFoundId = styled.h1`
   margin-top: 220px;
+  font-size: 17px;
+  font-weight: 500;
 `;
 
 export const GoToSignUp = styled.button`

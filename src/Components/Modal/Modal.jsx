@@ -15,8 +15,8 @@ const Modal = ({ handleModal, children, type }) => {
       <S.ModalContainer>
         <S.ModalContentBox>
           <S.ModalTitleBox>
-            <span>{infoList[type].title}</span>
-            <S.ModalCloseImg
+            <S.Title>{infoList[type].title}</S.Title>
+            <S.CloseImg
               src="./images/closeImg.png"
               onClick={handleModal}
               alt="닫기"
@@ -33,7 +33,6 @@ const Modal = ({ handleModal, children, type }) => {
             </S.ModalUploadButton>
           </S.ModalButtonBox>
         </S.ModalContentBox>
-        {/* {children} */}
       </S.ModalContainer>
     </S.ModalBackground>
   );

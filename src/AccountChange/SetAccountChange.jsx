@@ -10,7 +10,7 @@ const SetAccountChange = () => {
   const accountHolderName = location.state?.accountHolderName || '';
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/');
+    navigate('/accountchangeinput');
   };
   return (
     <div>
@@ -18,9 +18,7 @@ const SetAccountChange = () => {
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName}</S.Name>
-          <span>&nbsp;님</span>
-          <S.Inform>&nbsp;&nbsp;9000원</S.Inform>
-          <S.Inform>&nbsp;&nbsp;인출 요청이 완료되었습니다!</S.Inform>
+          <S.Inform>&nbsp;&nbsp;계좌 변경이 완료되었습니다!</S.Inform>
         </S.Container>
         <Link to="/">
           <S.FinBtn>확인</S.FinBtn>

@@ -80,6 +80,10 @@ export const FindPwdSubmit = styled.button`
   color: white;
   border-radius: 8px;
   background-color: ${({ confirmed }) => (confirmed ? '#FF6A21' : '#dbdbdb')};
+  &:disabled {
+    background-color: #dbdbdb;
+    cursor: not-allowed;
+  }
 `;
 
 export const Timer = styled.div`
