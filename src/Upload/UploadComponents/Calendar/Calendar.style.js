@@ -67,17 +67,25 @@ export const CustomBox = styled.div`
     border-bottom: 1px solid #ececec;
   }
 
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    width: 2.7rem;
+    height: 2.7rem;
+    line-height: 2.7rem;
+  }
+
   .react-datepicker__day--selected,
   .react-datepicker__day--in-range,
   .react-datepicker__day--in-selecting-range {
     background: #ff6a21;
-    border-radius: 16px;
+    border-width: 10%;
+    border-radius: 50px;
   }
 `;
 
 export const CustomHeader = styled.div`
   ${flex('center', 'center', null)}
-  gap: 20px;
+  gap: 30px;
   margin: 10px;
 
   .month-day {
