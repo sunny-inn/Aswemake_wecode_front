@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './WithdrawNotify.style';
 import Header from '../Components/Header/Header';
 import LoginLayout from '../Login/Component/LoginLayout';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const WithdrawNotify = () => {
   const navigate = useNavigate();
@@ -38,7 +38,9 @@ const WithdrawNotify = () => {
           <S.Title>남았어요.</S.Title>
           <S.FinalTitle>내 주변 마트 전단을 등록해 보세요!</S.FinalTitle>
         </S.TitleWrapper>
-        <S.EnrollBtn>전단 등록 하러 가기</S.EnrollBtn>
+        <Link to="/upload">
+          <S.EnrollBtn>전단 등록 하러 가기</S.EnrollBtn>
+        </Link>
       </LoginLayout>
     </div>
   );

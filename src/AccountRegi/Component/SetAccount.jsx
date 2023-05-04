@@ -10,7 +10,7 @@ const SetAccount = () => {
   const accountHolderName = location.state?.accountHolderName || '';
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/');
+    navigate('/home');
   };
   return (
     <div>
