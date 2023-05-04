@@ -74,7 +74,12 @@ const Home = () => {
   };
 
   const handleSecModal = () => {
-    navigate('/suggest');
+    navigate({
+      pathname: '/suggest',
+      state: {
+        selectedMart: selectedMart,
+      },
+    });
   };
 
   const onClickDetailPortal = id => {
