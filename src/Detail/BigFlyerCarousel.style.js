@@ -7,7 +7,6 @@ export const BigCarouselContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
 `;
 export const BigCarouselContentBox = styled.div`
   width: 100%;
