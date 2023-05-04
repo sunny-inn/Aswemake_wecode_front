@@ -32,6 +32,12 @@ const AccountChange = () => {
 
   const [allInputsFilled, setAllInputsFilled] = useState(false);
 
+  const changeAccount = () => {
+    if (allInputsFilled) {
+      navigate('/accountchangeinput');
+    }
+  };
+
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
       method: 'GET',
@@ -72,6 +78,7 @@ const AccountChange = () => {
         <S.Withdraw value={accountData.accountHolder} />
 
         <S.FinBtn
+          onClick={changeAccount}
           style={{ backgroundColor: allInputsFilled ? '#FF6A21' : '#dbdbdb' }}
         >
           다음으로

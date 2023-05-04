@@ -49,10 +49,11 @@ const AccountChangeInput = () => {
 
   const submitRegi = () => {
     if (accountVerified) {
-      fetch('http://127.0.0.1:8000/api/accounts/registration', {
+      fetch('https://flyers.qmarket.me/api/accounts/change', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
         },
         body: JSON.stringify({
           accountHolderName: accountName,
@@ -79,20 +80,26 @@ const AccountChangeInput = () => {
 
   const checkAccountHolderName = () => {
     fetch(
-      'http://127.0.0.1:8000/api/accounts/checkAccountHolderName?accountHolderName=' +
+      'http://flyers.qmarket.me/api/accounts/checkAccountHolderName?accountHolderName=' +
         encodeURIComponent(accountName),
       {
         method: 'GET',
         headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgyMTU3MDY2LCJleHAiOjE2ODIxNTcxODZ9.pBMBta2yD-pn2Bodq4vbj6qMCXhrh4L_UnlpVzW6Gr0',
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
         },
       }
     )
       .then(res => res.json())
       .then(data => {
-        setAccountVerified(data.message === accountName);
-        setAreInputsVerified(data.message === accountName);
+        console.log(data);
+        if (data.message === 'name matches') {
+          setAccountVerified(true);
+          setAreInputsFilled(true);
+        } else if (data.message === 'ONLY YOUR ACCOUNT CAN BE REGISTERED') {
+          setAccountVerified(false);
+          setAreInputsFilled(false);
+        }
       });
   };
   return (
