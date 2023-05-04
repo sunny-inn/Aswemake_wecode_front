@@ -130,10 +130,10 @@ const Home = () => {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: token,
         },
-        body: {
-          y: center.lat,
-          x: center.lng,
-        },
+        body: JSON.stringify({
+          y: 'center.lat',
+          x: 'center.lng',
+        }),
       })
         .then(response => response.json())
         .then(data => {
