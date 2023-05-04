@@ -15,6 +15,7 @@ const Suggest = ({ onClose, selectedMart }) => {
     e.preventDefault();
     navigate(`/detail/${selectedMart.martId}`);
   };
+  console.log('ㅇ에에에???', selectedMart);
 
   const onClickSuggestBtn = e => {
     e.preventDefault();
