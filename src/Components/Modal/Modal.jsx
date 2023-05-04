@@ -10,29 +10,46 @@ const Modal = ({ handleModal, children, type }) => {
   };
 
   return (
-    <S.ModalBackground>
-      <S.ModalContainer>
-        <S.ModalContentBox>
-          <S.ModalTitleBox>
-            <S.Title>{infoList[type].title}</S.Title>
-            <S.CloseImg
-              src="./images/closeImg.png"
-              onClick={handleModal}
-              alt="닫기"
-            />
-          </S.ModalTitleBox>
-          <S.ModalText>{infoList[type].message}</S.ModalText>
-          <S.ModalButtonBox>
-            {infoList[type].button[1] && (
-              <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
-            )}
-            <S.ModalUploadButton>
-              {infoList[type].button[0]}
-            </S.ModalUploadButton>
-          </S.ModalButtonBox>
-        </S.ModalContentBox>
-      </S.ModalContainer>
-    </S.ModalBackground>
+    // <S.ModalBackground>
+    //   <S.ModalContainer>
+    //     <S.ModalContentBox>
+    //       <S.ModalTitleBox>
+    //         <S.Title>{infoList[type].title}</S.Title>
+    //         <S.CloseImg
+    //           src="./images/closeImg.png"
+    //           onClick={handleModal}
+    //           alt="닫기"
+    //         />
+    //       </S.ModalTitleBox>
+    //       <S.ModalText>{infoList[type].message}</S.ModalText>
+    //       <S.ModalButtonBox>
+    //         {infoList[type].button[1] && (
+    //           <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
+    //         )}
+    //         <S.ModalUploadButton>
+    //           {infoList[type].button[0]}
+    //         </S.ModalUploadButton>
+    //       </S.ModalButtonBox>
+    //     </S.ModalContentBox>
+    //   </S.ModalContainer>
+    // </S.ModalBackground>
+    <S.ModalContainer>
+      <S.ModalContentBox>
+        <S.CloseBox>
+          <S.Title>{infoList[type].title}</S.Title>
+          <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
+        </S.CloseBox>
+
+        <S.ModalText>{infoList[type].message}</S.ModalText>
+
+        <S.ModalButtonBox>
+          {infoList[type].button[1] && (
+            <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
+          )}
+          <S.ModalUploadButton>{infoList[type].button[0]}</S.ModalUploadButton>
+        </S.ModalButtonBox>
+      </S.ModalContentBox>
+    </S.ModalContainer>
   );
 };
 
