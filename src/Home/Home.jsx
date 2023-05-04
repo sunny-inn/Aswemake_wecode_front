@@ -121,25 +121,25 @@ const Home = () => {
 
   //여기 센터주는거
 
-  useEffect(() => {
-    center &&
-      fetch(`https://flyers.qmarket.me/api/home/mart`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: token,
-        },
-        body: JSON.stringify({
-          y: center.lat,
-          x: center.lng,
-        }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          setHomeMartList(data.martList);
-        });
-  }, [center]);
+  // useEffect(() => {
+  //   center &&
+  //     fetch(`https://flyers.qmarket.me/api/home/mart`, {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //         authorization: token,
+  //       },
+  //       body: JSON.stringify({
+  //         y: center.lat,
+  //         x: center.lng,
+  //       }),
+  //     })
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         setHomeMartList(data.martList);
+  //       });
+  // }, [center]);
 
   useEffect(() => {
     if (mapRef.current) {
