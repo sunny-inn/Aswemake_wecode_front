@@ -134,7 +134,6 @@ const Upload = () => {
   const onSubmitFlyers = e => {
     e.preventDefault();
 
-    //TODO: POST하는 api
     fetch('https://flyers.qmarket.me/api/flyer', {
       method: 'POST',
       headers: {
