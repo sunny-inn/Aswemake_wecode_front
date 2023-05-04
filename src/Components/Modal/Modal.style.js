@@ -23,7 +23,8 @@ export const ModalContentBox = styled.div`
 export const CloseBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 288px;
-  padding: 0px 10px;
+  padding: 10px 10px;
+  margin-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 `;
 
