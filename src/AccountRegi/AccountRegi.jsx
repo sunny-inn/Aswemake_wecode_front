@@ -114,7 +114,7 @@ const AccountRegi = () => {
           <label>은행</label>
         </S.InputTitle>
         <S.InputWrapper>
-          {selectBank && <img src={selectBank.img} alt={selectBank.name} />}
+          {/* {selectBank && <img src={selectBank.img} alt={selectBank.name} />} */}
           <S.Input
             placeholder="은행을 선택해 주세요."
             value={selectBank ? selectBank.name : ''}
