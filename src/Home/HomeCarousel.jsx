@@ -100,11 +100,11 @@ const HomeCarousel = ({
   const onClickMartItem = id => e => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
     if (selectedMart && selectedMart.martFlyerImages === '0') {
-      handleModal();
+      // handleModal();
+      navigate(`/detail/${selectedMart.martId}`);
     } else {
       // navigate(`/detail/${id}`);
-      navigate(`/detail/${selectedMart.martId}`);
-      console.log('이벤트!!!!!!', onClickMartItem.e);
+      // navigate(`/detail/${selectedMart.martId}`);
     }
   };
 
