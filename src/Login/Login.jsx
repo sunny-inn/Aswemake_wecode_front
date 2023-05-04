@@ -31,6 +31,12 @@ const Login = () => {
     setShowModal(prev => !prev);
   };
 
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/home');
+    }
+  }, []);
+
   // const root = document.getElementById('root');
   // const rootApi = createRoot(root);
 
