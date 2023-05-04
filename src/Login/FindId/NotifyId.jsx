@@ -20,8 +20,9 @@ const NotifyId = () => {
     <>
       <Header type="findid" onClickBack={onClickBack} />
       <S.NotifyWrapper>
+        <S.Notify>{userName}님의 아이디는</S.Notify>
         <S.Notify>
-          {userName}님의 아이디는 {userId}입니다.
+          <S.Id>{userId} </S.Id>입니다.
         </S.Notify>
         <Link to="/findpwd">
           <S.GoToFindPwd>비밀번호 찾기</S.GoToFindPwd>

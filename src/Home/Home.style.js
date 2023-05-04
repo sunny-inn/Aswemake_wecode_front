@@ -95,6 +95,7 @@ export const SearchBar = styled.input`
   box-shadow: 0px 4px 8px rgba(37, 37, 37, 0.08);
   border-radius: 16px;
   z-index: 10;
+  cursor: pointer;
 `;
 
 export const CurrentLocation = styled.img`

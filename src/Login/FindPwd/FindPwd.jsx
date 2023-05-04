@@ -196,7 +196,11 @@ const FindPwd = () => {
         {alertMsg === false && (
           <S.FailAlertMsg>인증번호를 다시 확인해 주세요. </S.FailAlertMsg>
         )}
-        <S.FindPwdSubmit confirmed={alertMsg !== null} onClick={forSetPwd}>
+        <S.FindPwdSubmit
+          disabled={alertMsg === null}
+          confirmed={alertMsg !== null}
+          onClick={forSetPwd}
+        >
           확인
         </S.FindPwdSubmit>
       </LoginLayout>
