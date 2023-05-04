@@ -138,6 +138,7 @@ const Home = () => {
         .then(response => response.json())
         .then(data => {
           setHomeMartList(data.martList);
+          console.log('콘솔찍었다.', data);
         });
   }, [center]);
   console.log('마트리스트들', homeMartList);
