@@ -4,7 +4,6 @@ import * as S from './Modal.style';
 const Modal = ({ handleModal, children, type }) => {
   const infoList = {
     map: MAP_MODAL_INFO,
-    shop: SHOP_MODAL_INFO,
     logout: LOGOUT,
     modify: MODIFY_PASSWORD_MODAL_INFO,
     upload: UPLOAD,
@@ -44,13 +43,6 @@ const MAP_MODAL_INFO = {
   title: '전단 등록',
   message: '전단 등록이 필요한 마트에요. 전단을 등록하러 가볼까요?',
   button: ['마트 정보 보기', '전단 등록 하기'],
-};
-
-const SHOP_MODAL_INFO = {
-  title: '전단 등록',
-  message1: '전단 등록이 필요한 마트에요.',
-  message2: ' 전단을 등록하러 가볼까요?',
-  button: ['전단 등록 하기'],
 };
 
 const LOGOUT = {
