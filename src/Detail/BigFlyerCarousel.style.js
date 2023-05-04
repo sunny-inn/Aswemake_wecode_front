@@ -15,19 +15,19 @@ export const BigCarouselContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start; /* CloseButtonBox를 위쪽으로 정렬 */
 `;
 
 export const CloseButtonBox = styled.div`
-  width: 100%;
+  width: max-content; /* CloseButtonBox의 너비를 내부 컨텐츠의 크기만큼으로 지정 */
   display: flex;
-  justify-content: end;
+  justify-content: flex-end; /* 닫기 버튼을 오른쪽으로 정렬 */
 `;
 
 export const ModalCloseImg = styled.img`
   width: 24px;
   height: 24px;
   margin-right: 10px;
-  right: 0;
   cursor: pointer;
 `;
 
