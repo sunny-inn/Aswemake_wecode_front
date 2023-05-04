@@ -92,6 +92,7 @@ export const IdAddInput = styled.input`
 
 export const DropOutBtn = styled.div`
   ${flex('center', 'center', null)};
+  background: #fff;
 
   button {
     margin: 32px auto;
