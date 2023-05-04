@@ -10,7 +10,6 @@ const Modal = ({ handleModal, type }) => {
 
   return (
     <S.ModalContainer>
-      {/* <S.ModalContentBox> */}
       <S.CloseBox>
         <S.EmptyBox />
         <S.ModalTitle>{infoList[type].title}</S.ModalTitle>
@@ -25,9 +24,10 @@ const Modal = ({ handleModal, type }) => {
         {infoList[type].button[1] && (
           <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
         )}
-        <S.ModalUploadButton>{infoList[type].button[0]}</S.ModalUploadButton>
+        <S.ModalUploadButton onClick={handleModal}>
+          {infoList[type].button[0]}
+        </S.ModalUploadButton>
       </S.ModalButtonBox>
-      {/* </S.ModalContentBox> */}
     </S.ModalContainer>
   );
 };

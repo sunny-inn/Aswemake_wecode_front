@@ -13,17 +13,12 @@ export const ModalContainer = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
 `;
-// export const ModalContentBox = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
 
 export const CloseBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 288px;
   padding: 10px 10px;
-  margin-bottom: 10px;
+  margin: 10px 0px;
   border-bottom: 1px solid #eeeeee;
 `;
 
@@ -59,6 +54,7 @@ export const ModalText = styled.p`
 
 export const ModalButtonBox = styled.div`
   display: flex;
+  padding-bottom: 20px;
 `;
 
 export const ModalInfoButton = styled.button`
