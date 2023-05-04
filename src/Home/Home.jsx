@@ -82,6 +82,7 @@ const Home = () => {
   };
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
+    console.log('center는?!?!', center);
   };
 
   useEffect(() => {
@@ -165,7 +166,7 @@ const Home = () => {
   const navermaps = useNavermaps();
 
   const onCenterChanged = value => setCenter(value);
-  console.log('센터바뀜?', onCenterChanged);
+  console.log('센터바뀜?', center);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
