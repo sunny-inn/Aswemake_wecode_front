@@ -21,8 +21,7 @@ const Modal = ({ handleModal, children, type }) => {
               alt="닫기"
             />
           </S.ModalTitleBox>
-          <S.ModalText>{infoList[type].message1}</S.ModalText>
-          <S.ModalText>{infoList[type].message2}</S.ModalText>
+          <S.ModalText>{infoList[type].message}</S.ModalText>
           <S.ModalButtonBox>
             {infoList[type].button[1] && (
               <S.ModalInfoButton>{infoList[type].button[1]}</S.ModalInfoButton>
