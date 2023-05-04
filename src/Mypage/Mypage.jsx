@@ -103,6 +103,31 @@ const Mypage = () => {
           navigate('/withdrawnotify', {
             state: { remainingFlyers: data.result.flyerRegistrationCount },
           });
+        } else if (data.message === 'YOU NEED TO REGISTER YOUR ACCOUNT') {
+          navigate('/accountregi');
+        } else {
+          navigate('/withdrawpoint');
+        }
+      });
+  };
+
+  const handlePointsClick = () => {
+    fetch('https://flyers.qmarket.me/api/points', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.result.flyerRegistrationCount < 3) {
+          navigate('/withdrawnotify', {
+            state: { remainingFlyers: data.result.flyerRegistrationCount },
+          });
+        } else if (data.message === 'YOU NEED TO REGISTER YOUR ACCOUNT') {
+          navigate('/accountregi');
         } else {
           navigate('/withdrawpoint');
         }
@@ -134,7 +159,7 @@ const Mypage = () => {
         </S.NameBox>
         <S.PointBox>
           <S.PointTitle>보유포인트</S.PointTitle>
-          <S.Points>{totalPoints} P</S.Points>
+          <S.Points onClick={handlePointsClick}>{totalPoints} P</S.Points>
           {/* <S.Points>3,000 P</S.Points> */}
         </S.PointBox>
       </S.InfoBox>
