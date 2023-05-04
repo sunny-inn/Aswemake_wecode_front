@@ -120,7 +120,7 @@ const Home = () => {
   }, []);
 
   //여기 센터주는거
-  const changedCenter = { y: center.lat, x: center.lng };
+  const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
   useEffect(() => {
     center.lat &&
