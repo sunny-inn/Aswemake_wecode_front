@@ -161,8 +161,11 @@ const Home = () => {
   // console.log('센터바뀜?', center);
 
   const onCenterPointChanged = value => {
-    console.log('벨류', value);
-    setCenter(value);
+    let center = value['o.Point'];
+    setCenter({
+      lat: center.y,
+      lng: center.x,
+    });
   };
   console.log('센터가??', center);
 
