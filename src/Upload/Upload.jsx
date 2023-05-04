@@ -22,6 +22,11 @@ const Upload = () => {
 
   const { images, startDate, endDate } = uploadInfo;
 
+  // 스크롤 위치 조정
+  useEffect(() => {
+    document.getElementById('scroller').scroll(0, 0);
+  }, []);
+
   const uploadForm = new FormData();
   for (let i = 0; i < 4; i++) {
     uploadForm.append('images', uploadInfo.images[i]);
@@ -40,14 +45,6 @@ const Upload = () => {
   const handlePhoneNumber = e => {
     setPhoneNumber(e.target.value);
   };
-
-  // 스크롤 위치 조정
-  useEffect(() => {
-    let scrollPosition = window.pageYOffset;
-    if (scrollPosition !== 0) {
-      window.scrollTo(0, 0);
-    }
-  }, []);
 
   // 전화번호로 마트 정보 받아오기
   const onClickMart = e => {
@@ -75,8 +72,6 @@ const Upload = () => {
         }
       });
   };
-
-  console.log(uploadInfo);
 
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
@@ -159,7 +154,7 @@ const Upload = () => {
   };
 
   return (
-    <S.UploadForm onSubmit={onSubmitFlyers}>
+    <S.UploadForm onSubmit={onSubmitFlyers} id="scroller">
       <Header type="upload" />
       <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
       <S.PhoneBox>
