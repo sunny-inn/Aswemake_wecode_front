@@ -141,7 +141,7 @@ const HomeCarousel = ({
                           ? './images/clickedFavorite.png'
                           : './images/favorite.png'
                       }
-                      onClick={handleFavorite} // 수정된 부분
+                      onClick={onClickFavorite} // 수정된 부분
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
