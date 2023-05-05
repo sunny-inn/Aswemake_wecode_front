@@ -171,7 +171,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             인증번호를 다시 확인해주세요.
           </S.PhoneCheckText>
         )}
-        {!alertMsg && verification && modifyPhone.code !== '' && (
+        {!alertMsg && verification && (
           <S.PhoneCheckText color="#ff6a21">
             번호 인증이 완료되었습니다.
           </S.PhoneCheckText>
