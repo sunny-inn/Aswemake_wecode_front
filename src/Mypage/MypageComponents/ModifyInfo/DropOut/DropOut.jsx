@@ -169,7 +169,7 @@ const DropOut = ({ setModalOpen, totalPoints }) => {
       </S.DropOutBody>
       <S.ConfirmBtn
         onClick={toDropOut}
-        disabled={!isClicked || textAreaValue === ''}
+        disabled={!isClicked || (selected === '3' && textAreaValue === '')}
       >
         탈퇴하기
       </S.ConfirmBtn>
