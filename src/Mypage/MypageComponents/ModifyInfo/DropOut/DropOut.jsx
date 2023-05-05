@@ -124,9 +124,7 @@ const DropOut = ({ setModalOpen, totalPoints }) => {
             </S.DropOutReasonLabel>
           </S.DropOutReasonLi>
           <S.DropOutReasonEtc
-            placeholder={
-              selected && '더 나은 전단지도가 될 수 있도록 의견을 들려주세요.'
-            }
+            placeholder="더 나은 전단지도가 될 수 있도록 의견을 들려주세요."
             disabled={selected !== '3'}
             onChange={e => setTextAreaValue(e.target.value)}
             value={selected === '3' ? textAreaValue : ''}
