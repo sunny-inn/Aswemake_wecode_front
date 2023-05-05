@@ -32,7 +32,9 @@ export const PhoneInput = styled.input`
   width: 204px;
   height: 50px;
   padding: 16px;
-  border: 1px solid #dbdbdb;
+  border: 1px solid
+    ${({ seconds, alertMsg }) =>
+      seconds === 0 || alertMsg ? '#E40303' : '#dbdbdb'};
   border-radius: 8px;
   font-weight: 500;
   font-size: 15px;
