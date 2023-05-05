@@ -15,7 +15,7 @@ const ModifyInfo = ({ setModifyInfo, totalPoints }) => {
   const navigate = useNavigate();
 
   const onClickBack = () => {
-    setModifyInfo(prev => !prev);
+    navigate('/mypage');
   };
 
   const handleModal = () => {
