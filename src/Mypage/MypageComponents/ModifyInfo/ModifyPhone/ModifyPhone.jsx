@@ -41,7 +41,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
     return () => {
       clearInterval(timer);
     };
-  }, [codeBtn]);
+  }, [seconds, codeBtn]);
 
   const handleCodeBtn =
     modifyPhone.phoneNumber.includes('010') &&
