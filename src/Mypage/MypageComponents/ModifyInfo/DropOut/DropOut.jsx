@@ -11,10 +11,6 @@ const DropOut = ({ setModalOpen, totalPoints }) => {
   const [textAreaValue, setTextAreaValue] = useState('');
   const [dropOutReason, setDropOutReason] = useState('사용 빈도가 낮음');
 
-  const handleModal = () => {
-    setSuccessDropOut(prev => !prev);
-  };
-
   const onClickBack = () => {
     setModalOpen(prev => !prev);
   };
@@ -128,10 +124,12 @@ const DropOut = ({ setModalOpen, totalPoints }) => {
             </S.DropOutReasonLabel>
           </S.DropOutReasonLi>
           <S.DropOutReasonEtc
-            placeholder="더 나은 전단지도가 될 수 있도록 의견을 들려주세요."
+            placeholder={
+              selected && '더 나은 전단지도가 될 수 있도록 의견을 들려주세요.'
+            }
             disabled={selected !== '3'}
             onChange={e => setTextAreaValue(e.target.value)}
-            value={selected === '3' && textAreaValue}
+            value={selected === '3' ? textAreaValue : ''}
           />
         </ul>
         <S.DropOutTitle margin="40px 0 8px 0">꼭 확인해주세요!</S.DropOutTitle>
