@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/Header/Header';
 import ModifyPassword from './ModifyPassword/ModifyPassword';
 import ModifyAddress from './ModifyAddress/ModifyAddress';
@@ -9,9 +10,10 @@ import * as S from './ModifyInfoDetail.style';
 const ModifyInfoDetail = ({ userInfo, setDetailModalOpen, totalPoints }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
+  const navigate = useNavigate();
 
   const onClickBack = () => {
-    setDetailModalOpen(prev => !prev);
+    navigate('/mypage');
   };
 
   const handleModal = e => {
