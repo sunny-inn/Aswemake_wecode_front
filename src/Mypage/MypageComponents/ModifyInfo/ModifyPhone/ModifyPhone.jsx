@@ -27,6 +27,10 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
   useEffect(() => {
     let timer;
 
+    if (seconds === 0) {
+      return clearInterval(timer);
+    }
+
     if (codeBtn) {
       setShowTimer(true);
       timer = setInterval(() => {
