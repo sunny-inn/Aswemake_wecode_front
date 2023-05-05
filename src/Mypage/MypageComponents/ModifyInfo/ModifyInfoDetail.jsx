@@ -7,13 +7,19 @@ import ModifyPhone from './ModifyPhone/ModifyPhone';
 import DropOut from './DropOut/DropOut';
 import * as S from './ModifyInfoDetail.style';
 
-const ModifyInfoDetail = ({ userInfo, setDetailModalOpen, totalPoints }) => {
+const ModifyInfoDetail = ({
+  userInfo,
+  setDetailModalOpen,
+  setModifyInfo,
+  totalPoints,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
   const navigate = useNavigate();
 
   const onClickBack = () => {
-    navigate('/mypage');
+    setDetailModalOpen(prev => !prev);
+    setModifyInfo(prev => !prev);
   };
 
   const handleModal = e => {

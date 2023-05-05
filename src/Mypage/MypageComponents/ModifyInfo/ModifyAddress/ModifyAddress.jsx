@@ -109,7 +109,7 @@ const ModifyAddress = ({ setModalOpen, userInfo }) => {
         />
       </S.ModifyAddressBody>
       <S.ConfirmBtn
-        disabled={(postalCode === '' || address === '') && addressDetail === ''}
+        disabled={postalCode === '' || address === '' || addressDetail === ''}
         onClick={toModifyAddress}
       >
         확인

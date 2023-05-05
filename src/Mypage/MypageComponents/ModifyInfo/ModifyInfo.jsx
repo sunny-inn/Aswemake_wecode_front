@@ -55,6 +55,7 @@ const ModifyInfo = ({ setModifyInfo, totalPoints }) => {
         <ModifyInfoDetail
           userInfo={userInfo}
           setDetailModalOpen={setDetailModalOpen}
+          setModifyInfo={setModifyInfo}
           totalPoints={totalPoints}
         />
       )}
