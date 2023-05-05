@@ -17,10 +17,6 @@ export const ModifyPwSuccessBody = styled.div`
   font-weight: 500;
   font-size: 17px;
   line-height: 20px;
-
-  h2 {
-    margin-bottom: 20px;
-  }
 `;
 
 export const ConfirmBtn = styled.button`
