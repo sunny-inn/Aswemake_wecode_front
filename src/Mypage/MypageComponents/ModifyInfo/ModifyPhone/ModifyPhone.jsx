@@ -142,7 +142,10 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             value={modifyPhone.phoneNumber}
             onChange={handlePhoneNumber}
           />
-          <S.GetNumBtn onClick={toGetCode} disabled={!handleCodeBtn}>
+          <S.GetNumBtn
+            onClick={toGetCode}
+            disabled={!handleCodeBtn || verification}
+          >
             인증번호 받기
           </S.GetNumBtn>
         </S.PhoneInputWrap>
@@ -157,7 +160,10 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             alertMsg={alertMsg}
           />
           {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
-          <S.GetNumBtn onClick={toVerifyCode} disabled={!handleVerificationBtn}>
+          <S.GetNumBtn
+            onClick={toVerifyCode}
+            disabled={!handleVerificationBtn || verification}
+          >
             확인
           </S.GetNumBtn>
         </S.PhoneInputWrap>
