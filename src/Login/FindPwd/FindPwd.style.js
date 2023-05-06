@@ -84,6 +84,8 @@ export const FindPwdSubmit = styled.button`
     background-color: #dbdbdb;
     cursor: not-allowed;
   }
+  font-size: 16.8px;
+  font-weight: 700;
 `;
 
 export const Timer = styled.div`
