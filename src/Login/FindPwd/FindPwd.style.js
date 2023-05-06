@@ -90,7 +90,7 @@ export const FindPwdSubmit = styled.button`
 
 export const Timer = styled.div`
   position: absolute;
-  top: 51.8%;
+  top: 57.16%;
   left: 186px;
   color: #252525;
   font-weight: 500;
