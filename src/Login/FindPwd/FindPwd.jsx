@@ -192,11 +192,14 @@ const FindPwd = () => {
           확인
         </S.ButtonTwo>
         {alertMsg === true && (
-          <S.AlertMsg> 번호 인증이 완료 되었습니다. </S.AlertMsg>
+          <S.AlertMsg> 번호 인증이 완료되었습니다. </S.AlertMsg>
         )}
         {alertMsg === false && (
-          <S.FailAlertMsg>인증번호를 다시 확인해 주세요. </S.FailAlertMsg>
+          <S.FailAlertMsg>인증번호를 다시 확인해주세요. </S.FailAlertMsg>
         )}
+        <S.FailAlertMsg>
+          만료된 인증번호입니다.다시 시도해주세요.
+        </S.FailAlertMsg>
         <S.FindPwdSubmit
           disabled={alertMsg !== true}
           confirmed={alertMsg === true}
