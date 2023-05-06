@@ -14,7 +14,7 @@ export const FindPwd = styled.div`
 `;
 
 export const InputBox = styled.input`
-  border: 1px solid #dbdbdb;
+  border: 1px solid ${({ borderColor }) => borderColor || '#dbdbdb'};
   border-radius: 8px;
   width: 328px;
   height: 50px;

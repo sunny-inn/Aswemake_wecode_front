@@ -185,6 +185,7 @@ const FindPwd = () => {
           name="code"
           value={input.code}
           onChange={handleCode}
+          borderColor={alertMsg === false ? '#e40303' : '#dbdbdb'}
         />
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.ButtonTwo onClick={onCodeBtn} disabled={codeBtnChange}>
