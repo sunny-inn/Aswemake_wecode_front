@@ -198,8 +198,8 @@ const FindPwd = () => {
           <S.FailAlertMsg>인증번호를 다시 확인해 주세요. </S.FailAlertMsg>
         )}
         <S.FindPwdSubmit
-          disabled={alertMsg === null}
-          confirmed={alertMsg !== null}
+          disabled={alertMsg !== true}
+          confirmed={alertMsg === true}
           onClick={forSetPwd}
         >
           확인
