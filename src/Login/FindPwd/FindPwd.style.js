@@ -38,8 +38,8 @@ export const ButtonOne = styled.button`
   color: white;
   background-color: #ededed;
   margin-left: 8px;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 15px;
   &:not(:disabled) {
     color: white;
     background-color: ${({ disabled }) => (disabled ? '' : '#FF6A21')};
@@ -55,7 +55,7 @@ export const ButtonTwo = styled.button`
   color: white;
   margin-left: 8px;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
 `;
 
 export const AlertMsg = styled.div`
