@@ -40,6 +40,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
 
     return () => {
       clearInterval(timer);
+      setShowTimer(false);
     };
   }, [seconds, codeBtn]);
 
