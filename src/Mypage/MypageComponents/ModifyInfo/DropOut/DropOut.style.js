@@ -7,14 +7,13 @@ export const DropOut = styled.div`
   left: 0;
   width: 360px;
   height: 616px;
-  overflow: auto;
+  overflow: hidden;
   z-index: 30;
   background: #fff;
 `;
 
 export const DropOutBody = styled.div`
   padding: 0 16px;
-  z-index: 30;
 `;
 
 export const DropOutTitle = styled.h2`
