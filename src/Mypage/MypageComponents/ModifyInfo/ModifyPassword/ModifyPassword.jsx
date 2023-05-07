@@ -87,7 +87,7 @@ const ModifyPassword = ({ setModalOpen }) => {
             사용 가능한 비밀번호입니다.
           </S.PasswordCheckText>
         )}
-        {!isActive && password !== '' && (
+        {!isActive && password !== '' && password.length >= 8 && (
           <S.PasswordCheckText color="#E40303">
             비밀번호 형식이 올바르지 않습니다.
           </S.PasswordCheckText>
