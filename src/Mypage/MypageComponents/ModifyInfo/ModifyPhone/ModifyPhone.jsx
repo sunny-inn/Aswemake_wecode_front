@@ -101,7 +101,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
           setVerification(true);
           setAlertMsg(false);
           setCodeBtn(false);
-          //setShowTimer(false);
+          setShowTimer(false);
         } else {
           setVerification(false);
           setAlertMsg(true);
@@ -161,7 +161,9 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             alertMsg={alertMsg}
             disabled={verification}
           />
-          {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
+          {showTimer && seconds !== 0 && (
+            <S.Timer>{formatTime(seconds)}</S.Timer>
+          )}
           <S.GetNumBtn
             onClick={toVerifyCode}
             disabled={!handleVerificationBtn || verification}
