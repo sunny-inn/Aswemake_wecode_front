@@ -14,6 +14,7 @@ export const DropOut = styled.div`
 
 export const DropOutBody = styled.div`
   padding: 0 16px;
+  z-index: 30;
 `;
 
 export const DropOutTitle = styled.h2`
