@@ -67,6 +67,8 @@ const ModifyPassword = ({ setModalOpen }) => {
             onChange={handlePassword}
             onKeyUp={verifiablePw}
             value={password}
+            password={password}
+            isActive={isActive}
           />
           <img
             src={
@@ -85,7 +87,7 @@ const ModifyPassword = ({ setModalOpen }) => {
             사용 가능한 비밀번호입니다.
           </S.PasswordCheckText>
         )}
-        {!isActive && password !== '' && password.length >= 8 && (
+        {!isActive && password !== '' && (
           <S.PasswordCheckText color="#E40303">
             비밀번호 형식이 올바르지 않습니다.
           </S.PasswordCheckText>
