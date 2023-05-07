@@ -40,9 +40,8 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
 
     return () => {
       clearInterval(timer);
-      setShowTimer(false);
     };
-  }, [seconds, codeBtn]);
+  }, [codeBtn]);
 
   const handleCodeBtn =
     modifyPhone.phoneNumber.includes('010') &&
@@ -179,7 +178,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             인증번호를 다시 확인해주세요.
           </S.PhoneCheckText>
         )}
-        {!alertMsg && verification && (
+        {!alertMsg && verification && seconds !== 0 && (
           <S.PhoneCheckText color="#ff6a21">
             번호 인증이 완료되었습니다.
           </S.PhoneCheckText>
