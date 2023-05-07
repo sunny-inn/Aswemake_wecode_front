@@ -29,6 +29,8 @@ const FindPwd = () => {
   const [showTimer, setShowTimer] = useState(false);
   const [seconds, setSeconds] = useState(180);
   const [alertMsg, setAlerMsg] = useState(null);
+  //만료되었을 때 alert 상태 저장
+  const [expired, setExpired] = useState(false);
   //타이머 0s 안돼서 추가
   const [timerId, setTimerId] = useState(null);
 
@@ -129,6 +131,11 @@ const FindPwd = () => {
   const forSetPwd = e => {
     e.preventDefault();
 
+    if (expired) {
+      setExpired(true);
+      return;
+    }
+
     fetch('https://flyers.qmarket.me/api/users/checkUserPw', {
       method: 'POST',
       headers: {
@@ -154,6 +161,13 @@ const FindPwd = () => {
       });
   };
 
+  //만료되었을 때 alert 메시지 띄우기
+  useEffect(() => {
+    if (seconds === 0) {
+      setExpired(true);
+    }
+  }, [seconds]);
+
   return (
     <div>
       <Header type="findpwd" onClickBack={onClickBack} />
@@ -176,7 +190,10 @@ const FindPwd = () => {
           value={input.phoneNumber}
           onChange={saveInput}
         />
-        <S.ButtonOne onClick={onClickCode} disabled={!handleCodeBtn}>
+        <S.ButtonOne
+          onClick={onClickCode}
+          disabled={!handleCodeBtn || alertMsg === true}
+        >
           인증번호 받기
         </S.ButtonOne>
         <S.InputBox
@@ -185,10 +202,13 @@ const FindPwd = () => {
           name="code"
           value={input.code}
           onChange={handleCode}
-          borderColor={alertMsg === false ? '#e40303' : '#dbdbdb'}
+          borderColor={alertMsg === false || expired ? '#e40303' : '#dbdbdb'}
         />
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
-        <S.ButtonTwo onClick={onCodeBtn} disabled={codeBtnChange}>
+        <S.ButtonTwo
+          onClick={onCodeBtn}
+          disabled={codeBtnChange || alertMsg === true}
+        >
           확인
         </S.ButtonTwo>
         {alertMsg === true && (
@@ -197,9 +217,12 @@ const FindPwd = () => {
         {alertMsg === false && (
           <S.FailAlertMsg>인증번호를 다시 확인해주세요. </S.FailAlertMsg>
         )}
-        <S.FailAlertMsg>
-          만료된 인증번호입니다.다시 시도해주세요.
-        </S.FailAlertMsg>
+        {expired && (
+          <S.FailAlertMsg>
+            만료된 인증번호입니다.다시 시도해주세요.
+          </S.FailAlertMsg>
+        )}
+
         <S.FindPwdSubmit
           disabled={alertMsg !== true}
           confirmed={alertMsg === true}

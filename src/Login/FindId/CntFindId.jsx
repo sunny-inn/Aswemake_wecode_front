@@ -10,6 +10,7 @@ const CntFindId = () => {
     e.preventDefault();
     navigate('/findid');
   };
+
   return (
     <S.CntFindId>
       <Header type="findid" onClickBack={onClickBack} />

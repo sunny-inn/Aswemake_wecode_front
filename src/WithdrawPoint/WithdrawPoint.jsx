@@ -154,9 +154,11 @@ const WithdrawPoint = () => {
 
   //포인트 인출 입력 값 input 창 관리
   const handleInputChange = e => {
-    const value = e.target.value.replace(/[^0-9]/g, '');
     // 숫자 외의 문자 제거
-    setInputValue(value);
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    const formattedValue = formatNumber(value);
+    // setInputValue(value + '원');
+    setInputValue(formattedValue + '원');
     setEmpty(value === '');
     setOverPrice(parseInt(value, 10) > 150000);
     setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
@@ -175,6 +177,11 @@ const WithdrawPoint = () => {
     setInputValue(prevValue => prevValue.replace(/[^0-9]/g, ''));
   };
 
+  // 포인트 입력 금액 천자리마다 , 찍기
+  const formatNumber = num => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <>
       <Header type="withdrawPoint" onClickBack={onClickBack} />
@@ -188,7 +195,7 @@ const WithdrawPoint = () => {
         <S.Withdraw
           value={
             accountInfo
-              ? `${accountInfo.result.bankName}, ${accountInfo.result.accountNumber}`
+              ? `${accountInfo.result.bankName} ${accountInfo.result.accountNumber}`
               : ''
           }
           onChange={e => {}}
@@ -204,7 +211,7 @@ const WithdrawPoint = () => {
               <S.HoldingPoint>원</S.HoldingPoint>
             </S.PointWrapper>
             <S.WithdrawPoint
-              // value={inputValue}
+              value={inputValue}
               onChange={handleInputChange}
               showCurrency={showCurrency}
               onFocus={handleFocus}
