@@ -6,7 +6,8 @@ export const DropOut = styled.div`
   top: 0;
   left: 0;
   width: 360px;
-  height: 670px;
+  height: 616px;
+  overflow: auto;
   z-index: 30;
   background: #fff;
 `;
