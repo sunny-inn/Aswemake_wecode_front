@@ -7,7 +7,7 @@ export const DropOut = styled.div`
   left: 0;
   width: 360px;
   height: 616px;
-  overflow: hidden;
+  overflow: auto;
   z-index: 30;
   background: #fff;
 `;
@@ -108,11 +108,9 @@ export const DropOutAgreeText = styled.span`
 `;
 
 export const ConfirmBtn = styled.button`
-  position: absolute;
-  bottom: 20px;
-  left: 16px;
   width: 328px;
   height: 50px;
+  margin: 20px 16px;
   background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
