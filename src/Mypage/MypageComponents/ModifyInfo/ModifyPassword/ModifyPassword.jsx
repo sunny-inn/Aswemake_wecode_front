@@ -60,15 +60,13 @@ const ModifyPassword = ({ setModalOpen }) => {
       <Header type="modifyPassword" onClickBack={onClickBack} />
       <S.ModifyPasswordBody>
         <S.ModifyPasswordTitle>비밀번호</S.ModifyPasswordTitle>
-        <S.PasswordInputWrap>
+        <S.PasswordInputWrap password={password} isActive={isActive}>
           <input
             type={isPwEyeClicked1 ? 'text' : 'password'}
             placeholder="문자+숫자 8자리 이상 입력해주세요"
             onChange={handlePassword}
             onKeyUp={verifiablePw}
             value={password}
-            password={password}
-            isActive={isActive}
           />
           <img
             src={
