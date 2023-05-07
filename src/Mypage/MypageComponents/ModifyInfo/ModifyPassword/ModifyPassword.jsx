@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../../Components/Header/Header';
 import ModifyPwSuccess from './ModifyPwSuccess';
 import * as S from './ModifyPassword.style';
@@ -14,7 +13,6 @@ const ModifyPassword = ({ setModalOpen }) => {
     passwordCheck: '',
   });
   const { password, passwordCheck } = modifyPassword;
-  const navigate = useNavigate();
 
   const onClickBack = () => {
     setModalOpen(prev => !prev);
@@ -87,9 +85,14 @@ const ModifyPassword = ({ setModalOpen }) => {
             사용 가능한 비밀번호입니다.
           </S.PasswordCheckText>
         )}
-        {!isActive && password !== '' && (
+        {!isActive && password !== '' && password.length >= 8 && (
           <S.PasswordCheckText color="#E40303">
-            사용 불가능한 비밀번호입니다.
+            비밀번호 형식이 올바르지 않습니다.
+          </S.PasswordCheckText>
+        )}
+        {password.length < 8 && (
+          <S.PasswordCheckText color="#E40303">
+            8자 이상 입력해주세요.
           </S.PasswordCheckText>
         )}
         <S.PasswordInputWrap
