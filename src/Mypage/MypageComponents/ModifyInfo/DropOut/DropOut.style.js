@@ -110,7 +110,7 @@ export const DropOutAgreeText = styled.span`
 export const ConfirmBtn = styled.button`
   width: 328px;
   height: 50px;
-  margin: 20px 16px;
+  margin: 32px 16px 20px 16px;
   background: ${props => (props.disabled ? '#dbdbdb' : '#ff6a21')};
   border: none;
   border-radius: 8px;
