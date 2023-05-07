@@ -95,7 +95,7 @@ const ModifyPassword = ({ setModalOpen }) => {
             8자 이상 입력해주세요.
           </S.PasswordCheckText>
         )}
-        <S.PasswordInputWrap
+        <S.PasswordCheckInputWrap
           correctPassword={correctPassword}
           passwordCheck={passwordCheck}
         >
@@ -116,7 +116,7 @@ const ModifyPassword = ({ setModalOpen }) => {
               setIsPwEyeClicked2(prev => !prev);
             }}
           />
-        </S.PasswordInputWrap>
+        </S.PasswordCheckInputWrap>
         {correctPassword && (
           <S.PasswordCheckText color="#ff6a21">
             비밀번호가 일치합니다.

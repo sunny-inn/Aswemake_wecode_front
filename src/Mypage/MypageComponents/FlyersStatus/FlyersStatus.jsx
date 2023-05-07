@@ -94,7 +94,6 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
                 <S.FlyersStatusTitle>
                   등록 {flyersStatusData[0].approvalStatus}
                 </S.FlyersStatusTitle>
-                {/* <S.FlyersStatusTitle>등록 반려</S.FlyersStatusTitle> */}
                 {onScreen === '3' && (
                   <S.FlyersStatusSubTitle marginTop="4px">
                     사유 : 전단 사진 2장 화질이 흐림.
@@ -104,23 +103,17 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
               <article>
                 <S.FlyersStatusImgWrap>
                   <img src={flyersStatusData[0].imageUrl[0]} alt="mart" />
-                  {/* <img src="/images/thirdRec.png" alt="mart" /> */}
                 </S.FlyersStatusImgWrap>
                 <S.FlyersStatusTextWrap>
                   <S.FlyersStatusName>
                     {flyersStatusData[0].martName}
                   </S.FlyersStatusName>
-                  {/* <S.FlyersStatusName>애플마트 화양점</S.FlyersStatusName> */}
                   <S.FlyersStatusEtc marginBtm="22px">
                     {flyersStatusData[0].martAddress}
                   </S.FlyersStatusEtc>
-                  {/* <S.FlyersStatusEtc marginBtm="22px">
-                    서울특별시 광진구 능동로19길 47 1층
-                  </S.FlyersStatusEtc> */}
                   <S.FlyersStatusEtc>
                     {flyersStatusData[0].martPhoneNumber}
                   </S.FlyersStatusEtc>
-                  {/* <S.FlyersStatusEtc>02-461-6600</S.FlyersStatusEtc> */}
                 </S.FlyersStatusTextWrap>
               </article>
               {onScreen === '3' && <S.ReRegistBtn>다시 등록하기</S.ReRegistBtn>}
