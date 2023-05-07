@@ -173,7 +173,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             만료된 인증번호입니다. 다시 시도해주세요.
           </S.PhoneCheckText>
         )}
-        {alertMsg && (
+        {alertMsg && seconds !== 0 && (
           <S.PhoneCheckText color="#E40303">
             인증번호를 다시 확인해주세요.
           </S.PhoneCheckText>
