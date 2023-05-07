@@ -29,12 +29,7 @@ export const PasswordInputWrap = styled.div`
   height: 50px;
   border: 1px solid
     ${({ correctPassword, passwordCheck, isActive, password }) =>
-      !passwordCheck ||
-      correctPassword ||
-      password === '' ||
-      password.length >= 8 ||
-      isActive ||
-      password === ''
+      !passwordCheck || correctPassword || password === '' || isActive
         ? '#dbdbdb'
         : '#E40303'};
   border-radius: 8px;
