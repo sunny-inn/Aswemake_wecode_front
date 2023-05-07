@@ -11,6 +11,11 @@ const DropOut = ({ setModalOpen, totalPoints }) => {
   const [textAreaValue, setTextAreaValue] = useState('');
   const [dropOutReason, setDropOutReason] = useState('사용 빈도가 낮음');
 
+  useEffect(() => {
+    document.body.style = `overflow: hidden`;
+    return () => (document.body.style = `overflow: auto`);
+  }, []);
+
   const onClickBack = () => {
     setModalOpen(prev => !prev);
   };
