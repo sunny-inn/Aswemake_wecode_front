@@ -158,6 +158,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             onChange={handleCode}
             seconds={seconds}
             alertMsg={alertMsg}
+            disabled={verification}
           />
           {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
           <S.GetNumBtn
