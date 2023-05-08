@@ -215,12 +215,12 @@ const WithdrawPoint = () => {
               onChange={handleInputChange}
               showCurrency={showCurrency}
               onFocus={handleFocus}
-              placeholder="0원"
+              placeholder="1,000원 이상 인출 가능"
             />
             {overPrice && (
               <S.AlertMsg>1회 최대 인출 금액은 150,000원 입니다!</S.AlertMsg>
             )}
-            {overHoldingPoint && (
+            {!overPrice && overHoldingPoint && (
               <S.AlertMsg>보유 포인트 보다 많은 금액을 입력했어요!</S.AlertMsg>
             )}
           </div>
@@ -228,6 +228,7 @@ const WithdrawPoint = () => {
         <S.FinBtn
           onClick={handleWithdrawRequest}
           overPrice={overPrice}
+          disabled={overPrice || overHoldingPoint || empty}
           overHoldingPoint={overHoldingPoint}
           empty={empty}
         >
