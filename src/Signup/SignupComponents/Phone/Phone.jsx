@@ -117,9 +117,9 @@ const Phone = ({
       });
   };
 
-  console.log('verificationBtn', verificationBtn);
-  console.log('invalidCode', invalidCode);
-  console.log('alertMsg', alertMsg);
+  // console.log('verificationBtn', verificationBtn);
+  // console.log('invalidCode', invalidCode);
+  // console.log('alertMsg', alertMsg);
 
   return (
     <S.PhoneBox>
