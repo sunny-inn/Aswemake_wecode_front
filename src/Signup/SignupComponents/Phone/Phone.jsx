@@ -90,19 +90,24 @@ const Phone = ({
         if (data.message === 'verification code matches') {
           setVerification(true);
           setAlertMsg(false);
+          setInvalidCode(false);
           setCodeBtn(false);
           setVerificationBtn(false);
-        } else if (
-          data.message === 'PLEASE CHECK YOUR CODE OR YOUR PHONE NUMBER'
-        ) {
+        } else if (seconds === 0) {
           setVerification(false);
           setInvalidCode(true);
+          setAlertMsg(false);
         } else {
           setVerification(false);
           setAlertMsg(true);
+          setInvalidCode(false);
         }
       });
   };
+
+  console.log('verificationBtn', verificationBtn);
+  console.log('invalidCode', invalidCode);
+  console.log('alertMsg', alertMsg);
 
   return (
     <S.PhoneBox>
