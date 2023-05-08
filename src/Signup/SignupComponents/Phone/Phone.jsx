@@ -10,8 +10,10 @@ const Phone = ({
   setVerification,
 }) => {
   const [codeBtn, setCodeBtn] = useState(false);
+  const [verificationBtn, setVerificationBtn] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
   const [seconds, setSeconds] = useState(180);
+  const [invalidCode, setInvalidCode] = useState(false);
   const [alertMsg, setAlertMsg] = useState(false);
 
   const handleCode = e => setCode(e.target.value);
@@ -62,11 +64,16 @@ const Phone = ({
   };
 
   // 확인 버튼 활성화 조건
-  let handleVerificationBtn = code && phoneNumber;
+  useEffect(() => {
+    if (phoneNumber !== '' && code !== '') {
+      setVerificationBtn(true);
+    }
+  }, [code]);
 
   //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
     e.preventDefault();
+    setShowTimer(false);
 
     fetch('https://flyers.qmarket.me/api/verificationCode/check', {
       method: 'POST',
@@ -82,24 +89,20 @@ const Phone = ({
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
-          setShowTimer(false);
           setAlertMsg(false);
           setCodeBtn(false);
-          handleVerificationBtn = false;
+          setVerificationBtn(false);
+        } else if (
+          data.message === 'PLEASE CHECK YOUR CODE OR YOUR PHONE NUMBER'
+        ) {
+          setVerification(false);
+          setInvalidCode(true);
         } else {
           setVerification(false);
           setAlertMsg(true);
         }
       });
   };
-
-  // useEffect(() => {
-  //   if (phoneNumber === '' || code === '' || codeBtn === false) {
-  //     setVerification(false);
-  //     setShowTimer(false);
-  //     setAlertMsg(false);
-  //   }
-  // }, [phoneNumber, code, codeBtn]);
 
   return (
     <S.PhoneBox>
@@ -131,10 +134,9 @@ const Phone = ({
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
           onClick={onClickVerification}
-          disabled={handleVerificationBtn ? false : true}
+          disabled={verificationBtn ? false : true}
           verification={verification}
-          alertMsg={alertMsg}
-          handleVerificationBtn={handleVerificationBtn}
+          verificationBtn={verificationBtn}
         >
           확인
         </S.VerificationBtn>
@@ -143,6 +145,9 @@ const Phone = ({
         <S.VerificationMsg>번호 인증이 완료되었습니다</S.VerificationMsg>
       )}
       {alertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
+      {invalidCode && (
+        <S.AlertMsg>만료된 인증번호입니다. 다시 시도해주세요.</S.AlertMsg>
+      )}
     </S.PhoneBox>
   );
 };
