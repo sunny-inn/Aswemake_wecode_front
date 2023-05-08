@@ -87,7 +87,6 @@ const Phone = ({
   //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
     e.preventDefault();
-    setShowTimer(false);
 
     fetch('https://flyers.qmarket.me/api/verificationCode/check', {
       method: 'POST',
@@ -108,6 +107,7 @@ const Phone = ({
           setCodeBtn(false);
           setVerificationBtn(false);
           setSeconds(0);
+          setShowTimer(false);
         } else if (seconds === 0) {
           setVerification(false);
           setInvalidCode(true);
