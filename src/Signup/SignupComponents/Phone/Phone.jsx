@@ -76,7 +76,9 @@ const Phone = ({
     if (phoneNumber !== '' && code !== '' && verification === false) {
       setVerificationBtn(true);
     } else if (code === '') {
+      setInvalidCode(false);
       setVerificationBtn(false);
+      setAlertMsg(false);
     }
   }, [code]);
 
