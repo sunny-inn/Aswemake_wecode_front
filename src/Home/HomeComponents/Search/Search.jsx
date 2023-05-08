@@ -165,11 +165,9 @@ const Search = ({
                     <p onClick={() => onClickKeyword(id, text)}>{text}</p>
                     <S.DeleteBtn
                       type="button"
-                      onClick={() => {
-                        handleRemoveKeyword(id);
-                      }}
+                      onClick={() => handleRemoveKeyword(id)}
                     >
-                      <img alt="delete" src="./images/closeImg.png" />
+                      <img alt="delete" src="images/closeImg.png" />
                     </S.DeleteBtn>
                   </S.KeywordItem>
                 ))

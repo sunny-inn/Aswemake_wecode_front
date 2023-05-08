@@ -19,14 +19,16 @@ const UploadInput = css`
   }
 `;
 
-export const UploadForm = styled.form`
+export const UploadBox = styled.div`
   ${flex(null, null, 'column')}
-  padding: 10px;
-  gap: 15px;
-  width: 360px;
-  height: 616px;
+  gap: 22px;
+  padding: 16px;
   overflow-y: scroll;
-  padding-bottom: 60px;
+`;
+
+export const InputBox = styled.div`
+  ${flex(null, null, 'column')}
+  gap: 7px;
 `;
 
 export const PhoneBox = styled.div`
@@ -80,11 +82,32 @@ export const PhotoBox = styled.div`
   width: 328px;
 `;
 
+export const UploadedBox = styled.div`
+  ${flex('space=between', 'center', null)}
+  flex-wrap: wrap;
+  width: 328px;
+  gap: 8px;
+`;
+
+export const ImgBox = styled.div`
+  position: relative;
+`;
+
 export const UploadedImg = styled.img`
-  width: 120px;
-  height: 168px;
+  width: 160px;
+  height: 224px;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const DeleteBtn = styled.img`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 `;
 
 export const TutorialBtn = styled.button`
@@ -101,12 +124,27 @@ export const TutorialBtn = styled.button`
 
 export const CameraBox = styled.div`
   ${flex('center', 'center', 'column')}
-  width: 120px;
-  height: 168px;
+  gap: 5px;
+  width: 160px;
+  height: 224px;
   background: #ffffff;
   border: 1px dashed #dbdbdb;
   border-radius: 16px;
   cursor: pointer;
+`;
+
+export const CameraInput = styled.input`
+  /* display: none;
+  width: 160px;
+  height: 224px; */
+
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 `;
 
 export const CameraImg = styled.img`
@@ -125,7 +163,7 @@ export const ImgCount = styled.p`
 export const SubmitBtn = styled.button`
   width: 328px;
   padding: 15px;
-  margin: 20px 0px;
+  margin-top: 15px;
   background: ${({ handelDisabled }) =>
     handelDisabled ? '#dbdbdb' : '#ff6a21'};
   border: none;
@@ -140,6 +178,7 @@ export const SubmitBtn = styled.button`
 export const CheckBox = styled.div`
   ${flex(null, 'center', null)}
   gap: 5px;
+  padding-top: 15px;
 `;
 
 export const CheckBoxMsg = styled.label`
