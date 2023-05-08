@@ -39,7 +39,6 @@ const Signup = () => {
   const {
     id,
     passwd,
-    birth,
     gender,
     name,
     address,

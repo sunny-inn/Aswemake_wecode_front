@@ -59,12 +59,15 @@ export const Timer = styled.p`
   position: absolute;
   left: 50%;
   color: #ff6a21;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
 `;
 
 export const VerificationBtn = styled.button`
   ${PhoneBtn}
-  background:  ${({ handleVerificationBtn }) => {
-    const backgroundColor = handleVerificationBtn ? '#ff6a21;' : '#dbdbdb';
+  background:  ${({ verificationBtn }) => {
+    const backgroundColor = verificationBtn ? '#ff6a21;' : '#dbdbdb';
     return backgroundColor;
   }};
 `;
