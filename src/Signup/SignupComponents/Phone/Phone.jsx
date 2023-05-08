@@ -12,7 +12,7 @@ const Phone = ({
   const [codeBtn, setCodeBtn] = useState(false);
   const [verificationBtn, setVerificationBtn] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
-  const [seconds, setSeconds] = useState(180);
+  const [seconds, setSeconds] = useState(0);
   const [invalidCode, setInvalidCode] = useState(false);
   const [alertMsg, setAlertMsg] = useState(false);
 
@@ -37,12 +37,11 @@ const Phone = ({
       clearInterval(id);
     }
     return () => clearInterval(id);
-  }, [codeBtn, seconds]);
+  }, [seconds]);
 
   // 인증번호 버튼 클릭 시 로직
   const onClickCode = e => {
     e.preventDefault();
-    setCodeBtn(true);
     setShowTimer(true);
     setSeconds(180);
 
