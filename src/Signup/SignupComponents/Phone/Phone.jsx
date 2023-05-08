@@ -62,7 +62,7 @@ const Phone = ({
   };
 
   // 확인 버튼 활성화 조건
-  const handleVerificationBtn = code && phoneNumber;
+  let handleVerificationBtn = code && phoneNumber;
 
   //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
@@ -83,12 +83,23 @@ const Phone = ({
         if (data.message === 'verification code matches') {
           setVerification(true);
           setShowTimer(false);
+          setAlertMsg(false);
+          setCodeBtn(false);
+          handleVerificationBtn = false;
         } else {
           setVerification(false);
           setAlertMsg(true);
         }
       });
   };
+
+  // useEffect(() => {
+  //   if (phoneNumber === '' || code === '' || codeBtn === false) {
+  //     setVerification(false);
+  //     setShowTimer(false);
+  //     setAlertMsg(false);
+  //   }
+  // }, [phoneNumber, code, codeBtn]);
 
   return (
     <S.PhoneBox>
@@ -98,7 +109,7 @@ const Phone = ({
           type="text"
           value={phoneNumber}
           onChange={handlePhoneNumber}
-          placeholder="번호를 입력해주세요."
+          placeholder="전화번호를 입력해주세요."
         />
         <S.CodeBtn
           onClick={onClickCode}
@@ -112,7 +123,6 @@ const Phone = ({
         <S.CodeInput
           name="code"
           type="text"
-          ㄴ
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
@@ -129,6 +139,9 @@ const Phone = ({
           확인
         </S.VerificationBtn>
       </S.PhoneBtnBox>
+      {verification && (
+        <S.VerificationMsg>번호 인증이 완료되었습니다</S.VerificationMsg>
+      )}
       {alertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
     </S.PhoneBox>
   );
