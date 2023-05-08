@@ -75,6 +75,8 @@ const Phone = ({
   useEffect(() => {
     if (phoneNumber !== '' && code !== '') {
       setVerificationBtn(true);
+    } else if (code === '') {
+      setVerificationBtn(false);
     }
   }, [code]);
 
@@ -101,7 +103,6 @@ const Phone = ({
           setInvalidCode(false);
           setCodeBtn(false);
           setVerificationBtn(false);
-          handleCodeBtn = false;
         } else if (seconds === 0) {
           setVerification(false);
           setInvalidCode(true);
