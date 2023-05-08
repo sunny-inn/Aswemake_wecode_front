@@ -73,7 +73,7 @@ const Phone = ({
 
   // 확인 버튼 활성화 조건
   useEffect(() => {
-    if (phoneNumber !== '' && code !== '' && setVerification(false)) {
+    if (phoneNumber !== '' && code !== '' && verification === false) {
       setVerificationBtn(true);
     } else if (code === '') {
       setVerificationBtn(false);
