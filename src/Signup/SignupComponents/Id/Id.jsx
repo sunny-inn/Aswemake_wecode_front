@@ -35,6 +35,7 @@ const Id = ({
     if (id === '') {
       setIsClicked(false);
       setIsFilled(false);
+      setIsIdDisabled(false);
     }
   }, [id, setIsFilled, setIsClicked, setIsIdDisabled]);
 

@@ -19,9 +19,18 @@ const Phone = ({
   const handleCode = e => setCode(e.target.value);
 
   // 인증번호 받기 활성화 조건
-  const handleCodeBtn =
-    phoneNumber.includes('010') &&
-    (phoneNumber.length === 10 || phoneNumber.length === 11);
+  // let handleCodeBtn =
+  //   phoneNumber.includes('010') &&
+  //   (phoneNumber.length === 10 || phoneNumber.length === 11);
+
+  useEffect(() => {
+    if (
+      phoneNumber.includes('010') &&
+      (phoneNumber.length === 10 || phoneNumber.length === 11)
+    ) {
+      setCodeBtn(true);
+    }
+  }, [phoneNumber]);
 
   const formatTime = () => {
     const minutes = Math.floor(seconds / 60);
@@ -92,6 +101,7 @@ const Phone = ({
           setInvalidCode(false);
           setCodeBtn(false);
           setVerificationBtn(false);
+          handleCodeBtn = false;
         } else if (seconds === 0) {
           setVerification(false);
           setInvalidCode(true);
@@ -120,8 +130,8 @@ const Phone = ({
         />
         <S.CodeBtn
           onClick={onClickCode}
-          disabled={handleCodeBtn ? false : true}
-          handleCodeBtn={handleCodeBtn}
+          disabled={codeBtn ? false : true}
+          codeBtn={codeBtn}
         >
           인증번호 받기
         </S.CodeBtn>

@@ -46,7 +46,7 @@ export const PhoneNumberInput = styled.input`
 
 export const CodeBtn = styled.button`
   ${PhoneBtn}
-  background: ${({ handleCodeBtn }) => (handleCodeBtn ? '#ff6a21' : '#dbdbdb')};
+  background: ${({ codeBtn }) => (codeBtn ? '#ff6a21' : '#dbdbdb')};
 `;
 
 export const CodeInput = styled.input`
