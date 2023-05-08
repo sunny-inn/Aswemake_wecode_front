@@ -80,6 +80,8 @@ const Phone = ({
     }
   }, [code]);
 
+  console.log(verificationBtn);
+
   //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
     e.preventDefault();
