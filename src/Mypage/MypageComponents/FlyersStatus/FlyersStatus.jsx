@@ -28,6 +28,7 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
 
+    setFlyersStatusData([]);
     fetch(
       `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
       {
