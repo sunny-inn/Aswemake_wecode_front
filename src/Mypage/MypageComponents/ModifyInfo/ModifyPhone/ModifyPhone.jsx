@@ -100,6 +100,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
         if (data.message === 'verification code matches') {
           setVerification(true);
           setAlertMsg(false);
+          setCodeBtn(false);
           setShowTimer(false);
         } else {
           setVerification(false);
@@ -158,8 +159,11 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             onChange={handleCode}
             seconds={seconds}
             alertMsg={alertMsg}
+            disabled={verification}
           />
-          {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
+          {showTimer && seconds !== 0 && (
+            <S.Timer>{formatTime(seconds)}</S.Timer>
+          )}
           <S.GetNumBtn
             onClick={toVerifyCode}
             disabled={!handleVerificationBtn || verification}
@@ -172,12 +176,12 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             만료된 인증번호입니다. 다시 시도해주세요.
           </S.PhoneCheckText>
         )}
-        {alertMsg && (
+        {alertMsg && seconds !== 0 && (
           <S.PhoneCheckText color="#E40303">
             인증번호를 다시 확인해주세요.
           </S.PhoneCheckText>
         )}
-        {!alertMsg && verification && (
+        {!alertMsg && verification && seconds !== 0 && (
           <S.PhoneCheckText color="#ff6a21">
             번호 인증이 완료되었습니다.
           </S.PhoneCheckText>

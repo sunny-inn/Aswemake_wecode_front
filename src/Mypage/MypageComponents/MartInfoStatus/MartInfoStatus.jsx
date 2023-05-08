@@ -95,7 +95,6 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
                 <S.MartInfoStatusTitle>
                   수정 {martStatusData[0].approvalStatus}
                 </S.MartInfoStatusTitle>
-                {/* <S.MartInfoStatusTitle>수정 심사중</S.MartInfoStatusTitle> */}
                 {onScreen === '3' && (
                   <S.MartInfoStatusSubTitle>
                     사유 : 마트 전화번호가 유효하지 않음.
@@ -105,23 +104,17 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
               <article>
                 <S.MartStatusImgWrap>
                   <img src={martStatusData[0].imageUrl} alt="mart" />
-                  {/* <img src="/images/thirdRec.png" alt="mart" /> */}
                 </S.MartStatusImgWrap>
                 <S.MartStatusTextWrap>
                   <S.MartInfoStatusName>
                     {martStatusData[0].martName}
                   </S.MartInfoStatusName>
-                  {/* <S.MartInfoStatusName>애플마트 화양점</S.MartInfoStatusName> */}
                   <S.MartInfoStatusEtc marginBtm="22px">
                     {martStatusData[0].martAddress}
                   </S.MartInfoStatusEtc>
-                  {/* <S.MartInfoStatusEtc marginBtm="22px">
-                    서울특별시 광진구 능동로19길 47 1층
-                  </S.MartInfoStatusEtc> */}
                   <S.MartInfoStatusEtc>
                     {martStatusData[0].martPhoneNumber}
                   </S.MartInfoStatusEtc>
-                  {/* <S.MartInfoStatusEtc>02-461-6600</S.MartInfoStatusEtc> */}
                 </S.MartStatusTextWrap>
               </article>
             </S.MartInfoStatusLi>

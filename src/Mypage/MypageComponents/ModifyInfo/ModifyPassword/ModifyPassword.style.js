@@ -28,6 +28,37 @@ export const PasswordInputWrap = styled.div`
   width: 328px;
   height: 50px;
   border: 1px solid
+    ${({ isActive, password }) =>
+      password === '' || isActive ? '#dbdbdb' : '#E40303'};
+  border-radius: 8px;
+
+  input {
+    width: 234px;
+    margin: 16px;
+    background: none;
+    border: none;
+    font-weight: 500;
+    font-size: 15px;
+    color: #252525;
+
+    ::placeholder {
+      color: #dbdbdb;
+    }
+  }
+
+  img {
+    width: 23px;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+`;
+
+export const PasswordCheckInputWrap = styled.div`
+  ${flex(null, 'center', null)}
+  margin-top: 8px;
+  width: 328px;
+  height: 50px;
+  border: 1px solid
     ${({ correctPassword, passwordCheck }) =>
       !passwordCheck || correctPassword ? '#dbdbdb' : '#E40303'};
   border-radius: 8px;
