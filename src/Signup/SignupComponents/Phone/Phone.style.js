@@ -52,7 +52,8 @@ export const CodeBtn = styled.button`
 export const CodeInput = styled.input`
   position: relative;
   ${PhoneInput}
-  border: 1px solid ${({ alertMsg }) => (alertMsg ? '#ff6a21' : '#dbdbdb')};
+  border: 1px solid ${({ alertMsg, invalidCode }) =>
+    alertMsg || invalidCode ? ' #e40303' : '#dbdbdb'};
 `;
 
 export const Timer = styled.p`
@@ -80,6 +81,7 @@ export const VerificationMsg = styled.p`
 
 export const AlertMsg = styled.p`
   font-weight: 500;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 16px;
   color: #e40303;
 `;

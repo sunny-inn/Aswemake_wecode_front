@@ -7,7 +7,6 @@ export const SignupBox = styled.div`
   height: 616px;
   left: 0px;
   top: 24px;
-  padding: 16px;
   background: #ffffff;
   backdrop-filter: blur(2px);
   overflow-x: hidden;
@@ -17,6 +16,7 @@ export const SignupBox = styled.div`
 export const FormBox = styled.form`
   ${flex(null, null, 'column')}
   gap: 22px;
+  padding: 16px;
 `;
 
 export const InputBox = styled.div`

@@ -82,8 +82,6 @@ const Phone = ({
     }
   }, [code]);
 
-  console.log(verificationBtn);
-
   //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
     e.preventDefault();
@@ -120,10 +118,6 @@ const Phone = ({
       });
   };
 
-  // console.log('verificationBtn', verificationBtn);
-  // console.log('invalidCode', invalidCode);
-  // console.log('alertMsg', alertMsg);
-
   return (
     <S.PhoneBox>
       <S.PhoneBtnBox>
@@ -150,6 +144,7 @@ const Phone = ({
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
           alertMsg={alertMsg}
+          invalidCode={invalidCode}
         />
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
