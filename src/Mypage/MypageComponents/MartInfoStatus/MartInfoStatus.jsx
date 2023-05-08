@@ -4,6 +4,12 @@ import { useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import * as S from './MartInfoStatus.style';
 
+const NO_CONTNET_LIST = [
+  '심사중인 정보 수정 요청이 없어요!',
+  '수정 완료된 마트 정보가 없어요!',
+  '수정 반려된 마트 정보가 없어요!',
+];
+
 const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
   const [martStatusData, setMartStatusData] = useState([]);
@@ -30,6 +36,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
 
+    setMartStatusData([]);
     fetch(
       `https://flyers.qmarket.me/api/evaluation/marts?sort=${e.target.value}`,
       {
@@ -48,14 +55,9 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
     setIsMartInfoStatus(prev => !prev);
   };
 
-  let noContents = null;
-  if (onScreen === '1') {
-    noContents = <S.NoContents>심사중인 정보 수정 요청이 없어요!</S.NoContents>;
-  } else if (onScreen === '2') {
-    noContents = <S.NoContents>수정 완료된 마트 정보가 없어요!</S.NoContents>;
-  } else if (onScreen === '3') {
-    noContents = <S.NoContents>수정 반려된 마트 정보가 없어요!</S.NoContents>;
-  }
+  const noContents = (
+    <S.NoContents>{NO_CONTNET_LIST[onScreen - 1]}</S.NoContents>
+  );
 
   return (
     <S.MartInfoStatus>
