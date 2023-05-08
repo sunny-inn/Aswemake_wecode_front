@@ -342,7 +342,7 @@ const Signup = () => {
           회원가입 완료
         </S.SubmitBtn>
       </S.FormBox>
-      {isSubmitOpen && <Submit setIsSubmitOpen={setIsSubmitOpen} />}
+      {isSubmitOpen && <Submit />}
     </S.SignupBox>
   );
 };

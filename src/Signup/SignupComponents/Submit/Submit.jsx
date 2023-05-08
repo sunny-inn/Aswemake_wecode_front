@@ -3,12 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/Header/Header';
 import * as S from './Submit.style';
 
-const Submit = ({ setIsSubmitOpen }) => {
+const Submit = () => {
   const navigate = useNavigate();
-
-  const toSignup = () => {
-    setIsSubmitOpen(prev => !prev);
-  };
 
   const toLogin = e => {
     e.preventDefault();
