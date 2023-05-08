@@ -18,7 +18,7 @@ const PhoneBtn = css`
 const PhoneInput = css`
   width: 204px;
   height: 50px;
-  padding-left: 10px;
+  padding-left: 16px;
   border-radius: 8px;
 
   ::placeholder {
@@ -57,20 +57,26 @@ export const CodeInput = styled.input`
 
 export const Timer = styled.p`
   position: absolute;
-  left: 47%;
+  left: 50%;
   color: #ff6a21;
 `;
 
 export const VerificationBtn = styled.button`
   ${PhoneBtn}
   background:  ${({ handleVerificationBtn }) => {
-    const backgroundColor = handleVerificationBtn ? '#ff6a21' : '#dbdbdb';
+    const backgroundColor = handleVerificationBtn ? '#ff6a21;' : '#dbdbdb';
     return backgroundColor;
   }};
+`;
+
+export const VerificationMsg = styled.p`
+  font-weight: 500;
+  font-size: 14px;
+  color: #ff6a21;
 `;
 
 export const AlertMsg = styled.p`
   font-weight: 500;
   font-size: 14px;
-  color: #ff6a21;
+  color: #e40303;
 `;

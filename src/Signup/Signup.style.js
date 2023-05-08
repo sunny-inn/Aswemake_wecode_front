@@ -7,7 +7,7 @@ export const SignupBox = styled.div`
   height: 616px;
   left: 0px;
   top: 24px;
-  padding: 10px;
+  padding: 16px;
   background: #ffffff;
   backdrop-filter: blur(2px);
   overflow-x: hidden;
@@ -16,7 +16,12 @@ export const SignupBox = styled.div`
 
 export const FormBox = styled.form`
   ${flex(null, null, 'column')}
-  gap: 10px;
+  gap: 22px;
+`;
+
+export const InputBox = styled.div`
+  ${flex(null, null, 'column')}
+  gap: 5px;
 `;
 
 export const InputTitle = styled.label`
@@ -37,7 +42,7 @@ export const AlertMsg = styled.p`
 export const SignupInput = styled.input`
   width: 328px;
   height: 50px;
-  padding-left: 10px;
+  padding-left: 16px;
   background-color: #ffffff;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
@@ -53,6 +58,7 @@ export const SignupInput = styled.input`
 export const GenderBox = styled.div`
   ${flex(null, 'center', null)}
   gap: 8px;
+  padding-top: 7px;
 `;
 
 export const Gender = styled.input`
@@ -75,7 +81,6 @@ export const Gender = styled.input`
     height: 0.6em;
     border-radius: 50%;
     transform: scale(0);
-    /* transition: 120ms transform ease-in-out; */
     box-shadow: inset 1em 1em #ff6a21;
   }
 
@@ -113,7 +118,7 @@ export const BtnBox = styled.div`
   input {
     width: 204px;
     height: 50px;
-    padding-left: 10px;
+    padding-left: 16px;
     background: #f9f9f9;
     border: 1px solid #dbdbdb;
     border-radius: 8px;
@@ -125,13 +130,17 @@ export const BtnBox = styled.div`
     background: #ffffff;
     border: 1px solid #bcbcbc;
     border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #707070;
   }
 `;
 
 export const AddressInput = styled.input`
   width: 328px;
   height: 50px;
-  padding-left: 10px;
+  padding-left: 16px;
   background: #f9f9f9;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
@@ -152,6 +161,7 @@ export const TermsBox = styled.div`
 export const TermsBtn = styled.button`
   width: 328px;
   height: 50px;
+  padding-left: 16px;
   background: #ffffff;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
@@ -166,6 +176,12 @@ export const TermsBtn = styled.button`
 export const CheckBox = styled.div`
   ${flex(null, 'center', null)}
   gap:5px;
+`;
+
+export const CheckLabel = styled.label`
+  font-weight: 500;
+  font-size: 13px;
+  color: #707070;
 `;
 
 export const SubmitBtn = styled.button`

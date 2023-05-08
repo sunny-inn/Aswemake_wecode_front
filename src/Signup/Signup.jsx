@@ -26,9 +26,9 @@ const Signup = () => {
     phoneNumber: '',
     postalCode: '',
   });
+  const [isIdDisabled, setIsIdDisabled] = useState(false);
   const [isValidPasswd, setIsValidPasswd] = useState(false);
   const [passwdCheck, setPasswdCheck] = useState('');
-  const [isIdDisabled, setIsIdDisabled] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
@@ -62,8 +62,6 @@ const Signup = () => {
 
     setIsValidPasswd(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/.test(e.target.value));
   };
-
-  console.log(isValidPasswd);
 
   const handlePasswdCheck = e => setPasswdCheck(e.target.value);
   const correctPasswd = passwd !== '' && passwd === passwdCheck;
@@ -216,108 +214,127 @@ const Signup = () => {
     <S.SignupBox>
       <Header type="signup" onClickBack={onClickBack} />
       <S.FormBox>
-        <S.InputTitle>아이디</S.InputTitle>
-        <Id
-          id={id}
-          handleId={handleId}
-          isFilled={isFilled}
-          isIdDisabled={isIdDisabled}
-          setIsIdDisabled={setIsIdDisabled}
-        />
-        <S.InputTitle>비밀번호</S.InputTitle>
-        <Passwd
-          passwd={passwd}
-          handlePasswd={handlePasswd}
-          isValidPasswd={isValidPasswd}
-          passwdCheck={passwdCheck}
-          handlePasswdCheck={handlePasswdCheck}
-          correctPasswd={correctPasswd}
-        />
-        <S.InputTitle>이름</S.InputTitle>
-        <S.SignupInput
-          name="name"
-          value={name}
-          type="text"
-          placeholder="이름을 입력해주세요."
-          onChange={handleName}
-        />
-        <S.InputTitle>생년월일</S.InputTitle>
-        <Birth
-          year={year}
-          date={date}
-          handleYear={handleYear}
-          handleMonth={handleMonth}
-          handleDate={handleDate}
-        />
-        <S.InputTitle>성별</S.InputTitle>
-        <S.GenderBox>
-          <S.Gender
-            id="male"
-            type="radio"
-            value="남자"
-            name="gender"
-            onChange={handleGender}
-            checked={gender === '남자'}
+        <S.InputBox>
+          <S.InputTitle>아이디</S.InputTitle>
+          <Id
+            id={id}
+            handleId={handleId}
+            isFilled={isFilled}
+            setIsFilled={setIsFilled}
+            isIdDisabled={isIdDisabled}
+            setIsIdDisabled={setIsIdDisabled}
           />
-          <S.GenderLabel htmlFor="male">남자</S.GenderLabel>
-          <S.Gender
-            id="female"
-            type="radio"
-            value="여자"
-            name="gender"
-            onChange={handleGender}
-            checked={gender === '여자'}
+        </S.InputBox>
+        <S.InputBox>
+          <S.InputTitle>비밀번호</S.InputTitle>
+          <Passwd
+            passwd={passwd}
+            handlePasswd={handlePasswd}
+            isValidPasswd={isValidPasswd}
+            passwdCheck={passwdCheck}
+            handlePasswdCheck={handlePasswdCheck}
+            correctPasswd={correctPasswd}
           />
-          <S.GenderLabel htmlFor="female">여자</S.GenderLabel>
-        </S.GenderBox>
-        <S.AddressBox>
-          <S.InputTitle>주소</S.InputTitle>
-          <S.BtnBox>
-            <input name="postalCode" value={postalCode} readOnly />
-            <button type="button" onClick={handleAddressClick}>
-              우편번호 찾기
-            </button>
-          </S.BtnBox>
-          <S.AddressInput
-            name="address"
-            value={address}
-            placeholder="주소를 입력해주세요."
-            readOnly
-          />
+        </S.InputBox>
+        <S.InputBox>
+          <S.InputTitle>이름</S.InputTitle>
           <S.SignupInput
-            name="addressDetail"
-            value={addressDetail}
+            name="name"
+            value={name}
             type="text"
-            onChange={handleAddressDetail}
-            placeholder="상세 주소를 입력해주세요."
+            placeholder="이름을 입력해주세요."
+            onChange={handleName}
           />
-        </S.AddressBox>
-        <S.InputTitle>휴대전화</S.InputTitle>
-        <Phone
-          phoneNumber={phoneNumber}
-          handlePhoneNumber={handlePhoneNumber}
-          code={code}
-          setCode={setCode}
-          verification={verification}
-          setVerification={setVerification}
-        />
-        <S.TermsBox>
-          <S.InputTitle>이용 약관</S.InputTitle>
-          <S.TermsBtn onClick={onClickTerms}>서비스 이용약관 보기</S.TermsBtn>
-          {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
-          <S.CheckBox>
-            <img
-              alt="checkbox"
-              src={
-                isCheckboxClicked
-                  ? 'images/signup/checkbox.png'
-                  : 'images/signup/checkbox_d.png'
-              }
-              onClick={onClickCheckbox}
+        </S.InputBox>
+        <S.InputBox>
+          <S.InputTitle>생년월일</S.InputTitle>
+          <Birth
+            year={year}
+            date={date}
+            handleYear={handleYear}
+            handleMonth={handleMonth}
+            handleDate={handleDate}
+          />
+        </S.InputBox>
+        <S.InputBox>
+          <S.InputTitle>성별</S.InputTitle>
+          <S.GenderBox>
+            <S.Gender
+              id="male"
+              type="radio"
+              value="남자"
+              name="gender"
+              onChange={handleGender}
+              checked={gender === '남자'}
             />
-            <label>서비스 이용 약관에 동의합니다.</label>
-          </S.CheckBox>
-        </S.TermsBox>
+            <S.GenderLabel htmlFor="male">남자</S.GenderLabel>
+            <S.Gender
+              id="female"
+              type="radio"
+              value="여자"
+              name="gender"
+              onChange={handleGender}
+              checked={gender === '여자'}
+            />
+            <S.GenderLabel htmlFor="female">여자</S.GenderLabel>
+          </S.GenderBox>
+        </S.InputBox>
+        <S.InputBox>
+          <S.AddressBox>
+            <S.InputTitle>주소</S.InputTitle>
+            <S.BtnBox>
+              <input name="postalCode" value={postalCode} readOnly />
+              <button type="button" onClick={handleAddressClick}>
+                우편번호 검색
+              </button>
+            </S.BtnBox>
+            <S.AddressInput
+              name="address"
+              value={address}
+              placeholder="주소를 입력해주세요."
+              readOnly
+            />
+            <S.SignupInput
+              name="addressDetail"
+              value={addressDetail}
+              type="text"
+              onChange={handleAddressDetail}
+              placeholder="상세 주소를 입력해주세요."
+            />
+          </S.AddressBox>
+        </S.InputBox>
+        <S.InputBox>
+          <S.InputTitle>휴대전화</S.InputTitle>
+          <Phone
+            phoneNumber={phoneNumber}
+            handlePhoneNumber={handlePhoneNumber}
+            code={code}
+            setCode={setCode}
+            verification={verification}
+            setVerification={setVerification}
+          />
+        </S.InputBox>
+        <S.InputBox>
+          <S.TermsBox>
+            <S.InputTitle>이용 약관</S.InputTitle>
+            <S.TermsBtn onClick={onClickTerms}>
+              서비스 이용 약관 보기
+            </S.TermsBtn>
+            {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
+            <S.CheckBox>
+              <img
+                alt="checkbox"
+                src={
+                  isCheckboxClicked
+                    ? 'images/signup/checkbox.png'
+                    : 'images/signup/checkbox_d.png'
+                }
+                onClick={onClickCheckbox}
+              />
+              <S.CheckLabel>서비스 이용 약관에 동의합니다.</S.CheckLabel>
+            </S.CheckBox>
+          </S.TermsBox>
+        </S.InputBox>
         <S.SubmitBtn
           onClick={onSubmit}
           disabled={handleDisabled ? true : false}

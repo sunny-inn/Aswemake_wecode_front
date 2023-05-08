@@ -74,6 +74,7 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
+  // FIXME: 지금 마트 이름으로만 검색하게 되어있어서 주소 검색가능하도록 수정
   useEffect(() => {
     setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
   }, [isSubmitted]);

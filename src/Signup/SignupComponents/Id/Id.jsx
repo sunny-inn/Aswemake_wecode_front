@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './Id.style';
 
-const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
+const Id = ({
+  id,
+  handleId,
+  isFilled,
+  setIsFilled,
+  isIdDisabled,
+  setIsIdDisabled,
+}) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const onClickAvailable = e => {
@@ -24,6 +31,13 @@ const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
       });
   };
 
+  useEffect(() => {
+    if (id === '') {
+      setIsClicked(false);
+      setIsFilled(false);
+    }
+  }, [id, setIsFilled, setIsClicked, setIsIdDisabled]);
+
   return (
     <S.IdBox>
       <div>
@@ -41,13 +55,13 @@ const Id = ({ id, handleId, isFilled, isIdDisabled, setIsIdDisabled }) => {
             <S.AlertMsg>이미 가입된 아이디입니다.</S.AlertMsg>
           ) : (
             <S.ConfirmMsg isIdDisabled={isIdDisabled}>
-              사용가능한 아이디입니다.
+              사용 가능한 아이디입니다.
             </S.ConfirmMsg>
           ))}
       </div>
 
       <S.IdCheck onClick={onClickAvailable} isFilled={isFilled}>
-        중복 확인
+        중복확인
       </S.IdCheck>
     </S.IdBox>
   );
