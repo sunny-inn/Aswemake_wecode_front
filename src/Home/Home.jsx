@@ -307,15 +307,15 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <Modal
-                  type="map"
-                  handleModal={handleModal}
-                  handleSecModal={handleSecModal}
-                />
-                // <DetailModal
+                // <Modal
+                //   type="map"
                 //   handleModal={handleModal}
-                //   selectedMart={selectedMart}
+                //   handleSecModal={handleSecModal}
                 // />
+                <DetailModal
+                  handleModal={handleModal}
+                  selectedMart={selectedMart}
+                />
               )}
             </>
           )}
