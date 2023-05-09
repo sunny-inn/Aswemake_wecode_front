@@ -67,19 +67,19 @@ export const ModalButtonBox = styled.div`
   padding-bottom: 20px;
 `;
 
-export const ModalInfoButton = styled.button`
-  border: 1px solid #ff6a21;
-  border-radius: 8px;
-  background-color: #fff;
-  width: 128px;
-  height: 50px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  color: #ff6a21;
-  cursor: pointer;
-`;
+// export const ModalInfoButton = styled.button`
+//   border: 1px solid #ff6a21;
+//   border-radius: 8px;
+//   background-color: #fff;
+//   width: 128px;
+//   height: 50px;
+//   font-style: normal;
+//   font-weight: 700;
+//   font-size: 16px;
+//   line-height: 16px;
+//   color: #ff6a21;
+//   cursor: pointer;
+// `;
 export const ModalUploadButton = styled.button`
   border: 1px solid #ff6a21;
   border-radius: 8px;
