@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-
 const KakaoShare = (url, title, argumentKey, detailMartList) => {
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
-      kakao.init(process.env.REACT_APP_JAVA_SCRIPT_KEY);
+      // kakao.init(process.env.REACT_APP_JAVA_SCRIPT_KEY);
+      kakao.init('a320e86acb93342abb996dc9556d6c55');
     }
     console.log('마트리스트?ggg', detailMartList[0]);
 
