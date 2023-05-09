@@ -38,7 +38,7 @@ export const SearchBar = styled.input`
 `;
 export const KeywordBox = styled.div`
   position: fixed;
-  padding: 10px 20px;
+  padding: 10px 16px;
   width: 360px;
   background-color: #ffffff;
   z-index: 10;
@@ -61,7 +61,7 @@ export const SearchedItem = styled.li`
   ${flex('space-between', 'center', null)}
   width: 320px;
   height: 80px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ececec;
   border-radius: 12px;
   cursor: pointer;
