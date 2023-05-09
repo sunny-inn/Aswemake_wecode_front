@@ -186,6 +186,7 @@ const Upload = () => {
     setImg2();
     setImg3();
     setImg4();
+    setIsCheckboxClicked(false);
   };
 
   return (
