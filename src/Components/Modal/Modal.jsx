@@ -26,9 +26,9 @@ const Modal = ({ handleModal, type, handleSecModal }) => {
               {infoList[type].button[0]}
             </S.ModalInfoButton>
           )}
-          <S.ModalUploadButton onClick={handleSecModal}>
+          {/* <S.ModalUploadButton onClick={handleSecModal}>
             {infoList[type].button[1]}
-          </S.ModalUploadButton>
+          </S.ModalUploadButton> */}
         </S.ModalButtonBox>
       </S.ModalContainer>
     </S.Background>
@@ -40,7 +40,8 @@ export default Modal;
 const MAP_MODAL_INFO = {
   title: '전단 등록',
   close: true,
-  message1: '전단등록이 필요한 마트에요.          ㄴ전단을 등록하러 가볼까요?',
+  message1:
+    '전단등록이 필요한 마트에요.                 &nbsp; 전단을 등록하러 가볼까요?',
   button: ['전단 등록하기'],
 };
 
