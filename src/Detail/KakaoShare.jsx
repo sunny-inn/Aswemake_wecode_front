@@ -9,7 +9,7 @@ const KakaoShare = (url, title, argumentKey, detailMartList) => {
 
     console.log('마트리스트?잘나와', detailMartList[0]);
 
-    console.log('키나오나', APP_JAVA_KEY);
+    console.log('키나오나??', APP_JAVA_KEY);
     kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
