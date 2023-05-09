@@ -82,10 +82,10 @@ const Search = ({
 
   // FIXME: 검색 기능
   useEffect(() => {
-    const filteredList = marts.filter(mart =>
-      // mart.martName.includes(newKeyword)
+    const filteredList = marts.filter(
+      mart => mart.martName.includes(newKeyword)
       // ||
-      mart.martNumberAddress.includes(newKeyword)
+      // mart.martNumberAddress.includes(newKeyword)
     );
     console.log(filteredList);
     setFilteredMarts(filteredList);
