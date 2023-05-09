@@ -79,6 +79,11 @@ export const CustomBox = styled.div`
     border-width: 10%;
     border-radius: 50px;
   }
+
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--in-selecting-range {
+    background-color: #ffffff;
+  }
 `;
 
 export const CustomHeader = styled.div`
