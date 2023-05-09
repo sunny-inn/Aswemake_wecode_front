@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { flex } from '../../Styles/Mixin';
+import { flex } from '../../src/Styles/Mixin.js';
 
 export const ModalContainer = styled.div`
   ${flex('center', 'center', 'column')}
