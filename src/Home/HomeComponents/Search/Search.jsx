@@ -74,19 +74,19 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
+  console.log(marts);
+  console.log(isSubmitted);
+
   // 검색 기능
-  const filteredList =
-    newKeyword &&
-    marts.filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword)
-    );
-
-  console.log(filteredList);
-
   useEffect(() => {
-    setFilteredMarts(filteredList);
+    if (isSubmitted === true) {
+      const filteredList = marts.filter(
+        mart =>
+          mart.martName.includes(newKeyword) ||
+          mart.martNumberAddress.includes(newKeyword)
+      );
+      setFilteredMarts(filteredList);
+    }
   }, [isSubmitted]);
 
   // 검색어 삭제
