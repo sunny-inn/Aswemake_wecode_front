@@ -82,9 +82,9 @@ export const CustomBox = styled.div`
     border-radius: 50px;
   }
 
-  .react-datepicker__day--in-range,
-  .react-datepicker__day--in-selecting-range {
+  .react-datepicker__day--in-range {
     background-color: transparent;
+    color: black;
   }
 `;
 
