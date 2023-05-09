@@ -25,7 +25,7 @@ export const ModalText = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   padding-top: 30px;
   display: flex;
   align-items: center;
@@ -64,7 +64,7 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 export const CloseBox = styled.div`
-  ${flex('space-between', 'center', null)}
+  ${flex('center', 'center', null)}
   width: 288px;
   padding: 10px 10px;
   margin: 10px 0px;
@@ -74,6 +74,7 @@ export const CloseBox = styled.div`
 export const CloseImg = styled.img`
   width: 26px;
   height: 26px;
+  right: 0;
   cursor: pointer;
 `;
 export const ModalTitle = styled.p`
