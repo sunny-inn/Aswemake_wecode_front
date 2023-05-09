@@ -371,7 +371,7 @@ const Upload = () => {
             disabled={handelDisabled ? true : false}
             handelDisabled={handelDisabled}
           >
-            전단 등록 요청
+            전단등록 요청
           </S.SubmitBtn>
         </S.InputBox>
       </S.UploadBox>
