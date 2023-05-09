@@ -2,7 +2,7 @@ import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import { flex } from '../../../Styles/Mixin';
 
-export const MartInfoStatus = styled(ReactModal)`
+export const MartInfoStatus = styled.div`
   position: absolute;
   top: 0;
   left: 0;
