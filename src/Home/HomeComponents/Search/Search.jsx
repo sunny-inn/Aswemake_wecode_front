@@ -57,7 +57,7 @@ const Search = ({
     setNewKeyword('');
   };
 
-  // 검색 기능
+  // 검색어 저장 기능
   const handleAddKeyword = e => {
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
@@ -76,14 +76,25 @@ const Search = ({
 
   // 검색 기능
   useEffect(() => {
-    const filteredList = marts.filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword)
+    let nameList = marts.filter(mart => mart.martName.includes(newKeyword));
+    let addressList = marts.filter(mart =>
+      mart.martNumberAddress.includes(newKeyword)
     );
+    let filteredList = () => {
+      if (nameList && addressList) {
+        let merged = nameList.concat(addressList);
+        return merged.filter((item, pos) => merged.indexOf(item) === pos);
+      } else if (nameList) {
+        return nameList;
+      } else {
+        return addressList;
+      }
+    };
+
+    console.log(filteredList);
 
     setFilteredMarts(filteredList);
-  }, [isSubmitted, newKeyword]);
+  }, [isSubmitted]);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
