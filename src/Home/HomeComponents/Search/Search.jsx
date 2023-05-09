@@ -75,24 +75,15 @@ const Search = ({
   };
 
   // 검색 기능
-  useEffect(() => {
-    let nameList = marts.filter(mart => mart.martName.includes(newKeyword));
-    let addressList = marts.filter(mart =>
+  const filteredList = homeMartList.filter(
+    mart =>
+      mart.martName.includes(newKeyword) ||
       mart.martNumberAddress.includes(newKeyword)
-    );
-    let filteredList = () => {
-      if (nameList && addressList) {
-        let merged = nameList.concat(addressList);
-        return merged.filter((item, pos) => merged.indexOf(item) === pos);
-      } else if (nameList) {
-        return nameList;
-      } else {
-        return addressList;
-      }
-    };
+  );
 
-    console.log(filteredList);
+  console.log(filteredList);
 
+  useEffect(() => {
     setFilteredMarts(filteredList);
   }, [isSubmitted]);
 
@@ -124,8 +115,6 @@ const Search = ({
     });
     setIsMarkerClicked(newToggles);
   };
-
-  console.log(marts);
 
   return (
     <S.SearchBox>
