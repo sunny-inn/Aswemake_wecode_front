@@ -18,7 +18,7 @@ export const ModalContainer = styled.div`
   left: 50%;
   width: 288px;
   height: 196px;
-  padding: 10px;
+  padding: 10px 12px;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
   border-radius: 8px;
@@ -28,7 +28,7 @@ export const CloseBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 288px;
   padding: 10px 10px;
-  margin: 10px 0px;
+  margin-top: 10px;
   border-bottom: 1px solid #eeeeee;
 `;
 
@@ -51,15 +51,12 @@ export const CloseImg = styled.img`
 `;
 
 export const ModalText = styled.p`
+  ${flex('center', 'center', null)}
   height: 20px;
+  margin: 30px 0px;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 50px;
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 `;
 
 export const ModalButtonBox = styled.div`
@@ -93,5 +90,4 @@ export const ModalUploadButton = styled.button`
   line-height: 16px;
   color: #fff;
   cursor: pointer;
-  margin-left: 8px;
 `;
