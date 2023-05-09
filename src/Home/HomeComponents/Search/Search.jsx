@@ -77,9 +77,9 @@ const Search = ({
   // 검색 기능
   useEffect(() => {
     let filteredList = marts.filter(
-      mart =>
-        mart.martName.includes(newKeyword) ||
-        mart.martNumberAddress.includes(newKeyword)
+      mart => mart.martName.includes(newKeyword)
+      // ||
+      // mart.martNumberAddress.includes(newKeyword)
     );
     console.log(filteredList);
     setFilteredMarts(filteredList);
