@@ -14,9 +14,16 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [loading, setLoading] = useState(true);
   const [lastIndex, setLastIndex] = useState(-1);
 
+  const handleOnScreen = e => {
+    setOnScreen(e.target.value);
+  };
+
   useEffect(() => {
+    setLastIndex(-1);
+    setMartStatusData([]);
+
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=1&lastIndex=${
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${onScreen}&lastIndex=${
         lastIndex + 1
       }`,
       {
@@ -32,7 +39,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
         setMartStatusData(prevData => [...prevData, ...data.result]);
         setLoading(false);
       });
-  }, [lastIndex]);
+  }, [lastIndex, onScreen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,28 +69,28 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
 
   if (loading) return null;
 
-  const handleOnScreen = e => {
-    setOnScreen(e.target.value);
-    setLastIndex(-1);
+  // const handleOnScreen = e => {
+  //   setOnScreen(e.target.value);
+  //   setLastIndex(-1);
 
-    setMartStatusData([]);
-    fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=${
-        e.target.value
-      }&lastIndex=${lastIndex + 1}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: localStorage.getItem('token'),
-        },
-      }
-    )
-      .then(response => response.json())
-      .then(data =>
-        setMartStatusData(prevData => [...prevData, ...data.result])
-      );
-  };
+  //   setMartStatusData([]);
+  //   fetch(
+  //     `https://flyers.qmarket.me/api/evaluation/marts?sort=${
+  //       e.target.value
+  //     }&lastIndex=${lastIndex + 1}`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //         authorization: localStorage.getItem('token'),
+  //       },
+  //     }
+  //   )
+  //     .then(response => response.json())
+  //     .then(data =>
+  //       setMartStatusData(prevData => [...prevData, ...data.result])
+  //     );
+  // };
 
   const onClickBack = () => {
     setIsMartInfoStatus(prev => !prev);

@@ -42,7 +42,21 @@ export const PhoneBox = styled.div`
 `;
 
 export const PhoneInput = styled.input`
-  ${UploadInput}
+  width: 204px;
+  height: 50px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+
+  ::placeholder {
+    color: #dbdbdb;
+  }
+
   background: #ffffff;
   border: 1px solid ${({ alertMsg }) => (alertMsg ? '#e40303' : '#dbdbdb')};
 `;

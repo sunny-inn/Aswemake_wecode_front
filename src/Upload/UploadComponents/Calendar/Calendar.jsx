@@ -5,10 +5,14 @@ import { ko } from 'date-fns/esm/locale';
 import DatePicker from 'react-datepicker';
 import * as S from './Calendar.style';
 
-const Calendar = ({ setUploadInfo }) => {
+const Calendar = ({
+  setUploadInfo,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+}) => {
   const [open, setOpen] = useState(false);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [invalidEndDate, setInvalidEndDate] = useState(false);
 
   // bottom sheet 닫기
@@ -51,7 +55,9 @@ const Calendar = ({ setUploadInfo }) => {
     let currentDate = new Date();
     let formattedDate =
       currentDate.getFullYear().toString() +
-      (currentDate.getMonth() + 1).toString().padStart(2, '0') +
+      (currentDate.getMonth() + 1 < 9
+        ? '0' + (currentDate.getMonth() + 1)
+        : currentDate.getMonth() + 1) +
       currentDate.getDate().toString().padStart(2, '0');
 
     let formattedEnd =
@@ -60,14 +66,14 @@ const Calendar = ({ setUploadInfo }) => {
         (endDate.getMonth() + 1 < 9
           ? '0' + (endDate.getMonth() + 1)
           : endDate.getMonth() + 1) +
-        (endDate.getDate() < 9 ? '0' + endDate.getDate() : endDate.getDate());
+        endDate.getDate().toString().padStart(2, '0');
 
     if (parseInt(formattedDate) > parseInt(formattedEnd)) {
       setInvalidEndDate(true);
+    } else {
+      setInvalidEndDate(false);
     }
-  }, [endDate]);
 
-  useEffect(() => {
     setUploadInfo(prev => ({
       ...prev,
       startDate: formattedStart,
@@ -77,6 +83,9 @@ const Calendar = ({ setUploadInfo }) => {
     if (formattedStart && formattedEnd) {
       setOpen(false);
     }
+
+    console.log(formattedDate);
+    console.log(formattedEnd);
   }, [startDate, endDate]);
 
   return (

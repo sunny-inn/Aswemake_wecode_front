@@ -20,9 +20,9 @@ const Upload = () => {
   const [img2, setImg2] = useState();
   const [img3, setImg3] = useState();
   const [img4, setImg4] = useState();
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [isUploaded, setIsUploaded] = useState(false);
-
-  const { startDate, endDate } = uploadInfo;
 
   // 스크롤 위치 조정
   useEffect(() => {
@@ -47,6 +47,12 @@ const Upload = () => {
   const handlePhoneNumber = e => {
     setPhoneNumber(e.target.value);
   };
+
+  useEffect(() => {
+    if (phoneNumber === '') {
+      setAlertMsg(false);
+    }
+  }, [phoneNumber]);
 
   // 전화번호로 마트 정보 받아오기
   const onClickMart = e => {
@@ -131,14 +137,15 @@ const Upload = () => {
   };
 
   const handelDisabled = !(
+    phoneNumber &&
     martInfo &&
     alertMsg === false &&
     img1 &&
     img2 &&
     img3 &&
     img4 &&
-    startDate &&
-    endDate &&
+    uploadInfo.startDate &&
+    uploadInfo.endDate &&
     isCheckboxClicked === true
   );
 
@@ -166,9 +173,21 @@ const Upload = () => {
       });
   };
 
-  // modal 닫기
+  // modal 닫기 && 정보 초기화
   const handleModal = () => {
     setIsUploaded(prev => !prev);
+    setPhoneNumber('');
+    setMartInfo({
+      martName: '',
+      martNumberAddress: '',
+    });
+    setImg1();
+    setImg2();
+    setImg3();
+    setImg4();
+    setStartDate('');
+    setEndDate('');
+    setIsCheckboxClicked(false);
   };
 
   return (
@@ -325,7 +344,13 @@ const Upload = () => {
         </S.InputBox>
         <S.InputBox>
           <S.UplaodLabel>전단 행사기간</S.UplaodLabel>
-          <Calendar setUploadInfo={setUploadInfo} />
+          <Calendar
+            setUploadInfo={setUploadInfo}
+            startDate={startDate}
+            setStartDate={setStartDate}
+            endDate={endDate}
+            setEndDate={setEndDate}
+          />
         </S.InputBox>
         <S.InputBox>
           <S.CheckBox>
@@ -346,7 +371,7 @@ const Upload = () => {
             disabled={handelDisabled ? true : false}
             handelDisabled={handelDisabled}
           >
-            전단 등록 요청
+            전단등록 요청
           </S.SubmitBtn>
         </S.InputBox>
       </S.UploadBox>

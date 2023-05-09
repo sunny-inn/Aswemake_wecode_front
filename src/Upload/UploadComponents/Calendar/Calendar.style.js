@@ -75,11 +75,16 @@ export const CustomBox = styled.div`
   }
 
   .react-datepicker__day--selected,
-  .react-datepicker__day--in-range,
-  .react-datepicker__day--in-selecting-range {
+  .react-datepicker__day--range-start,
+  .react-datepicker__day--range-end {
     background: #ff6a21;
     border-width: 10%;
     border-radius: 50px;
+  }
+
+  .react-datepicker__day--in-range {
+    background-color: transparent;
+    color: black;
   }
 `;
 

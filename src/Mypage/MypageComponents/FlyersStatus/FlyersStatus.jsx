@@ -8,8 +8,14 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
   const [flyersStatusData, setFlyersStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleOnScreen = e => {
+    setOnScreen(e.target.value);
+  };
+
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/evaluation/flyers?sort=1', {
+    setFlyersStatusData([]);
+
+    fetch(`https://flyers.qmarket.me/api/evaluation/flyers?sort=${onScreen}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -21,27 +27,27 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
         setFlyersStatusData(data.result);
         setLoading(false);
       });
-  }, []);
+  }, [onScreen]);
 
   if (loading) return null;
 
-  const handleOnScreen = e => {
-    setOnScreen(e.target.value);
+  // const handleOnScreen = e => {
+  //   setOnScreen(e.target.value);
 
-    setFlyersStatusData([]);
-    fetch(
-      `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: localStorage.getItem('token'),
-        },
-      }
-    )
-      .then(response => response.json())
-      .then(data => setFlyersStatusData(data.result));
-  };
+  //   setFlyersStatusData([]);
+  //   fetch(
+  //     `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //         authorization: localStorage.getItem('token'),
+  //       },
+  //     }
+  //   )
+  //     .then(response => response.json())
+  //     .then(data => setFlyersStatusData(data.result));
+  // };
 
   const onClickBack = () => {
     setIsFlyersStatus(prev => !prev);

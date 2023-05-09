@@ -57,7 +57,7 @@ const Search = ({
     setNewKeyword('');
   };
 
-  // 검색 기능
+  // 검색어 저장 기능
   const handleAddKeyword = e => {
     e.preventDefault();
     setKeywords([{ id: Date.now(), text: newKeyword }, ...keywords]);
@@ -74,9 +74,21 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
-  // FIXME: 지금 마트 이름으로만 검색하게 되어있어서 주소 검색가능하도록 수정
+  console.log(marts);
+
+  // FIXME: 검색 기능
   useEffect(() => {
-    setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
+    const filteredList = marts.filter(
+      mart => mart.martName.includes(newKeyword)
+      // ||
+      // mart.martNumberAddress.includes(newKeyword)
+    );
+    const sortedList =
+      filteredList &&
+      filteredList.sort(function (a, b) {
+        return a.distance - b.distance;
+      });
+    setFilteredMarts(sortedList);
   }, [isSubmitted]);
 
   // 검색어 삭제
@@ -172,7 +184,7 @@ const Search = ({
                   </S.KeywordItem>
                 ))
               ) : (
-                <S.KeywordItem />
+                <div />
               )}
             </S.SearchedList>
           </>
