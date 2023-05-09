@@ -75,11 +75,13 @@ const Search = ({
   };
 
   // 검색 기능
-  const filteredList = marts.filter(
-    mart =>
-      mart.martName.includes(newKeyword) ||
-      mart.martNumberAddress.includes(newKeyword)
-  );
+  const filteredList =
+    newKeyword &&
+    marts.filter(
+      mart =>
+        mart.martName.includes(newKeyword) ||
+        mart.martNumberAddress.includes(newKeyword)
+    );
 
   console.log(filteredList);
 
