@@ -1,9 +1,10 @@
 const APP_JAVA_KEY = process.env.REACT_APP_JAVA_SCRIPT_KEY;
+
 const KakaoShare = (url, title, argumentKey, detailMartList) => {
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
-      kakao.init(`${APP_JAVA_KEY}`);
+      kakao.init(APP_JAVA_KEY);
     }
 
     console.log('마트리스트?잘나와', detailMartList[0]);
