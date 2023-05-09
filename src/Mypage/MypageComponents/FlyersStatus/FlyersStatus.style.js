@@ -1,10 +1,11 @@
+import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import { flex } from '../../../Styles/Mixin';
 
-export const FlyersStatus = styled.div`
-  position: absolute;
+export const FlyersStatus = styled(ReactModal)`
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 360px;
   height: 616px;
   z-index: 5;
