@@ -85,7 +85,7 @@ export const ModalUploadButton = styled.button`
   border: 1px solid #ff6a21;
   border-radius: 8px;
   background-color: #ff6a21;
-  width: 128px;
+  width: 264px;
   height: 50px;
   font-style: normal;
   font-weight: 700;
