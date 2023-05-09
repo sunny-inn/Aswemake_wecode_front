@@ -45,12 +45,12 @@ const MAP_MODAL_INFO = {
   button: ['전단 등록하기'],
 };
 
-const MODIFY_PASSWORD_MODAL_INFO = {
-  title: '비밀번호 불일치',
-  close: false,
-  message1: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
-  button: ['확인'],
-};
+// const MODIFY_PASSWORD_MODAL_INFO = {
+//   title: '비밀번호 불일치',
+//   close: false,
+//   message1: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
+//   button: ['확인'],
+// };
 
 const UPLOAD = {
   title: '전단등록 요청 완료',
