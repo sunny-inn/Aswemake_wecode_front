@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { flex } from '../../../Styles/Mixin';
 
 export const MartInfoStatus = styled(ReactModal)`
-  /* position: absolute;
+  position: absolute;
   top: 0;
-  left: 0; */
+  left: 0;
   width: 360px;
   height: 616px;
   overflow: auto;
