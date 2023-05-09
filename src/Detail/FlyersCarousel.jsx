@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BigFlyerCarousel from './BigFlyerCarousel';
 import * as S from './FlyersCarousel.style';
 import Slider from 'react-slick';
@@ -10,7 +11,10 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
   const [showBigImage, setShowBigImage] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
   console.log('마트리스트이미지??', list.martFlyerImages);
+
   const onClickImage = index => {
     if (list.martFlyerImages === '0') {
       setShowModal(true);
@@ -24,6 +28,8 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
   const onClickClose = prev => {
     setShowBigImage(!prev);
   };
+
+  const handleModal = () => () => navigate('/upload');
 
   let settings = {
     dots: false,
@@ -105,9 +111,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
           )}
         />
       )}
-      {showModal && (
-        <Modal type="map" handleModal={() => setShowModal(false)} />
-      )}
+      {showModal && <Modal type="map" handleModal={handleModal} />}
     </>
   );
 };
