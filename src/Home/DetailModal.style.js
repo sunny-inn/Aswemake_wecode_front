@@ -78,8 +78,9 @@ export const CloseBox = styled.div`
 export const CloseImg = styled.img`
   width: 26px;
   height: 26px;
-  right: 0;
+  right: 10px;
   cursor: pointer;
+  position: absolute;
 `;
 export const ModalTitle = styled.p`
   font-weight: 700;
