@@ -85,7 +85,7 @@ const Search = ({
     const filteredList = marts.filter(mart =>
       // mart.martName.includes(newKeyword)
       // ||
-      newKeyword.includes(mart.martNumberAddress)
+      mart.martNumberAddress.includes(newKeyword)
     );
     console.log(filteredList);
     setFilteredMarts(filteredList);
