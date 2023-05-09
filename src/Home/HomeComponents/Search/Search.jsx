@@ -79,15 +79,13 @@ const Search = ({
 
   // 검색 기능
   useEffect(() => {
-    if (isSubmitted === true) {
-      const filteredList = marts.filter(
-        mart => mart.martName.includes(newKeyword)
-        // ||
-        // mart.martNumberAddress.includes(newKeyword)
-      );
-      console.log(filteredList);
-      setFilteredMarts(filteredList);
-    }
+    const filteredList = marts.filter(
+      mart => mart.martName.includes(newKeyword)
+      // ||
+      // mart.martNumberAddress.includes(newKeyword)
+    );
+    console.log(filteredList);
+    setFilteredMarts(filteredList);
   }, [isSubmitted]);
 
   // 검색어 삭제
