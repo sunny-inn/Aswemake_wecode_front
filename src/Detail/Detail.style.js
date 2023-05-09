@@ -27,6 +27,7 @@ export const MartTitle = styled.p`
   font-size: 18px;
   line-height: 26px;
   margin: 15px 0px 15px 15px;
+  border-bottom: 1px solid #676767;
 `;
 
 export const MartDetailBox = styled.div`
@@ -37,6 +38,7 @@ export const MartDetailText = styled.p`
   font-size: 15px;
   line-height: 18px;
   margin-bottom: 15px;
+  border-bottom: 1px solid #676767;
 `;
 
 export const MartDetailContentImg = styled.img`
