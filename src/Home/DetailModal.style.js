@@ -1,18 +1,19 @@
 import styled from 'styled-components';
+import { flex } from '../../Styles/Mixin';
 
 export const ModalContainer = styled.div`
-  width: 288px;
-  height: 196px;
-  background-color: #ffffff;
-  border-radius: 8px;
+  ${flex('center', 'center', 'column')}
   position: absolute;
   top: 48%;
   left: 50%;
+  width: 288px;
+  height: 196px;
+  padding: 10px;
   transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 8px;
 `;
+
 export const ModalContentBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,14 +64,13 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 export const CloseBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;s
+  ${flex('space-between', 'center', null)}
   width: 288px;
   padding: 10px 10px;
   margin: 10px 0px;
   border-bottom: 1px solid #eeeeee;
 `;
+
 export const CloseImg = styled.img`
   width: 26px;
   height: 26px;
@@ -81,4 +81,13 @@ export const ModalTitle = styled.p`
   font-size: 19px;
   line-height: 23px;
   color: #252525;
+`;
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 670px;
+  background: rgba(25, 25, 25, 0.35);
+  z-index: 10;
 `;
