@@ -5,7 +5,6 @@ const Modal = ({ handleModal, type, handleSecModal }) => {
   const infoList = {
     map: MAP_MODAL_INFO,
     upload: UPLOAD,
-    password: MODIFY_PASSWORD_MODAL_INFO,
   };
 
   return (
