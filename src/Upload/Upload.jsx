@@ -137,6 +137,7 @@ const Upload = () => {
   };
 
   const handelDisabled = !(
+    phoneNumber &&
     martInfo &&
     alertMsg === false &&
     img1 &&
