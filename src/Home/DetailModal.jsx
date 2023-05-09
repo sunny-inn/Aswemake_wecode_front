@@ -4,7 +4,7 @@ import * as S from './DetailModal.style';
 
 const DetailModal = ({ handleModal, currentId, selectedMart }) => {
   const navigate = useNavigate();
-  const goToUpload = navigate('/upload');
+  const goToUpload = () => navigate('/upload');
 
   return (
     <S.ModalContainer>
