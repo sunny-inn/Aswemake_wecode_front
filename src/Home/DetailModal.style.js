@@ -66,7 +66,7 @@ export const ModalUploadButton = styled.button`
 export const CloseBox = styled.div`
   ${flex('center', 'center', null)}
   width: 288px;
-  padding: 10px 10px;
+  padding: 10px;
   margin: 10px 0px;
   border-bottom: 1px solid #eeeeee;
 `;
