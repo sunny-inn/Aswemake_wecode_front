@@ -10,7 +10,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
   const [showBigImage, setShowBigImage] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
-
+  console.log('마트리스트이미지??', list.martFlyerImages);
   const onClickImage = index => {
     if (list.martFlyerImages.length === 0) {
       setShowModal(true);
