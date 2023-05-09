@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 const KakaoShare = (url, title, argumentKey, detailMartList) => {
   if (window.Kakao) {
     const kakao = window.Kakao;
