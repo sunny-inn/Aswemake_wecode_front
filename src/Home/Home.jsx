@@ -290,7 +290,7 @@ const Home = () => {
                     />
                   </div>
                   <S.CurrentLocation
-                    src="./images/home/location.png"
+                    src="./images/home/current.png"
                     alt="현위치"
                     onClick={getCurrentPosition}
                   />

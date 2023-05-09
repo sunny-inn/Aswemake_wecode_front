@@ -88,7 +88,7 @@ export const KeywordItem = styled.li`
   ${flex('space-between', 'center', null)}
   padding: 10px;
   width: 328px;
-  border-top: 1px solid #dbdbdb;
+  border-top: 1px solid #f7f7f7;
   color: #252525;
   font-weight: 500;
   font-size: 15px;

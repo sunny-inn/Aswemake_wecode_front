@@ -76,7 +76,13 @@ const Search = ({
 
   // FIXME: 지금 마트 이름으로만 검색하게 되어있어서 주소 검색가능하도록 수정
   useEffect(() => {
-    setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
+    setFilteredMarts(
+      marts.filter(
+        mart =>
+          mart.martName.includes(newKeyword) ||
+          mart.martNumberAddress.includes(newKeyword)
+      )
+    );
   }, [isSubmitted]);
 
   // 검색어 삭제
