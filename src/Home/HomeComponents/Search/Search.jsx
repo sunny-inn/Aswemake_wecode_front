@@ -108,6 +108,8 @@ const Search = ({
     setIsMarkerClicked(newToggles);
   };
 
+  console.log(marts);
+
   return (
     <S.SearchBox>
       <form onSubmit={e => handleAddKeyword(e)}>
