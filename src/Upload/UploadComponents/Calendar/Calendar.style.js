@@ -74,9 +74,7 @@ export const CustomBox = styled.div`
     line-height: 2.7rem;
   }
 
-  .react-datepicker__day--selected,
-  .react-datepicker__day--in-range,
-  .react-datepicker__day--in-selecting-range {
+  .react-datepicker__day--selected {
     background: #ff6a21;
     border-width: 10%;
     border-radius: 50px;
