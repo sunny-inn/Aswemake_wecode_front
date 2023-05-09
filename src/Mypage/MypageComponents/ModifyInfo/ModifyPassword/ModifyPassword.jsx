@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../../../Components/Header/Header';
+import ModifyPwSuccess from './ModifyPwSuccess';
 import * as S from './ModifyPassword.style';
 
 const ModifyPassword = ({ setModalOpen }) => {
   const [isPwEyeClicked1, setIsPwEyeClicked1] = useState(false);
   const [isPwEyeClicked2, setIsPwEyeClicked2] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [successModify, setSuccessModify] = useState(false);
   const [modifyPassword, setModifyPassword] = useState({
     password: '',
     passwordCheck: '',
   });
   const { password, passwordCheck } = modifyPassword;
-  const navigate = useNavigate();
 
   const onClickBack = () => {
     setModalOpen(prev => !prev);
@@ -49,17 +49,18 @@ const ModifyPassword = ({ setModalOpen }) => {
       .then(response => response.json())
       .then(data => {
         if (data.message === 'CHANGED SUCCESSFULLY') {
-          navigate('/');
+          setSuccessModify(true);
         }
       });
   };
 
   return (
     <S.ModifyPassword>
+      {successModify && <ModifyPwSuccess />}
       <Header type="modifyPassword" onClickBack={onClickBack} />
       <S.ModifyPasswordBody>
         <S.ModifyPasswordTitle>비밀번호</S.ModifyPasswordTitle>
-        <S.PasswordInputWrap>
+        <S.PasswordInputWrap password={password} isActive={isActive}>
           <input
             type={isPwEyeClicked1 ? 'text' : 'password'}
             placeholder="문자+숫자 8자리 이상 입력해주세요"
@@ -84,12 +85,17 @@ const ModifyPassword = ({ setModalOpen }) => {
             사용 가능한 비밀번호입니다.
           </S.PasswordCheckText>
         )}
-        {!isActive && password !== '' && (
+        {!isActive && password !== '' && password.length >= 8 && (
           <S.PasswordCheckText color="#E40303">
-            사용 불가능한 비밀번호입니다.
+            비밀번호 형식이 올바르지 않습니다.
           </S.PasswordCheckText>
         )}
-        <S.PasswordInputWrap
+        {password !== '' && password.length < 8 && (
+          <S.PasswordCheckText color="#E40303">
+            8자 이상 입력해주세요.
+          </S.PasswordCheckText>
+        )}
+        <S.PasswordCheckInputWrap
           correctPassword={correctPassword}
           passwordCheck={passwordCheck}
         >
@@ -110,7 +116,7 @@ const ModifyPassword = ({ setModalOpen }) => {
               setIsPwEyeClicked2(prev => !prev);
             }}
           />
-        </S.PasswordInputWrap>
+        </S.PasswordCheckInputWrap>
         {correctPassword && (
           <S.PasswordCheckText color="#ff6a21">
             비밀번호가 일치합니다.

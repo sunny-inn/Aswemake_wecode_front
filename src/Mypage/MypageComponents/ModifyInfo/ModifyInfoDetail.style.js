@@ -7,6 +7,7 @@ export const ModifyInfoDetail = styled.div`
   left: 0;
   width: 360px;
   height: 616px;
+  overflow: auto;
   z-index: 20;
   background: #fff;
 `;
@@ -33,6 +34,7 @@ export const ModifyInfoDetailUpperBody = styled.div`
 export const ModifyInfoDetailUnderBody = styled.div`
   padding: 0 16px 22px 16px;
   border-bottom: 8px solid #f9f9f9;
+  background: #fff;
 `;
 
 export const ModifyDetailTitle = styled.h3`
@@ -92,6 +94,7 @@ export const IdAddInput = styled.input`
 
 export const DropOutBtn = styled.div`
   ${flex('center', 'center', null)};
+  background: #fff;
 
   button {
     margin: 32px auto;

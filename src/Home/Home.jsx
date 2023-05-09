@@ -38,6 +38,13 @@ const Home = () => {
     navigate(`detail/${id}`);
   };
 
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/');
+    }
+  }, [token, navigate]);
+
   useEffect(() => {
     userAddress &&
       navermaps.Service.geocode(
@@ -62,7 +69,17 @@ const Home = () => {
   }, [userAddress]);
 
   const handleModal = () => {
+    // navigate(`/detail/${selectedMart.martId}`);
     setOpenModal(prev => !prev);
+  };
+
+  const handleSecModal = () => {
+    navigate({
+      pathname: '/upload',
+      state: {
+        selectedMart: selectedMart,
+      },
+    });
   };
 
   const onClickDetailPortal = id => {
@@ -82,6 +99,7 @@ const Home = () => {
   };
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
+    console.log('center는?!?!', center);
   };
 
   useEffect(() => {
@@ -92,45 +110,6 @@ const Home = () => {
     }
   }, [homeMartList]);
 
-  //http://172.30.1.80:8000/api/users/login
-  //https://flyers.qmarket.me/api/home/marts
-  //./data/MhomeData.json
-  //172.30.1.87
-  //http://172.30.1.87:8000/api/home
-  //https://flyers.qmarket.me/api/home
-  const token = localStorage.getItem('token');
-  // console.log(token);
-  //api/home
-  //https://flyers.qmarket.me/api/home/marts?lat=${center.lat}&lng=${center.lng}
-
-  // 해인님 코드
-  // useEffect(() => {
-  //   if (center) {
-  //     fetch(`https://flyers.qmarket.me/api/home`, {
-  //       method: 'GET',
-  //       credentials: 'include',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //         authorization: token,
-  //       },
-  //     })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         console.log('데이터받아오기', data);
-  //         setHomeMartList(data.martList);
-  //         console.log('센터다', center);
-  //       });
-  //     // userPosition 프로퍼티가 존재할 경우, 이를 이용해 center 값을 업데이트합니다.
-  //     if (homeMartList?.userPosition) {
-  //       setCenter({
-  //         lat: homeMartList.userPosition.lat,
-  //         lng: homeMartList.userPosition.lng,
-  //       });
-  //     }
-  //   }
-  // }, [center, token]);
-
-  // 은정 수정한 코드
   useEffect(() => {
     fetch(`https://flyers.qmarket.me/api/home`, {
       method: 'GET',
@@ -150,6 +129,29 @@ const Home = () => {
       });
   }, []);
 
+  //여기 센터주는거
+  const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
+
+  useEffect(() => {
+    center.lat &&
+      fetch(`https://flyers.qmarket.me/api/home/mart`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+        body: JSON.stringify(changedCenter),
+      })
+        .then(response => response.json())
+        .then(data => {
+          setHomeMartList(data.martList);
+          console.log('콘솔찍었다.', data);
+        });
+  }, [center]);
+
+  console.log('마트리스트들', homeMartList);
+
   useEffect(() => {
     if (mapRef.current) {
       console.log('이동', mapRef.current);
@@ -164,7 +166,17 @@ const Home = () => {
   }, [selectedMart]);
   const navermaps = useNavermaps();
 
-  const handleCenter = value => setCenter(value);
+  // const onCenterChanged = value => setCenter(value);
+  // console.log('센터바뀜?', center);
+
+  const onCenterChanged = value => {
+    console.log('센터 확인 중', value);
+    setCenter({
+      lat: value.y,
+      lng: value.x,
+    });
+  };
+  console.log('센터가??', center);
 
   const HOME_PATH = window.HOME_PATH || '.';
 
@@ -216,8 +228,8 @@ const Home = () => {
     return deg * (Math.PI / 180);
   };
 
-  console.log('selectedMart', selectedMart);
-  console.log('isMarkerClicked', isMarkerClicked);
+  // console.log('selectedMart', selectedMart);
+  // console.log('isMarkerClicked', isMarkerClicked);
 
   return (
     <div>
@@ -230,14 +242,15 @@ const Home = () => {
                 center={center}
                 defaultZoom={15}
                 onDragEnd={handleDragEnd}
-                onCenterChanged={handleCenter} //중심좌표구할때
+                // onCenterPointChanged={onCenterPointChanged}
+                onCenterChanged={onCenterChanged} //중심좌표구할때
                 ref={mapRef}
                 scaleControl={false}
                 logoControl={false}
                 mapDataControl={false}
                 zoomControl={false}
+                centerPoint={centerPoint}
               >
-                console.log('센터가이건가??',onCenterChanged)
                 {homeMartList.map((mart, index) => {
                   //2일전계산
                   const now = new Date();
@@ -283,6 +296,7 @@ const Home = () => {
                   />
                 </S.SearchBox>
                 <HomeCarousel
+                  handleSecModal={handleSecModal}
                   homeMartList={homeMartList}
                   selectedMart={selectedMart}
                   handleModal={handleModal}
@@ -293,10 +307,15 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <DetailModal
+                <Modal
+                  type="map"
                   handleModal={handleModal}
-                  selectedMart={selectedMart}
+                  handleSecModal={handleSecModal}
                 />
+                // <DetailModal
+                //   handleModal={handleModal}
+                //   selectedMart={selectedMart}
+                // />
               )}
             </>
           )}

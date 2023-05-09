@@ -27,6 +27,10 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
   useEffect(() => {
     let timer;
 
+    if (seconds === 0) {
+      return clearInterval(timer);
+    }
+
     if (codeBtn) {
       setShowTimer(true);
       timer = setInterval(() => {
@@ -37,7 +41,7 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
     return () => {
       clearInterval(timer);
     };
-  }, [codeBtn]);
+  }, [seconds, codeBtn]);
 
   const handleCodeBtn =
     modifyPhone.phoneNumber.includes('010') &&
@@ -96,6 +100,8 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
         if (data.message === 'verification code matches') {
           setVerification(true);
           setAlertMsg(false);
+          setCodeBtn(false);
+          setShowTimer(false);
         } else {
           setVerification(false);
           setAlertMsg(true);
@@ -137,7 +143,10 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             value={modifyPhone.phoneNumber}
             onChange={handlePhoneNumber}
           />
-          <S.GetNumBtn onClick={toGetCode} disabled={!handleCodeBtn}>
+          <S.GetNumBtn
+            onClick={toGetCode}
+            disabled={!handleCodeBtn || verification}
+          >
             인증번호 받기
           </S.GetNumBtn>
         </S.PhoneInputWrap>
@@ -148,23 +157,31 @@ const ModifyPhone = ({ setModalOpen, userInfo }) => {
             type="text"
             value={modifyPhone.code}
             onChange={handleCode}
+            seconds={seconds}
+            alertMsg={alertMsg}
+            disabled={verification}
           />
-          {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
+          {showTimer && seconds !== 0 && (
+            <S.Timer>{formatTime(seconds)}</S.Timer>
+          )}
           <S.GetNumBtn
             onClick={toVerifyCode}
-            disabled={!handleVerificationBtn}
-            verification={verification}
-            alertMsg={alertMsg}
+            disabled={!handleVerificationBtn || verification}
           >
             확인
           </S.GetNumBtn>
         </S.PhoneInputWrap>
-        {alertMsg && (
+        {seconds === 0 && (
+          <S.PhoneCheckText color="#E40303">
+            만료된 인증번호입니다. 다시 시도해주세요.
+          </S.PhoneCheckText>
+        )}
+        {alertMsg && seconds !== 0 && (
           <S.PhoneCheckText color="#E40303">
             인증번호를 다시 확인해주세요.
           </S.PhoneCheckText>
         )}
-        {!alertMsg && verification && (
+        {!alertMsg && verification && seconds !== 0 && (
           <S.PhoneCheckText color="#ff6a21">
             번호 인증이 완료되었습니다.
           </S.PhoneCheckText>

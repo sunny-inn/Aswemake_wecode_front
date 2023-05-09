@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../../Components/Header/Header';
 import ModifyPassword from './ModifyPassword/ModifyPassword';
 import ModifyAddress from './ModifyAddress/ModifyAddress';
@@ -6,12 +7,19 @@ import ModifyPhone from './ModifyPhone/ModifyPhone';
 import DropOut from './DropOut/DropOut';
 import * as S from './ModifyInfoDetail.style';
 
-const ModifyInfoDetail = ({ userInfo, setDetailModalOpen, totalPoints }) => {
+const ModifyInfoDetail = ({
+  userInfo,
+  setDetailModalOpen,
+  setModifyInfo,
+  totalPoints,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
+  const navigate = useNavigate();
 
   const onClickBack = () => {
     setDetailModalOpen(prev => !prev);
+    setModifyInfo(prev => !prev);
   };
 
   const handleModal = e => {

@@ -17,7 +17,9 @@ export const Input = styled.input`
   margin-top: 8px;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
-
+  padding-left: 3px;
+  font-size: 15px;
+  font-weight: 500;
   ::placeholder {
     color: #dbdbdb;
     padding-left: 8px;
@@ -44,6 +46,9 @@ export const CodeInput = styled.input`
   height: 50px;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  padding-left: 3px;
   ::placeholder {
     color: #dbdbdb;
     padding-left: 8px;

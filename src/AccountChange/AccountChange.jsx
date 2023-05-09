@@ -9,7 +9,7 @@ const AccountChange = () => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/');
+    navigate('/mypage');
   };
 
   const [accountData, setAccountData] = useState({

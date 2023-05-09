@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 const AccountChangeInput = () => {
   const navigate = useNavigate();
 
+  const onClickBack = e => {
+    e.preventDefault();
+    navigate('/accountchange');
+  };
+
   const [correct, setCorrrect] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [selectBank, setSelectBank] = useState(null);
@@ -101,13 +106,13 @@ const AccountChangeInput = () => {
   };
   return (
     <>
-      <Header type="accountChange" />
+      <Header type="accountChange" onClickBack={onClickBack} />
       <S.Layout>
         <S.InputTitle>
           <label>은행</label>
         </S.InputTitle>
         <S.InputWrapper>
-          {selectBank && <img src={selectBank.img} alt={selectBank.name} />}
+          {/* {selectBank && <img src={selectBank.img} alt={selectBank.name} />} */}
           <S.Input
             placeholder="은행을 선택해 주세요."
             value={selectBank ? selectBank.name : ''}

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { flex } from '../../../../Styles/Mixin';
 
 export const ModifyPhone = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 360px;
@@ -32,7 +32,9 @@ export const PhoneInput = styled.input`
   width: 204px;
   height: 50px;
   padding: 16px;
-  border: 1px solid #dbdbdb;
+  border: 1px solid
+    ${({ seconds, alertMsg }) =>
+      seconds === 0 || alertMsg ? '#E40303' : '#dbdbdb'};
   border-radius: 8px;
   font-weight: 500;
   font-size: 15px;
@@ -45,8 +47,10 @@ export const PhoneInput = styled.input`
 
 export const Timer = styled.p`
   position: absolute;
-  left: 47%;
+  left: 51%;
   color: #ff6a21;
+  font-size: 13px;
+  font-weight: 500;
 `;
 
 export const GetNumBtn = styled.button`

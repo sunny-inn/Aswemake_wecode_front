@@ -14,7 +14,7 @@ const SetPoint = () => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/');
+    navigate('/home');
   };
   return (
     <div>
@@ -22,8 +22,13 @@ const SetPoint = () => {
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName}님</S.Name>
-          <S.Inform>&nbsp;&nbsp;{withdrawalPoints} &nbsp;원</S.Inform>
+          <S.Inform style={{ color: '#FF6A21' }}>
+            &nbsp;&nbsp;{withdrawalPoints} &nbsp;원
+          </S.Inform>
           <S.Inform>&nbsp;&nbsp;인출 요청이 완료되었습니다!</S.Inform>
+          <S.WithdrawNotify>
+            인출 요청 후 7일 이내 등록된 계좌로 입금됩니다.
+          </S.WithdrawNotify>
         </S.Container>
         <Link to="/home">
           <S.FinBtn>확인</S.FinBtn>

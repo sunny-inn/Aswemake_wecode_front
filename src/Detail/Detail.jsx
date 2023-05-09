@@ -67,7 +67,6 @@ const Detail = () => {
       .then(response => response.json())
       .then(data => {
         setDetailMartList(data.martDetail);
-        console.log('이게맞아??', data.martDetail);
       })
       .catch(error => {
         console.error(error);
@@ -120,6 +119,7 @@ const Detail = () => {
   };
 
   //공유하기 로직
+  const [argumentKey, setArgumentKey] = useState(null);
   const [isShared, setIsShared] = useState(false);
   const onClickShared = () => {
     setIsShared(true);
@@ -134,16 +134,15 @@ const Detail = () => {
   }, []);
 
   //공유하기 시도2
-  const [argumentKey, setArgumentKey] = useState(null);
 
-  useEffect(() => {
-    if (detailMartList.length > 0) {
-      setArgumentKey({
-        mart_flyer_image_url: detailMartList[0].martFlyerImages[0],
-      });
-    }
-  }, [detailMartList]);
-  console.log('디테일ㅇㅇㅇ', detailMartList);
+  // useEffect(() => {
+  //   if (detailMartList.length > 0) {
+  //     setArgumentKey({
+  //       mart_flyer_image_url: detailMartList[0].martFlyerImages[0],
+  //     });
+  //   }
+  // }, [detailMartList]);
+
   return (
     <>
       <Header type="martInfo" onClickBack={onClickBack} />

@@ -65,7 +65,9 @@ const Mypage = () => {
       });
   };
 
-  const handleAccountCheck = () => {
+  const handleAccountCheck = e => {
+    e.preventDefault();
+
     fetch('https://flyers.qmarket.me/api/accounts/checkCurrentAccount', {
       method: 'GET',
       headers: {
@@ -88,7 +90,9 @@ const Mypage = () => {
       });
   };
 
-  const flyerCount = () => {
+  const flyerCount = e => {
+    e.preventDefault();
+
     fetch('https://flyers.qmarket.me/api/points', {
       method: 'GET',
       headers: {
@@ -99,8 +103,32 @@ const Mypage = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data);
+        if (data.message === 'YOU NEED TO REGISTER YOUR ACCOUNT') {
+          navigate('/accountregi');
+        } else if (data.result.flyerRegistrationCount <= 3) {
+          navigate('/withdrawnotify', {
+            state: { remainingFlyers: data.result.flyerRegistrationCount },
+          });
+        } else {
+          navigate('/withdrawpoint');
+        }
+      });
+  };
+
+  const handlePointsClick = () => {
+    fetch('https://flyers.qmarket.me/api/points', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
         console.log(data);
-        if (data.result.flyerRegistrationCount < 3) {
+        if (data.message === 'YOU NEED TO REGISTER YOUR ACCOUNT') {
+          navigate('/accountregi');
+        } else if (data.result.flyerRegistrationCount <= 3) {
           navigate('/withdrawnotify', {
             state: { remainingFlyers: data.result.flyerRegistrationCount },
           });
@@ -133,7 +161,7 @@ const Mypage = () => {
             <S.Name>{user.name}</S.Name>님{/* <S.Name>성이름</S.Name>님 */}
           </p>
         </S.NameBox>
-        <S.PointBox>
+        <S.PointBox onClick={handlePointsClick}>
           <S.PointTitle>보유포인트</S.PointTitle>
           <S.Points>{totalPoints} P</S.Points>
           {/* <S.Points>3,000 P</S.Points> */}

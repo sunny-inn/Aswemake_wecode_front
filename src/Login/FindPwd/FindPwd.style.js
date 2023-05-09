@@ -14,7 +14,7 @@ export const FindPwd = styled.div`
 `;
 
 export const InputBox = styled.input`
-  border: 1px solid #dbdbdb;
+  border: 1px solid ${({ borderColor }) => borderColor || '#dbdbdb'};
   border-radius: 8px;
   width: 328px;
   height: 50px;
@@ -38,8 +38,8 @@ export const ButtonOne = styled.button`
   color: white;
   background-color: #ededed;
   margin-left: 8px;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 15px;
   &:not(:disabled) {
     color: white;
     background-color: ${({ disabled }) => (disabled ? '' : '#FF6A21')};
@@ -55,7 +55,7 @@ export const ButtonTwo = styled.button`
   color: white;
   margin-left: 8px;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
 `;
 
 export const AlertMsg = styled.div`
@@ -84,11 +84,13 @@ export const FindPwdSubmit = styled.button`
     background-color: #dbdbdb;
     cursor: not-allowed;
   }
+  font-size: 16.8px;
+  font-weight: 700;
 `;
 
 export const Timer = styled.div`
   position: absolute;
-  top: 51.8%;
+  top: 57.16%;
   left: 186px;
   color: #252525;
   font-weight: 500;

@@ -74,6 +74,7 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
+  // FIXME: 지금 마트 이름으로만 검색하게 되어있어서 주소 검색가능하도록 수정
   useEffect(() => {
     setFilteredMarts(marts.filter(mart => mart.martName.includes(newKeyword)));
   }, [isSubmitted]);
@@ -164,11 +165,9 @@ const Search = ({
                     <p onClick={() => onClickKeyword(id, text)}>{text}</p>
                     <S.DeleteBtn
                       type="button"
-                      onClick={() => {
-                        handleRemoveKeyword(id);
-                      }}
+                      onClick={() => handleRemoveKeyword(id)}
                     >
-                      <img alt="delete" src="./images/closeImg.png" />
+                      <img alt="delete" src="images/closeImg.png" />
                     </S.DeleteBtn>
                   </S.KeywordItem>
                 ))

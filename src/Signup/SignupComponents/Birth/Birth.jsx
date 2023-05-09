@@ -11,13 +11,13 @@ const Birth = ({ year, date, handleYear, handleMonth, handleDate }) => {
         onChange={handleYear}
       />
       <S.Month onChange={e => handleMonth(e)}>
-        <option value="none" hidden>
+        <S.MonthOption value="none" hidden>
           월
-        </option>
+        </S.MonthOption>
         {MONTH_OPTIONS.map(({ id, month }) => (
-          <option key={id} value={month}>
+          <S.MonthOption key={id} value={month}>
             {month}
-          </option>
+          </S.MonthOption>
         ))}
       </S.Month>
       <S.Birth

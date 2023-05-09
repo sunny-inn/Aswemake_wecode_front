@@ -9,25 +9,6 @@ export const SubmitBox = styled(ReactModal)`
   background: #ffffff;
 `;
 
-export const TitleBox = styled.div`
-  ${flex('space-between', 'center', null)}
-  width: 360px;
-  height: 56px;
-  background: #ffffff;
-  border-bottom: 1px solid #ececec;
-
-  img {
-    padding-left: 10px;
-    cursor: pointer;
-  }
-
-  h1 {
-    font-weight: 700;
-    font-size: 18px;
-    color: #252525;
-  }
-`;
-
 export const MsgBox = styled.div`
   margin: 140px 0px;
   ${flex(null, 'center', 'column')}

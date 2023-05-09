@@ -1,36 +1,53 @@
 import styled from 'styled-components';
+import { flex } from '../../Styles/Mixin';
 
-export const ModalBackground = styled.div`
-  width: 365px;
-  height: 616px;
-  position: fixed;
+export const Background = styled.div`
+  position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* 어두운색 배경 */
-  z-index: 10; /* 모달보다 아래에 위치하도록 z-index 설정 */
+  width: 360px;
+  height: 670px;
+  background: rgba(25, 25, 25, 0.35);
+  z-index: 10;
 `;
+
 export const ModalContainer = styled.div`
+  ${flex('center', 'center', 'column')}
+  position: absolute;
+  top: 48%;
+  left: 50%;
   width: 288px;
   height: 196px;
+  padding: 10px;
+  transform: translate(-50%, -50%);
   background-color: #ffffff;
   border-radius: 8px;
-  position: absolute;
-  top: 300px;
-  left: 183px;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  justify-content: flex-start;
 `;
-export const ModalContentBox = styled.div`
-  display: flex;
-  width: 100%;
-  height: 160px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  font-weight: 500;
+
+export const CloseBox = styled.div`
+  ${flex('space-between', 'center', null)}
+  width: 288px;
+  padding: 10px 10px;
+  margin: 10px 0px;
+  border-bottom: 1px solid #eeeeee;
+`;
+
+export const EmptyBox = styled.div`
+  width: 26px;
+  height: 26px;
+`;
+
+export const ModalTitle = styled.p`
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  color: #252525;
+`;
+
+export const CloseImg = styled.img`
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
 `;
 
 export const ModalText = styled.p`
@@ -47,6 +64,7 @@ export const ModalText = styled.p`
 
 export const ModalButtonBox = styled.div`
   display: flex;
+  padding-bottom: 20px;
 `;
 
 export const ModalInfoButton = styled.button`
@@ -75,19 +93,4 @@ export const ModalUploadButton = styled.button`
   color: #fff;
   cursor: pointer;
   margin-left: 8px;
-`;
-export const ModalTitleBox = styled.div`
-  border-bottom: 1px solid #eeeeee;
-  display: flex;
-  width: 100%;
-  height: 25%;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const ModalCloseImg = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  cursor: pointer;
 `;

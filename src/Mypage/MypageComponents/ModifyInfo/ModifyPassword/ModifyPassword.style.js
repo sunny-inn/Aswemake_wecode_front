@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { flex } from '../../../../Styles/Mixin';
 
 export const ModifyPassword = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 360px;
@@ -23,6 +23,37 @@ export const ModifyPasswordTitle = styled.h2`
 `;
 
 export const PasswordInputWrap = styled.div`
+  ${flex(null, 'center', null)}
+  margin-top: 8px;
+  width: 328px;
+  height: 50px;
+  border: 1px solid
+    ${({ isActive, password }) =>
+      password === '' || isActive ? '#dbdbdb' : '#E40303'};
+  border-radius: 8px;
+
+  input {
+    width: 234px;
+    margin: 16px;
+    background: none;
+    border: none;
+    font-weight: 500;
+    font-size: 15px;
+    color: #252525;
+
+    ::placeholder {
+      color: #dbdbdb;
+    }
+  }
+
+  img {
+    width: 23px;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+`;
+
+export const PasswordCheckInputWrap = styled.div`
   ${flex(null, 'center', null)}
   margin-top: 8px;
   width: 328px;

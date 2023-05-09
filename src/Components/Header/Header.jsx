@@ -11,6 +11,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     mypage: MYPAGE_HEADER,
     modifyInfo: MODIFY_INFO_HEADER,
     modifyPassword: MODIFY_PASSWORD_HEADER,
+    modifyPwSuccess: MODIFY_PASSWORD_SUCCESS_HEADER,
     modifyAddress: MODIFY_ADDRESS_HEADER,
     modifyPhone: MODIFY_PHONE_HEADER,
     dropOut: DROPOUT_HEADER,
@@ -60,7 +61,7 @@ const TERMS_HEADER = {
 
 const SUBMIT_HEADER = {
   title: '회원가입 완료',
-  button: true,
+  button: false,
 };
 
 const UPLOAD_HEADER = {
@@ -86,6 +87,11 @@ const MODIFY_INFO_HEADER = {
 const MODIFY_PASSWORD_HEADER = {
   title: '비밀번호 변경',
   button: true,
+};
+
+const MODIFY_PASSWORD_SUCCESS_HEADER = {
+  title: '비밀번호 변경',
+  button: false,
 };
 
 const MODIFY_ADDRESS_HEADER = {
@@ -116,6 +122,7 @@ const FLYER_STATUS_HEADER = {
   title: '전단등록 현황',
   button: true,
 };
+
 const SUGGEST_HEADER = {
   title: '정보 수정 제안',
   button: true,
@@ -154,10 +161,12 @@ const ACCOUNTCHANGE_HEADER = {
   title: '계좌 변경',
   button: true,
 };
+
 const MART_INFO_HEADER = {
   title: '마트 정보',
   button: true,
 };
+
 const FAVORITE_HEADER = {
   title: '자주가요',
   button: false,

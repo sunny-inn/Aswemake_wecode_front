@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { flex } from '../../../../Styles/Mixin';
 
-export const DropOutSuccess = styled.div`
-  position: fixed;
+export const ModifyPwSuccess = styled.div`
+  position: absolute;
   top: 0;
   left: 0;
   width: 360px;
@@ -11,16 +11,12 @@ export const DropOutSuccess = styled.div`
   background: #fff;
 `;
 
-export const DropOutSuccessBody = styled.div`
+export const ModifyPwSuccessBody = styled.div`
   ${flex('center', 'center', 'column')};
   margin-top: 200px;
   font-weight: 500;
   font-size: 17px;
   line-height: 20px;
-
-  h2 {
-    margin-bottom: 20px;
-  }
 `;
 
 export const ConfirmBtn = styled.button`

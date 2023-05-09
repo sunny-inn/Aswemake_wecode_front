@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import * as S from './Suggest.style';
 
-const Suggest = ({ onClose }) => {
+const Suggest = ({ onClose, selectedMart }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ martName: '', martPhoneNumber: '' });
 
@@ -13,8 +13,9 @@ const Suggest = ({ onClose }) => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate('/detail');
+    navigate(`/detail/${selectedMart.martId}`);
   };
+  console.log('ㅇ에에에???', selectedMart);
 
   const onClickSuggestBtn = e => {
     e.preventDefault();

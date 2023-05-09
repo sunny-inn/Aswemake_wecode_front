@@ -10,6 +10,12 @@ export const FromMyPoint = styled.span`
   font-size: 15px;
 `;
 
+export const ChangeAccount = styled.div`
+  color: #bcbcbc;
+  font-size: 13px;
+  font-weight: 500;
+`;
+
 export const PointWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -22,10 +28,11 @@ export const WithdrawPoint = styled.input`
   border: 1px solid #dbdbdb;
   border-radius: 8px;
   margin-top: 8px;
+  padding: 16px;
+  font-weight: 700;
+  font-size: 15px;
   ::placeholder {
-    font-weight: 700;
-    font-size: 15px;
-    padding-left: 7px;
+    color: #dbdbdb;
   }
 `;
 

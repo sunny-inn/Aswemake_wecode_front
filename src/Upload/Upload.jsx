@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Slider from 'react-slick';
+import React, { useState, useEffect } from 'react';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Calendar from './UploadComponents/Calendar/Calendar';
@@ -14,13 +13,16 @@ const Upload = () => {
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [uploadInfo, setUploadInfo] = useState({
     martPhoneNumber: '',
-    images: [],
     startDate: '',
     endDate: '',
   });
+  const [img1, setImg1] = useState();
+  const [img2, setImg2] = useState();
+  const [img3, setImg3] = useState();
+  const [img4, setImg4] = useState();
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const { images, startDate, endDate } = uploadInfo;
+  const { startDate, endDate } = uploadInfo;
 
   // 스크롤 위치 조정
   useEffect(() => {
@@ -28,10 +30,10 @@ const Upload = () => {
   }, []);
 
   const uploadForm = new FormData();
-  for (let i = 0; i < 4; i++) {
-    uploadForm.append('images', uploadInfo.images[i]);
-  }
-
+  uploadForm.append('images', img1);
+  uploadForm.append('images', img2);
+  uploadForm.append('images', img3);
+  uploadForm.append('images', img4);
   uploadForm.append(
     'data',
     JSON.stringify({
@@ -77,44 +79,53 @@ const Upload = () => {
     setIsTutorialClicked(prev => !prev);
   };
 
-  // 이미지 넣기
-  const inputRef = useRef(null);
-
-  const onClickImg = e => {
-    e.preventDefault();
-    if (!inputRef.current) return;
-    inputRef.current.click();
-  };
-
   // 이미지 state에 넣기
-  const handleImg = e => {
+  const handleImg1 = e => {
     e.preventDefault();
     const files = e.target.files;
-
-    setUploadInfo(prev => ({
-      ...prev,
-      images: files,
-    }));
+    setImg1(files[0]);
   };
 
-  let settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 360,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-    ],
+  const handleImg2 = e => {
+    e.preventDefault();
+    const files = e.target.files;
+    setImg2(files[0]);
   };
 
+  const handleImg3 = e => {
+    e.preventDefault();
+    const files = e.target.files;
+    setImg3(files[0]);
+  };
+
+  const handleImg4 = e => {
+    e.preventDefault();
+    const files = e.target.files;
+    setImg4(files[0]);
+  };
+
+  // 이미지 삭제
+  const onClickDelete1 = e => {
+    e.preventDefault();
+    setImg1();
+  };
+
+  const onClickDelete2 = e => {
+    e.preventDefault();
+    setImg2();
+  };
+
+  const onClickDelete3 = e => {
+    e.preventDefault();
+    setImg3();
+  };
+
+  const onClickDelete4 = e => {
+    e.preventDefault();
+    setImg4();
+  };
+
+  // 체크박스
   const onClickCheckbox = e => {
     setIsCheckboxClicked(prev => !prev);
   };
@@ -122,7 +133,10 @@ const Upload = () => {
   const handelDisabled = !(
     martInfo &&
     alertMsg === false &&
-    uploadInfo.images.length === 4 &&
+    img1 &&
+    img2 &&
+    img3 &&
+    img4 &&
     startDate &&
     endDate &&
     isCheckboxClicked === true
@@ -152,107 +166,192 @@ const Upload = () => {
       });
   };
 
-  // 모달 닫는 함수
-  const handleModal = () => setIsUploaded(false);
+  // modal 닫기
+  const handleModal = () => {
+    setIsUploaded(prev => !prev);
+  };
 
   return (
-    <S.UploadForm onSubmit={onSubmitFlyers} id="scroller">
+    <form onSubmit={onSubmitFlyers} id="scroller">
       <Header type="upload" />
-      <S.UplaodLabel>마트 전화 번호</S.UplaodLabel>
-      <S.PhoneBox>
-        <S.PhoneInput
-          type="text"
-          value={phoneNumber}
-          placeholder="(-) 포함해서 입력해주세요."
-          onChange={handlePhoneNumber}
-          alertMsg={alertMsg}
-        />
-        <S.PhoneBtn onClick={onClickMart}>확인</S.PhoneBtn>
-      </S.PhoneBox>
-      {alertMsg && <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>}
-      <S.UplaodLabel>마트 이름</S.UplaodLabel>
-      <S.MartInput
-        value={martInfo.martName}
-        placeholder="마트 이름을 입력해주세요."
-        readOnly
-      />
-      <S.UplaodLabel>마트 주소</S.UplaodLabel>
-      <S.MartInput
-        value={martInfo.martNumberAddress}
-        placeholder="주소를 입력해주세요."
-        readOnly
-      />
-      <S.PhotoBox>
-        <S.UplaodLabel>사진 등록</S.UplaodLabel>
-        <S.TutorialBtn onClick={onClickTutorial}>
-          필독! 사진 등록 방법 확인
-        </S.TutorialBtn>
-        {isTutorialClicked && (
-          <Tutorial
-            onClickTutorial={onClickTutorial}
-            setIsTutorialClicked={setIsTutorialClicked}
+      <S.UploadBox>
+        <S.InputBox>
+          <S.UplaodLabel>마트 전화번호</S.UplaodLabel>
+          <S.PhoneBox>
+            <S.PhoneInput
+              type="text"
+              value={phoneNumber}
+              placeholder="(-) 포함해서 입력해주세요."
+              onChange={handlePhoneNumber}
+              alertMsg={alertMsg}
+            />
+            <S.PhoneBtn onClick={onClickMart}>확인</S.PhoneBtn>
+          </S.PhoneBox>
+          {alertMsg && (
+            <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>
+          )}
+        </S.InputBox>
+        <S.InputBox>
+          <S.UplaodLabel>마트 이름</S.UplaodLabel>
+          <S.MartInput
+            value={martInfo.martName}
+            placeholder="마트 이름을 입력해주세요."
+            readOnly
           />
-        )}
-      </S.PhotoBox>
-      <div>
-        {images.length === 4 ? (
-          <Slider {...settings}>
-            <S.UploadedImg
-              alt="flyer1"
-              src={`${URL.createObjectURL(images[0])}`}
+        </S.InputBox>
+        <S.InputBox>
+          <S.UplaodLabel>마트 주소</S.UplaodLabel>
+          <S.MartInput
+            value={martInfo.martNumberAddress}
+            placeholder="주소를 입력해주세요."
+            readOnly
+          />
+        </S.InputBox>
+        <S.InputBox>
+          <S.PhotoBox>
+            <S.UplaodLabel>사진 등록</S.UplaodLabel>
+            <S.TutorialBtn onClick={onClickTutorial}>
+              필독! 사진 등록 방법 안내
+            </S.TutorialBtn>
+            {isTutorialClicked && (
+              <Tutorial
+                onClickTutorial={onClickTutorial}
+                setIsTutorialClicked={setIsTutorialClicked}
+              />
+            )}
+          </S.PhotoBox>
+          <S.UploadedBox>
+            {img1 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img1)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete1}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg1}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>1/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+            {img2 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img2)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete2}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg2}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>2/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+            {img3 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img3)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete3}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg3}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>3/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+            {img4 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img4)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete4}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg4}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>4/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+          </S.UploadedBox>
+        </S.InputBox>
+        <S.InputBox>
+          <S.UplaodLabel>전단 행사기간</S.UplaodLabel>
+          <Calendar setUploadInfo={setUploadInfo} />
+        </S.InputBox>
+        <S.InputBox>
+          <S.CheckBox>
+            <img
+              alt="checkbox"
+              src={
+                isCheckboxClicked
+                  ? 'images/signup/checkbox.png'
+                  : 'images/signup/checkbox_d.png'
+              }
+              onClick={onClickCheckbox}
             />
-            <S.UploadedImg
-              alt="flyer2"
-              src={`${URL.createObjectURL(images[1])}`}
-            />
-            <S.UploadedImg
-              alt="flyer3"
-              src={`${URL.createObjectURL(images[2])}`}
-            />
-            <S.UploadedImg
-              alt="flyer4"
-              src={`${URL.createObjectURL(images[3])}`}
-            />
-          </Slider>
-        ) : (
-          <S.CameraBox onClick={onClickImg}>
-            <S.CameraImg alt="camera" src="/images/upload/camera.png" />
-            <S.ImgCount>4장 필수</S.ImgCount>
-          </S.CameraBox>
-        )}
-        <input
-          ref={inputRef}
-          type="file"
-          multiple
-          hidden
-          accept="image/*"
-          onChange={handleImg}
-        />
-      </div>
-      <S.UplaodLabel>전단 행사 기간</S.UplaodLabel>
-      <Calendar setUploadInfo={setUploadInfo} />
-      <S.CheckBox>
-        <img
-          alt="checkbox"
-          src={
-            isCheckboxClicked
-              ? 'images/signup/checkbox.png'
-              : 'images/signup/checkbox_d.png'
-          }
-          onClick={onClickCheckbox}
-        />
-        <S.CheckBoxMsg>
-          등록 요청 후, 해당 건의 내용 수정은 불가합니다.
-        </S.CheckBoxMsg>
-      </S.CheckBox>
-      <S.SubmitBtn
-        disabled={handelDisabled ? true : false}
-        handelDisabled={handelDisabled}
-      >
-        전단 등록 요청
-      </S.SubmitBtn>
+            <S.CheckBoxMsg>
+              등록 요청 후, 해당 건의 내용 수정은 불가합니다.
+            </S.CheckBoxMsg>
+          </S.CheckBox>
+          <S.SubmitBtn
+            disabled={handelDisabled ? true : false}
+            handelDisabled={handelDisabled}
+          >
+            전단 등록 요청
+          </S.SubmitBtn>
+        </S.InputBox>
+      </S.UploadBox>
       {isUploaded && <Modal type="upload" handleModal={handleModal} />}
-    </S.UploadForm>
+    </form>
   );
 };
 export default Upload;

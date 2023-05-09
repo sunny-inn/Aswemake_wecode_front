@@ -10,16 +10,27 @@ const Phone = ({
   setVerification,
 }) => {
   const [codeBtn, setCodeBtn] = useState(false);
+  const [verificationBtn, setVerificationBtn] = useState(false);
   const [showTimer, setShowTimer] = useState(false);
-  const [seconds, setSeconds] = useState(180);
+  const [seconds, setSeconds] = useState(0);
+  const [invalidCode, setInvalidCode] = useState(false);
   const [alertMsg, setAlertMsg] = useState(false);
 
   const handleCode = e => setCode(e.target.value);
 
   // 인증번호 받기 활성화 조건
-  const handleCodeBtn =
-    phoneNumber.includes('010') &&
-    (phoneNumber.length === 10 || phoneNumber.length === 11);
+  // let handleCodeBtn =
+  //   phoneNumber.includes('010') &&
+  //   (phoneNumber.length === 10 || phoneNumber.length === 11);
+
+  useEffect(() => {
+    if (
+      phoneNumber.includes('010') &&
+      (phoneNumber.length === 10 || phoneNumber.length === 11)
+    ) {
+      setCodeBtn(true);
+    }
+  }, [phoneNumber]);
 
   const formatTime = () => {
     const minutes = Math.floor(seconds / 60);
@@ -35,12 +46,11 @@ const Phone = ({
       clearInterval(id);
     }
     return () => clearInterval(id);
-  }, [codeBtn, seconds]);
+  }, [seconds]);
 
   // 인증번호 버튼 클릭 시 로직
   const onClickCode = e => {
     e.preventDefault();
-    setCodeBtn(true);
     setShowTimer(true);
     setSeconds(180);
 
@@ -62,7 +72,15 @@ const Phone = ({
   };
 
   // 확인 버튼 활성화 조건
-  const handleVerificationBtn = code && phoneNumber;
+  useEffect(() => {
+    if (phoneNumber !== '' && code !== '' && verification === false) {
+      setVerificationBtn(true);
+    } else if (code === '') {
+      setInvalidCode(false);
+      setVerificationBtn(false);
+      setAlertMsg(false);
+    }
+  }, [code]);
 
   //확인 버튼 클릭 시 로직
   const onClickVerification = e => {
@@ -82,10 +100,20 @@ const Phone = ({
       .then(data => {
         if (data.message === 'verification code matches') {
           setVerification(true);
+          setAlertMsg(false);
+          setInvalidCode(false);
+          setCodeBtn(false);
+          setVerificationBtn(false);
+          setSeconds(0);
           setShowTimer(false);
+        } else if (seconds === 0) {
+          setVerification(false);
+          setInvalidCode(true);
+          setAlertMsg(false);
         } else {
           setVerification(false);
           setAlertMsg(true);
+          setInvalidCode(false);
         }
       });
   };
@@ -98,12 +126,12 @@ const Phone = ({
           type="text"
           value={phoneNumber}
           onChange={handlePhoneNumber}
-          placeholder="번호를 입력해주세요."
+          placeholder="전화번호를 입력해주세요."
         />
         <S.CodeBtn
           onClick={onClickCode}
-          disabled={handleCodeBtn ? false : true}
-          handleCodeBtn={handleCodeBtn}
+          disabled={codeBtn ? false : true}
+          codeBtn={codeBtn}
         >
           인증번호 받기
         </S.CodeBtn>
@@ -112,24 +140,29 @@ const Phone = ({
         <S.CodeInput
           name="code"
           type="text"
-          ㄴ
           value={code}
           onChange={handleCode}
           placeholder="인증번호를 입력해주세요."
           alertMsg={alertMsg}
+          invalidCode={invalidCode}
         />
         {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
         <S.VerificationBtn
           onClick={onClickVerification}
-          disabled={handleVerificationBtn ? false : true}
+          disabled={verificationBtn ? false : true}
           verification={verification}
-          alertMsg={alertMsg}
-          handleVerificationBtn={handleVerificationBtn}
+          verificationBtn={verificationBtn}
         >
           확인
         </S.VerificationBtn>
       </S.PhoneBtnBox>
+      {verification && (
+        <S.VerificationMsg>번호 인증이 완료되었습니다</S.VerificationMsg>
+      )}
       {alertMsg && <S.AlertMsg>인증번호를 다시 확인해주세요</S.AlertMsg>}
+      {invalidCode && (
+        <S.AlertMsg>만료된 인증번호입니다. 다시 시도해주세요.</S.AlertMsg>
+      )}
     </S.PhoneBox>
   );
 };
