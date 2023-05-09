@@ -4,6 +4,7 @@ import * as S from './DetailModal.style';
 
 const DetailModal = ({ handleModal, currentId, selectedMart }) => {
   const navigate = useNavigate();
+  const goToUpload = navigate('/upload');
 
   return (
     <S.ModalContainer>
@@ -24,7 +25,11 @@ const DetailModal = ({ handleModal, currentId, selectedMart }) => {
           >
             마트 정보 보기
           </S.ModalInfoButton>
-          <S.ModalUploadButton onClick={navigate('/suggest')}>
+          <S.ModalUploadButton
+            onClick={() => {
+              goToUpload();
+            }}
+          >
             전단 등록 하기
           </S.ModalUploadButton>
         </S.ModalButtonBox>
