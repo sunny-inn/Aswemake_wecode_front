@@ -32,6 +32,29 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
       });
   }, [lastIndex]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop =
+        (document.documentElement && document.documentElement.scrollTop) ||
+        document.body.scrollTop;
+      const scrollHeight =
+        (document.documentElement && document.documentElement.scrollHeight) ||
+        document.body.scrollHeight;
+      const clientHeight =
+        document.documentElement.clientHeight || window.innerHeight;
+
+      if (
+        scrollTop + clientHeight >= scrollHeight &&
+        martStatusData.length > 0
+      ) {
+        setLastIndex(martStatusData.length);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   if (loading) return null;
 
   const handleOnScreen = e => {
@@ -40,7 +63,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
 
     setMartStatusData([]);
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=${e.target.value}&lastIndex=${lastIndex}`,
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${onScreen}&lastIndex=${lastIndex}`,
       {
         method: 'GET',
         headers: {
@@ -56,26 +79,6 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const onClickBack = () => {
     setIsMartInfoStatus(prev => !prev);
   };
-
-  const handleScroll = () => {
-    const scrollTop =
-      (document.documentElement && document.documentElement.scrollTop) ||
-      document.body.scrollTop;
-    const scrollHeight =
-      (document.documentElement && document.documentElement.scrollHeight) ||
-      document.body.scrollHeight;
-    const clientHeight =
-      document.documentElement.clientHeight || window.innerHeight;
-
-    if (scrollTop + clientHeight >= scrollHeight && martStatusData.length > 0) {
-      setLastIndex(martStatusData.length);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [martStatusData]);
 
   const noContents = (
     <S.NoContents>{NO_CONTNET_LIST[onScreen - 1]}</S.NoContents>
