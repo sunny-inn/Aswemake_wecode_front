@@ -19,11 +19,16 @@ const UploadInput = css`
   }
 `;
 
+export const UplaodForm = styled.form`
+  width: 360px;
+  height: 616px;
+  overflow-y: scroll;
+`;
+
 export const UploadBox = styled.div`
   ${flex(null, null, 'column')}
   gap: 22px;
   padding: 16px;
-  overflow-y: scroll;
 `;
 
 export const InputBox = styled.div`

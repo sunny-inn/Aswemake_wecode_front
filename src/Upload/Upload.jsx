@@ -172,7 +172,7 @@ const Upload = () => {
   };
 
   return (
-    <form onSubmit={onSubmitFlyers} id="scroller">
+    <S.UplaodForm onSubmit={onSubmitFlyers} id="scroller">
       <Header type="upload" />
       <S.UploadBox>
         <S.InputBox>
@@ -351,7 +351,7 @@ const Upload = () => {
         </S.InputBox>
       </S.UploadBox>
       {isUploaded && <Modal type="upload" handleModal={handleModal} />}
-    </form>
+    </S.UplaodForm>
   );
 };
 export default Upload;
