@@ -5,10 +5,14 @@ import { ko } from 'date-fns/esm/locale';
 import DatePicker from 'react-datepicker';
 import * as S from './Calendar.style';
 
-const Calendar = ({ setUploadInfo }) => {
+const Calendar = ({
+  setUploadInfo,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+}) => {
   const [open, setOpen] = useState(false);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [invalidEndDate, setInvalidEndDate] = useState(false);
 
   // bottom sheet 닫기
