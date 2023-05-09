@@ -177,7 +177,11 @@ const Upload = () => {
   const handleModal = () => {
     setIsUploaded(prev => !prev);
     setPhoneNumber('');
-    setMartInfo({});
+    setMartInfo({
+      martPhoneNumber: '',
+      startDate: '',
+      endDate: '',
+    });
     setImg1();
     setImg2();
     setImg3();

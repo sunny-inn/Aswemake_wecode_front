@@ -76,10 +76,6 @@ const Search = ({
 
   console.log(marts);
 
-  // console.log(
-  //   marts.filter(mart => mart.martNumberAddress.includes(newKeyword))
-  // );
-
   // FIXME: 검색 기능
   useEffect(() => {
     const filteredList = marts.filter(
