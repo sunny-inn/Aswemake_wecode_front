@@ -8,7 +8,7 @@ export const FlyersStatus = styled(ReactModal)`
   left: 0; */
   width: 360px;
   height: 616px;
-  z-index: 5;
+  //z-index: 5;
   background: #fff;
 `;
 
