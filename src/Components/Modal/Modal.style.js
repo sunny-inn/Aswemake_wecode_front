@@ -3,9 +3,9 @@ import { flex } from '../../Styles/Mixin';
 
 export const Background = styled.div`
   position: absolute;
-  top: 0;
+  top: -76px;
   left: 0;
-  width: 360px;
+  width: 364px;
   height: 670px;
   background: rgba(25, 25, 25, 0.35);
   z-index: 10;
