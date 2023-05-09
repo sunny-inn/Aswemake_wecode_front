@@ -29,7 +29,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
     setShowBigImage(!prev);
   };
 
-  const handleModal = () => () => navigate('/upload');
+  const handleModal = () => navigate('/upload');
 
   let settings = {
     dots: false,
