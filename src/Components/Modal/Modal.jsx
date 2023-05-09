@@ -22,9 +22,9 @@ const Modal = ({ handleModal, type, handleSecModal }) => {
         <S.ModalText>{infoList[type].message1}</S.ModalText>
         <S.ModalButtonBox>
           {infoList[type].button[0] && (
-            <S.ModalInfoButton onClick={handleModal}>
+            <S.ModalUploadButton onClick={handleModal}>
               {infoList[type].button[0]}
-            </S.ModalInfoButton>
+            </S.ModalUploadButton>
           )}
           {/* {infoList[type].button[1] && (
             <S.ModalUploadButton onClick={handleSecModal}>
