@@ -63,7 +63,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
 
     setMartStatusData([]);
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=${onScreen}&lastIndex=${lastIndex}`,
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${e.target.value}&lastIndex=${lastIndex}`,
       {
         method: 'GET',
         headers: {
