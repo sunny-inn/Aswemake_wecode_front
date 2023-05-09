@@ -19,9 +19,10 @@ const Modal = ({ handleModal, type, handleSecModal }) => {
             <S.EmptyBox />
           )}
         </S.CloseBox>
-        <S.ModalText>{infoList[type].message}</S.ModalText>
+        <S.ModalText>{infoList[type].message1}</S.ModalText>
+        <S.ModalText>{infoList[type].message2}</S.ModalText>
         <S.ModalButtonBox>
-          {infoList[type].button[1] && (
+          {infoList[type].button[0] && (
             <S.ModalInfoButton onClick={handleModal}>
               {infoList[type].button[0]}
             </S.ModalInfoButton>
@@ -40,20 +41,21 @@ export default Modal;
 const MAP_MODAL_INFO = {
   title: '전단 등록',
   close: true,
-  message: '전단등록이 필요한 마트에요.\n전단을 등록하러 가볼까요?',
+  message1: '전단등록이 필요한 마트에요.',
+  message2: '전단을 등록하러 가볼까요?',
   button: ['전단 등록하기'],
 };
 
 const MODIFY_PASSWORD_MODAL_INFO = {
   title: '비밀번호 불일치',
   close: false,
-  message: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
+  message1: '비밀번호가 일치하지 않습니다. 다시 확인해주세요.',
   button: ['확인'],
 };
 
 const UPLOAD = {
   title: '전단등록 요청 완료',
   close: false,
-  message: '전단등록 요청이 완료되었습니다.',
+  message1: '전단등록 요청이 완료되었습니다.',
   button: ['확인'],
 };
