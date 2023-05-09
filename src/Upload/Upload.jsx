@@ -48,6 +48,12 @@ const Upload = () => {
     setPhoneNumber(e.target.value);
   };
 
+  useEffect(() => {
+    if (phoneNumber === '') {
+      setAlertMsg(false);
+    }
+  }, [phoneNumber]);
+
   // 전화번호로 마트 정보 받아오기
   const onClickMart = e => {
     e.preventDefault();
