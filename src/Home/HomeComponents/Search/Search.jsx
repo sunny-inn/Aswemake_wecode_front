@@ -75,7 +75,7 @@ const Search = ({
   };
 
   // 검색 기능
-  const filteredList = homeMartList.filter(
+  const filteredList = marts.filter(
     mart =>
       mart.martName.includes(newKeyword) ||
       mart.martNumberAddress.includes(newKeyword)
