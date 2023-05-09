@@ -64,11 +64,15 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 export const CloseBox = styled.div`
-  ${flex('center', 'center', null)}
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
   width: 288px;
   padding: 10px;
-  margin: 10px 0px;
-  border-bottom: 1px solid #eeeeee;
+  margin: -10px 0px 10px 0px;
+  border-bottom: 1px solid rgb(238, 238, 238);
 `;
 
 export const CloseImg = styled.img`
