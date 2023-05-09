@@ -1,4 +1,4 @@
-const APP_JAVA_KEY = process.env.REACT_APP_JAVA_SCRIPT_KEY;
+const APP_JAVA_KEY = 'a320e86acb93342abb996dc9556d6c55';
 
 const KakaoShare = (url, title, argumentKey, detailMartList) => {
   if (window.Kakao) {
