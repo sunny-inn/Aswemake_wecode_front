@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import BigFlyerCarousel from './BigFlyerCarousel';
 import * as S from './FlyersCarousel.style';
 import Slider from 'react-slick';
+import Modal from '../Components/Modal/Modal';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
   const [showBigImage, setShowBigImage] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const onClickImage = index => {
-    setShowBigImage(true);
-    setCurrentImageIndex(index);
-    console.log('뜬다?', index);
+    if (list.martFlyerImages.length === 0) {
+      setShowModal(true);
+    } else {
+      setShowBigImage(true);
+      setCurrentImageIndex(index);
+      console.log('뜬다?', index);
+    }
   };
 
   const onClickClose = prev => {
@@ -98,6 +104,9 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
               : item.martFlyerImages.map(item => item.imageUrl)
           )}
         />
+      )}
+      {showModal && (
+        <Modal type="map" handleModal={() => setShowModal(false)} />
       )}
     </>
   );
