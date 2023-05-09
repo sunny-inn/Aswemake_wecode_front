@@ -122,7 +122,7 @@ export const TutorialBtn = styled.button`
   text-decoration: underline #ff6a21;
 `;
 
-export const CameraBox = styled.div`
+export const CameraBox = styled.label`
   ${flex('center', 'center', 'column')}
   gap: 5px;
   width: 160px;
@@ -131,20 +131,6 @@ export const CameraBox = styled.div`
   border: 1px dashed #dbdbdb;
   border-radius: 16px;
   cursor: pointer;
-`;
-
-export const CameraInput = styled.input`
-  /* display: none;
-  width: 160px;
-  height: 224px; */
-
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 `;
 
 export const CameraImg = styled.img`

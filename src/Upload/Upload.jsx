@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Slider from 'react-slick';
+import React, { useState, useEffect } from 'react';
 import Header from '../Components/Header/Header';
 import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Calendar from './UploadComponents/Calendar/Calendar';
@@ -14,14 +13,16 @@ const Upload = () => {
   const [isCheckboxClicked, setIsCheckboxClicked] = useState(false);
   const [uploadInfo, setUploadInfo] = useState({
     martPhoneNumber: '',
-    images: [],
     startDate: '',
     endDate: '',
   });
-  const [uploadedImgs, setUploadedImgs] = useState([]);
+  const [img1, setImg1] = useState();
+  const [img2, setImg2] = useState();
+  const [img3, setImg3] = useState();
+  const [img4, setImg4] = useState();
   const [isUploaded, setIsUploaded] = useState(false);
 
-  const { images, startDate, endDate } = uploadInfo;
+  const { startDate, endDate } = uploadInfo;
 
   // 스크롤 위치 조정
   useEffect(() => {
@@ -29,10 +30,10 @@ const Upload = () => {
   }, []);
 
   const uploadForm = new FormData();
-  for (let i = 0; i < 4; i++) {
-    uploadForm.append('images', uploadInfo.images[i]);
-  }
-
+  uploadForm.append('images', img1);
+  uploadForm.append('images', img2);
+  uploadForm.append('images', img3);
+  uploadForm.append('images', img4);
   uploadForm.append(
     'data',
     JSON.stringify({
@@ -78,42 +79,50 @@ const Upload = () => {
     setIsTutorialClicked(prev => !prev);
   };
 
-  // 이미지 넣기
-  const inputRef = useRef(null);
-
-  // const onClickImg = (e, id) => {
-  //   e.preventDefault();
-  //   if (!inputRef.current) return;
-  //   inputRef.current.click();
-  // };
-
   // 이미지 state에 넣기
-  const handleImg = (e, id) => {
+  const handleImg1 = e => {
     e.preventDefault();
-    console.log(id);
     const files = e.target.files;
-
-    // setUploadInfo((prev, id) => ({
-    //   ...prev,
-    //   images: [...images, files[0]],
-    // }));
+    setImg1(files[0]);
   };
 
-  // console.log('uploadedImgs', uploadedImgs);
-  // console.log('images', images);
+  const handleImg2 = e => {
+    e.preventDefault();
+    const files = e.target.files;
+    setImg2(files[0]);
+  };
+
+  const handleImg3 = e => {
+    e.preventDefault();
+    const files = e.target.files;
+    setImg3(files[0]);
+  };
+
+  const handleImg4 = e => {
+    e.preventDefault();
+    const files = e.target.files;
+    setImg4(files[0]);
+  };
 
   // 이미지 삭제
-  const onClickDelete = (e, id) => {
+  const onClickDelete1 = e => {
     e.preventDefault();
-    console.log(id);
-    // const filteredImgs = uploadedImgs.filter(img => {
-    //   return img.id[id] !== id;
-    // });
+    setImg1();
+  };
 
-    // setUploadInfo(prev => ({
-    //   ...prev,
-    //   images: [filteredImgs],
-    // }));
+  const onClickDelete2 = e => {
+    e.preventDefault();
+    setImg2();
+  };
+
+  const onClickDelete3 = e => {
+    e.preventDefault();
+    setImg3();
+  };
+
+  const onClickDelete4 = e => {
+    e.preventDefault();
+    setImg4();
   };
 
   // 체크박스
@@ -124,7 +133,10 @@ const Upload = () => {
   const handelDisabled = !(
     martInfo &&
     alertMsg === false &&
-    uploadInfo.images.length === 4 &&
+    img1 &&
+    img2 &&
+    img3 &&
+    img4 &&
     startDate &&
     endDate &&
     isCheckboxClicked === true
@@ -136,7 +148,6 @@ const Upload = () => {
   const onSubmitFlyers = e => {
     e.preventDefault();
 
-    //TODO: POST하는 api
     fetch('https://flyers.qmarket.me/api/flyer', {
       method: 'POST',
       headers: {
@@ -210,44 +221,106 @@ const Upload = () => {
             )}
           </S.PhotoBox>
           <S.UploadedBox>
-            {PHOTOS.map(({ id, count }) => (
-              <div key={id}>
-                {images[id] ? (
-                  <S.ImgBox>
-                    <S.UploadedImg
-                      alt="flyer"
-                      src={`${URL.createObjectURL(images[id])}`}
-                    />
-                    <S.DeleteBtn
-                      alt="delete"
-                      src="images/upload/delete.png"
-                      onClick={e => onClickDelete(e, id)}
-                    />
-                  </S.ImgBox>
-                ) : (
-                  <S.CameraBox>
-                    <S.CameraInput
-                      // ref={inputRef}
-                      type="file"
-                      // multiple
-                      // hidden
-                      accept="image/*"
-                      onChange={e => handleImg(e, id)}
-                    />
-                    <S.CameraImg alt="camera" src="/images/upload/camera.png" />
-                    <S.ImgCount>{count}/4</S.ImgCount>
-                  </S.CameraBox>
-                )}
-              </div>
-            ))}
-            {/* <input
-              ref={inputRef}
-              type="file"
-              multiple
-              hidden
-              accept="image/*"
-              onChange={handleImg}
-            /> */}
+            {img1 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img1)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete1}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg1}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>1/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+            {img2 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img2)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete2}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg2}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>2/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+            {img3 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img3)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete3}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg3}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>3/4</S.ImgCount>
+              </S.CameraBox>
+            )}
+            {img4 ? (
+              <S.ImgBox>
+                <S.UploadedImg
+                  alt="flyer"
+                  src={`${URL.createObjectURL(img4)}`}
+                />
+                <S.DeleteBtn
+                  alt="delete"
+                  src="images/upload/delete.png"
+                  onClick={onClickDelete4}
+                />
+              </S.ImgBox>
+            ) : (
+              <S.CameraBox htmlFor="imgFile">
+                <input
+                  id="imgFile"
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImg4}
+                />
+                <S.CameraImg alt="camera" src="/images/upload/camera.png" />
+                <S.ImgCount>4/4</S.ImgCount>
+              </S.CameraBox>
+            )}
           </S.UploadedBox>
         </S.InputBox>
         <S.InputBox>
@@ -282,10 +355,3 @@ const Upload = () => {
   );
 };
 export default Upload;
-
-const PHOTOS = [
-  { id: 0, count: '1' },
-  { id: 1, count: '2' },
-  { id: 2, count: '3' },
-  { id: 3, count: '4' },
-];
