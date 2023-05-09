@@ -1,6 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../../Components/Header/Header';
 import * as S from './MartInfoStatus.style';
 
@@ -17,28 +15,32 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [lastIndex, setLastIndex] = useState(0);
 
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/evaluation/marts?sort=1', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
-      },
-    })
+    fetch(
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=1&lastIndex=${lastIndex}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
+        },
+      }
+    )
       .then(response => response.json())
       .then(data => {
         setMartStatusData(data.result);
         setLoading(false);
       });
-  }, []);
+  }, [lastIndex]);
 
   if (loading) return null;
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
+    setLastIndex(0);
 
     setMartStatusData([]);
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=${e.target.value}`,
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${e.target.value}&lastIndex=${lastIndex}`,
       {
         method: 'GET',
         headers: {
@@ -54,6 +56,26 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const onClickBack = () => {
     setIsMartInfoStatus(prev => !prev);
   };
+
+  const handleScroll = () => {
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight && martStatusData.length > 0) {
+      setLastIndex(martStatusData.length);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [martStatusData]);
 
   const noContents = (
     <S.NoContents>{NO_CONTNET_LIST[onScreen - 1]}</S.NoContents>

@@ -25,7 +25,7 @@ export const DropOutTitle = styled.h2`
 export const DropOutText = styled.p`
   margin-top: 22px;
   padding-bottom: 22px;
-  border-bottom: 1px solid #f9f9f9;
+  border-bottom: 1px solid #ececec;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
