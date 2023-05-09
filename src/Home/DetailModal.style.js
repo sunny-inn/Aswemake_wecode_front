@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { flex } from '../../Styles/Mixin';
 
 export const ModalContainer = styled.div`
   width: 288px;
@@ -63,14 +64,20 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 export const CloseBox = styled.div`
-  width: 90%;
-  height: 26px;
-  display: flex;
-  justify-content: end;
+  ${flex('space-between', 'center', null)}
+  width: 288px;
+  padding: 10px 10px;
+  margin: 10px 0px;
+  border-bottom: 1px solid #eeeeee;
 `;
-
 export const CloseImg = styled.img`
   width: 26px;
   height: 26px;
   cursor: pointer;
+`;
+export const ModalTitle = styled.p`
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  color: #252525;
 `;

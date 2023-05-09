@@ -10,6 +10,7 @@ const DetailModal = ({ handleModal, currentId, selectedMart }) => {
     <S.ModalContainer>
       <S.ModalContentBox>
         <S.CloseBox>
+          <S.ModalTitle>전단 등록</S.ModalTitle>
           <S.CloseImg src="/images/closeImg.png" onClick={handleModal} />
         </S.CloseBox>
         <S.ModalText>
