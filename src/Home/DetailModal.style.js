@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { flex } from '../../Styles/Mixin';
 
 export const ModalContainer = styled.div`
   width: 288px;
@@ -64,7 +63,9 @@ export const ModalUploadButton = styled.button`
   margin-left: 8px;
 `;
 export const CloseBox = styled.div`
-  ${flex('space-between', 'center', null)}
+  display: flex;
+  justify-content: space-between;
+  align-items: center;s
   width: 288px;
   padding: 10px 10px;
   margin: 10px 0px;
