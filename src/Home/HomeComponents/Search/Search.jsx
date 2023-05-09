@@ -180,7 +180,7 @@ const Search = ({
                   </S.KeywordItem>
                 ))
               ) : (
-                <S.KeywordItem />
+                <div />
               )}
             </S.SearchedList>
           </>
