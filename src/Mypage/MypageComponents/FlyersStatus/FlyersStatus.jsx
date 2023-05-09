@@ -29,16 +29,13 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
     setOnScreen(e.target.value);
 
     setFlyersStatusData([]);
-    fetch(
-      `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: localStorage.getItem('token'),
-        },
-      }
-    )
+    fetch(`https://flyers.qmarket.me/api/evaluation/flyers?sort=${onScreen}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('token'),
+      },
+    })
       .then(response => response.json())
       .then(data => setFlyersStatusData(data.result));
   };
