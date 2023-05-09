@@ -12,11 +12,13 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
   const [martStatusData, setMartStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [lastIndex, setLastIndex] = useState(0);
+  const [lastIndex, setLastIndex] = useState(-1);
 
   useEffect(() => {
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=1&lastIndex=${lastIndex}`,
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=1&lastIndex=${
+        lastIndex + 1
+      }`,
       {
         method: 'GET',
         headers: {
@@ -27,7 +29,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
     )
       .then(response => response.json())
       .then(data => {
-        setMartStatusData(data.result);
+        setMartStatusData(prevData => [...prevData, ...data.result]);
         setLoading(false);
       });
   }, [lastIndex]);
@@ -45,12 +47,15 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
 
       if (
         scrollTop + clientHeight >= scrollHeight &&
-        martStatusData.length > 0
+        martStatusData.length > 0 &&
+        !loading
       ) {
-        setLastIndex(martStatusData.length);
+        setLastIndex(prevIndex => prevIndex + 1);
       }
     };
 
+    setLastIndex(-1);
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -59,11 +64,13 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
-    setLastIndex(0);
+    setLastIndex(-1);
 
     setMartStatusData([]);
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=${e.target.value}&lastIndex=${lastIndex}`,
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${
+        e.target.value
+      }&lastIndex=${lastIndex + 1}`,
       {
         method: 'GET',
         headers: {
@@ -73,7 +80,9 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
       }
     )
       .then(response => response.json())
-      .then(data => setMartStatusData(data.result));
+      .then(data =>
+        setMartStatusData(prevData => [...prevData, ...data.result])
+      );
   };
 
   const onClickBack = () => {
