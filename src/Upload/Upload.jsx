@@ -169,6 +169,12 @@ const Upload = () => {
   // modal 닫기
   const handleModal = () => {
     setIsUploaded(prev => !prev);
+    setPhoneNumber('');
+    setMartInfo({});
+    setImg1();
+    setImg2();
+    setImg3();
+    setImg4();
   };
 
   return (
