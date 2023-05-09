@@ -74,7 +74,7 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
-  // FIXME: 지금 마트 이름으로만 검색하게 되어있어서 주소 검색가능하도록 수정
+  // 검색 기능
   useEffect(() => {
     setFilteredMarts(
       marts.filter(
@@ -83,7 +83,7 @@ const Search = ({
           mart.martNumberAddress.includes(newKeyword)
       )
     );
-  }, [isSubmitted]);
+  }, [isSubmitted, newKeyword]);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
