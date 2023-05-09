@@ -5,7 +5,7 @@ const KakaoShare = (url, title, argumentKey, detailMartList) => {
       kakao.init(`${process.env.REACT_APP_JAVA_SCRIPT_KEY}`);
     }
 
-    console.log('마트리스트?ggg', detailMartList[0]);
+    console.log('마트리스트?잘나와', detailMartList[0]);
 
     kakao.Link.sendDefault({
       objectType: 'feed',
