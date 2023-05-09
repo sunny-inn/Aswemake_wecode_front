@@ -39,6 +39,7 @@ export const SearchBar = styled.input`
 export const KeywordBox = styled.div`
   position: fixed;
   padding: 10px 20px;
+  width: 360px;
   background-color: #ffffff;
   z-index: 10;
 `;
