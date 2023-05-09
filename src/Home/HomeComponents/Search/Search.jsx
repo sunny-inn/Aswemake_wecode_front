@@ -90,7 +90,7 @@ const Search = ({
     const sortedList =
       filteredList &&
       filteredList.sort(function (a, b) {
-        return (a.distance = b.distance);
+        return a.distance - b.distance;
       });
     setFilteredMarts(sortedList);
   }, [isSubmitted]);
