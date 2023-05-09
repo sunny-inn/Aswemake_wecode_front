@@ -87,8 +87,12 @@ const Search = ({
       // ||
       // mart.martNumberAddress.includes(newKeyword)
     );
-    console.log(filteredList);
-    setFilteredMarts(filteredList);
+    const sortedList =
+      filteredList &&
+      filteredList.sort(function (a, b) {
+        return (a.distance = b.distance);
+      });
+    setFilteredMarts(sortedList);
   }, [isSubmitted]);
 
   // 검색어 삭제
