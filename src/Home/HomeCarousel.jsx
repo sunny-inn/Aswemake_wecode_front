@@ -42,20 +42,20 @@ const HomeCarousel = ({
   const navigate = useNavigate();
   const params = useParams();
 
-  const handleFavorite = id => {
-    const newSelectedMartList = selectedMartList.map(mart => {
-      if (mart.martId === id) {
-        return {
-          ...mart,
-          checked: !mart.checked,
-          isFavorite: !mart.isFavorite, // 수정된 부분
-        };
-      } else {
-        return mart;
-      }
-    });
-    setSelectedMartList(newSelectedMartList);
-  };
+  // const handleFavorite = id => {
+  //   const newSelectedMartList = selectedMartList.map(mart => {
+  //     if (mart.martId === id) {
+  //       return {
+  //         ...mart,
+  //         checked: !mart.checked,
+  //         isFavorite: !mart.isFavorite, // 수정된 부분
+  //       };
+  //     } else {
+  //       return mart;
+  //     }
+  //   });
+  //   setSelectedMartList(newSelectedMartList);
+  // };
 
   const token = localStorage.getItem('token');
   const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
@@ -97,18 +97,18 @@ const HomeCarousel = ({
     );
   };
 
-  const afterhandleModal = () => {
-    navigate(`/detail/${selectedMart.martId}`);
-  };
+  // const afterhandleModal = () => {
+  //   navigate(`/detail/${selectedMart.martId}`);
+  // };
 
   const onClickMartItem = id => e => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
     if (selectedMart && selectedMart.martFlyerImages === '0') {
-      handleModal(true);
-      afterhandleModal();
+      handleModal();
+      // afterhandleModal();
     } else {
       // navigate(`/detail/${id}`);
-      // navigate(`/detail/${selectedMart.martId}`);
+      navigate(`/detail/${selectedMart.martId}`);
     }
   };
 
