@@ -89,6 +89,8 @@ const Home = () => {
   const handleMarkerClick = (e, mart, index) => {
     if (selectedMart === null) {
       setSelectedMart(mart);
+    } else if (selectedMart !== mart) {
+      setSelectedMart(mart);
     } else {
       setSelectedMart(null);
     }
@@ -102,6 +104,8 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
   };
+
+  console.log(selectedMart);
 
   console.log('isMarkerClicked', isMarkerClicked);
 
@@ -168,7 +172,6 @@ const Home = () => {
           setHomeMartList(data.martList);
           console.log('콘솔찍었다.', data);
         });
-      
   }, [center]);
 
   console.log('마트리스트들', homeMartList);
