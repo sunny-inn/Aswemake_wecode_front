@@ -53,14 +53,14 @@ const Calendar = ({
   // 날짜 비교
   useEffect(() => {
     let currentDate = new Date();
-    let formattedDate =
+    let today =
       currentDate.getFullYear().toString() +
       (currentDate.getMonth() + 1 < 9
         ? '0' + (currentDate.getMonth() + 1)
         : currentDate.getMonth() + 1) +
       currentDate.getDate().toString().padStart(2, '0');
 
-    let formattedEnd =
+    let end =
       endDate &&
       endDate.getFullYear() +
         (endDate.getMonth() + 1 < 9
@@ -68,7 +68,7 @@ const Calendar = ({
           : endDate.getMonth() + 1) +
         endDate.getDate().toString().padStart(2, '0');
 
-    if (parseInt(formattedDate) > parseInt(formattedEnd)) {
+    if (parseInt(today) > parseInt(end)) {
       setInvalidEndDate(true);
     } else {
       setInvalidEndDate(false);
@@ -83,9 +83,6 @@ const Calendar = ({
     if (formattedStart && formattedEnd) {
       setOpen(false);
     }
-
-    console.log(formattedDate);
-    console.log(formattedEnd);
   }, [startDate, endDate]);
 
   return (
