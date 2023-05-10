@@ -127,8 +127,8 @@ const Home = () => {
       //   Array.from({ length: homeMartList.length }, () => false)
       // );
       setIsMarkerClicked(repeatFalse(homeMartList.length));
+      setSelectedMart(null);
     }
-    setSelectedMart(null);
     console.log('useEffect1');
   }, [homeMartList]);
 
