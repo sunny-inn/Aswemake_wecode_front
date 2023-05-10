@@ -25,7 +25,7 @@ const Favorite = () => {
       .then(data => {
         setAddedFavoriteList(data.data);
       });
-  }, [token]);
+  }, []);
 
   return (
     <div>
