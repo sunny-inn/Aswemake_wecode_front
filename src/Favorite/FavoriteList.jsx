@@ -74,7 +74,9 @@ const FavoriteList = ({
                             ? '/images/favorite.png'
                             : '/images/clickedFavorite.png'
                         }
-                        onClick={() => handleFavorite(i * list.length + j)}
+                        onClick={() =>
+                          handleFavorite(i * list.length + j, item.martId)
+                        }
                       />
                     </S.MartTitleLi>
                     <S.MartContentBox>
