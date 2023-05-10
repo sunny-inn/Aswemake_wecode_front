@@ -169,7 +169,7 @@ const Signup = () => {
     isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    year !== '' &&
+    year.length === 4 &&
     month !== '' &&
     (date !== '' || date !== undefined) &&
     gender !== '' &&
