@@ -41,38 +41,13 @@ const BigFlyerCarousel = ({
 
         <S.BigFlyerImgBox>
           <Slider {...settings}>
-            <S.FlyerImage
-              src={
-                list.martFlyerImages.length <= 1
-                  ? '/images/flyernone.png'
-                  : list.martFlyerImages[0].imageUrl
-              }
-              alt="전단지"
-            />
-            <S.FlyerImage
-              src={
-                list.martFlyerImages.length < 2
-                  ? '/images/flyernone.png'
-                  : list.martFlyerImages[1].imageUrl
-              }
-              alt="전단지"
-            />
-            <S.FlyerImage
-              src={
-                list.martFlyerImages.length < 3
-                  ? '/images/flyernone.png'
-                  : list.martFlyerImages[2].imageUrl
-              }
-              alt="전단지"
-            />
-            <S.FlyerImage
-              src={
-                list.martFlyerImages.length < 4
-                  ? '/images/flyernone.png'
-                  : list.martFlyerImages[3].imageUrl
-              }
-              alt="전단지"
-            />
+            {list.martFlyerImages &&
+              list.martFlyerImages.map((image, index) => (
+                <S.FlyerImage key={index} src={image.imageUrl} alt="전단지" />
+              ))}
+            {!list.martFlyerImages && (
+              <S.FlyerImage src="/images/flyernone.png" alt="전단지" />
+            )}
           </Slider>
         </S.BigFlyerImgBox>
       </S.BigCarouselContentBox>
