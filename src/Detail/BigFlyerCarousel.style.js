@@ -31,7 +31,6 @@ export const ModalCloseImg = styled.img`
 
 export const FlyerImage = styled.img`
   width: 100%;
-  height: 95%;
 `;
 
 export const BigFlyerImgBox = styled(Slider)`
