@@ -91,9 +91,9 @@ const Search = ({
     setFilteredMarts(sortedList);
   }, [isSubmitted]);
 
-  if (marts) {
-    console.log(marts[0].martNumberAddress);
-  }
+  // if (marts) {
+  //   console.log(marts[0].martNumberAddress);
+  // }
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
