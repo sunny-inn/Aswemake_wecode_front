@@ -173,7 +173,7 @@ const Home = () => {
   console.log('마트리스트들', homeMartList);
 
   useEffect(() => {
-    if (mapRef.current) {
+    if (mapRef.current && searchedMart !== null) {
       console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
         selectedMart.lat,
