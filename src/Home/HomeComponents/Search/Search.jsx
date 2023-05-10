@@ -80,9 +80,9 @@ const Search = ({
   useEffect(() => {
     if (marts.length > 0) {
       const filteredList = marts.filter(
-        mart =>
-          mart.martName.includes(newKeyword) ||
-          mart.martNumberAddress.includes(newKeyword)
+        mart => mart.martName.includes(newKeyword)
+        // ||
+        // mart.martNumberAddress.includes(newKeyword)
       );
       const sortedList =
         filteredList &&
@@ -96,6 +96,7 @@ const Search = ({
   // if (marts.length > 0) {
   //   console.log(marts[0].martNumberAddress);
   // }
+  console.log(filteredMarts);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
