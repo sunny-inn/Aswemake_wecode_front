@@ -79,11 +79,14 @@ const Search = ({
   // FIXME: 검색 기능
   useEffect(() => {
     if (marts.length > 0) {
-      const filteredList = marts.filter(
-        mart => mart.martName.includes(newKeyword)
-        // ||
-        // mart.martNumberAddress.includes(newKeyword)
-      );
+      const list = marts.filter(mart => mart.martNumberAddress !== null);
+      const filteredList =
+        list &&
+        list.filter(
+          mart =>
+            mart.martName.includes(newKeyword) ||
+            mart.martNumberAddress.includes(newKeyword)
+        );
       const sortedList =
         filteredList &&
         filteredList.sort(function (a, b) {
@@ -98,6 +101,7 @@ const Search = ({
   // if (marts.length > 0) {
   //   console.log(marts[0].martNumberAddress.includes('강릉'));
   // }
+
   console.log(filteredMarts);
 
   // 검색어 삭제
