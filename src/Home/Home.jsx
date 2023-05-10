@@ -127,6 +127,7 @@ const Home = () => {
           lat: data.userPosition.lat,
           lng: data.userPosition.lng,
         });
+        console.log('useEffect');
       });
   }, []);
 
