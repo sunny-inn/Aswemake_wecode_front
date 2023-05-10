@@ -229,7 +229,7 @@ const FindPwd = () => {
         </S.ButtonOne>
         <S.InputBox
           style={{ width: '204px' }}
-          placeholder="인증 번호를 입력해 주세요."
+          placeholder="인증 번호를 입력해주세요."
           name="code"
           value={input.code}
           onChange={handleCode}

@@ -7,6 +7,11 @@ import LoginLayout from '../Login/Component/LoginLayout';
 const WithdrawPoint = () => {
   const navigate = useNavigate();
 
+  const goToChangeAccount = e => {
+    e.preventDefault();
+    navigate('accountchange');
+  };
+
   const onClickBack = e => {
     e.preventDefault();
     navigate('/mypage');
@@ -86,7 +91,7 @@ const WithdrawPoint = () => {
         const data = await response.json();
         console.log('내은행:', data);
         setAccountInfo(data);
-        setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`);
+        // setInputValue(`${data.result.bankName}, ${data.result.accountNumber}`);
       } catch (error) {
         console.error('Error fetching account info:', error);
       }
@@ -202,9 +207,9 @@ const WithdrawPoint = () => {
         <S.TitleContainer>
           <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
           <S.FromMyPoint>로</S.FromMyPoint>
-          <Link to="accountchange">
-            <S.ChangeAccount>계좌변경 > </S.ChangeAccount>
-          </Link>
+          <S.ChangeAccount onClick={goToChangeAccount}>
+            계좌변경 '{'>'}'
+          </S.ChangeAccount>
         </S.TitleContainer>
         <S.Withdraw
           value={

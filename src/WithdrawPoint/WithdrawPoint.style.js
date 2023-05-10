@@ -74,6 +74,12 @@ export const Withdraw = styled.input`
   border-radius: 8px;
   border: 1px solid #ededed;
   padding: 16px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #707070;
+  font-weight: 500;
+  font-size: 15px;
+  color: #707070;
   background-color: rgba(249, 249, 249, 1);
   ::placeholder {
     font-weight: 500;
