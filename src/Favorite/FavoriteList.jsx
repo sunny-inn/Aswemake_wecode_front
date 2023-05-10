@@ -2,35 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as S from './FavoriteList.style';
 
-const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
+const FavoriteList = ({
+  addedFavoriteList,
+  handleFavorite,
+  setImageStates,
+  imageStates,
+}) => {
   // const [checked, setChecked] = useState(false);
   const params = useParams();
 
-  const handleFavorite = index => {
-    const newImageStates = [...imageStates];
-    newImageStates[index] = !newImageStates[index];
-    setImageStates(newImageStates);
-    // setChecked(prevChecked => !prevChecked);
-  };
+  // const handleFavorite = index => {
+  //   const newImageStates = [...imageStates];
+  //   newImageStates[index] = !newImageStates[index];
+  //   setImageStates(newImageStates);
+  //   // setChecked(prevChecked => !prevChecked);
+  // };
   const token = localStorage.getItem('token');
-  useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-      body: JSON.stringify({
-        imageStates,
-        handleFavorite,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // do something with the response
-      });
-  }, [handleFavorite]);
 
   console.log('favoriteList', addedFavoriteList);
 

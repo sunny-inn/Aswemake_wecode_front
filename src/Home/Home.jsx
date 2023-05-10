@@ -243,7 +243,7 @@ const Home = () => {
                 // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
                 center={center}
                 defaultZoom={15}
-                minZoom={9}
+                minZoom={7}
                 onDragEnd={handleDragEnd}
                 // onCenterPointChanged={onCenterPointChanged}
                 onCenterChanged={onCenterChanged} //중심좌표구할때

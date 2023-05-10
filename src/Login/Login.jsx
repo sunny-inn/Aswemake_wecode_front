@@ -15,6 +15,7 @@ const Login = () => {
   const [checked, setChecked] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
   const [isFailed, setIsFailed] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const saveInput = e => {
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
@@ -66,6 +67,15 @@ const Login = () => {
       checkConnection();
     }
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/home');
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) return null;
 
   const goToHome = () => {
     // cookies.set('my-cookie', `response.cookie`, {

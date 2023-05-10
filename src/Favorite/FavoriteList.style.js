@@ -8,6 +8,7 @@ export const FavoriteListContainer = styled.div`
   align-items: center;
   overflow-y: scroll;
   padding-bottom: 15px;
+  margin-top: -15px;
 `;
 
 export const MartBox = styled.div`
@@ -42,7 +43,7 @@ export const CarouselContent = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 17px;
-  margin-left: 10px;
+  margin-left: 7px;
   padding-top: 5px;
   color: #707070;
   width: 250px;
@@ -58,6 +59,7 @@ export const MartTitle = styled.span`
   font-size: 16px;
   line-height: 23px;
   color: black;
+  margin-top: -4px;
 `;
 
 export const StarImg = styled.img`
@@ -75,5 +77,5 @@ export const MartContentBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 55%;
+  height: 67%;
 `;
