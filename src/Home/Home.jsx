@@ -255,6 +255,7 @@ const Home = () => {
             centerPoint={centerPoint}
           >
             {homeMartList.length > 0 &&
+              homeMartList !== null &&
               homeMartList.map((mart, index) => {
                 //2일전계산
                 const now = new Date();
