@@ -87,7 +87,12 @@ const Home = () => {
   };
 
   const handleMarkerClick = (e, mart, index) => {
-    setSelectedMart(mart);
+    if (selectedMart === null) {
+      setSelectedMart(mart);
+    } else {
+      setSelectedMart(null);
+    }
+
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === index) {
         return !toggle;
@@ -115,6 +120,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    console.log('home에서 찍힘');
     if (homeMartList && selectedMart === null) {
       // setIsMarkerClicked(
       //   Array.from({ length: homeMartList.length }, () => false)
@@ -167,7 +173,7 @@ const Home = () => {
   console.log('마트리스트들', homeMartList);
 
   useEffect(() => {
-    if (mapRef.current) {
+    if (mapRef.current && selectedMart !== null) {
       console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
         selectedMart.lat,
