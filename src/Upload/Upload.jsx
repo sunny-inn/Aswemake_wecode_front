@@ -267,7 +267,6 @@ const Upload = () => {
                   id="imgFile"
                   type="file"
                   accept="image/*"
-                  capture="camera"
                   hidden
                   onChange={handleImg1}
                 />
@@ -293,7 +292,6 @@ const Upload = () => {
                   id="imgFile"
                   type="file"
                   accept="image/*"
-                  capture="camera"
                   hidden
                   onChange={handleImg2}
                 />
@@ -319,7 +317,6 @@ const Upload = () => {
                   id="imgFile"
                   type="file"
                   accept="image/*"
-                  capture="camera"
                   hidden
                   onChange={handleImg3}
                 />
@@ -345,7 +342,6 @@ const Upload = () => {
                   id="imgFile"
                   type="file"
                   accept="image/*"
-                  capture="camera"
                   hidden
                   onChange={handleImg4}
                 />
