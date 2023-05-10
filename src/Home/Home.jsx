@@ -97,22 +97,6 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
     setCenter({ lat: mart.lat, lng: mart.lng });
-
-    center.lat &&
-      fetch(`https://flyers.qmarket.me/api/home/mart`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: token,
-        },
-        body: JSON.stringify(changedCenter),
-      })
-        .then(response => response.json())
-        .then(data => {
-          setHomeMartList(data.martList);
-          console.log('콘솔찍었다.', data);
-        });
   };
 
   console.log('handleMarkerClick', selectedMart);
@@ -154,24 +138,23 @@ const Home = () => {
   //여기 센터주는거
   const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
-  // 5/10 은정 주석처리함
-  // useEffect(() => {
-  //   center.lat &&
-  //     fetch(`https://flyers.qmarket.me/api/home/mart`, {
-  //       method: 'POST',
-  //       credentials: 'include',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //         authorization: token,
-  //       },
-  //       body: JSON.stringify(changedCenter),
-  //     })
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         setHomeMartList(data.martList);
-  //         console.log('콘솔찍었다.', data);
-  //       });
-  // }, [center]);
+  useEffect(() => {
+    center.lat &&
+      fetch(`https://flyers.qmarket.me/api/home/mart`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+        body: JSON.stringify(changedCenter),
+      })
+        .then(response => response.json())
+        .then(data => {
+          setHomeMartList(data.martList);
+          console.log('콘솔찍었다.', data);
+        });
+  }, [center]);
 
   console.log('마트리스트들', homeMartList);
 
