@@ -112,7 +112,6 @@ const AccountChangeInput = () => {
           <label>은행</label>
         </S.InputTitle>
         <S.InputWrapper>
-          {/* {selectBank && <img src={selectBank.img} alt={selectBank.name} />} */}
           <S.Input
             placeholder="은행을 선택해 주세요."
             value={selectBank ? selectBank.name : ''}
@@ -139,6 +138,12 @@ const AccountChangeInput = () => {
           value={accountName}
           onChange={inputChange}
           placeholder="예금주명을 입력해 주세요."
+          style={{
+            borderColor:
+              accountName !== '' && accountVerified === false
+                ? '#E40303'
+                : '#dbdbdb',
+          }}
         />
 
         <S.CodeBtn
@@ -165,6 +170,7 @@ const AccountChangeInput = () => {
               areInputsFilled && accountVerified ? '#FF6A21' : '#DBDBDB',
           }}
           onClick={submitRegi}
+          disabled={!areInputsFilled || !accountVerified}
         >
           변경하기
         </S.EnrollBtn>

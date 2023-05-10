@@ -21,11 +21,16 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     suggest: SUGGEST_HEADER,
     suggestCompleted: SUGGEST_COMPLET_HEADER,
     withdrawPoint: WITHDRAW_HEADER,
+    withdrawPoint2: WITHDRAW_HEADER2,
     accountRegi: ACCOUNTREGI_HEADER,
+    accountRegi2: ACCOUNTREGI_HEADER2,
     findid: FINDID_HEADER,
+    findid2: FINDID_HEADER2,
     findpwd: FINDPWD_HEADER,
     pwdresetting: PWDRESETTING_HEADER,
+    pwdresetting: PWDRESETTING_HEADER2,
     accountChange: ACCOUNTCHANGE_HEADER,
+    accountChange2: ACCOUNTCHANGE_HEADER2,
     martInfo: MART_INFO_HEADER,
     favorite: FAVORITE_HEADER,
   };
@@ -132,9 +137,15 @@ const SUGGEST_COMPLET_HEADER = {
   title: '정보 수정 제안 완료',
   button: false,
 };
+
 const WITHDRAW_HEADER = {
   title: '포인트 인출',
   button: true,
+};
+
+const WITHDRAW_HEADER2 = {
+  title: '포인트 인출',
+  button: false,
 };
 
 const ACCOUNTREGI_HEADER = {
@@ -142,9 +153,19 @@ const ACCOUNTREGI_HEADER = {
   button: true,
 };
 
+const ACCOUNTREGI_HEADER2 = {
+  title: '계좌 등록',
+  button: false,
+};
+
 const FINDID_HEADER = {
   title: '아이디 찾기',
   button: true,
+};
+
+const FINDID_HEADER2 = {
+  title: '아이디 찾기',
+  button: false,
 };
 
 const FINDPWD_HEADER = {
@@ -157,9 +178,19 @@ const PWDRESETTING_HEADER = {
   button: true,
 };
 
+const PWDRESETTING_HEADER2 = {
+  title: '비밀번호 재설정',
+  button: false,
+};
+
 const ACCOUNTCHANGE_HEADER = {
   title: '계좌 변경',
   button: true,
+};
+
+const ACCOUNTCHANGE_HEADER2 = {
+  title: '계좌 변경',
+  button: false,
 };
 
 const MART_INFO_HEADER = {

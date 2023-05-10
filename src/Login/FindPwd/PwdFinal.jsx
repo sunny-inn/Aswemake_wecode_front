@@ -5,15 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import SubmitIdButton from '../Component/SubmitIdButton';
 
 const PwdFinal = () => {
-  const navigate = useNavigate();
-
-  const onClickBack = e => {
-    navigate('/');
-  };
-
   return (
     <div>
-      <Header type="pwdresetting" onClickBack={onClickBack} />
+      <Header type="pwdresetting2" />
       <S.ContentBox>
         <S.Content>
           비밀번호 재설정이 완료되었습니다. <br />

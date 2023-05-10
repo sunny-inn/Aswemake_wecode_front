@@ -5,7 +5,7 @@ export const Modal = styled.div`
   bottom: 21px;
   left: 0;
   width: 360px;
-  top: 100px;
+  top: 75px;
   height: 600px;
   right: 0;
   background-color: #ffff;
@@ -22,23 +22,23 @@ export const Modal = styled.div`
 `;
 
 export const Title = styled.p`
-  margin-top: 24px;
+  margin-top: 14px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
 `;
 
 export const CloseBtn = styled.button`
   position: absolute;
-  width: 24px;
-  height: 24px;
-  top: 10px;
-  right: 10px;
+  top: 25px;
+  right: 13px;
   background: none;
   border: none;
   color: #dbdbdb;
   font-size: 20px;
   cursor: pointer;
 `;
+
+export const Close = styled.img``;
 
 export const BankGrid = styled.div`
   margin-top: 22px;
@@ -56,17 +56,18 @@ export const BankWrapper = styled.div`
 `;
 
 export const BankImgWrapper = styled.div`
-  margin: 14px 28px 14px 29px;
-  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BankImg = styled.img`
-  width: 24px;
-  height: 24px;
+  margin-top: 14px;
 `;
 
 export const BankName = styled.p`
-  margin-top: 8px;
+  margin-top: 6px;
   font-weight: 500;
   font-size: 13px;
 `;
@@ -75,6 +76,13 @@ export const CloseImg = styled.img`
   height: 26px;
   cursor: pointer;
 `;
+
+export const StockTitle = styled.div`
+  margin-top: 30px;
+  font-weight: 700;
+  font-size: 16px;
+`;
+
 export const ModalContentBox = styled.div`
   display: flex;
   flex-direction: column;

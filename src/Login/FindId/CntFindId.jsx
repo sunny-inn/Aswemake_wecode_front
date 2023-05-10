@@ -6,14 +6,9 @@ import { Link, useNavigate } from 'react-router-dom';
 const CntFindId = () => {
   const navigate = useNavigate();
 
-  const onClickBack = e => {
-    e.preventDefault();
-    navigate('/findid');
-  };
-
   return (
     <S.CntFindId>
-      <Header type="findid" onClickBack={onClickBack} />
+      <Header type="findid2" />
       <S.NotFoundId>
         입력하신 정보와 일치하는 <br />
         &emsp; 아이디가 없습니다. <br />
