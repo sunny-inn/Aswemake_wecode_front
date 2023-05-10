@@ -28,7 +28,7 @@ const Header = ({ type, onClickBack, newKeyword, setNewKeyword }) => {
     findid2: FINDID_HEADER2,
     findpwd: FINDPWD_HEADER,
     pwdresetting: PWDRESETTING_HEADER,
-    pwdresetting: PWDRESETTING_HEADER2,
+    pwdresetting2: PWDRESETTING_HEADER2,
     accountChange: ACCOUNTCHANGE_HEADER,
     accountChange2: ACCOUNTCHANGE_HEADER2,
     martInfo: MART_INFO_HEADER,

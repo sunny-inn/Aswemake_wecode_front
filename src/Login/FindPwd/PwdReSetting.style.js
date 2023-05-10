@@ -49,7 +49,7 @@ export const Submit = styled.button`
   height: 50px;
   border-radius: 8px;
   border: none;
-  margin-top: 290px;
+  margin-top: 230px;
   font-size: 16px;
   font-weight: 700;
   color: white;
