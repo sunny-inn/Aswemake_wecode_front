@@ -24,7 +24,7 @@ const Favorite = () => {
       .then(data => {
         setAddedFavoriteList(data.data);
       });
-  }, []);
+  }, [token]);
 
   // useEffect(() => {
   //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
