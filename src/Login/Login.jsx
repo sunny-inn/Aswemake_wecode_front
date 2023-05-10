@@ -101,11 +101,11 @@ const Login = () => {
       });
   };
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      navigate('/home');
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (localStorage.getItem('token')) {
+  //     navigate('/home');
+  //   }
+  // }, [navigate]);
 
   useEffect(() => {
     setTimeout(() => {
