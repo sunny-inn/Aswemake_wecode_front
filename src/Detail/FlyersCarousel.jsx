@@ -48,6 +48,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
       },
     ],
   };
+  console.log('그냥캐러셀', list);
 
   return (
     <>
