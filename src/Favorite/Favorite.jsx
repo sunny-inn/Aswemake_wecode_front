@@ -23,12 +23,13 @@ const Favorite = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setAddedFavoriteList(data.data || []);
+        setAddedFavoriteList(data.data);
       });
   }, []);
   const params = useParams();
 
   console.log('파람스', params);
+  console.log('이미지스테이트?', setImageStates);
 
   const handleFavorite = (index, martId) => {
     const newImageStates = [...imageStates];
@@ -44,7 +45,7 @@ const Favorite = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setAddedFavoriteList(data.data);
+        setImageStates(data.data);
         console.log('데이터', data);
       });
   };
