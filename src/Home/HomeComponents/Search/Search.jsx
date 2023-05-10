@@ -15,7 +15,7 @@ const Search = ({
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [marts, setMarts] = useState([]);
-  const [filteredMarts, setFilteredMarts] = useState();
+  const [filteredMarts, setFilteredMarts] = useState([]);
 
   const token = localStorage.getItem('token');
 
