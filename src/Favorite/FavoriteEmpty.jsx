@@ -21,7 +21,7 @@ const FavoriteEmpty = () => {
         <li>
           <S.GoToHomeButton
             onClick={() => {
-              navigate(`/`);
+              navigate(`/home`);
             }}
           >
             <S.GoToHomeText>마트 둘러보기</S.GoToHomeText>

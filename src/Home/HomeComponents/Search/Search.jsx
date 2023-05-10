@@ -7,10 +7,8 @@ const Search = ({
   setIsSearchClicked,
   homeMartList,
   setSelectedMart,
-  isMarkerClicked,
-  setIsMarkerClicked,
   setCenter,
-  handleMarkerClick,
+  setIsMarkerClicked,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -105,16 +103,23 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = (id, mart, index) => {
+  const repeatFalse = count => {
+    let result = [true];
+    for (let i = 0; i < count; i++) {
+      result.push(false);
+    }
+    return result;
+  };
+
+  const onClickMart = (id, mart) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
     setNewKeyword('');
-    setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
-    setIsMarkerClicked([true]);
+    setIsMarkerClicked(repeatFalse(homeMartList.length));
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import FavoriteEmpty from './FavoriteEmpty';
 import FavoriteList from './FavoriteList';
 import Header from '../Components/Header/Header';
@@ -8,6 +9,7 @@ const Favorite = () => {
   const [imageStates, setImageStates] = useState(
     Array(addedFavoriteList.length).fill(false)
   );
+  console.log('gggg', addedFavoriteList);
 
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -21,31 +23,31 @@ const Favorite = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setAddedFavoriteList(data.data || []);
+        setAddedFavoriteList(data.data);
       });
   }, []);
+  const params = useParams();
 
-  const handleFavorite = index => {
+  console.log('파람스', params);
+  console.log('이미지스테이트?', setImageStates);
+
+  const handleFavorite = (index, martId) => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: JSON.stringify({
-        imageStates,
-        handleFavorite,
-      }),
     })
       .then(response => response.json())
       .then(data => {
-        // do something with the response
+        setImageStates(data.data);
+        console.log('데이터', data);
       });
-    // setChecked(prevChecked => !prevChecked);
   };
 
   // useEffect(() => {
@@ -75,9 +77,11 @@ const Favorite = () => {
       ) : (
         <FavoriteList
           addedFavoriteList={addedFavoriteList}
+          handleFavorite={index =>
+            handleFavorite(index, addedFavoriteList[index].martId)
+          }
           setImageStates={setImageStates}
           imageStates={imageStates}
-          handleFavorite={handleFavorite}
         />
       )}
     </div>

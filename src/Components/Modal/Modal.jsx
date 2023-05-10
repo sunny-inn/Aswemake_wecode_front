@@ -21,8 +21,8 @@ const Modal = ({ handleModal, type, handleSecModal }) => {
         </S.CloseBox>
         <S.ModalText>
           {infoList[type].message1}
-          <br />
-          전단을 등록하러 가볼까요?
+          {/* <br />
+          전단을 등록하러 가볼까요? */}
         </S.ModalText>
         <S.ModalButtonBox>
           {infoList[type].button[0] && (
@@ -44,7 +44,7 @@ export default Modal;
 const MAP_MODAL_INFO = {
   title: '전단 등록',
   close: true,
-  message1: '전단등록이 필요한 마트에요.',
+  message1: '전단등록이 필요한 마트에요. \n 전단을 등록하러 가볼까요?',
   button: ['전단 등록하기'],
 };
 

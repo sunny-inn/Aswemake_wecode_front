@@ -5,25 +5,19 @@ import { useNavigate } from 'react-router-dom';
 const TokenRefresher = () => {
   const navigate = useNavigate();
 
-  // axios.interceptors.request.use(function (config) {
-  //   axios({
-  //     url: 'https://flyers.qmarket.me/api/users/login',
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //   })
-  //     .then(function (response) {
-  //       localStorage.setItem('token', response.data.accessToken);
-  //       response.config.headers['Authorization'] =
-  //         'Bearer' + response.data.accessToken;
-  //     })
-  //     .then();
+  const instance = axios.create({
+    baseURL: 'https://flyers.qmarket.me/api/users/login',
+  });
 
-  //   return config;
-  // });
+  instance.interceptors.request.use(function (config) {
+    const accessToken = localStorage.getItem('token');
 
-  axios.interceptors.response.use(function (response) {
+    config.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+    return config;
+  });
+
+  instance.interceptors.response.use(function (response) {
     console.log(1, response);
 
     if (response.data.message === 'CREATED NEW ACCESS TOKEN') {
