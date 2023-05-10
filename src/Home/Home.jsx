@@ -87,11 +87,7 @@ const Home = () => {
   };
 
   const handleMarkerClick = (e, mart, index) => {
-    if (selectedMart !== null) {
-      setSelectedMart(mart);
-    } else {
-      setSelectedMart(null);
-    }
+    setSelectedMart(mart);
 
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === index) {
