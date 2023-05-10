@@ -105,14 +105,13 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = (id, mart, index) => {
+  const onClickMart = (id, mart) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
     setSelectedMart(selectedMart);
     setNewKeyword('');
-    setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
     setIsMarkerClicked([true]);
   };
