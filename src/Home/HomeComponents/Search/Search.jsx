@@ -113,8 +113,6 @@ const Search = ({
     return result;
   };
 
-  console.log('homeMartList.length', homeMartList.length);
-
   const onClickMart = (id, mart) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
@@ -126,6 +124,9 @@ const Search = ({
     setIsMarkerClicked(repeatFalse(homeMartList.length));
     // setIsMarkerClicked([true]);
   };
+
+  console.log('homeMartList.length', homeMartList.length);
+  console.log('isMarkerClicked', isMarkerClicked);
 
   return (
     <S.SearchBox>
