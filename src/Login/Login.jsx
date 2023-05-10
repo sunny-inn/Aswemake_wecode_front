@@ -73,7 +73,7 @@ const Login = () => {
       navigate('/home');
       setLoading(false);
     }
-  }, []);
+  }, [navigate]);
 
   if (loading) return null;
 
