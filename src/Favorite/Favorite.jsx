@@ -43,7 +43,7 @@ const Favorite = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setAddedFavoriteList(data.data || []);
+        setAddedFavoriteList(data.data);
       });
   };
 
