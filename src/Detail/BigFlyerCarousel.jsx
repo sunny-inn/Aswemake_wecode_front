@@ -32,13 +32,13 @@ const BigFlyerCarousel = ({
   return (
     <S.BigCarouselContainer>
       <S.BigCarouselContentBox>
-        <S.CloseButtonBox>
-          <S.ModalCloseImg
-            src="/images/closeImg.png"
-            onClick={onClickClose}
-            alt="닫기"
-          />
-        </S.CloseButtonBox>
+        {/* <S.CloseButtonBox> */}
+        <S.ModalCloseImg
+          src="/images/closeImg.png"
+          onClick={onClickClose}
+          alt="닫기"
+        />
+        {/* </S.CloseButtonBox> */}
 
         <S.BigFlyerImgBox>
           <Slider {...settings}>
