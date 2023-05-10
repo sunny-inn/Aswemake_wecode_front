@@ -14,6 +14,7 @@ const Login = () => {
   const [input, setInput] = useState({ id: '', pw: '', showPw: false });
   const [checked, setChecked] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
+  const [isFailed, setIsFailed] = useState(false);
 
   const saveInput = e => {
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
@@ -97,6 +98,7 @@ const Login = () => {
         if (localStorage.getItem('token') !== 'undefined') {
           return navigate('/home');
         } else {
+          setIsFailed(true);
           const message = document.getElementById('message');
           message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';
         }
@@ -128,6 +130,7 @@ const Login = () => {
               placeholder=" 아이디를 입력해주세요."
               value={input.id}
               onChange={saveInput}
+              isFailed={isFailed}
             />
             <S.InputBox
               name="pw"
@@ -135,6 +138,7 @@ const Login = () => {
               placeholder=" 비밀번호를 입력해주세요."
               value={input.pw}
               onChange={saveInput}
+              isFailed={isFailed}
             />
             <S.ShowPwImg
               onClick={toggleShowPw}
@@ -160,7 +164,7 @@ const Login = () => {
 
             <S.Button
               onClick={() => goToHome()}
-              disabled={input.id.length < 2 || input.pw.length < 2}
+              disabled={input.id.length < 7 || input.pw.length < 2}
             >
               <span>로그인</span>
             </S.Button>
