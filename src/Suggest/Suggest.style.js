@@ -2,13 +2,12 @@ import styled from 'styled-components';
 
 export const SuggestModalContainer = styled.div`
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   background-color: #fff;
   width: 366px;
   height: 616px;
-  z-index: 20;
-  margin-right: -5px;
+  z-index: 10;
 `;
 
 export const SuggestWholeContainer = styled.div`
