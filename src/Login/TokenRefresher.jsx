@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 const TokenRefresher = () => {
   const navigate = useNavigate();
 
-  axios.interceptors.request.use(function (config) {
+  const instance = axios.create({
+    baseURL: 'https://flyers.qmarket.me/api/users/login',
+  });
+
+  instance.interceptors.request.use(function (config) {
     const accessToken = localStorage.getItem('token');
 
     config.headers.common['Authorization'] = `Bearer ${accessToken}`;
@@ -13,7 +17,7 @@ const TokenRefresher = () => {
     return config;
   });
 
-  axios.interceptors.response.use(function (response) {
+  instance.interceptors.response.use(function (response) {
     console.log(1, response);
 
     if (response.data.message === 'CREATED NEW ACCESS TOKEN') {
