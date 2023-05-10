@@ -80,8 +80,7 @@ const Search = ({
   useEffect(() => {
     if (marts.length > 0) {
       const filteredList = marts.filter(
-        mart => mart.martNumberAddress.includes(newKeyword)
-        // mart.martName.includes(newKeyword)
+        mart => mart.martName.includes(newKeyword)
         // ||
         // mart.martNumberAddress.includes(newKeyword)
       );
@@ -94,9 +93,9 @@ const Search = ({
     }
   }, [isSubmitted]);
 
-  // if (marts.length > 0) {
-  //   console.log(marts[0].martNumberAddress);
-  // }
+  if (marts.length > 0) {
+    console.log(marts[0].martNumberAddress.includes('강릉'));
+  }
   console.log(filteredMarts);
 
   // 검색어 삭제
