@@ -114,6 +114,7 @@ const Search = ({
     setNewKeyword('');
     setCenter({ lat: mart.lat, lng: mart.lng });
     handleMarkerClick(mart, index);
+    console.log('search', mart);
 
     // const newToggles = isMarkerClicked.map((toggle, i) => {
     //   if (i === index) {
