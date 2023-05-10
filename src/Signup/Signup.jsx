@@ -87,6 +87,7 @@ const Signup = () => {
 
   const handleDate = e => {
     const day = e.target.value;
+    console.log('day', day === '');
     if (day !== '') {
       const formattedDay = formatDay(day);
       setDate(formattedDay);
@@ -173,7 +174,7 @@ const Signup = () => {
     name !== '' &&
     year.length === 4 &&
     month !== '' &&
-    date.length === 2 &&
+    // date.length === 2 &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
