@@ -25,7 +25,8 @@ export const InputBoxContainer = styled.div`
 `;
 export const InputBox = styled.input`
   box-sizing: border-box;
-  border: 1px solid #dbdbdb;
+  border: ${({ isFailed }) =>
+    isFailed ? '1px solid #e42003' : '1px solid #dbdbdb'};
   width: 328px;
   height: 50px;
   border-radius: 8px;
@@ -63,17 +64,17 @@ export const KeepLoginBox = styled.div`
 `;
 
 export const CheckboxImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
 `;
 export const KeepLoginSpan = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 7px;
   padding-top: 3px;
-  color: #707070;
+  color: #b4b4b4;
 `;
 
 export const FindBlock = styled.div`
@@ -129,9 +130,10 @@ export const LineHr = styled.hr`
   width: 325px;
   margin: 15px 0;
 `;
-export const FailMsg = styled.span`
-  color: #ff6a21;
+export const FailMsg = styled.p`
+  color: #e42003;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  margin-bottom: ${({ isFailed }) => (isFailed ? '13px' : '0')};
 `;

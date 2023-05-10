@@ -3,9 +3,9 @@ import { flex } from '../../Styles/Mixin';
 
 export const Background = styled.div`
   position: absolute;
-  top: 0;
+  top: -76px;
   left: 0;
-  width: 360px;
+  width: 364px;
   height: 670px;
   background: rgba(25, 25, 25, 0.35);
   z-index: 10;
@@ -18,7 +18,7 @@ export const ModalContainer = styled.div`
   left: 50%;
   width: 288px;
   height: 196px;
-  padding: 10px;
+  padding: 10px 12px;
   transform: translate(-50%, -50%);
   background-color: #ffffff;
   border-radius: 8px;
@@ -28,7 +28,7 @@ export const CloseBox = styled.div`
   ${flex('space-between', 'center', null)}
   width: 288px;
   padding: 10px 10px;
-  margin: 10px 0px;
+  margin-top: 10px;
   border-bottom: 1px solid #eeeeee;
 `;
 
@@ -51,15 +51,12 @@ export const CloseImg = styled.img`
 `;
 
 export const ModalText = styled.p`
+  ${flex('center', 'center', null)}
   height: 20px;
+  margin: 30px 0px;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 50px;
-  padding-top: 30px;
-  display: flex;
-  align-items: center;
-  text-align: center;
 `;
 
 export const ModalButtonBox = styled.div`
@@ -67,24 +64,25 @@ export const ModalButtonBox = styled.div`
   padding-bottom: 20px;
 `;
 
-export const ModalInfoButton = styled.button`
-  border: 1px solid #ff6a21;
-  border-radius: 8px;
-  background-color: #fff;
-  width: 128px;
-  height: 50px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  color: #ff6a21;
-  cursor: pointer;
-`;
+// export const ModalInfoButton = styled.button`
+//   border: 1px solid #ff6a21;
+//   border-radius: 8px;
+//   background-color: #fff;
+//   width: 128px;
+//   height: 50px;
+//   font-style: normal;
+//   font-weight: 700;
+//   font-size: 16px;
+//   line-height: 16px;
+//   color: #ff6a21;
+//   cursor: pointer;
+// `;
+
 export const ModalUploadButton = styled.button`
   border: 1px solid #ff6a21;
   border-radius: 8px;
   background-color: #ff6a21;
-  width: 128px;
+  width: 264px;
   height: 50px;
   font-style: normal;
   font-weight: 700;
@@ -92,5 +90,4 @@ export const ModalUploadButton = styled.button`
   line-height: 16px;
   color: #fff;
   cursor: pointer;
-  margin-left: 8px;
 `;

@@ -8,8 +8,14 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
   const [flyersStatusData, setFlyersStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const handleOnScreen = e => {
+    setOnScreen(e.target.value);
+  };
+
   useEffect(() => {
-    fetch('https://flyers.qmarket.me/api/evaluation/flyers?sort=1', {
+    setFlyersStatusData([]);
+
+    fetch(`https://flyers.qmarket.me/api/evaluation/flyers?sort=${onScreen}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -21,26 +27,27 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
         setFlyersStatusData(data.result);
         setLoading(false);
       });
-  }, []);
+  }, [onScreen]);
 
   if (loading) return null;
 
-  const handleOnScreen = e => {
-    setOnScreen(e.target.value);
+  // const handleOnScreen = e => {
+  //   setOnScreen(e.target.value);
 
-    fetch(
-      `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          authorization: localStorage.getItem('token'),
-        },
-      }
-    )
-      .then(response => response.json())
-      .then(data => setFlyersStatusData(data.result));
-  };
+  //   setFlyersStatusData([]);
+  //   fetch(
+  //     `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json;charset=utf-8',
+  //         authorization: localStorage.getItem('token'),
+  //       },
+  //     }
+  //   )
+  //     .then(response => response.json())
+  //     .then(data => setFlyersStatusData(data.result));
+  // };
 
   const onClickBack = () => {
     setIsFlyersStatus(prev => !prev);
@@ -89,40 +96,44 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
           noContents
         ) : (
           <ul>
-            <S.FlyersStatusLi>
-              <S.FlyersStatusTitleWrap>
-                <S.FlyersStatusTitle>
-                  등록 {flyersStatusData[0].approvalStatus}
-                </S.FlyersStatusTitle>
-                {onScreen === '3' && (
-                  <S.FlyersStatusSubTitle marginTop="4px">
-                    사유 : 전단 사진 2장 화질이 흐림.
-                  </S.FlyersStatusSubTitle>
-                )}
-              </S.FlyersStatusTitleWrap>
-              <article>
-                <S.FlyersStatusImgWrap>
-                  <img src={flyersStatusData[0].imageUrl[0]} alt="mart" />
-                </S.FlyersStatusImgWrap>
-                <S.FlyersStatusTextWrap>
-                  <S.FlyersStatusName>
-                    {flyersStatusData[0].martName}
-                  </S.FlyersStatusName>
-                  <S.FlyersStatusEtc marginBtm="22px">
-                    {flyersStatusData[0].martAddress}
-                  </S.FlyersStatusEtc>
-                  <S.FlyersStatusEtc>
-                    {flyersStatusData[0].martPhoneNumber}
-                  </S.FlyersStatusEtc>
-                </S.FlyersStatusTextWrap>
-              </article>
-              {onScreen === '3' && <S.ReRegistBtn>다시 등록하기</S.ReRegistBtn>}
-              {/* {onScreen === '3' && (
-              <S.FlyersStatusSubTitle marginTop="8px">
-                이미 전단 등록 완료된 마트입니다.
-              </S.FlyersStatusSubTitle>
-            )} */}
-            </S.FlyersStatusLi>
+            {flyersStatusData.map(flyer => {
+              return (
+                <S.FlyersStatusLi key={flyer.statusId}>
+                  <S.FlyersStatusTitleWrap>
+                    <S.FlyersStatusTitle>
+                      등록 {flyer.approvalStatus}
+                    </S.FlyersStatusTitle>
+                    {onScreen === '3' && (
+                      <S.FlyersStatusSubTitle marginTop="4px">
+                        사유 : 전단 사진 2장 화질이 흐림.
+                      </S.FlyersStatusSubTitle>
+                    )}
+                  </S.FlyersStatusTitleWrap>
+                  <article>
+                    <S.FlyersStatusImgWrap>
+                      <img src={flyer.imageUrl[0]} alt="mart" />
+                    </S.FlyersStatusImgWrap>
+                    <S.FlyersStatusTextWrap>
+                      <S.FlyersStatusName>{flyer.martName}</S.FlyersStatusName>
+                      <S.FlyersStatusEtc marginBtm="22px">
+                        {flyer.martAddress}
+                      </S.FlyersStatusEtc>
+                      <S.FlyersStatusEtc>
+                        {flyer.martPhoneNumber}
+                      </S.FlyersStatusEtc>
+                    </S.FlyersStatusTextWrap>
+                  </article>
+                  {onScreen === '3' && (
+                    <S.ReRegistBtn>다시 등록하기</S.ReRegistBtn>
+                  )}
+                  {/* {onScreen === '3' && (
+            <S.FlyersStatusSubTitle marginTop="8px">
+              이미 전단 등록 완료된 마트입니다.
+            </S.FlyersStatusSubTitle>
+          )} */}
+                </S.FlyersStatusLi>
+              );
+            })}
           </ul>
         )}
       </S.FlyersStatusBody>

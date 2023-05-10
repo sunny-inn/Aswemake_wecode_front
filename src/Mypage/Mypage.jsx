@@ -15,16 +15,16 @@ const Mypage = () => {
   const [isFlyersStatus, setIsFlyersStatus] = useState(false);
   const [isWithdraw, setIsWithdraw] = useState(false);
   const [isMartInfoStatus, setIsMartInfoStatus] = useState(false);
-  const [isTerms, setIsTerms] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigate();
   const [modifyInfo, setModifyInfo] = useState(false);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const toFlyersStatus = () => setIsFlyersStatus(prev => !prev);
   const toWithdraw = () => setIsWithdraw(prev => !prev);
   const toMartInfoStatus = () => setIsMartInfoStatus(prev => !prev);
-  const onClickTerms = () => setIsTerms(prev => !prev);
+  const toTerms = () => setIsTermsOpen(prev => !prev);
   const goToModifyInfo = () => setModifyInfo(prev => !prev);
 
   useEffect(() => {
@@ -147,6 +147,7 @@ const Mypage = () => {
         <MartInfoStatus setIsMartInfoStatus={setIsMartInfoStatus} />
       )}
       {isFlyersStatus && <FlyersStatus setIsFlyersStatus={setIsFlyersStatus} />}
+      {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
       <Header type="mypage" />
       <S.InfoBox>
         <S.NameBox>
@@ -173,7 +174,7 @@ const Mypage = () => {
           <S.MenuBtn onClick={toFlyersStatus}>전단등록 현황</S.MenuBtn>
           <S.MenuBtn onClick={toMartInfoStatus}>마트 정보 수정 현황</S.MenuBtn>
           <S.MenuBtn onClick={handleAccountCheck}>계좌 등록/변경</S.MenuBtn>
-          <S.MenuBtn>이용약관</S.MenuBtn>
+          <S.MenuBtn onClick={toTerms}>이용약관</S.MenuBtn>
         </S.MenuBox>
         <S.LogoutBtnWrap>
           <S.LogoutBtn onClick={handleModal}>로그아웃</S.LogoutBtn>

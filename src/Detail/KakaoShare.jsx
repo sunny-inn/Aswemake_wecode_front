@@ -1,10 +1,11 @@
+const APP_JAVA_KEY = 'a320e86acb93342abb996dc9556d6c55';
+
 const KakaoShare = (url, title, argumentKey, detailMartList) => {
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
-      kakao.init(process.env.REACT_APP_JAVA_SCRIPT_KEY);
+      kakao.init(APP_JAVA_KEY);
     }
-    console.log('마트리스트?', detailMartList[0]);
 
     kakao.Link.sendDefault({
       objectType: 'feed',

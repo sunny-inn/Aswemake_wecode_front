@@ -18,7 +18,7 @@ export const ModifyInfoBody = styled.div`
     padding: 5px 0 22px 0;
     font-size: 15px;
     line-height: 17.9px;
-    border-bottom: 1px solid #f9f9f9;
+    border-bottom: 1px solid #ececec;
   }
 `;
 

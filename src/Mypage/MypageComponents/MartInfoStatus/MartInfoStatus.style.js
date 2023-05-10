@@ -1,3 +1,4 @@
+import ReactModal from 'react-modal';
 import styled from 'styled-components';
 import { flex } from '../../../Styles/Mixin';
 
@@ -7,6 +8,7 @@ export const MartInfoStatus = styled.div`
   left: 0;
   width: 360px;
   height: 616px;
+  overflow: auto;
   z-index: 5;
   background: #fff;
 `;

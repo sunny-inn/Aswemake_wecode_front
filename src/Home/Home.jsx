@@ -290,7 +290,7 @@ const Home = () => {
                     />
                   </div>
                   <S.CurrentLocation
-                    src="./images/home/location.png"
+                    src="./images/home/current.png"
                     alt="현위치"
                     onClick={getCurrentPosition}
                   />
@@ -307,15 +307,15 @@ const Home = () => {
                 />
               </NaverMap>
               {openModal && (
-                <Modal
-                  type="map"
-                  handleModal={handleModal}
-                  handleSecModal={handleSecModal}
-                />
-                // <DetailModal
+                // <Modal
+                //   type="map"
                 //   handleModal={handleModal}
-                //   selectedMart={selectedMart}
+                //   handleSecModal={handleSecModal}
                 // />
+                <DetailModal
+                  handleModal={handleModal}
+                  selectedMart={selectedMart}
+                />
               )}
             </>
           )}

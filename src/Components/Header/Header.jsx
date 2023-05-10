@@ -66,7 +66,7 @@ const TERMS_HEADER = {
 
 const SUBMIT_HEADER = {
   title: '회원가입 완료',
-  button: true,
+  button: false,
 };
 
 const UPLOAD_HEADER = {

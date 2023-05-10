@@ -38,7 +38,8 @@ export const SearchBar = styled.input`
 `;
 export const KeywordBox = styled.div`
   position: fixed;
-  padding: 10px 20px;
+  padding: 10px 16px;
+  width: 360px;
   background-color: #ffffff;
   z-index: 10;
 `;
@@ -53,14 +54,15 @@ export const KeywordTitle = styled.h1`
 export const SearchedList = styled.ul`
   ${flex('flex-start', 'center', 'column')}
   gap: 5px;
-  height: 500px;
+  height: 550px;
+  padding-bottom: 10px;
   overflow-y: scroll;
 `;
 export const SearchedItem = styled.li`
   ${flex('space-between', 'center', null)}
   width: 320px;
   height: 80px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ececec;
   border-radius: 12px;
   cursor: pointer;
@@ -86,9 +88,9 @@ export const Distance = styled.p`
 `;
 export const KeywordItem = styled.li`
   ${flex('space-between', 'center', null)}
-  padding: 10px;
+  padding: 12px 0px;
   width: 328px;
-  border-top: 1px solid #dbdbdb;
+  border-top: 1px solid #f7f7f7;
   color: #252525;
   font-weight: 500;
   font-size: 15px;

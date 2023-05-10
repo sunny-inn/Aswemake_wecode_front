@@ -19,14 +19,21 @@ const UploadInput = css`
   }
 `;
 
-export const UploadForm = styled.form`
-  ${flex(null, null, 'column')}
-  padding: 10px;
-  gap: 15px;
+export const UplaodForm = styled.form`
   width: 360px;
   height: 616px;
   overflow-y: scroll;
-  padding-bottom: 60px;
+`;
+
+export const UploadBox = styled.div`
+  ${flex(null, null, 'column')}
+  gap: 22px;
+  padding: 16px;
+`;
+
+export const InputBox = styled.div`
+  ${flex(null, null, 'column')}
+  gap: 7px;
 `;
 
 export const PhoneBox = styled.div`
@@ -35,7 +42,21 @@ export const PhoneBox = styled.div`
 `;
 
 export const PhoneInput = styled.input`
-  ${UploadInput}
+  width: 204px;
+  height: 50px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: -0.02em;
+
+  ::placeholder {
+    color: #dbdbdb;
+  }
+
   background: #ffffff;
   border: 1px solid ${({ alertMsg }) => (alertMsg ? '#e40303' : '#dbdbdb')};
 `;
@@ -80,11 +101,32 @@ export const PhotoBox = styled.div`
   width: 328px;
 `;
 
+export const UploadedBox = styled.div`
+  ${flex('space=between', 'center', null)}
+  flex-wrap: wrap;
+  width: 328px;
+  gap: 8px;
+`;
+
+export const ImgBox = styled.div`
+  position: relative;
+`;
+
 export const UploadedImg = styled.img`
-  width: 120px;
-  height: 168px;
+  width: 160px;
+  height: 224px;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const DeleteBtn = styled.img`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 `;
 
 export const TutorialBtn = styled.button`
@@ -99,10 +141,11 @@ export const TutorialBtn = styled.button`
   text-decoration: underline #ff6a21;
 `;
 
-export const CameraBox = styled.div`
+export const CameraBox = styled.label`
   ${flex('center', 'center', 'column')}
-  width: 120px;
-  height: 168px;
+  gap: 5px;
+  width: 160px;
+  height: 224px;
   background: #ffffff;
   border: 1px dashed #dbdbdb;
   border-radius: 16px;
@@ -125,7 +168,7 @@ export const ImgCount = styled.p`
 export const SubmitBtn = styled.button`
   width: 328px;
   padding: 15px;
-  margin: 20px 0px;
+  margin-top: 15px;
   background: ${({ handelDisabled }) =>
     handelDisabled ? '#dbdbdb' : '#ff6a21'};
   border: none;
@@ -140,6 +183,7 @@ export const SubmitBtn = styled.button`
 export const CheckBox = styled.div`
   ${flex(null, 'center', null)}
   gap: 5px;
+  padding-top: 15px;
 `;
 
 export const CheckBoxMsg = styled.label`
