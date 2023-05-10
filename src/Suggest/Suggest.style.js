@@ -14,7 +14,7 @@ export const SuggestWholeContainer = styled.div`
   width: 360px;
   height: 560px;
   position: relative;
-  padding: 0px 10px 10px 20px;
+  padding: 0px 10px 10px 10px;
 `;
 
 export const SuggestText = styled.p`

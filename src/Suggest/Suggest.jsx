@@ -25,7 +25,7 @@ const Suggest = ({ onClose, selectedMart }) => {
       martPhoneNumber: input.martPhoneNumber,
     };
     fetch(
-      `https://flyers.qmarket.me/api/home/martModification/${selectedMart.martId}`,
+      `https://flyers.qmarket.me/api/home/martModification/${selectedMart[0].martId}`,
       {
         method: 'POST',
         credentials: 'include',
@@ -43,7 +43,7 @@ const Suggest = ({ onClose, selectedMart }) => {
       .then(data => {
         console.log('데이터', data);
       });
-    navigate('./suggestCompleted');
+    navigate('/suggestCompleted');
   };
   return (
     <S.SuggestModalContainer>
@@ -79,7 +79,7 @@ const Suggest = ({ onClose, selectedMart }) => {
         <S.SuggestBtn
           onClick={onClickSuggestBtn}
           disabled={
-            input.martName.length < 2 || input.martPhoneNumber.length < 2
+            input.martName.length < 4 || input.martPhoneNumber.length < 7
           }
         >
           요청하기
