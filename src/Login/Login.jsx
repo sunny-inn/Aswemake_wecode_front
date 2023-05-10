@@ -100,7 +100,7 @@ const Login = () => {
         } else {
           setIsFailed(true);
           const message = document.getElementById('message');
-          message.innerText = '아이디 혹은 비밀번호가 일치하지 않습니다';
+          message.innerText = '아이디 또는 비밀번호가 맞지 않습니다.';
         }
       });
   };

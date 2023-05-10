@@ -135,5 +135,5 @@ export const FailMsg = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  margin-bottom: 7px;
+  margin-bottom: 13px;
 `;
