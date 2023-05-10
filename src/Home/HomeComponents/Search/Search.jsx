@@ -105,25 +105,25 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = (id, filteredmart, index) => {
-    const mart = homeMartList.filter(mart => {
+  const onClickMart = (id, mart, index) => {
+    const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
-    // setSelectedMart(selectedMart);
+    setSelectedMart(selectedMart);
     setNewKeyword('');
+    setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
-    handleMarkerClick(mart, index);
-    console.log('search', mart);
 
-    // const newToggles = isMarkerClicked.map((toggle, i) => {
-    //   if (i === index) {
-    //     return !toggle;
-    //   } else {
-    //     return isMarkerClicked[index] === false ? false : toggle;
-    //   }
-    // });
-    // setIsMarkerClicked(newToggles);
+    const newToggles = isMarkerClicked.map((toggle, i) => {
+      if (i === index) {
+        return !toggle;
+      } else {
+        return isMarkerClicked[index] === false ? false : toggle;
+      }
+    });
+    setIsMarkerClicked(newToggles);
+    console.log('search에서 찍혔다')
   };
 
   return (
@@ -150,21 +150,17 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredMarts.map((filteredmart, index) => (
+                {filteredMarts.map((mart, index) => (
                   <S.SearchedItem
-                    key={filteredmart.martId}
-                    onClick={() =>
-                      onClickMart(filteredmart.martId, filteredmart, index)
-                    }
+                    key={mart.martId}
+                    onClick={() => onClickMart(mart.martId, mart, index)}
                   >
                     <div>
-                      <S.MartName>{filteredmart.martName}</S.MartName>
-                      <S.MartAddress>
-                        {filteredmart.martNumberAddress}
-                      </S.MartAddress>
+                      <S.MartName>{mart.martName}</S.MartName>
+                      <S.MartAddress>{mart.martNumberAddress}</S.MartAddress>
                     </div>
                     <S.Distance>
-                      {Math.round(filteredmart.distance * 100) / 100}km
+                      {Math.round(mart.distance * 100) / 100}km
                     </S.Distance>
                   </S.SearchedItem>
                 ))}
