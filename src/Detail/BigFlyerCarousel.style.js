@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
 
 export const BigCarouselContainer = styled.div`
   width: 364px;
@@ -12,7 +13,7 @@ export const BigCarouselContentBox = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  position: relative;
+  position: absolute;
   -webkit-box-pack: center;
   overflow: hidden;
   justify-content: center;
@@ -36,7 +37,15 @@ export const FlyerImage = styled.img`
   width: 100%;
   height: 95%;
 `;
-export const BigFlyerImgBox = styled.div`
+// export const BigFlyerImgBox = styled.div`
+//   position: absolute;
+//   box-sizing: border-box;
+//   z-index: 1;
+//   width: 100%;
+//   height: 95%;
+// `;
+
+export const BigFlyerImgBox = styled(Slider)`
   position: absolute;
   box-sizing: border-box;
   z-index: 1;

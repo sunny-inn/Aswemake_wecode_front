@@ -39,14 +39,11 @@ const BigFlyerCarousel = ({
           alt="닫기"
         />
         {/* </S.CloseButtonBox> */}
-
-        <S.BigFlyerImgBox>
-          <Slider {...settings}>
-            <S.FlyerImage src={list.martFlyerImages[0].imageUrl} alt="전단지" />
-            <S.FlyerImage src={list.martFlyerImages[1].imageUrl} alt="전단지" />
-            <S.FlyerImage src={list.martFlyerImages[2].imageUrl} alt="전단지" />
-            <S.FlyerImage src={list.martFlyerImages[3].imageUrl} alt="전단지" />
-          </Slider>
+        <S.BigFlyerImgBox {...settings}>
+          <S.FlyerImage src={list.martFlyerImages[0].imageUrl} alt="전단지" />
+          <S.FlyerImage src={list.martFlyerImages[1].imageUrl} alt="전단지" />
+          <S.FlyerImage src={list.martFlyerImages[2].imageUrl} alt="전단지" />
+          <S.FlyerImage src={list.martFlyerImages[3].imageUrl} alt="전단지" />
         </S.BigFlyerImgBox>
       </S.BigCarouselContentBox>
     </S.BigCarouselContainer>
