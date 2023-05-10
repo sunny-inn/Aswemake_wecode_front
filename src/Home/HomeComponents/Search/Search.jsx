@@ -105,14 +105,13 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = (id, mart, index) => {
-    const selectedMart = homeMartList.filter(mart => {
+  const onClickMart = (id, filteredmart, index) => {
+    const mart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
-    setSelectedMart(selectedMart);
+    // setSelectedMart(selectedMart);
     setNewKeyword('');
-    setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
     handleMarkerClick(mart, index);
 
@@ -150,10 +149,12 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredMarts.map((mart, index) => (
+                {filteredMarts.map((filteredmart, index) => (
                   <S.SearchedItem
-                    key={mart.martId}
-                    onClick={() => onClickMart(mart.martId, mart, index)}
+                    key={filteredmart.martId}
+                    onClick={() =>
+                      onClickMart(filteredmart.martId, filteredmart, index)
+                    }
                   >
                     <div>
                       <S.MartName>{mart.martName}</S.MartName>
