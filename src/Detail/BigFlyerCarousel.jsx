@@ -5,11 +5,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const BigFlyerCarousel = ({
-  // imageUrls,
-  // currentImageIndex,
-  // onClickClose,
-  // list,
-  ...
+  imageUrls,
+  currentImageIndex,
+  onClickClose,
+  list,
 }) => {
   let settings = {
     dots: true,
