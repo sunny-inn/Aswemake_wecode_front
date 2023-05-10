@@ -282,7 +282,9 @@ const Home = () => {
                 );
               })
             ) : (
-              <div />
+              <div position={new navermaps.LatLng(center.lat, center.lng)}>
+                센터
+              </div>
             )}
             <S.SearchBox>
               <div onClick={handleSearch}>
