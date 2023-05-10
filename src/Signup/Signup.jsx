@@ -81,7 +81,6 @@ const Signup = () => {
 
   const formatDay = day => {
     const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
     if (numbers.includes(day)) return `0${day}`;
     if (day.length >= 2 && day[0] === '0') return day.substring(1);
   };
@@ -90,6 +89,7 @@ const Signup = () => {
     const day = e.target.value;
     const formattedDay = formatDay(day);
     setDate(formattedDay);
+    console.log('day', day);
   };
 
   useEffect(() => {
