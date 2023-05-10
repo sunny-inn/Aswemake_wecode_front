@@ -105,7 +105,7 @@ const Search = ({
   // 검색된 마트 클릭
   const repeatFalse = count => {
     let result = [true];
-    for (let i = 0; i < count; i++) {
+    for (let i = 1; i < count; i++) {
       result.push(false);
     }
     return result;
