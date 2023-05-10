@@ -45,7 +45,7 @@ const Suggest = ({ onClose, selectedMart }) => {
       .then(data => {
         console.log('데이터', data);
         setShowSuggestCompleted(true); // 응답 받은 후 모달 띄우도록 상태 변경
-        onClose();
+        // onClose();
       });
   };
   return (

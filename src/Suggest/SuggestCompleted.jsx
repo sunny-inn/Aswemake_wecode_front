@@ -3,7 +3,7 @@ import Header from '../Components/Header/Header';
 import * as S from './SuggestCompleted.style';
 import { useNavigate } from 'react-router-dom';
 
-const SuggestCompleted = () => {
+const SuggestCompleted = ({ onClose }) => {
   const navigate = useNavigate();
 
   const onClickBack = e => {
@@ -13,7 +13,7 @@ const SuggestCompleted = () => {
 
   const onClickCompleted = e => {
     e.preventDefault();
-    navigate('/detail');
+    onClose();
   };
 
   return (
