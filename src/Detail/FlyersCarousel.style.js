@@ -8,9 +8,13 @@ export const FlyerCarouselContainer = styled.div`
   border-bottom: 8px solid #f9f9f9;
   justify-content: center;
   overflow-x: hidden;
+  display: flex;
   margin-left: 10px;
 
   .slick-slide slick-active slick-current {
+    margin-right: 10px;
+  }
+  .slick-slide {
     margin-right: 10px;
   }
 `;

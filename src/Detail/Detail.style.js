@@ -10,6 +10,7 @@ export const DetailContainer = styled.div`
   background-color: white;
   position: relative;
   padding-left: 20px;
+  overflow-x: hidden;
 `;
 
 export const PromoStartDate = styled.p`
