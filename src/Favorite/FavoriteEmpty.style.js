@@ -30,7 +30,7 @@ export const ContentText = styled.li`
 `;
 
 export const GoToHomeButton = styled.button`
-  border: 1px solid #bcbcbc;
+  border: 2px solid #f9f9f9;
   border-radius: 8px;
   background-color: #fff;
   width: 328px;
