@@ -64,17 +64,17 @@ export const KeepLoginBox = styled.div`
 `;
 
 export const CheckboxImg = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
 `;
 export const KeepLoginSpan = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 7px;
   padding-top: 3px;
-  color: #707070;
+  color: #b4b4b4;
 `;
 
 export const FindBlock = styled.div`
