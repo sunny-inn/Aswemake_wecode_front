@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { flex } from '../../Styles/Mixin';
 
 export const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: -76px;
   left: 0;
   width: 364px;
