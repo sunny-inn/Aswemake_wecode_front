@@ -97,6 +97,7 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
   };
+
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);

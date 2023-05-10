@@ -10,7 +10,7 @@ const Search = ({
   isMarkerClicked,
   setIsMarkerClicked,
   setCenter,
-  selectedMart,
+  handleMarkerClick,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -114,15 +114,16 @@ const Search = ({
     setNewKeyword('');
     setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
+    handleMarkerClick(mart, index);
 
-    const newToggles = isMarkerClicked.map((toggle, i) => {
-      if (i === index) {
-        return !toggle;
-      } else {
-        return isMarkerClicked[index] === false ? false : toggle;
-      }
-    });
-    setIsMarkerClicked(newToggles);
+    // const newToggles = isMarkerClicked.map((toggle, i) => {
+    //   if (i === index) {
+    //     return !toggle;
+    //   } else {
+    //     return isMarkerClicked[index] === false ? false : toggle;
+    //   }
+    // });
+    // setIsMarkerClicked(newToggles);
   };
 
   return (
