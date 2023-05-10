@@ -76,7 +76,6 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data);
-        setImageStates(Array(data.data.length).fill(false));
       })
       .then(() => {
         return fetch('https://flyers.qmarket.me/api/favorite', {
@@ -93,7 +92,7 @@ const Favorite = () => {
   return (
     <div>
       <Header type="favorite" />
-      {addedFavoriteList === 'Array(0)' ? (
+      {addedFavoriteList.length === 0 ? (
         <FavoriteEmpty />
       ) : (
         <FavoriteList
