@@ -54,7 +54,7 @@ export const KeywordTitle = styled.h1`
 export const SearchedList = styled.ul`
   ${flex('flex-start', 'center', 'column')}
   gap: 5px;
-  height: 550px;
+  height: 555px;
   padding-bottom: 10px;
   overflow-y: scroll;
 `;
@@ -65,6 +65,7 @@ export const SearchedItem = styled.li`
   padding: 12px;
   border: 1px solid #ececec;
   border-radius: 12px;
+  overflow-x: hidden;
   cursor: pointer;
 `;
 export const MartName = styled.p`
