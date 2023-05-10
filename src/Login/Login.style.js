@@ -130,9 +130,10 @@ export const LineHr = styled.hr`
   width: 325px;
   margin: 15px 0;
 `;
-export const FailMsg = styled.span`
+export const FailMsg = styled.p`
   color: #e42003;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  margin-bottom: 7px;
 `;
