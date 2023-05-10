@@ -1,7 +1,6 @@
 const APP_JAVA_KEY = 'a320e86acb93342abb996dc9556d6c55';
 
 const KakaoShare = (url, title, argumentKey, detailMartList) => {
-  console.log('공유하기', detailMartList);
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
