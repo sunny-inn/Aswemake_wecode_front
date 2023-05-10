@@ -92,7 +92,7 @@ const Search = ({
   }, [isSubmitted]);
 
   if (marts.length > 0) {
-    console.log(marts[0].distance);
+    console.log(marts[0].martNumberAddress);
   }
 
   // 검색어 삭제
