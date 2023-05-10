@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { flex } from './Mixin';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -33,6 +34,16 @@ const GlobalStyle = createGlobalStyle`
     top:24px;
     width: 360px;
   }
+
+  /* @media (max-width: 768px) {
+  html,
+  body,
+  #root {
+    ${flex('center', 'center', null)}
+    width: 100vw;
+    height: 100vh;
+  }
+} */
 `;
 
 export default GlobalStyle;

@@ -6,7 +6,7 @@ const TokenRefresher = () => {
   const navigate = useNavigate();
 
   const instance = axios.create({
-    baseURL: 'https://flyers.qmarket.me/api/users/login',
+    baseURL: 'https://flyers.qmarket.me',
   });
 
   instance.interceptors.request.use(function (config) {
@@ -30,7 +30,7 @@ const TokenRefresher = () => {
       })
         .then(response => {
           localStorage.setItem('token', response.data.accessToken);
-          response.config.headers['Authorization'] =
+          instance.defaults.headers.common['Authorization'] =
             'Bearer' + response.data.accessToken;
         })
         .then(response => {
