@@ -211,13 +211,14 @@ const WithdrawPoint = () => {
             style={{ marginRight: '3px' }}
             onClick={goToChangeAccount}
           >
-            계좌변경 <span>{'>'}</span>
+            계좌변경&npsp;&nbsp;<span>{'>'}</span>
+            {/* <img src="/images/mypage/Vector.png" alt="right arrow" /> */}
           </S.ChangeAccount>
         </S.TitleContainer>
         <S.Withdraw
           value={
             accountInfo
-              ? `${accountInfo.result.bankName} ${accountInfo.result.accountNumber}`
+              ? `${accountInfo.result.bankName} &nbsp;${accountInfo.result.accountNumber}`
               : ''
           }
           onChange={e => {}}

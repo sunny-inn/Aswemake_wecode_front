@@ -6,6 +6,7 @@ export const NotifyWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 220px;
+  line-height: 21px;
 `;
 
 export const Notify = styled.div`
