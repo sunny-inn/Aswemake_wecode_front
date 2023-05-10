@@ -99,6 +99,8 @@ const Home = () => {
     console.log('home', mart);
   };
 
+  console.log('isMarkerClicked', isMarkerClicked);
+
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
