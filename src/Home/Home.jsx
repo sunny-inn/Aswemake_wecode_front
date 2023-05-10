@@ -173,11 +173,10 @@ const Home = () => {
 
   const onCenterChanged = value => {
     console.log('센터 확인 중', value);
-    homeMartList.length > 0 &&
-      setCenter({
-        lat: value.y,
-        lng: value.x,
-      });
+    setCenter({
+      lat: value.y,
+      lng: value.x,
+    });
   };
   console.log('센터가??', center);
 
