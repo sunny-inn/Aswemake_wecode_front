@@ -25,53 +25,27 @@ const Favorite = () => {
         setAddedFavoriteList(data.data);
       });
   }, []);
-  const params = useParams();
-  //
-  const handleFavorite = (index, martId) => {
-    const newImageStates = [...imageStates];
-    newImageStates[index] = !newImageStates[index];
-    setImageStates(newImageStates);
-    console.log('마트아이이디', martId);
-    // fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
-    //   method: 'POST',
-    //   credentials: 'include',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //     authorization: token,
-    //   },
-    // })
-    //   .then(response => {
-    //     response.json();
-    //     console.log(response);
-    //   })
-    //   .then(data => {
-    //     setAddedFavoriteList(data.data);
-    //     console.log('데이터', data);
-    //   });
-  };
 
-  useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-      body: JSON.stringify({
-        imageStates,
-        handleFavorite,
-      }),
-    })
-      .then(response => {
-        response.json();
-        console.log(response);
-      })
-      .then(data => {
-        setAddedFavoriteList(data.data);
-        console.log('데이터', data);
-      });
-  }, [handleFavorite]);
+  //
+
+  // useEffect(() => {
+  //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: token,
+  //     },
+  //     body: JSON.stringify({
+  //       imageStates,
+  //       handleFavorite,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // do something with the response
+  //     });
+  // }, [handleFavorite]);
 
   return (
     <div>
@@ -80,7 +54,6 @@ const Favorite = () => {
         <FavoriteEmpty />
       ) : (
         <FavoriteList
-          handleFavorite={handleFavorite}
           addedFavoriteList={addedFavoriteList}
           setImageStates={setImageStates}
           imageStates={imageStates}
