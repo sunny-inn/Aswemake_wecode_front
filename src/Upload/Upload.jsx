@@ -145,6 +145,7 @@ const Upload = () => {
   // 체크박스
   const onClickCheckbox = e => {
     setIsCheckboxClicked(prev => !prev);
+    alert(uploadInfo);
   };
 
   const handelDisabled = !(
@@ -163,7 +164,6 @@ const Upload = () => {
   // 전단 등록 요청
   const onSubmitFlyers = e => {
     e.preventDefault();
-    alert(uploadInfo);
 
     fetch('https://flyers.qmarket.me/api/flyer', {
       method: 'POST',
