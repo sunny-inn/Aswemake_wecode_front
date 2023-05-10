@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const EmptyContainer = styled.ul`
   width: 360px;
   height: 504px;
-  margin-top: 56px;
+  margin-top: -24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +30,7 @@ export const ContentText = styled.li`
 `;
 
 export const GoToHomeButton = styled.button`
-  border: 2px solid #f9f9f9;
+  border: 2px solid #eeeeee;
   border-radius: 8px;
   background-color: #fff;
   width: 328px;
