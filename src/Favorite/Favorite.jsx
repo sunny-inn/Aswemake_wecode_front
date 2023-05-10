@@ -9,7 +9,6 @@ const Favorite = () => {
   const [imageStates, setImageStates] = useState(
     Array(addedFavoriteList.length).fill(false)
   );
-  console.log('gggg', addedFavoriteList);
 
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -26,32 +25,6 @@ const Favorite = () => {
         setAddedFavoriteList(data.data);
       });
   }, []);
-  const params = useParams();
-
-  console.log('파람스', params);
-
-  const handleFavorite = (index, martId) => {
-    // const newImageStates = [...imageStates];
-    // newImageStates[index] = !newImageStates[index];
-    // setImageStates(newImageStates);
-    console.log('마트아이이디', martId);
-    // fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
-    //   method: 'POST',
-    //   credentials: 'include',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //     authorization: token,
-    //   },
-    // })
-    //   .then(response => {
-    //     response.json();
-    //     console.log(response);
-    //   })
-    //   .then(data => {
-    //     setAddedFavoriteList(data.data);
-    //     console.log('데이터', data);
-    //   });
-  };
 
   // useEffect(() => {
   //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
@@ -80,11 +53,9 @@ const Favorite = () => {
       ) : (
         <FavoriteList
           addedFavoriteList={addedFavoriteList}
-          handleFavorite={index =>
-            handleFavorite(index, addedFavoriteList[index].martId)
-          }
           setImageStates={setImageStates}
           imageStates={imageStates}
+          setAddedFavoriteList={setAddedFavoriteList}
         />
       )}
     </div>
