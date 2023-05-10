@@ -120,7 +120,7 @@ const Search = ({
     setNewKeyword('');
     setCenter({ lat: mart.lat, lng: mart.lng });
     setIsMarkerClicked(repeatFalse(homeMartList.length));
-    console.log('onClickMart');
+    console.log('onClickMart', mart);
   };
 
   return (
