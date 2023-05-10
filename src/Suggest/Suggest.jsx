@@ -13,7 +13,7 @@ const Suggest = ({ onClose, selectedMart }) => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate(`/detail/${selectedMart.martId}`);
+    onClose();
   };
   console.log('ㅇ에에에???', selectedMart);
 

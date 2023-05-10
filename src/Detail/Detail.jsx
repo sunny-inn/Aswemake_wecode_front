@@ -225,7 +225,7 @@ const Detail = () => {
         {isSuggestModalOpen && (
           <Suggest
             onClose={() => setSuggestIsModalOpen(false)}
-            selectedMart={detailMartList[0]}
+            selectedMart={detailMartList}
           />
         )}
       </S.DetailContainer>
