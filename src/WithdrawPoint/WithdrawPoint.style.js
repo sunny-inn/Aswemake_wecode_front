@@ -1,5 +1,19 @@
 import styled, { css } from 'styled-components';
 
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ChangeAccount = styled.div`
+  display: flex;
+  align-items: center;
+  color: #bcbcbc;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 170px; // Or any value you need for spacing
+`;
+
 export const TitleMyPoint = styled.span`
   font-weight: 700;
   font-size: 17px;
@@ -8,12 +22,6 @@ export const TitleMyPoint = styled.span`
 export const FromMyPoint = styled.span`
   font-weight: 500;
   font-size: 15px;
-`;
-
-export const ChangeAccount = styled.div`
-  color: #bcbcbc;
-  font-size: 13px;
-  font-weight: 500;
 `;
 
 export const PointWrapper = styled.div`
@@ -25,7 +33,9 @@ export const PointWrapper = styled.div`
 export const WithdrawPoint = styled.input`
   width: 328px;
   height: 50px;
-  border: 1px solid #dbdbdb;
+  /* border: 1px solid #dbdbdb;
+   */
+  border: 1px solid ${props => props.borderColor || '#dbdbdb'};
   border-radius: 8px;
   margin-top: 8px;
   padding: 16px;
@@ -63,6 +73,7 @@ export const Withdraw = styled.input`
   height: 50px;
   border-radius: 8px;
   border: 1px solid #ededed;
+  padding: 16px;
   background-color: rgba(249, 249, 249, 1);
   ::placeholder {
     font-weight: 500;

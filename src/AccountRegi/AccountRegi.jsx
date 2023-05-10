@@ -131,7 +131,7 @@ const AccountRegi = () => {
           name="accountNumber"
           value={accountNumber}
           onChange={inputChange}
-          placeholder="계좌번호를 입력해 주세요."
+          placeholder="계좌번호를 (-) 없이 입력해주세요."
         />
         <S.InputTitle>
           <label>예금주</label>
@@ -140,7 +140,13 @@ const AccountRegi = () => {
           name="accountName"
           value={accountName}
           onChange={inputChange}
-          placeholder="예금주명을 입력해 주세요."
+          placeholder="예금주명을 입력해주세요."
+          style={{
+            borderColor:
+              accountName !== '' && accountVerified === false
+                ? '#E40303'
+                : '#dbdbdb',
+          }}
         />
         <S.CodeBtn
           style={{
@@ -166,6 +172,7 @@ const AccountRegi = () => {
               areInputsFilled && accountVerified ? '#FF6A21' : '#DBDBDB',
           }}
           onClick={submitRegi}
+          disabled={!areInputsFilled || !accountVerified}
         >
           등록
         </S.EnrollBtn>

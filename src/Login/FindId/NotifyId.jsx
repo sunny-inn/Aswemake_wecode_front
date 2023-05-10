@@ -9,16 +9,12 @@ const NotifyId = () => {
   const userId = location.state?.userId || '';
   const userName = location.state?.userName || '';
 
-  const onClickBack = e => {
-    navigate('/findid');
-  };
-
   if (!userId || !userName) {
   }
 
   return (
     <>
-      <Header type="findid" onClickBack={onClickBack} />
+      <Header type="findid2" />
       <S.NotifyWrapper>
         <S.Notify>{userName}님의 아이디는</S.Notify>
         <S.Notify>

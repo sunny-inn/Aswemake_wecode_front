@@ -12,7 +12,9 @@ const Modal = ({ modalOpen, onClose, onSelectBank }) => {
       {modalOpen && (
         <S.Modal>
           <S.Title>은행 선택</S.Title>
-          <S.CloseBtn onClick={handleClose}>x</S.CloseBtn>
+          <S.CloseBtn onClick={handleClose}>
+            <S.Close src={'/images/X박스.png'} />
+          </S.CloseBtn>
           <S.BankGrid>
             {BankData.map((bank, id) => (
               <S.BankWrapper key={id} onClick={() => onSelectBank(bank)}>
@@ -23,8 +25,7 @@ const Modal = ({ modalOpen, onClose, onSelectBank }) => {
               </S.BankWrapper>
             ))}
           </S.BankGrid>
-          <S.Title>증권사 선택</S.Title>
-          {/* <p>증권사 선택</p> */}
+          <S.StockTitle>증권사 선택</S.StockTitle>
           <S.BankGrid>
             {StockBankData.map((stock, id) => (
               <S.BankWrapper key={id} onClick={() => onSelectBank(stock)}>

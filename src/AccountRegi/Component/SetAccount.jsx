@@ -5,16 +5,12 @@ import LoginLayout from '../../Login/Component/LoginLayout';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SetAccount = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const accountHolderName = location.state?.accountHolderName || '';
-  const onClickBack = e => {
-    e.preventDefault();
-    navigate('/home');
-  };
+
   return (
     <div>
-      <Header type="accountRegi" onClickBack={onClickBack} />
+      <Header type="accountRegi2" />
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName} 님</S.Name>

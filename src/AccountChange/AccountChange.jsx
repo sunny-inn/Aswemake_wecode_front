@@ -69,13 +69,14 @@ const AccountChange = () => {
     <>
       <Header type="accountChange" onClickBack={onClickBack} />
       <LoginLayout>
-        {/* <div>현재 등록된 계좌를 먼저 확인해 주세요.</div> */}
+        <S.CheckAccount>현재 등록된 계좌를 먼저 확인해주세요!</S.CheckAccount>
+        <S.CheckBar />
         <S.TitleMyPoint>은행</S.TitleMyPoint>
-        <S.Withdraw value={accountData.bank} />
+        <S.Withdraw value={accountData.bank} readOnly />
         <S.TitleMyPoint>계좌번호</S.TitleMyPoint>
-        <S.Withdraw value={accountData.accountNumber} />
+        <S.Withdraw value={accountData.accountNumber} readOnly />
         <S.TitleMyPoint>예금주</S.TitleMyPoint>
-        <S.Withdraw value={accountData.accountHolder} />
+        <S.Withdraw value={accountData.accountHolder} readOnly />
 
         <S.FinBtn
           onClick={changeAccount}

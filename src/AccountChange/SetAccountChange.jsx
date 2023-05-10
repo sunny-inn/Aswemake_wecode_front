@@ -5,16 +5,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginLayout from '../Login/Component/LoginLayout';
 
 const SetAccountChange = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const accountHolderName = location.state?.accountHolderName || '';
-  const onClickBack = e => {
-    e.preventDefault();
-    navigate('/accountchangeinput');
-  };
+
   return (
     <div>
-      <Header type="accountChange" onClickBack={onClickBack} />
+      <Header type="accountChange2" />
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName} 님</S.Name>

@@ -1,5 +1,20 @@
 import styled from 'styled-components';
 
+export const CheckAccount = styled.div`
+  margin-top: 22px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  font-weight: 500;
+`;
+
+export const CheckBar = styled.div`
+  margin-bottom: 22px;
+  width: 328px;
+  height: 1px;
+
+  border-bottom: 1px solid #ececec;
+`;
+
 export const TitleMyPoint = styled.span`
   font-weight: 700;
   font-size: 15px;
@@ -55,12 +70,12 @@ export const Withdraw = styled.input`
   width: 328px;
   height: 50px;
   border-radius: 8px;
-  border: 1px solid #ededed;
+  border: 1px solid #dbdbdb;
   color: #707070;
   font-size: 15px;
   font-weight: 500;
-  padding-left: 3px;
-  background-color: rgba(249, 249, 249, 1);
+  padding: 16px;
+  background-color: #f9f9f9;
   ::placeholder {
     font-weight: 500;
     font-size: 15px;
@@ -79,7 +94,7 @@ export const FinBtn = styled.button`
   border-radius: 8px;
   border: none;
   background-color: #dbdbdb;
-  margin-top: 260px;
+  margin-top: 133px;
   color: white;
   ::placeholder {
     font-weight: 700;

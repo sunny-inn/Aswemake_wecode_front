@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Components/Header/Header';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as S from './WithdrawPoint.style';
 import LoginLayout from '../Login/Component/LoginLayout';
 
@@ -18,6 +18,7 @@ const WithdrawPoint = () => {
   const [holdingPoint, setHoldingPoint] = useState(10);
   const [overHoldingPoint, setOverHoldingPoint] = useState(false);
   const [empty, setEmpty] = useState(true);
+  const [belowThreshold, setBelowThreshold] = useState(false);
 
   // useEffect(() => {
   //   const fetchAccountInfo = async () => {
@@ -152,16 +153,27 @@ const WithdrawPoint = () => {
       });
   };
 
-  //포인트 인출 입력 값 input 창 관리
+  // //포인트 인출 입력 값 input 창 관리
+  // const handleInputChange = e => {
+  //   // 숫자 외의 문자 제거
+  //   const value = e.target.value.replace(/[^0-9]/g, '');
+  //   const formattedValue = formatNumber(value);
+  //   // setInputValue(value + '원');
+  //   setInputValue(formattedValue + '원');
+  //   setEmpty(value === '');
+  //   setOverPrice(parseInt(value, 10) > 150000);
+  //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
+  // };
+
   const handleInputChange = e => {
     // 숫자 외의 문자 제거
     const value = e.target.value.replace(/[^0-9]/g, '');
     const formattedValue = formatNumber(value);
-    // setInputValue(value + '원');
     setInputValue(formattedValue + '원');
     setEmpty(value === '');
     setOverPrice(parseInt(value, 10) > 150000);
     setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
+    setBelowThreshold(parseInt(value, 10) < 1000);
   };
 
   const showCurrency = () => {
@@ -169,7 +181,8 @@ const WithdrawPoint = () => {
       if (prevValue === '') {
         return '';
       }
-      return `${prevValue}원`;
+      const onlyNumbers = prevValue.replace(/[^0-9]/g, '');
+      return formatNumber(onlyNumbers) + '원';
     });
   };
 
@@ -186,12 +199,13 @@ const WithdrawPoint = () => {
     <>
       <Header type="withdrawPoint" onClickBack={onClickBack} />
       <LoginLayout>
-        <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
-        <S.FromMyPoint>로</S.FromMyPoint>
-        {/* <S.ChangeAccount>
-          계좌변경
-          <S.Arrow />
-        </S.ChangeAccount> */}
+        <S.TitleContainer>
+          <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
+          <S.FromMyPoint>로</S.FromMyPoint>
+          <Link to="accountchange">
+            <S.ChangeAccount>계좌변경 > </S.ChangeAccount>
+          </Link>
+        </S.TitleContainer>
         <S.Withdraw
           value={
             accountInfo
@@ -215,13 +229,22 @@ const WithdrawPoint = () => {
               onChange={handleInputChange}
               showCurrency={showCurrency}
               onFocus={handleFocus}
+              onBlur={showCurrency}
               placeholder="1,000원 이상 인출 가능"
+              borderColor={
+                overPrice || overHoldingPoint || belowThreshold
+                  ? '#E40303'
+                  : undefined
+              }
             />
             {overPrice && (
               <S.AlertMsg>1회 최대 인출 금액은 150,000원 입니다!</S.AlertMsg>
             )}
             {!overPrice && overHoldingPoint && (
               <S.AlertMsg>보유 포인트 보다 많은 금액을 입력했어요!</S.AlertMsg>
+            )}
+            {!overPrice && !overHoldingPoint && belowThreshold && (
+              <S.AlertMsg>1,000원 이상부터 인출 가능합니다!</S.AlertMsg>
             )}
           </div>
         </S.Wrapper>
