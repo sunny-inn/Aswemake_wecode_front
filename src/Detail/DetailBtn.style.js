@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FavoriteButton = styled.button`
   width: 160px;
   height: 50px;
-  border: 1px solid #f6f6f6;
+  border: 2px solid #f6f6f6;
   border-radius: 8px;
   background-color: #fff;
   cursor: pointer;
