@@ -112,15 +112,14 @@ const Search = ({
   };
 
   const onClickMart = (id, mart) => {
-    const selectedMart = homeMartList.filter(mart => {
-      return mart.martId === id;
-    });
+    // const selectedMart = homeMartList.filter(mart => {
+    //   return mart.martId === id;
+    // });
     setIsSearchClicked(false);
-    setSelectedMart(selectedMart);
+    setSelectedMart(mart);
     setNewKeyword('');
     setCenter({ lat: mart.lat, lng: mart.lng });
     setIsMarkerClicked(repeatFalse(homeMartList.length));
-    console.log('onClickMart', mart);
   };
 
   return (
