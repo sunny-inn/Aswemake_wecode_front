@@ -105,11 +105,6 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
           list={list}
           onClickClose={onClickClose}
           currentImageIndex={currentImageIndex}
-          imageUrls={detailMartList.map(item =>
-            item.martFlyerImages === '0'
-              ? '/images/flyernone.png'
-              : item.martFlyerImages.map(item => item.imageUrl)
-          )}
         />
       )}
       {showModal && <Modal type="map" handleModal={handleModal} />}
