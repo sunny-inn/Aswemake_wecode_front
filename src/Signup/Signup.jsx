@@ -90,6 +90,8 @@ const Signup = () => {
     if (day !== '') {
       const formattedDay = formatDay(day);
       setDate(formattedDay);
+    } else {
+      setDate('');
     }
   };
 
@@ -171,7 +173,7 @@ const Signup = () => {
     name !== '' &&
     year.length === 4 &&
     month !== '' &&
-    (date !== '' || date !== undefined) &&
+    date !== '' &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
