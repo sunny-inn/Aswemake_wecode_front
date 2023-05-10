@@ -123,7 +123,6 @@ const Search = ({
       }
     });
     setIsMarkerClicked(newToggles);
-    console.log('search에서 찍혔다')
   };
 
   return (

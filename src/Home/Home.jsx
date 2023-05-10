@@ -96,10 +96,7 @@ const Home = () => {
       }
     });
     setIsMarkerClicked(newToggles);
-    console.log('home에서 찍혔다');
   };
-
-  console.log('isMarkerClicked', isMarkerClicked);
 
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
