@@ -15,11 +15,10 @@ export const Input = styled.input`
   width: 328px;
   height: 50px;
   background: #ffffff;
-  padding-left: 10px;
+  padding: 16px;
   margin-top: 8px;
 
   ::placeholder {
-    padding: 3px;
     color: #dbdbdb;
     font-weight: 400;
   }
