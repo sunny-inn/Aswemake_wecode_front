@@ -98,8 +98,6 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
-  console.log('selectedMart', selectedMart);
-
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
@@ -136,8 +134,7 @@ const Home = () => {
   const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
   useEffect(() => {
-    selectedMart === '' &&
-      center.lat &&
+    center.lat &&
       fetch(`https://flyers.qmarket.me/api/home/mart`, {
         method: 'POST',
         credentials: 'include',
@@ -179,7 +176,6 @@ const Home = () => {
       lat: value.y,
       lng: value.x,
     });
-    setSelectedMart(null);
   };
   console.log('센터가??', center);
 
