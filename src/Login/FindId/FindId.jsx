@@ -18,7 +18,10 @@ const FindId = () => {
   const [userId, setUserId] = useState('');
   const [userName, setUserName] = useState('');
 
-  const isDisabled = name.length < 2 || phone.length < 5;
+  const isDisabled =
+    name.length > 2 &&
+    phone.includes('010') &&
+    (phone.length === 10 || phone.length === 11);
 
   const findIdSend = e => {
     e.preventDefault();
@@ -68,7 +71,7 @@ const FindId = () => {
           value={phone}
           onChange={e => setPhone(e.target.value)}
         />
-        <SubmitIdButton onClick={findIdSend} disabled={isDisabled}>
+        <SubmitIdButton onClick={findIdSend} disabled={!isDisabled}>
           확인
         </SubmitIdButton>
       </LoginLayout>

@@ -23,5 +23,5 @@ export const GoToSignUp = styled.button`
   background-color: #ff6a21;
   color: white;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
 `;
