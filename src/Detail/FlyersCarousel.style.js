@@ -12,5 +12,6 @@ export const FlyerCarouselContainer = styled.div`
 export const FlyerImage = styled.img`
   width: 120px;
   height: 200px;
+  border: 1px solid #f9f9f9;
   cursor: pointer;
 `;
