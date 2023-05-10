@@ -68,13 +68,6 @@ const Login = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      navigate('/home');
-      setLoading(false);
-    }
-  }, [navigate]);
-
   if (loading) return null;
 
   const goToHome = () => {
