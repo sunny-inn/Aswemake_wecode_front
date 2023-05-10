@@ -25,6 +25,48 @@ const Favorite = () => {
       });
   }, []);
 
+  const handleFavorite = index => {
+    const newImageStates = [...imageStates];
+    newImageStates[index] = !newImageStates[index];
+    setImageStates(newImageStates);
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: token,
+      },
+      body: JSON.stringify({
+        imageStates,
+        handleFavorite,
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        // do something with the response
+      });
+    // setChecked(prevChecked => !prevChecked);
+  };
+
+  // useEffect(() => {
+  //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: token,
+  //     },
+  //     body: JSON.stringify({
+  //       imageStates,
+  //       handleFavorite,
+  //     }),
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       // do something with the response
+  //     });
+  // }, [handleFavorite]);
+
   return (
     <div>
       <Header type="favorite" />
@@ -35,6 +77,7 @@ const Favorite = () => {
           addedFavoriteList={addedFavoriteList}
           setImageStates={setImageStates}
           imageStates={imageStates}
+          handleFavorite={handleFavorite}
         />
       )}
     </div>

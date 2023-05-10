@@ -13,24 +13,6 @@ const FavoriteList = ({ addedFavoriteList, setImageStates, imageStates }) => {
     // setChecked(prevChecked => !prevChecked);
   };
   const token = localStorage.getItem('token');
-  useEffect(() => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-      body: JSON.stringify({
-        imageStates,
-        handleFavorite,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // do something with the response
-      });
-  }, [handleFavorite]);
 
   console.log('favoriteList', addedFavoriteList);
 
