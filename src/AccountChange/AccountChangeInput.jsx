@@ -46,6 +46,7 @@ const AccountChangeInput = () => {
     }
   };
 
+  //최종 post
   const submitRegi = () => {
     if (accountVerified) {
       fetch('https://flyers.qmarket.me/api/accounts/change', {
@@ -63,9 +64,13 @@ const AccountChangeInput = () => {
         .then(res => res.json())
         .then(data => {
           console.log(data);
-          navigate('/setaccountchange', {
-            state: { accountHolderName: accountName },
-          });
+          if (data.message === 'changed Main account successfully') {
+            navigate('/setaccountchange', {
+              state: { accountHolderName: accountName },
+            });
+          } else if (data.message === 'THIS ACCOUNT IS ALREADY REGISTERED') {
+            alert('이 계좌는 이미 등록된 계좌입니다.');
+          }
         })
         .catch(error => {
           console.error('Error:', error);
