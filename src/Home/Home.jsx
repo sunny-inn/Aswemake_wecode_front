@@ -235,81 +235,82 @@ const Home = () => {
 
   return (
     <div>
-      {homeMartList.length > 0 ? (
-        <div>
-          {!isSearchClicked ? (
-            <S.MapBox>
-              <NaverMap
-                // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-                center={center}
-                defaultZoom={15}
-                minZoom={7}
-                onDragEnd={handleDragEnd}
-                // onCenterPointChanged={onCenterPointChanged}
-                onCenterChanged={onCenterChanged} //중심좌표구할때
-                ref={mapRef}
-                scaleControl={false}
-                logoControl={false}
-                mapDataControl={false}
-                zoomControl={false}
-                centerPoint={centerPoint}
-              >
-                {homeMartList.length > 0 &&
-                  homeMartList.map((mart, index) => {
-                    //2일전계산
-                    const now = new Date();
-                    const end = new Date(mart.endDate);
-                    const diff = end.getTime() - now.getTime();
-                    const twoDaysInMillis = 2 * 24 * 60 * 60 * 1000; // 2일을 밀리초로 변환
-                    const isAlmostEnd = diff <= twoDaysInMillis;
-                    return (
-                      <Marker
-                        position={new navermaps.LatLng(mart.lat, mart.lng)}
-                        key={mart.martId}
-                        title={mart.name}
-                        icon={
-                          mart.martFlyerImages === '0'
-                            ? isMarkerClicked[index]
-                              ? './images/flyernoneClickedMarker.png'
-                              : './images/flyernoneMarker.png'
-                            : isAlmostEnd
-                            ? isMarkerClicked[index]
-                              ? './images/almostEndFlyerClicked.png'
-                              : './images/almostEndFlyer.png'
-                            : isMarkerClicked[index]
-                            ? './images/clickedMarker.png'
-                            : './images/orangeMarker.png'
-                        }
-                        onClick={e => handleMarkerClick(e, mart, index)}
-                      />
-                    );
-                  })}
-                <S.SearchBox>
-                  <div onClick={handleSearch}>
-                    <S.SearchBar
-                      type="text"
-                      placeholder="동주소, 마트 검색"
-                      value={newKeyword.text}
-                      readOnly
-                    />
-                  </div>
-                  <S.CurrentLocation
-                    src="./images/home/current-location.png"
-                    alt="현위치"
-                    onClick={getCurrentPosition}
+      {!isSearchClicked ? (
+        <S.MapBox>
+          <NaverMap
+            // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
+            center={center}
+            defaultZoom={15}
+            minZoom={7}
+            onDragEnd={handleDragEnd}
+            // onCenterPointChanged={onCenterPointChanged}
+            onCenterChanged={onCenterChanged} //중심좌표구할때
+            ref={mapRef}
+            scaleControl={false}
+            logoControl={false}
+            mapDataControl={false}
+            zoomControl={false}
+            centerPoint={centerPoint}
+          >
+            {homeMartList.length > 0 &&
+              homeMartList.map((mart, index) => {
+                //2일전계산
+                const now = new Date();
+                const end = new Date(mart.endDate);
+                const diff = end.getTime() - now.getTime();
+                const twoDaysInMillis = 2 * 24 * 60 * 60 * 1000; // 2일을 밀리초로 변환
+                const isAlmostEnd = diff <= twoDaysInMillis;
+                return (
+                  <Marker
+                    position={new navermaps.LatLng(mart.lat, mart.lng)}
+                    key={mart.martId}
+                    title={mart.name}
+                    icon={
+                      mart.martFlyerImages === '0'
+                        ? isMarkerClicked[index]
+                          ? './images/flyernoneClickedMarker.png'
+                          : './images/flyernoneMarker.png'
+                        : isAlmostEnd
+                        ? isMarkerClicked[index]
+                          ? './images/almostEndFlyerClicked.png'
+                          : './images/almostEndFlyer.png'
+                        : isMarkerClicked[index]
+                        ? './images/clickedMarker.png'
+                        : './images/orangeMarker.png'
+                    }
+                    onClick={e => handleMarkerClick(e, mart, index)}
                   />
-                </S.SearchBox>
-                <HomeCarousel
-                  handleSecModal={handleSecModal}
-                  homeMartList={homeMartList}
-                  selectedMart={selectedMart}
-                  handleModal={handleModal}
-                  onClickDetailPortal={onClickDetailPortal}
-                  changeCenterByCarousel={changeCenterByCarousel}
-                  setSelectedMart={setSelectedMart} // setSelectedMartList prop 전달
-                  currentId={currentId}
+                );
+              })}
+          </NaverMap>
+          {homeMartList.length > 0 && (
+            <>
+              {' '}
+              <S.SearchBox>
+                <div onClick={handleSearch}>
+                  <S.SearchBar
+                    type="text"
+                    placeholder="동주소, 마트 검색"
+                    value={newKeyword.text}
+                    readOnly
+                  />
+                </div>
+                <S.CurrentLocation
+                  src="./images/home/current-location.png"
+                  alt="현위치"
+                  onClick={getCurrentPosition}
                 />
-              </NaverMap>
+              </S.SearchBox>
+              <HomeCarousel
+                handleSecModal={handleSecModal}
+                homeMartList={homeMartList}
+                selectedMart={selectedMart}
+                handleModal={handleModal}
+                onClickDetailPortal={onClickDetailPortal}
+                changeCenterByCarousel={changeCenterByCarousel}
+                setSelectedMart={setSelectedMart} // setSelectedMartList prop 전달
+                currentId={currentId}
+              />
               {openModal && (
                 // <Modal
                 //   type="map"
@@ -321,39 +322,22 @@ const Home = () => {
                   selectedMart={selectedMart}
                 />
               )}
-            </S.MapBox>
-          ) : (
-            <Search
-              newKeyword={newKeyword}
-              setNewKeyword={setNewKeyword}
-              setIsSearchClicked={setIsSearchClicked}
-              homeMartList={homeMartList}
-              setSelectedMart={setSelectedMart}
-              setCenter={setCenter}
-              isMarkerClicked={isMarkerClicked}
-              setIsMarkerClicked={setIsMarkerClicked}
-              selectedMart={selectedMart}
-              handleMarkerClick={handleMarkerClick}
-            />
+            </>
           )}
-        </div>
-      ) : (
-        <S.MapBox>
-          <NaverMap
-            // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-            center={center}
-            minZoom={7}
-            onDragEnd={handleDragEnd}
-            // onCenterPointChanged={onCenterPointChanged}
-            onCenterChanged={onCenterChanged} //중심좌표구할때
-            ref={mapRef}
-            scaleControl={false}
-            logoControl={false}
-            mapDataControl={false}
-            zoomControl={false}
-            centerPoint={centerPoint}
-          />
         </S.MapBox>
+      ) : (
+        <Search
+          newKeyword={newKeyword}
+          setNewKeyword={setNewKeyword}
+          setIsSearchClicked={setIsSearchClicked}
+          homeMartList={homeMartList}
+          setSelectedMart={setSelectedMart}
+          setCenter={setCenter}
+          isMarkerClicked={isMarkerClicked}
+          setIsMarkerClicked={setIsMarkerClicked}
+          selectedMart={selectedMart}
+          handleMarkerClick={handleMarkerClick}
+        />
       )}
     </div>
   );
