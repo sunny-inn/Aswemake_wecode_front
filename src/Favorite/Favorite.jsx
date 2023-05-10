@@ -93,7 +93,7 @@ const Favorite = () => {
   return (
     <div>
       <Header type="favorite" />
-      {addedFavoriteList[0] === 'Array(0)' ? (
+      {addedFavoriteList === 'Array(0)' ? (
         <FavoriteEmpty />
       ) : (
         <FavoriteList
