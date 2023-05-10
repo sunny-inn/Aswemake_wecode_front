@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header/Header';
+import SuggestCompleted from './SuggestCompleted';
 import * as S from './Suggest.style';
 
 const Suggest = ({ onClose, selectedMart }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ martName: '', martPhoneNumber: '' });
+  const [showSuggestCompleted, setShowSuggestCompleted] = useState(false); // 모달 띄우는 상태 추가
 
   const saveInput = e => {
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
@@ -42,8 +44,9 @@ const Suggest = ({ onClose, selectedMart }) => {
       })
       .then(data => {
         console.log('데이터', data);
+        setShowSuggestCompleted(true); // 응답 받은 후 모달 띄우도록 상태 변경
+        onClose();
       });
-    navigate('/suggest/suggestCompleted');
   };
   return (
     <S.SuggestModalContainer>
@@ -85,6 +88,9 @@ const Suggest = ({ onClose, selectedMart }) => {
           요청하기
         </S.SuggestBtn>
       </S.SuggestWholeContainer>
+      {showSuggestCompleted && (
+        <SuggestCompleted onClose={() => setShowSuggestCompleted(false)} />
+      )}
     </S.SuggestModalContainer>
   );
 };
