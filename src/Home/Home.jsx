@@ -108,7 +108,7 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
   };
-
+  console.log('handleMarkerClick', selectedMart);
   console.log('isMarkerClicked', isMarkerClicked);
 
   const handleDragEnd = navermaps => {
@@ -132,7 +132,6 @@ const Home = () => {
       //   Array.from({ length: homeMartList.length }, () => false)
       // );
       setIsMarkerClicked(repeatFalse(homeMartList.length));
-      setSelectedMart(null);
     }
     console.log('useEffect1');
   }, [homeMartList]);
