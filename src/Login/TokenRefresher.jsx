@@ -6,7 +6,7 @@ const TokenRefresher = () => {
   const navigate = useNavigate();
 
   const instance = axios.create({
-    baseURL: 'https://flyers.qmarket.me/api',
+    baseURL: 'https://flyers.qmarket.me',
   });
 
   instance.interceptors.request.use(function (config) {
