@@ -10,6 +10,7 @@ const Favorite = () => {
     Array(addedFavoriteList.length).fill(false)
   );
 
+  console.log('이거가없다면?', addedFavoriteList.martId);
   const token = localStorage.getItem('token');
   useEffect(() => {
     fetch('https://flyers.qmarket.me/api/favorite', {
@@ -29,7 +30,7 @@ const Favorite = () => {
   return (
     <div>
       <Header type="favorite" />
-      {addedFavoriteList.martId === 0 ? (
+      {addedFavoriteList.martId === null ? (
         <FavoriteEmpty />
       ) : (
         <FavoriteList
