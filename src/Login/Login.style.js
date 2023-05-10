@@ -26,7 +26,7 @@ export const InputBoxContainer = styled.div`
 export const InputBox = styled.input`
   box-sizing: border-box;
   border: ${({ isFailed }) =>
-    isFailed ? '1px solid #FF6A21' : '1px solid #dbdbdb'};
+    isFailed ? '1px solid red' : '1px solid #dbdbdb'};
   width: 328px;
   height: 50px;
   border-radius: 8px;
