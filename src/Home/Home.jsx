@@ -173,10 +173,11 @@ const Home = () => {
 
   const onCenterChanged = value => {
     console.log('센터 확인 중', value);
-    setCenter({
-      lat: value.y,
-      lng: value.x,
-    });
+    homeMartList.length > 0 &&
+      setCenter({
+        lat: value.y,
+        lng: value.x,
+      });
   };
   console.log('센터가??', center);
 
@@ -243,7 +244,7 @@ const Home = () => {
                 // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
                 center={center}
                 defaultZoom={15}
-                minZoom={9}
+                minZoom={7}
                 onDragEnd={handleDragEnd}
                 // onCenterPointChanged={onCenterPointChanged}
                 onCenterChanged={onCenterChanged} //중심좌표구할때
