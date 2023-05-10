@@ -19,24 +19,25 @@ export const TokenRefresher = () => {
         const originalConfig = error.config;
         const msg = error.response.data.message;
 
-        await axios({
-          url: 'https://flyers.qmarket.me/api/users/login',
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-          },
-        })
-          .then(res => {
-            localStorage.setItem('token', res.data.accessToken);
-            originalConfig.headers['Authorization'] =
-              'Bearer' + res.data.accessToken;
-            return refreshAPI(originalConfig);
+        console.log('msg', msg);
+        if (msg === 'CREATED NEW ACCESS TOKEN') {
+          await axios({
+            url: 'https://flyers.qmarket.me/api/users/login',
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+            },
           })
-          .then(res => {
-            window.location.reload();
-          });
-
-        if (msg === 'YOU NEED LOGIN AGAIN') {
+            .then(res => {
+              localStorage.setItem('token', res.data.accessToken);
+              originalConfig.headers['Authorization'] =
+                'Bearer' + res.data.accessToken;
+              return refreshAPI(originalConfig);
+            })
+            .then(res => {
+              window.location.reload();
+            });
+        } else if (msg === 'YOU NEED LOGIN AGAIN') {
           localStorage.clear();
           navigate('/');
           window.alert('로그인 기한이 만료되어 자동으로 로그아웃 되었습니다.');
