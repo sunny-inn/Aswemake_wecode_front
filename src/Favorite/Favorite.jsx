@@ -26,6 +26,7 @@ const Favorite = () => {
       });
   }, []);
   const params = useParams();
+
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
@@ -37,16 +38,11 @@ const Favorite = () => {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: JSON.stringify({
-        imageStates,
-        handleFavorite,
-      }),
     })
       .then(response => response.json())
       .then(data => {
         // do something with the response
       });
-    // setChecked(prevChecked => !prevChecked);
   };
 
   // useEffect(() => {
