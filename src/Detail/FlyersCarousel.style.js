@@ -28,3 +28,8 @@ export const FlyerImage = styled.img`
   border-radius: 8px;
   cursor: pointer;
 `;
+
+export const MartSlider = styled(Slider)`
+  /* display: flex;
+  gap: 10px; */
+`;
