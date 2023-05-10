@@ -43,7 +43,7 @@ const Suggest = ({ onClose, selectedMart }) => {
       .then(data => {
         console.log('데이터', data);
       });
-    navigate('/suggestCompleted');
+    navigate('/suggest/suggestCompleted');
   };
   return (
     <S.SuggestModalContainer>
