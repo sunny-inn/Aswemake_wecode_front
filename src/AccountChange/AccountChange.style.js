@@ -76,10 +76,6 @@ export const Withdraw = styled.input`
   font-weight: 500;
   padding: 16px;
   background-color: #f9f9f9;
-  ::placeholder {
-    font-weight: 500;
-    font-size: 15px;
-  }
 `;
 
 export const AlertMsg = styled.div`
@@ -96,8 +92,6 @@ export const FinBtn = styled.button`
   background-color: #dbdbdb;
   margin-top: 133px;
   color: white;
-  ::placeholder {
-    font-weight: 700;
-    font-size: 17px;
-  }
+  font-weight: 700;
+  font-size: 17px;
 `;

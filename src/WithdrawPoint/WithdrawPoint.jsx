@@ -9,7 +9,7 @@ const WithdrawPoint = () => {
 
   const goToChangeAccount = e => {
     e.preventDefault();
-    navigate('accountchange');
+    navigate('/accountchange');
   };
 
   const onClickBack = e => {
@@ -208,7 +208,7 @@ const WithdrawPoint = () => {
           <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
           <S.FromMyPoint>로</S.FromMyPoint>
           <S.ChangeAccount onClick={goToChangeAccount}>
-            계좌변경 '{'>'}'
+            계좌변경 {'>'}
           </S.ChangeAccount>
         </S.TitleContainer>
         <S.Withdraw
@@ -218,6 +218,7 @@ const WithdrawPoint = () => {
               : ''
           }
           onChange={e => {}}
+          readOnly
         />
 
         <S.Wrapper>

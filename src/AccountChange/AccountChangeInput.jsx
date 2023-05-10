@@ -128,7 +128,7 @@ const AccountChangeInput = () => {
           name="accountNumber"
           value={accountNumber}
           onChange={inputChange}
-          placeholder="계좌번호를 입력해 주세요."
+          placeholder="계좌번호를 (-) 없이 입력해주세요."
         />
         <S.InputTitle>
           <label>예금주</label>
@@ -137,7 +137,7 @@ const AccountChangeInput = () => {
           name="accountName"
           value={accountName}
           onChange={inputChange}
-          placeholder="예금주명을 입력해 주세요."
+          placeholder="예금주명을 입력해주세요."
           style={{
             borderColor:
               accountName !== '' && accountVerified === false
@@ -156,11 +156,11 @@ const AccountChangeInput = () => {
         </S.CodeBtn>
 
         {accountName.trim() !== '' && accountVerified === true && (
-          <S.AlertVerify>본인 인증 계정과 예금주가 일치합니다.</S.AlertVerify>
+          <S.AlertVerify>본인인증 계정과 예금주가 일치합니다.</S.AlertVerify>
         )}
         {accountName !== '' && accountVerified === false && (
           <S.AlertNotVerify>
-            본인 인증 계정과 예금주가 일치하지 않습니다.
+            본인인증 계정과 예금주가 일치하지 않습니다.
           </S.AlertNotVerify>
         )}
 

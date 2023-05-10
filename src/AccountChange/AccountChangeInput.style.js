@@ -19,10 +19,14 @@ export const Input = styled.input`
   border-radius: 8px;
   font-size: 15px;
   font-weight: 500;
-  padding-left: 3px;
+  padding: 16px;
+  color: #252525;
+  padding: 16px;
   ::placeholder {
     color: #dbdbdb;
-    padding-left: 8px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 500;
   }
 `;
 
@@ -48,10 +52,10 @@ export const CodeInput = styled.input`
   border-radius: 8px;
   font-size: 15px;
   font-weight: 500;
-  padding-left: 3px;
+  padding: 16px;
   ::placeholder {
     color: #dbdbdb;
-    padding-left: 8px;
+    padding: 16px;
   }
 `;
 
@@ -63,6 +67,8 @@ export const CodeBtn = styled.button`
   height: 50px;
   color: white;
   border: none;
+  font-size: 15px;
+  font-weight: 700;
 `;
 
 export const EnrollBtn = styled.button`
@@ -73,6 +79,8 @@ export const EnrollBtn = styled.button`
   border: none;
   border-radius: 8px;
   margin-top: 196px;
+  font-size: 17px;
+  font-weight: 700;
 `;
 
 export const AlertVerify = styled.div`

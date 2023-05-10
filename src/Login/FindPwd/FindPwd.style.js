@@ -26,7 +26,8 @@ export const InputBox = styled.input`
   ::placeholder {
     padding: 3px;
     color: #dbdbdb;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 15px;
   }
 `;
 
