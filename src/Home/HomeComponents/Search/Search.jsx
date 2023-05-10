@@ -122,7 +122,8 @@ const Search = ({
         return isMarkerClicked[index] === false ? false : toggle;
       }
     });
-    setIsMarkerClicked(newToggles);
+
+    setIsMarkerClicked([true]);
   };
 
   return (
