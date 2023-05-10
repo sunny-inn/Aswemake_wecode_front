@@ -9,6 +9,7 @@ const Favorite = () => {
   const [imageStates, setImageStates] = useState(
     Array(addedFavoriteList.length).fill(false)
   );
+  console.log('gggg', addedFavoriteList);
 
   const token = localStorage.getItem('token');
   useEffect(() => {
