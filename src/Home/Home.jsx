@@ -88,7 +88,7 @@ const Home = () => {
 
   // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐
   const handleMarkerClick = (e, mart, index) => {
-    console.log('handleMarkerClick', mart);
+    console.log('handleMarkerClick', mart === selectedMart);
     if (selectedMart === null) {
       setSelectedMart(mart);
     } else if (selectedMart !== mart) {
