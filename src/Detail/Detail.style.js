@@ -57,6 +57,7 @@ export const ShareAndFavoriteBox = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
+  margin-left: -9px;
 `;
 export const ModalContainer = styled.div`
   width: 360px;

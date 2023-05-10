@@ -13,5 +13,6 @@ export const FlyerImage = styled.img`
   width: 120px;
   height: 200px;
   border: 1px solid #f9f9f9;
+  border-radius: 8px;
   cursor: pointer;
 `;
