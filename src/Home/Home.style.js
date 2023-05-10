@@ -102,6 +102,7 @@ export const CurrentLocation = styled.img`
   width: 50px;
   height: 50px;
   padding: 13px;
+  background: #ffffff;
   border: 1px solid #dbdbdb;
   border-radius: 16px;
   object-fit: cover;
