@@ -16,7 +16,7 @@ import DetailModal from './DetailModal';
 
 const Home = () => {
   //MockData시작
-  const [userAddress, setUserAddress] = useState('');
+  // const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -45,28 +45,28 @@ const Home = () => {
     }
   }, [token, navigate]);
 
-  useEffect(() => {
-    userAddress &&
-      navermaps.Service.geocode(
-        {
-          address: userAddress,
-        },
-        function (status, response) {
-          if (status !== navermaps.Service.Status.OK) {
-            return alert('Something wrong!');
-          }
-          const result = response.result;
-          const items = result.items;
-          console.log(
-            '위도 = ',
-            items[0].point.y,
-            ' 경도 = ',
-            items[0].point.x
-          );
-          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
-        }
-      );
-  }, [userAddress]);
+  // useEffect(() => {
+  //   userAddress &&
+  //     navermaps.Service.geocode(
+  //       {
+  //         address: userAddress,
+  //       },
+  //       function (status, response) {
+  //         if (status !== navermaps.Service.Status.OK) {
+  //           return alert('Something wrong!');
+  //         }
+  //         const result = response.result;
+  //         const items = result.items;
+  //         console.log(
+  //           '위도 = ',
+  //           items[0].point.y,
+  //           ' 경도 = ',
+  //           items[0].point.x
+  //         );
+  //         setCenter({ lat: items[0].point.x, lng: items[0].point.y });
+  //       }
+  //     );
+  // }, [userAddress]);
 
   const handleModal = () => {
     // navigate(`/detail/${selectedMart.martId}`);
@@ -129,6 +129,7 @@ const Home = () => {
       setIsMarkerClicked(repeatFalse(homeMartList.length));
     }
     setSelectedMart(null);
+    console.log('useEffect1');
   }, [homeMartList]);
 
   useEffect(() => {
@@ -147,7 +148,7 @@ const Home = () => {
           lat: data.userPosition.lat,
           lng: data.userPosition.lng,
         });
-        console.log('useEffect');
+        console.log('useEffect2');
       });
   }, []);
 
@@ -170,22 +171,24 @@ const Home = () => {
           setHomeMartList(data.martList);
           console.log('콘솔찍었다.', data);
         });
+    console.log('useEffect3');
   }, [center]);
 
   console.log('마트리스트들', homeMartList);
 
-  useEffect(() => {
-    if (mapRef.current && selectedMart !== null) {
-      console.log('이동', mapRef.current);
-      const newCenter = new navermaps.LatLng(
-        selectedMart.lat,
-        selectedMart.longitude
-      );
+  // useEffect(() => {
+  //   if (mapRef.current && selectedMart !== null) {
+  //     console.log('이동', mapRef.current);
+  //     const newCenter = new navermaps.LatLng(
+  //       selectedMart.lat,
+  //       selectedMart.longitude
+  //     );
 
-      console.log('좌표', newCenter);
-      mapRef.current.setCenter(newCenter);
-    }
-  }, [selectedMart]);
+  //     console.log('좌표', newCenter);
+  //     mapRef.current.setCenter(newCenter);
+  //   }
+  // }, [selectedMart]);
+
   const navermaps = useNavermaps();
 
   // const onCenterChanged = value => setCenter(value);
