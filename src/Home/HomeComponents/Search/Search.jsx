@@ -7,10 +7,8 @@ const Search = ({
   setIsSearchClicked,
   homeMartList,
   setSelectedMart,
-  isMarkerClicked,
-  setIsMarkerClicked,
   setCenter,
-  handleMarkerClick,
+  setIsMarkerClicked,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -122,11 +120,7 @@ const Search = ({
     setNewKeyword('');
     setCenter({ lat: mart.lat, lng: mart.lng });
     setIsMarkerClicked(repeatFalse(homeMartList.length));
-    // setIsMarkerClicked([true]);
   };
-
-  console.log('homeMartList.length', homeMartList.length);
-  console.log('isMarkerClicked', isMarkerClicked);
 
   return (
     <S.SearchBox>
