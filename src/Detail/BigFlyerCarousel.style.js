@@ -31,6 +31,7 @@ export const ModalCloseImg = styled.img`
   right: 0;
   position: absolute;
   cursor: pointer;
+  z-index: 10;
 `;
 
 export const FlyerImage = styled.img`
