@@ -80,10 +80,6 @@ const Favorite = () => {
       });
   }, [token]);
 
-  useEffect(() => {
-    setImageStates(Array(addedFavoriteList.length).fill(false));
-  }, [addedFavoriteList]);
-
   return (
     <div>
       <Header type="favorite" />
