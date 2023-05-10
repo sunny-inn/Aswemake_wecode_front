@@ -30,7 +30,7 @@ const TokenRefresher = () => {
       })
         .then(response => {
           localStorage.setItem('token', response.data.accessToken);
-          response.config.headers['Authorization'] =
+          instance.defaults.headers.common['Authorization'] =
             'Bearer' + response.data.accessToken;
         })
         .then(response => {
