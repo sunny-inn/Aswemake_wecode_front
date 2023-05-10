@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 218px;
+  line-height: 21px;
 `;
 
 export const Name = styled.p`
@@ -29,4 +30,6 @@ export const FinBtn = styled.button`
   color: white;
   margin-top: 230px;
   cursor: pointer;
+  font-size: 17px;
+  font-weight: 700;
 `;

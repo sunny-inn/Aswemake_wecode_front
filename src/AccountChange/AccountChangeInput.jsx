@@ -12,14 +12,12 @@ const AccountChangeInput = () => {
     navigate('/accountchange');
   };
 
-  const [correct, setCorrrect] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [selectBank, setSelectBank] = useState(null);
   const [accountNumber, setAccountNumber] = useState('');
   const [accountName, setAccountName] = useState('');
   const [accountVerified, setAccountVerified] = useState(null);
   const [areInputsFilled, setAreInputsFilled] = useState(false);
-  const [areInputsVerified, setAreInputsVerified] = useState(false);
 
   const handleToggleClick = () => {
     setModalOpen(!modalOpen);

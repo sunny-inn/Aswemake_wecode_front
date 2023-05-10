@@ -21,10 +21,8 @@ export const Input = styled.input`
   font-weight: 500;
   padding: 16px;
   color: #252525;
-  padding: 16px;
   ::placeholder {
     color: #dbdbdb;
-    padding: 16px;
     font-size: 15px;
     font-weight: 500;
   }
@@ -55,7 +53,6 @@ export const CodeInput = styled.input`
   padding: 16px;
   ::placeholder {
     color: #dbdbdb;
-    padding: 16px;
   }
 `;
 

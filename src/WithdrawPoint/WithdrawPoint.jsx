@@ -208,7 +208,7 @@ const WithdrawPoint = () => {
           <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
           <S.FromMyPoint>로</S.FromMyPoint>
           <S.ChangeAccount onClick={goToChangeAccount}>
-            계좌변경 {'>'}
+            계좌변경 <span style={{ color: '#BCBCBC' }}>{'>'}</span>
           </S.ChangeAccount>
         </S.TitleContainer>
         <S.Withdraw

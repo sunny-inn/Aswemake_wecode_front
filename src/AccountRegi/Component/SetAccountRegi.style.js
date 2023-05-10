@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 218px;
+  line-height: 21px;
 `;
 
 export const Name = styled.div`

@@ -8,7 +8,7 @@ export const TitleContainer = styled.div`
 export const ChangeAccount = styled.div`
   display: flex;
   align-items: center;
-  color: #bcbcbc;
+  color: #707070;
   font-size: 13px;
   font-weight: 500;
   margin-left: 170px; // Or any value you need for spacing
