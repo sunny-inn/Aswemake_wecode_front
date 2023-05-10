@@ -7,27 +7,60 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
   const [flyersStatusData, setFlyersStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lastIndex, setLastIndex] = useState(-1);
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
   };
 
   useEffect(() => {
+    setLastIndex(-1);
     setFlyersStatusData([]);
 
-    fetch(`https://flyers.qmarket.me/api/evaluation/flyers?sort=${onScreen}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('token'),
-      },
-    })
+    fetch(
+      `https://flyers.qmarket.me/api/evaluation/flyers?sort=${onScreen}&lastIndex=${
+        lastIndex + 1
+      }`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
+        },
+      }
+    )
       .then(response => response.json())
       .then(data => {
-        setFlyersStatusData(data.result);
+        setFlyersStatusData(prevData => [...prevData, ...data.result]);
         setLoading(false);
       });
-  }, [onScreen]);
+  }, [lastIndex, onScreen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop =
+        (document.documentElement && document.documentElement.scrollTop) ||
+        document.body.scrollTop;
+      const scrollHeight =
+        (document.documentElement && document.documentElement.scrollHeight) ||
+        document.body.scrollHeight;
+      const clientHeight =
+        document.documentElement.clientHeight || window.innerHeight;
+
+      if (
+        scrollTop + clientHeight >= scrollHeight &&
+        flyersStatusData.length > 0 &&
+        !loading
+      ) {
+        setLastIndex(prevIndex => prevIndex + 1);
+      }
+    };
+
+    setLastIndex(-1);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [flyersStatusData.length, loading]);
 
   if (loading) return null;
 

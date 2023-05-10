@@ -111,15 +111,6 @@ const Login = () => {
 
     instance.interceptors.request.use(async function (config) {
       const accessToken = localStorage.getItem('token');
-
-      await axios({
-        url: 'https://flyers.qmarket.me/api/users/login',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-      });
-
       config.headers['Authorization'] = `Bearer ${accessToken}`;
 
       return config;
