@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header/Header';
+import SuggestCompleted from './SuggestCompleted';
 import * as S from './Suggest.style';
 
 const Suggest = ({ onClose, selectedMart }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ martName: '', martPhoneNumber: '' });
+  const [showSuggestCompleted, setShowSuggestCompleted] = useState(false); // 모달 띄우는 상태 추가
 
   const saveInput = e => {
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
@@ -13,7 +15,7 @@ const Suggest = ({ onClose, selectedMart }) => {
 
   const onClickBack = e => {
     e.preventDefault();
-    navigate(`/detail/${selectedMart.martId}`);
+    onClose();
   };
   console.log('ㅇ에에에???', selectedMart);
 
@@ -25,7 +27,7 @@ const Suggest = ({ onClose, selectedMart }) => {
       martPhoneNumber: input.martPhoneNumber,
     };
     fetch(
-      `https://flyers.qmarket.me/api/home/martModification/${selectedMart.martId}`,
+      `https://flyers.qmarket.me/api/home/martModification/${selectedMart[0].martId}`,
       {
         method: 'POST',
         credentials: 'include',
@@ -42,12 +44,11 @@ const Suggest = ({ onClose, selectedMart }) => {
       })
       .then(data => {
         console.log('데이터', data);
+        setShowSuggestCompleted(true); // 응답 받은 후 모달 띄우도록 상태 변경
       });
-    navigate('./suggestCompleted');
   };
   return (
-    // <S.SuggestModalContainer>
-    <>
+    <S.SuggestModalContainer>
       <Header type="suggest" onClickBack={onClickBack} />
       <S.SuggestWholeContainer>
         <S.SuggestText>
@@ -80,14 +81,16 @@ const Suggest = ({ onClose, selectedMart }) => {
         <S.SuggestBtn
           onClick={onClickSuggestBtn}
           disabled={
-            input.martName.length < 2 || input.martPhoneNumber.length < 2
+            input.martName.length < 4 || input.martPhoneNumber.length < 7
           }
         >
           요청하기
         </S.SuggestBtn>
       </S.SuggestWholeContainer>
-      {/* </S.SuggestModalContainer> */}
-    </>
+      {showSuggestCompleted && (
+        <SuggestCompleted onClose={() => setShowSuggestCompleted(false)} />
+      )}
+    </S.SuggestModalContainer>
   );
 };
 

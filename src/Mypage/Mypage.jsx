@@ -44,7 +44,7 @@ const Mypage = () => {
 
   if (loading) return <div>Loading</div>;
 
-  const totalPoints = user && Math.trunc(user.totalPoints);
+  const totalPoints = user && Math.trunc(user.totalPoints).toLocaleString();
 
   const handleModal = () => {
     setOpenModal(prev => !prev);

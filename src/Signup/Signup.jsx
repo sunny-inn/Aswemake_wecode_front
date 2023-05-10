@@ -81,15 +81,18 @@ const Signup = () => {
 
   const formatDay = day => {
     const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
     if (numbers.includes(day)) return `0${day}`;
     if (day.length >= 2 && day[0] === '0') return day.substring(1);
   };
 
   const handleDate = e => {
     const day = e.target.value;
-    const formattedDay = formatDay(day);
-    setDate(formattedDay);
+    if (day !== '') {
+      const formattedDay = formatDay(day);
+      setDate(formattedDay);
+    } else {
+      setDate('');
+    }
   };
 
   useEffect(() => {
@@ -168,7 +171,7 @@ const Signup = () => {
     isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    year !== '' &&
+    year.length === 4 &&
     month !== '' &&
     date !== '' &&
     gender !== '' &&

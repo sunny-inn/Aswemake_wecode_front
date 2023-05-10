@@ -16,7 +16,7 @@ import DetailModal from './DetailModal';
 
 const Home = () => {
   //MockData시작
-  const [userAddress, setUserAddress] = useState('');
+  // const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
@@ -45,28 +45,28 @@ const Home = () => {
     }
   }, [token, navigate]);
 
-  useEffect(() => {
-    userAddress &&
-      navermaps.Service.geocode(
-        {
-          address: userAddress,
-        },
-        function (status, response) {
-          if (status !== navermaps.Service.Status.OK) {
-            return alert('Something wrong!');
-          }
-          const result = response.result;
-          const items = result.items;
-          console.log(
-            '위도 = ',
-            items[0].point.y,
-            ' 경도 = ',
-            items[0].point.x
-          );
-          setCenter({ lat: items[0].point.x, lng: items[0].point.y });
-        }
-      );
-  }, [userAddress]);
+  // useEffect(() => {
+  //   userAddress &&
+  //     navermaps.Service.geocode(
+  //       {
+  //         address: userAddress,
+  //       },
+  //       function (status, response) {
+  //         if (status !== navermaps.Service.Status.OK) {
+  //           return alert('Something wrong!');
+  //         }
+  //         const result = response.result;
+  //         const items = result.items;
+  //         console.log(
+  //           '위도 = ',
+  //           items[0].point.y,
+  //           ' 경도 = ',
+  //           items[0].point.x
+  //         );
+  //         setCenter({ lat: items[0].point.x, lng: items[0].point.y });
+  //       }
+  //     );
+  // }, [userAddress]);
 
   const handleModal = () => {
     // navigate(`/detail/${selectedMart.martId}`);
@@ -86,8 +86,18 @@ const Home = () => {
     setCurrentId(id);
   };
 
+  // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐 + 마커 클릭 시 center 변경
   const handleMarkerClick = (e, mart, index) => {
-    setSelectedMart(mart);
+    if (selectedMart === null) {
+      setSelectedMart(mart);
+    } else if (selectedMart.martName !== mart.martName) {
+      setSelectedMart(mart);
+    } else if (selectedMart.martName === mart.martName) {
+      setSelectedMart(null);
+    } else {
+      setSelectedMart(null);
+    }
+
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === index) {
         return !toggle;
@@ -98,18 +108,27 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
-  console.log('isMarkerClicked', isMarkerClicked);
-
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
   };
 
+  // 마커 한번 클릭 후 센터 이동할 떄 마커 클릭되지 않도록 함
+  const repeatFalse = count => {
+    setIsMarkerClicked([]);
+    let result = [];
+    for (let i = 0; i <= count; i++) {
+      result.push(false);
+    }
+    return result;
+  };
+
   useEffect(() => {
     if (homeMartList && selectedMart === null) {
-      setIsMarkerClicked(
-        Array.from({ length: homeMartList.length }, () => false)
-      );
+      // setIsMarkerClicked(
+      //   Array.from({ length: homeMartList.length }, () => false)
+      // );
+      setIsMarkerClicked(repeatFalse(homeMartList.length));
     }
   }, [homeMartList]);
 
@@ -129,7 +148,6 @@ const Home = () => {
           lat: data.userPosition.lat,
           lng: data.userPosition.lng,
         });
-        console.log('useEffect');
       });
   }, []);
 
@@ -137,7 +155,8 @@ const Home = () => {
   const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
   useEffect(() => {
-    center.lat &&
+    selectedMart === null &&
+      center.lat &&
       fetch(`https://flyers.qmarket.me/api/home/mart`, {
         method: 'POST',
         credentials: 'include',
@@ -156,18 +175,6 @@ const Home = () => {
 
   console.log('마트리스트들', homeMartList);
 
-  useEffect(() => {
-    if (mapRef.current) {
-      console.log('이동', mapRef.current);
-      const newCenter = new navermaps.LatLng(
-        selectedMart.lat,
-        selectedMart.longitude
-      );
-
-      console.log('좌표', newCenter);
-      mapRef.current.setCenter(newCenter);
-    }
-  }, [selectedMart]);
   const navermaps = useNavermaps();
 
   // const onCenterChanged = value => setCenter(value);
@@ -179,6 +186,7 @@ const Home = () => {
       lat: value.y,
       lng: value.x,
     });
+    setSelectedMart(null);
   };
   console.log('센터가??', center);
 
@@ -195,7 +203,6 @@ const Home = () => {
       nextIndex = smIndex + 1;
     }
     setSelectedMart(homeMartList[nextIndex]);
-    console.log('homeindex', nextIndex);
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === nextIndex) {
         return true;
@@ -232,7 +239,6 @@ const Home = () => {
     return deg * (Math.PI / 180);
   };
 
-  console.log('selectedMart', selectedMart);
   // console.log('isMarkerClicked', isMarkerClicked);
 
   return (

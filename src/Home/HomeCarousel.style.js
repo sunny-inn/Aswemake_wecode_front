@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
 
 export const StarImg = styled.img`
   width: 19px;
@@ -6,13 +7,21 @@ export const StarImg = styled.img`
   display: inline-block;
 `;
 
-export const CarouselWholeContainer = styled.div`
-  width: 355px;
+export const CarouselWholeContainer = styled(Slider)`
+  width: 360px;
   height: 115px;
   z-index: 10;
   position: absolute;
   margin-left: 2px;
-  bottom: 0;
+  bottom: 3px;
+  overflow-x: hidden;
+
+  .slick-list {
+    position: relative;
+    display: inherit;
+    overflow: hidden;
+    margin: 0px -12px;
+  }
 `;
 
 export const CarouselImg = styled.img`
@@ -29,9 +38,10 @@ export const CarouselBox = styled.ul`
   margin: 0 3px;
   list-style: none;
   background-color: #fff;
-  width: 300px;
-  height: 110px;
+  width: 328px;
+  height: 112px;
   border-radius: 12px;
+  border: 1px solid #f9f9f9;
 `;
 
 export const CarouselContent = styled.div`
@@ -50,9 +60,10 @@ export const MartBox = styled.div`
 `;
 
 export const MartTitle = styled.span`
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   line-height: 23px;
+  letter-spacing: -1px;
   color: black;
 `;
 export const MartTitleLi = styled.li`
@@ -61,5 +72,13 @@ export const MartTitleLi = styled.li`
 `;
 
 export const MartContentBox = styled.div`
-  margin-top: 10px;
+  margin-top: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60px;
+`;
+
+export const AddressAndPhone = styled.li`
+  letter-spacing: -1px;
 `;

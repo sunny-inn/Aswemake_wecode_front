@@ -69,29 +69,6 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
 
   if (loading) return null;
 
-  // const handleOnScreen = e => {
-  //   setOnScreen(e.target.value);
-  //   setLastIndex(-1);
-
-  //   setMartStatusData([]);
-  //   fetch(
-  //     `https://flyers.qmarket.me/api/evaluation/marts?sort=${
-  //       e.target.value
-  //     }&lastIndex=${lastIndex + 1}`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //         authorization: localStorage.getItem('token'),
-  //       },
-  //     }
-  //   )
-  //     .then(response => response.json())
-  //     .then(data =>
-  //       setMartStatusData(prevData => [...prevData, ...data.result])
-  //     );
-  // };
-
   const onClickBack = () => {
     setIsMartInfoStatus(prev => !prev);
   };
