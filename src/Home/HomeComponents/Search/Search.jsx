@@ -111,10 +111,7 @@ const Search = ({
     return result;
   };
 
-  const onClickMart = (id, mart) => {
-    // const selectedMart = homeMartList.filter(mart => {
-    //   return mart.martId === id;
-    // });
+  const onClickMart = mart => {
     setIsSearchClicked(false);
     setSelectedMart(mart);
     setNewKeyword('');
@@ -146,10 +143,10 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredMarts.map((mart, index) => (
+                {filteredMarts.map(mart => (
                   <S.SearchedItem
                     key={mart.martId}
-                    onClick={() => onClickMart(mart.martId, mart, index)}
+                    onClick={() => onClickMart(mart)}
                   >
                     <div>
                       <S.MartName>{mart.martName}</S.MartName>

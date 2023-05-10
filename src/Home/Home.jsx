@@ -86,12 +86,14 @@ const Home = () => {
     setCurrentId(id);
   };
 
-  // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐
+  // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐 + 마커 클릭 시 center 변경
   const handleMarkerClick = (e, mart, index) => {
     if (selectedMart === null) {
       setSelectedMart(mart);
+      setCenter({ lat: mart.lat, lng: mart.lng });
     } else if (selectedMart.martName !== mart.martName) {
       setSelectedMart(mart);
+      setCenter({ lat: mart.lat, lng: mart.lng });
     } else if (selectedMart.martName === mart.martName) {
       setSelectedMart(null);
     } else {
