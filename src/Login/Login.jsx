@@ -149,7 +149,7 @@ const Login = () => {
               }
               alt="비밀번호 표시/숨김 아이콘"
             />
-            <S.FailMsg id="message" />
+            <S.FailMsg id="message" isFailed={isFailed} />
             <S.KeepLoginBox>
               <S.CheckboxImg
                 src={
