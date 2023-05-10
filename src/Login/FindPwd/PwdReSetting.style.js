@@ -28,11 +28,12 @@ export const Input = styled.input`
   background: #ffffff;
   padding-left: 10px;
   margin-top: 8px;
+  font-weight: 500;
+  font-size: 15px;
 
   ::placeholder {
     padding: 3px;
     color: #dbdbdb;
-    font-weight: 400;
   }
 `;
 

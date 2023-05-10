@@ -207,18 +207,15 @@ const WithdrawPoint = () => {
         <S.TitleContainer>
           <S.TitleMyPoint>내 은행 계좌</S.TitleMyPoint>
           <S.FromMyPoint>로</S.FromMyPoint>
-          <S.ChangeAccount
-            style={{ marginRight: '3px' }}
-            onClick={goToChangeAccount}
-          >
-            계좌변경&npsp;&nbsp;<span>{'>'}</span>
-            {/* <img src="/images/mypage/Vector.png" alt="right arrow" /> */}
+          <S.ChangeAccount onClick={goToChangeAccount}>
+            계좌변경
+            <span> {'>'} </span>
           </S.ChangeAccount>
         </S.TitleContainer>
         <S.Withdraw
           value={
             accountInfo
-              ? `${accountInfo.result.bankName} &nbsp;${accountInfo.result.accountNumber}`
+              ? `${accountInfo.result.bankName} ${accountInfo.result.accountNumber}`
               : ''
           }
           onChange={e => {}}

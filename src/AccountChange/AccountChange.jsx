@@ -77,7 +77,6 @@ const AccountChange = () => {
         <S.Withdraw value={accountData.accountNumber} readOnly />
         <S.TitleMyPoint>예금주</S.TitleMyPoint>
         <S.Withdraw value={accountData.accountHolder} readOnly />
-
         <S.FinBtn
           onClick={changeAccount}
           style={{ backgroundColor: allInputsFilled ? '#FF6A21' : '#dbdbdb' }}

@@ -67,11 +67,14 @@ const PwdReSetting = () => {
         <S.InputTitle>
           <label>새 비밀번호</label>
         </S.InputTitle>
-        <S.Input
-          name="pwd"
-          placeholder="문자+숫자 8자리 이상 입력해주세요."
-          onChange={onChangePassword}
-        />
+        <S.InputWrapper>
+          <S.Input
+            name="pwd"
+            placeholder="문자+숫자 8자리 이상 입력해주세요."
+            onChange={onChangePassword}
+          />
+          {/* <img src="/images/passwordIconColor.png" alt="pssword eye" /> */}
+        </S.InputWrapper>
         {isValidPassword && !isMatchingPassword && (
           <S.CanUse>사용 가능한 비밀번호입니다.</S.CanUse>
         )}

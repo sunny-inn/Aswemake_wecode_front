@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
+  line-height: 21px;
 `;
 
 export const ChangeAccount = styled.div`
@@ -15,6 +16,7 @@ export const ChangeAccount = styled.div`
 
   span {
     color: #bcbcbc;
+    margin-left: 3px;
   }
 `;
 
