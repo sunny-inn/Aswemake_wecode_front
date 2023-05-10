@@ -31,9 +31,9 @@ const Favorite = () => {
   console.log('파람스', params);
 
   const handleFavorite = (index, martId) => {
-    const newImageStates = [...imageStates];
-    newImageStates[index] = !newImageStates[index];
-    setImageStates(newImageStates);
+    // const newImageStates = [...imageStates];
+    // newImageStates[index] = !newImageStates[index];
+    // setImageStates(newImageStates);
     console.log('마트아이이디', martId);
     // fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
     //   method: 'POST',
