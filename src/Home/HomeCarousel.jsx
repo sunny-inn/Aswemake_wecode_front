@@ -21,7 +21,7 @@ const HomeCarousel = ({
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    // centerPadding: '25px',
+    centerPadding: '25px',
     draggable: true,
     arrows: false,
     beforeChange: (current, next) => {
@@ -119,53 +119,51 @@ const HomeCarousel = ({
   }, [smIndex]);
 
   return (
-    <S.CarouselWholeContainer>
-      <Slider
-        {...settings}
-        ref={setSlider}
-        onSwipe={e => changeCenterByCarousel(currentSlide, e)}
-      >
-        {selectedMartList &&
-          selectedMartList.map(mart => (
-            <S.MartBox key={mart.martId}>
-              <S.CarouselBox>
-                <div>
-                  <S.CarouselImg
+    // <S.CarouselWholeContainer>
+    <S.CarouselWholeContainer
+      {...settings}
+      ref={setSlider}
+      onSwipe={e => changeCenterByCarousel(currentSlide, e)}
+    >
+      {selectedMartList &&
+        selectedMartList.map(mart => (
+          <S.MartBox key={mart.martId}>
+            <S.CarouselBox>
+              <div>
+                <S.CarouselImg
+                  src={
+                    mart.martFlyerImages === '0'
+                      ? './images/flyernone.png'
+                      : mart.martFlyerImages[0].imageUrl
+                  }
+                  alt="전단지"
+                  onClick={onClickMartItem(mart.martId)}
+                />
+              </div>
+              <S.CarouselContent>
+                <S.MartTitleLi>
+                  <S.MartTitle>{mart.martName}</S.MartTitle>
+                  <S.StarImg
                     src={
-                      mart.martFlyerImages === '0'
-                        ? './images/flyernone.png'
-                        : mart.martFlyerImages[0].imageUrl
+                      mart.isFavorite
+                        ? './images/clickedFavorite.png'
+                        : './images/favorite.png'
                     }
-                    alt="전단지"
-                    onClick={onClickMartItem(mart.martId)}
+                    onClick={() => onClickFavorite(mart.martId)}
                   />
-                </div>
-                <S.CarouselContent>
-                  <S.MartTitleLi>
-                    <S.MartTitle>{mart.martName}</S.MartTitle>
-                    <S.StarImg
-                      src={
-                        mart.isFavorite
-                          ? './images/clickedFavorite.png'
-                          : './images/favorite.png'
-                      }
-                      onClick={() => onClickFavorite(mart.martId)}
-                    />
-                  </S.MartTitleLi>
-                  <S.MartContentBox>
-                    <S.AddressAndPhone>
-                      {mart.martNumberAddress}
-                    </S.AddressAndPhone>
-                    <S.AddressAndPhone>
-                      {mart.martPhoneNumber}
-                    </S.AddressAndPhone>
-                  </S.MartContentBox>
-                </S.CarouselContent>
-              </S.CarouselBox>
-            </S.MartBox>
-          ))}
-      </Slider>
+                </S.MartTitleLi>
+                <S.MartContentBox>
+                  <S.AddressAndPhone>
+                    {mart.martNumberAddress}
+                  </S.AddressAndPhone>
+                  <S.AddressAndPhone>{mart.martPhoneNumber}</S.AddressAndPhone>
+                </S.MartContentBox>
+              </S.CarouselContent>
+            </S.CarouselBox>
+          </S.MartBox>
+        ))}
     </S.CarouselWholeContainer>
+    // </S.CarouselWholeContainer>
   );
 };
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
 
 export const StarImg = styled.img`
   width: 19px;
@@ -6,7 +7,7 @@ export const StarImg = styled.img`
   display: inline-block;
 `;
 
-export const CarouselWholeContainer = styled.div`
+export const CarouselWholeContainer = styled(Slider)`
   width: 360px;
   height: 115px;
   z-index: 10;
@@ -30,8 +31,8 @@ export const CarouselBox = styled.ul`
   margin: 0 3px;
   list-style: none;
   background-color: #fff;
-  width: 300px;
-  height: 110px;
+  width: 328px;
+  height: 112px;
   border-radius: 12px;
 `;
 
@@ -54,7 +55,7 @@ export const MartTitle = styled.span`
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   color: black;
 `;
 export const MartTitleLi = styled.li`
@@ -71,5 +72,5 @@ export const MartContentBox = styled.div`
 `;
 
 export const AddressAndPhone = styled.li`
-  letter-spacing: -2px;
+  letter-spacing: -1px;
 `;
