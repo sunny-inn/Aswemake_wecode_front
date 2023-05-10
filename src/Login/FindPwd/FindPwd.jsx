@@ -101,6 +101,7 @@ const FindPwd = () => {
     setCodeBtnClikced(true);
     setAlertMsg(null); // Reset the alertMsg state
     setInput(prev => ({ ...prev, code: '' })); // Clear the input for the code
+    setExpired(false);
 
     fetch('https://flyers.qmarket.me/api/verificationCode/send', {
       method: 'POST',
