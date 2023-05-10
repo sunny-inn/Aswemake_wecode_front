@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
+import axios from 'axios';
 import HomeSplash from './HomeSplash';
 import NetworkCheckModal from './NetworkCheckModal';
 import ReactDOM from 'react-dom';
@@ -104,6 +105,50 @@ const Login = () => {
         }
       });
   };
+
+  const instance = axios.create({
+    baseURL: 'https://flyers.qmarket.me/api/users/login',
+  });
+
+  instance.interceptors.request.use(function (config) {
+    console.log('config', config);
+
+    const accessToken = localStorage.getItem('token');
+
+    config.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+    return config;
+  });
+
+  instance.interceptors.response.use(function (response) {
+    console.log('response 1', response);
+
+    if (response.data.message === 'CREATED NEW ACCESS TOKEN') {
+      axios({
+        url: 'https://flyers.qmarket.me/api/users/login',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      })
+        .then(response => {
+          console.log('response 2', response);
+
+          localStorage.setItem('token', response.data.accessToken);
+          instance.defaults.headers.common['Authorization'] =
+            'Bearer' + response.data.accessToken;
+        })
+        .then(response => {
+          window.location.reload();
+        });
+    } else if (response.data.message === 'YOU NEED LOGIN AGAIN') {
+      localStorage.clear();
+      window.alert('로그인 기한이 만료되어 자동으로 로그아웃 되었습니다.');
+      navigate('/');
+    }
+
+    return response;
+  });
 
   // useEffect(() => {
   //   if (localStorage.getItem('token')) {
