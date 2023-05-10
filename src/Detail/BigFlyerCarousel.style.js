@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const BigCarouselContainer = styled.div`
   width: 364px;
-  height: 616px;
+  height: 624px;
   background-color: black;
-  position: absolute;
-  top: -75px;
+  position: fixed;
+  top: 0px;
   left: 0px;
 `;
 export const BigCarouselContentBox = styled.div`

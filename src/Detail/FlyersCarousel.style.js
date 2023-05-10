@@ -33,3 +33,4 @@ export const MartSlider = styled(Slider)`
   /* display: flex;
   gap: 10px; */
 `;
+https://flyers.qmarket.me/images/flyernone.png
