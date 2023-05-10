@@ -178,6 +178,8 @@ const Signup = () => {
     isCheckboxClicked === true
   );
 
+  console.log(date);
+
   // 회원가입 완료
   const onSubmit = e => {
     e.preventDefault();

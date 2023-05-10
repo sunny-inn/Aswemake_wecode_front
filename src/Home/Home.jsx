@@ -88,7 +88,6 @@ const Home = () => {
 
   // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐
   const handleMarkerClick = (e, mart, index) => {
-    console.log('handleMarkerClick', selectedMart.martName === mart.martName);
     if (selectedMart === null) {
       setSelectedMart(mart);
     } else if (selectedMart.martName !== mart.martName) {
@@ -108,8 +107,6 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
   };
-  console.log('handleMarkerClick', selectedMart);
-  console.log('isMarkerClicked', isMarkerClicked);
 
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
@@ -133,10 +130,7 @@ const Home = () => {
       // );
       setIsMarkerClicked(repeatFalse(homeMartList.length));
     }
-    console.log('useEffect1');
   }, [homeMartList]);
-
-  console.log('useEffect1', isMarkerClicked);
 
   useEffect(() => {
     fetch(`https://flyers.qmarket.me/api/home`, {
@@ -154,7 +148,6 @@ const Home = () => {
           lat: data.userPosition.lat,
           lng: data.userPosition.lng,
         });
-        console.log('useEffect2');
       });
   }, []);
 
@@ -177,7 +170,6 @@ const Home = () => {
           setHomeMartList(data.martList);
           console.log('콘솔찍었다.', data);
         });
-    console.log('useEffect3');
   }, [center]);
 
   console.log('마트리스트들', homeMartList);
@@ -223,7 +215,6 @@ const Home = () => {
       nextIndex = smIndex + 1;
     }
     setSelectedMart(homeMartList[nextIndex]);
-    console.log('homeindex', nextIndex);
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === nextIndex) {
         return true;
@@ -260,7 +251,6 @@ const Home = () => {
     return deg * (Math.PI / 180);
   };
 
-  console.log('selectedMart', selectedMart);
   // console.log('isMarkerClicked', isMarkerClicked);
 
   return (
