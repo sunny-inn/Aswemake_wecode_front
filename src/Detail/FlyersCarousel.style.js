@@ -16,6 +16,9 @@ export const FlyerCarouselContainer = styled.div`
   .slick-slide {
     margin-right: 10px;
   }
+  .slick-track {
+    display: flex;
+  }
 `;
 
 export const FlyerImage = styled.img`
