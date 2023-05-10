@@ -251,7 +251,7 @@ const Home = () => {
             zoomControl={false}
             centerPoint={centerPoint}
           >
-            {homeMartList[0] &&
+            {homeMartList[0] ? (
               homeMartList.map((mart, index) => {
                 //2일전계산
                 const now = new Date();
@@ -280,7 +280,10 @@ const Home = () => {
                     onClick={e => handleMarkerClick(e, mart, index)}
                   />
                 );
-              })}
+              })
+            ) : (
+              <div />
+            )}
             <S.SearchBox>
               <div onClick={handleSearch}>
                 <S.SearchBar
