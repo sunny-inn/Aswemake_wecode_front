@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { flex } from '../../Styles/Mixin';
 
 export const Background = styled.div`
-  position: absolute;
+  position: fixed;
   top: -76px;
   left: 0;
   width: 364px;
-  height: 670px;
+  height: 705px;
   background: rgba(25, 25, 25, 0.35);
   z-index: 10;
 `;

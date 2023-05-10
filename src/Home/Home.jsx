@@ -97,6 +97,7 @@ const Home = () => {
     });
     setIsMarkerClicked(newToggles);
   };
+
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
@@ -290,7 +291,7 @@ const Home = () => {
                     />
                   </div>
                   <S.CurrentLocation
-                    src="./images/home/current.png"
+                    src="./images/home/location.png"
                     alt="현위치"
                     onClick={getCurrentPosition}
                   />

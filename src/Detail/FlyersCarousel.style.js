@@ -8,7 +8,6 @@ export const FlyerCarouselContainer = styled.div`
   border-bottom: 8px solid #f9f9f9;
   justify-content: center;
   overflow-x: hidden;
-  display: flex;
   margin-left: 10px;
 
   .slick-slide slick-active slick-current {
@@ -16,6 +15,9 @@ export const FlyerCarouselContainer = styled.div`
   }
   .slick-slide {
     margin-right: 10px;
+  }
+  .slick-track {
+    display: flex;
   }
 `;
 
@@ -25,9 +27,4 @@ export const FlyerImage = styled.img`
   border: 1px solid #f9f9f9;
   border-radius: 8px;
   cursor: pointer;
-`;
-
-export const MartSlider = styled(Slider)`
-  /* display: flex;
-  gap: 10px; */
 `;

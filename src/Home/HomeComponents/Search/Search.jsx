@@ -10,7 +10,7 @@ const Search = ({
   isMarkerClicked,
   setIsMarkerClicked,
   setCenter,
-  selectedMart,
+  handleMarkerClick,
 }) => {
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -74,9 +74,7 @@ const Search = ({
     setKeywords([{ id: Date.now(), text: text }, ...filteredKeyword]);
   };
 
-  console.log(marts);
-
-  // FIXME: 검색 기능
+  // 검색 기능
   useEffect(() => {
     if (marts.length > 0) {
       const list = marts.filter(mart => mart.martNumberAddress !== null);
@@ -98,12 +96,6 @@ const Search = ({
     }
   }, [isSubmitted]);
 
-  // if (marts.length > 0) {
-  //   console.log(marts[0].martNumberAddress.includes('강릉'));
-  // }
-
-  console.log(filteredMarts);
-
   // 검색어 삭제
   const handleRemoveKeyword = id => {
     const filteredKeyword = keywords.filter(keyword => {
@@ -113,24 +105,24 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
-  const onClickMart = (id, mart, index) => {
-    const selectedMart = homeMartList.filter(mart => {
+  const onClickMart = (id, filteredmart, index) => {
+    const mart = homeMartList.filter(mart => {
       return mart.martId === id;
     });
     setIsSearchClicked(false);
-    setSelectedMart(selectedMart);
+    // setSelectedMart(selectedMart);
     setNewKeyword('');
-    setSelectedMart(mart);
     setCenter({ lat: mart.lat, lng: mart.lng });
+    handleMarkerClick(mart, index);
 
-    const newToggles = isMarkerClicked.map((toggle, i) => {
-      if (i === index) {
-        return !toggle;
-      } else {
-        return isMarkerClicked[index] === false ? false : toggle;
-      }
-    });
-    setIsMarkerClicked(newToggles);
+    // const newToggles = isMarkerClicked.map((toggle, i) => {
+    //   if (i === index) {
+    //     return !toggle;
+    //   } else {
+    //     return isMarkerClicked[index] === false ? false : toggle;
+    //   }
+    // });
+    // setIsMarkerClicked(newToggles);
   };
 
   return (
@@ -157,17 +149,21 @@ const Search = ({
             <S.KeywordTitle>검색 결과</S.KeywordTitle>
             {filteredMarts.length > 0 ? (
               <S.SearchedList>
-                {filteredMarts.map((mart, index) => (
+                {filteredMarts.map((filteredmart, index) => (
                   <S.SearchedItem
-                    key={mart.martId}
-                    onClick={() => onClickMart(mart.martId, mart, index)}
+                    key={filteredmart.martId}
+                    onClick={() =>
+                      onClickMart(filteredmart.martId, filteredmart, index)
+                    }
                   >
                     <div>
-                      <S.MartName>{mart.martName}</S.MartName>
-                      <S.MartAddress>{mart.martNumberAddress}</S.MartAddress>
+                      <S.MartName>{filteredmart.martName}</S.MartName>
+                      <S.MartAddress>
+                        {filteredmart.martNumberAddress}
+                      </S.MartAddress>
                     </div>
                     <S.Distance>
-                      {Math.round(mart.distance * 100) / 100}km
+                      {Math.round(filteredmart.distance * 100) / 100}km
                     </S.Distance>
                   </S.SearchedItem>
                 ))}

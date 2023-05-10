@@ -133,16 +133,6 @@ const Detail = () => {
     return () => document.body.removeChild(script);
   }, []);
 
-  //공유하기 시도2
-
-  // useEffect(() => {
-  //   if (detailMartList.length > 0) {
-  //     setArgumentKey({
-  //       mart_flyer_image_url: detailMartList[0].martFlyerImages[0],
-  //     });
-  //   }
-  // }, [detailMartList]);
-
   return (
     <>
       <Header type="martInfo" onClickBack={onClickBack} />
@@ -195,7 +185,6 @@ const Detail = () => {
                   />
                 </S.MartDetailText>
                 <S.ShareAndFavoriteBox>
-                  {/* <KakaoShare /> */}
                   <DetailBtn
                     isShared={isShared}
                     detailMartList={detailMartList}
