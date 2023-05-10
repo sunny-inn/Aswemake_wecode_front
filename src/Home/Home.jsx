@@ -90,8 +90,10 @@ const Home = () => {
   const handleMarkerClick = (e, mart, index) => {
     if (selectedMart === null) {
       setSelectedMart(mart);
+      setCenter({ lat: mart.lat, lng: mart.lng });
     } else if (selectedMart.martName !== mart.martName) {
       setSelectedMart(mart);
+      setCenter({ lat: mart.lat, lng: mart.lng });
     } else if (selectedMart.martName === mart.martName) {
       setSelectedMart(null);
     } else {
@@ -155,7 +157,8 @@ const Home = () => {
   const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
   useEffect(() => {
-    center.lat &&
+    selectedMart === null &&
+      center.lat &&
       fetch(`https://flyers.qmarket.me/api/home/mart`, {
         method: 'POST',
         credentials: 'include',
@@ -170,10 +173,6 @@ const Home = () => {
           setHomeMartList(data.martList);
           console.log('콘솔찍었다.', data);
         });
-
-    if (selectedMart !== null) {
-      setCenter({ lat: selectedMart.lat, lng: selectedMart.lng });
-    }
   }, [center]);
 
   console.log('마트리스트들', homeMartList);
