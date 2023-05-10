@@ -6,7 +6,7 @@ export const Background = styled.div`
   top: -76px;
   left: 0;
   width: 364px;
-  height: 670px;
+  height: 705px;
   background: rgba(25, 25, 25, 0.35);
   z-index: 10;
 `;
