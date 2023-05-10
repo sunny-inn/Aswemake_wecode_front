@@ -80,7 +80,8 @@ const Search = ({
   useEffect(() => {
     if (marts.length > 0) {
       const filteredList = marts.filter(
-        mart => mart.martName.includes(newKeyword)
+        mart => mart.martNumberAddress.includes(newKeyword)
+        // mart.martName.includes(newKeyword)
         // ||
         // mart.martNumberAddress.includes(newKeyword)
       );
