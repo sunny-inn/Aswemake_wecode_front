@@ -30,7 +30,7 @@ const Favorite = () => {
   return (
     <div>
       <Header type="favorite" />
-      {addedFavoriteList.martId === undefined ? (
+      {addedFavoriteList[3].martId === undefined ? (
         <FavoriteEmpty />
       ) : (
         <FavoriteList
