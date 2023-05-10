@@ -79,10 +79,10 @@ const Search = ({
   // FIXME: 검색 기능
   useEffect(() => {
     if (marts.length > 0) {
-      const filteredList = marts.filter(mart =>
-        // mart.martName.includes(newKeyword)
+      const filteredList = marts.filter(
+        mart => mart.martName.includes(newKeyword)
         // ||
-        mart.martNumberAddress.includes(newKeyword)
+        // mart.martNumberAddress.includes(newKeyword)
       );
       const sortedList =
         filteredList &&
