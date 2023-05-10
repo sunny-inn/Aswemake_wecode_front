@@ -42,8 +42,6 @@ const HomeCarousel = ({
   const navigate = useNavigate();
   const params = useParams();
 
-  console.log('currentSlide', currentSlide);
-
   // const handleFavorite = id => {
   //   const newSelectedMartList = selectedMartList.map(mart => {
   //     if (mart.martId === id) {
