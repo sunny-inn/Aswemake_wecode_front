@@ -26,24 +26,20 @@ const Favorite = () => {
       });
   }, []);
   const params = useParams();
-  const { id } = params;
+
   console.log('파람스', params);
 
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    fetch(`https://flyers.qmarket.me/api/favorite/${id}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.martId}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: token,
       },
-      body: JSON.stringify({
-        imageStates,
-        handleFavorite,
-      }),
     })
       .then(response => response.json())
       .then(data => {
