@@ -98,6 +98,8 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
+  console.log('isMarkerClicked', isMarkerClicked);
+
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);

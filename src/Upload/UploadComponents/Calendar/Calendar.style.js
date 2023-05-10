@@ -77,7 +77,8 @@ export const CustomBox = styled.div`
   .react-datepicker__day--selected,
   .react-datepicker__day--range-start,
   .react-datepicker__day--range-end,
-  .react-datepicker__day--in-range {
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--in-selecting-range {
     background: #ff6a21;
     border-width: 10%;
     border-radius: 50px;
