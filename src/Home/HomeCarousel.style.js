@@ -13,7 +13,7 @@ export const CarouselWholeContainer = styled(Slider)`
   z-index: 10;
   position: absolute;
   margin-left: 2px;
-  bottom: 0;
+  bottom: 54px;
   overflow-x: hidden;
 `;
 
