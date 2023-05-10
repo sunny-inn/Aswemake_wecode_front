@@ -105,8 +105,6 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
-  console.log(selectedMart);
-
   console.log('isMarkerClicked', isMarkerClicked);
 
   const handleDragEnd = navermaps => {
@@ -124,13 +122,13 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log('home에서 찍힘');
     if (homeMartList && selectedMart === null) {
       // setIsMarkerClicked(
       //   Array.from({ length: homeMartList.length }, () => false)
       // );
       setIsMarkerClicked(repeatFalse(homeMartList.length));
     }
+    setSelectedMart(null);
   }, [homeMartList]);
 
   useEffect(() => {
