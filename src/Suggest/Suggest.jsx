@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import SuggestCompleted from './SuggestCompleted';
@@ -8,7 +8,6 @@ const Suggest = ({ onClose, selectedMart }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState({ martName: '', martPhoneNumber: '' });
   const [showSuggestCompleted, setShowSuggestCompleted] = useState(false); // 모달 띄우는 상태 추가
-  const [timer, setTimer] = useState(null);
 
   const saveInput = e => {
     setInput(prevInput => ({ ...prevInput, [e.target.name]: e.target.value }));
@@ -45,16 +44,9 @@ const Suggest = ({ onClose, selectedMart }) => {
       })
       .then(data => {
         console.log('데이터', data);
-        setShowSuggestCompleted(true);
-        setTimer(setTimeout(onClose, 2000)); // 2초 후 onClose 함수 호출
+        setShowSuggestCompleted(true); // 응답 받은 후 모달 띄우도록 상태 변경
       });
   };
-  useEffect(() => {
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [timer]);
-
   return (
     <S.SuggestModalContainer>
       <Header type="suggest" onClickBack={onClickBack} />
