@@ -284,25 +284,24 @@ const Home = () => {
                   />
                 );
               })}
+            <S.SearchBox>
+              <div onClick={handleSearch}>
+                <S.SearchBar
+                  type="text"
+                  placeholder="동주소, 마트 검색"
+                  value={newKeyword.text}
+                  readOnly
+                />
+              </div>
+              <S.CurrentLocation
+                src="./images/home/current-location.png"
+                alt="현위치"
+                onClick={getCurrentPosition}
+              />
+            </S.SearchBox>
           </NaverMap>
           {homeMartList.length > 0 && (
             <>
-              {' '}
-              <S.SearchBox>
-                <div onClick={handleSearch}>
-                  <S.SearchBar
-                    type="text"
-                    placeholder="동주소, 마트 검색"
-                    value={newKeyword.text}
-                    readOnly
-                  />
-                </div>
-                <S.CurrentLocation
-                  src="./images/home/current-location.png"
-                  alt="현위치"
-                  onClick={getCurrentPosition}
-                />
-              </S.SearchBox>
               <HomeCarousel
                 handleSecModal={handleSecModal}
                 homeMartList={homeMartList}
