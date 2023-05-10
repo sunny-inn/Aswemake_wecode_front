@@ -26,7 +26,7 @@ export const InputBoxContainer = styled.div`
 export const InputBox = styled.input`
   box-sizing: border-box;
   border: ${({ isFailed }) =>
-    isFailed ? '1px solid red' : '1px solid #dbdbdb'};
+    isFailed ? '1px solid #e42003' : '1px solid #dbdbdb'};
   width: 328px;
   height: 50px;
   border-radius: 8px;
@@ -131,7 +131,7 @@ export const LineHr = styled.hr`
   margin: 15px 0;
 `;
 export const FailMsg = styled.span`
-  color: red;
+  color: #e42003;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
