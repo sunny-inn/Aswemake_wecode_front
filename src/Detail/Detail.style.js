@@ -11,6 +11,9 @@ export const DetailContainer = styled.div`
   position: relative;
   padding-left: 20px;
   overflow-x: hidden;
+  .slick-track {
+    display: flex;
+  }
 `;
 
 export const PromoStartDate = styled.p`
