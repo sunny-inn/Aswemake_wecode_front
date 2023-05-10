@@ -13,6 +13,9 @@ export const FlyerCarouselContainer = styled.div`
   .slick-slide slick-active slick-current {
     margin-right: 10px;
   }
+  .slick-slide {
+    margin-right: 10px;
+  }
 `;
 
 export const FlyerImage = styled.img`
