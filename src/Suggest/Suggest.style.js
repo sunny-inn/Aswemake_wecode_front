@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SuggestModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   background-color: #fff;
@@ -9,7 +9,6 @@ export const SuggestModalContainer = styled.div`
   height: 616px;
   z-index: 20;
   margin-right: -5px;
-  margin-top: -40px;
 `;
 
 export const SuggestWholeContainer = styled.div`
