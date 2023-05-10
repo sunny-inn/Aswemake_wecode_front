@@ -172,7 +172,6 @@ const Home = () => {
           console.log('콘솔찍었다.', data);
         });
     console.log('useEffect3');
-    setSelectedMart(null);
   }, [center]);
 
   console.log('마트리스트들', homeMartList);
