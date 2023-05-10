@@ -111,6 +111,8 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
+  console.log('selectedMart', selectedMart);
+
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
