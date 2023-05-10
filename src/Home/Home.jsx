@@ -203,6 +203,7 @@ const Home = () => {
       lat: value.y,
       lng: value.x,
     });
+    setSelectedMart(null);
   };
   console.log('센터가??', center);
 
