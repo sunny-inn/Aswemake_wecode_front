@@ -75,9 +75,11 @@ const Favorite = () => {
       ) : (
         <FavoriteList
           addedFavoriteList={addedFavoriteList}
+          handleFavorite={index =>
+            handleFavorite(index, addedFavoriteList[index].martId)
+          }
           setImageStates={setImageStates}
           imageStates={imageStates}
-          handleFavorite={handleFavorite}
         />
       )}
     </div>
