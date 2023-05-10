@@ -65,7 +65,6 @@ export const SearchedItem = styled.li`
   padding: 12px;
   border: 1px solid #ececec;
   border-radius: 12px;
-  overflow-x: hidden;
   cursor: pointer;
 `;
 export const MartName = styled.p`
@@ -96,7 +95,9 @@ export const KeywordItem = styled.li`
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
+  overflow-x: hidden;
   cursor: pointer;
+
   p {
     color: #252525;
     font-weight: 500;
