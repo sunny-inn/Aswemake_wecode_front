@@ -149,7 +149,7 @@ const Login = () => {
               }
               alt="비밀번호 표시/숨김 아이콘"
             />
-            <S.FailMsg id="message" />
+            <S.FailMsg id="message" isFailed={isFailed} />
             <S.KeepLoginBox>
               <S.CheckboxImg
                 src={
@@ -164,7 +164,7 @@ const Login = () => {
 
             <S.Button
               onClick={() => goToHome()}
-              disabled={input.id.length < 5 || input.pw.length < 7}
+              disabled={input.id.length < 2 || input.pw.length < 7}
             >
               <span>로그인</span>
             </S.Button>

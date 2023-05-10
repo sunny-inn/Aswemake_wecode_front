@@ -12,7 +12,7 @@ export const ModalBackground = styled.div`
 
 export const ModalContainer = styled.div`
   width: 288px;
-  height: 196px;
+  height: 160px;
   background-color: #ffffff;
   border-radius: 8px;
   position: absolute;
@@ -37,7 +37,7 @@ export const ModalTitleBox = styled.div`
   border-bottom: 1px solid #eeeeee;
   display: flex;
   width: 100%;
-  height: 25%;
+  height: 40%;
   align-items: center;
   justify-content: space-between;
 `;
@@ -45,7 +45,7 @@ export const ModalTitle = styled.p`
   font-weight: 700;
   font-size: 19px;
   line-height: 23px;
-  margin-left: 27px;
+  margin-left: 35px;
   padding-top: 4px;
   flex-grow: 1;
   text-align: center;

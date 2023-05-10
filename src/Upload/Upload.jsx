@@ -4,6 +4,7 @@ import Tutorial from './UploadComponents/Tutorial/Tutorial';
 import Calendar from './UploadComponents/Calendar/Calendar';
 import Modal from '../Components/Modal/Modal';
 import * as S from './Upload.style';
+import { useNavigate } from 'react-router-dom';
 
 const Upload = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -29,6 +30,16 @@ const Upload = () => {
     document.getElementById('scroller').scroll(0, 0);
   }, []);
 
+  // token 확인
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/');
+    }
+  }, [token]);
+
+  // form data에 data 담기
   const uploadForm = new FormData();
   uploadForm.append('images', img1);
   uploadForm.append('images', img2);
@@ -148,8 +159,6 @@ const Upload = () => {
     uploadInfo.endDate &&
     isCheckboxClicked === true
   );
-
-  const token = localStorage.getItem('token');
 
   // 전단 등록 요청
   const onSubmitFlyers = e => {

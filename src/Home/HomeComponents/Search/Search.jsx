@@ -91,6 +91,10 @@ const Search = ({
     setFilteredMarts(sortedList);
   }, [isSubmitted]);
 
+  if (marts) {
+    console.log(marts[0]);
+  }
+
   // 검색어 삭제
   const handleRemoveKeyword = id => {
     const filteredKeyword = keywords.filter(keyword => {
