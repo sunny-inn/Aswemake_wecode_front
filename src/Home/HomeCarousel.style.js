@@ -7,12 +7,13 @@ export const StarImg = styled.img`
 `;
 
 export const CarouselWholeContainer = styled.div`
-  width: 355px;
+  width: 360px;
   height: 115px;
   z-index: 10;
   position: absolute;
   margin-left: 2px;
   bottom: 0;
+  overflow-x: hidden;
 `;
 
 export const CarouselImg = styled.img`
@@ -50,9 +51,10 @@ export const MartBox = styled.div`
 `;
 
 export const MartTitle = styled.span`
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   line-height: 23px;
+  letter-spacing: -2px;
   color: black;
 `;
 export const MartTitleLi = styled.li`
@@ -61,5 +63,13 @@ export const MartTitleLi = styled.li`
 `;
 
 export const MartContentBox = styled.div`
-  margin-top: 10px;
+  margin-top: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60px;
+`;
+
+export const AddressAndPhone = styled.li`
+  letter-spacing: -2px;
 `;

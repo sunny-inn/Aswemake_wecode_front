@@ -21,7 +21,7 @@ const HomeCarousel = ({
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '25px',
+    // centerPadding: '25px',
     draggable: true,
     arrows: false,
     beforeChange: (current, next) => {
@@ -155,8 +155,12 @@ const HomeCarousel = ({
                     />
                   </S.MartTitleLi>
                   <S.MartContentBox>
-                    <li>{mart.martNumberAddress}</li>
-                    <li>{mart.martPhoneNumber}</li>
+                    <S.AddressAndPhone>
+                      {mart.martNumberAddress}
+                    </S.AddressAndPhone>
+                    <S.AddressAndPhone>
+                      {mart.martPhoneNumber}
+                    </S.AddressAndPhone>
                   </S.MartContentBox>
                 </S.CarouselContent>
               </S.CarouselBox>
