@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
 
 export const FlyerCarouselContainer = styled.div`
   width: 360px;
-  height: 220px;
+  height: 230px;
   padding-bottom: 10px;
   border-bottom: 8px solid #f9f9f9;
   justify-content: center;
@@ -15,6 +16,10 @@ export const FlyerImage = styled.img`
   height: 200px;
   border: 1px solid #f9f9f9;
   border-radius: 8px;
-  margin-right: 10px;
   cursor: pointer;
+`;
+
+export const MartSlider = styled(Slider)`
+  display: flex;
+  gap: 10px;
 `;

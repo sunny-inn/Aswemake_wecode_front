@@ -52,7 +52,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
   return (
     <>
       <S.FlyerCarouselContainer>
-        <Slider {...settings}>
+        <S.MartSlider {...settings}>
           <S.FlyerImage
             onClick={() => {
               onClickImage(0);
@@ -97,7 +97,7 @@ const FlyersCarousel = ({ list, detailMartList, handleImageClick }) => {
             }
             alt="전단지"
           />
-        </Slider>
+        </S.MartSlider>
       </S.FlyerCarouselContainer>
       {showBigImage && (
         <BigFlyerCarousel
