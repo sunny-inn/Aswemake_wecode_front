@@ -88,6 +88,7 @@ const Home = () => {
 
   // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐 + 마커 클릭 시 center 변경
   const handleMarkerClick = (e, mart, index) => {
+    console.log('handleMarkerClick');
     if (selectedMart === null) {
       setSelectedMart(mart);
       setCenter({ lat: mart.lat, lng: mart.lng });
@@ -132,6 +133,7 @@ const Home = () => {
       // );
       setIsMarkerClicked(repeatFalse(homeMartList.length));
     }
+    console.log('useEffect');
   }, [homeMartList]);
 
   useEffect(() => {
