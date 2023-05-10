@@ -87,12 +87,7 @@ const Home = () => {
   };
 
   const handleMarkerClick = (e, mart, index) => {
-    if (selectedMart === null) {
-      setSelectedMart(mart);
-    } else {
-      setSelectedMart(null);
-    }
-
+    setSelectedMart(mart);
     const newToggles = isMarkerClicked.map((toggle, i) => {
       if (i === index) {
         return !toggle;
@@ -110,22 +105,11 @@ const Home = () => {
     console.log('center는?!?!', center);
   };
 
-  // 마커 한번 클릭 후 센터 이동할 떄 마커 클릭되지 않도록 함
-  const repeatFalse = count => {
-    let result = [];
-    for (let i = 0; i < count; i++) {
-      result.push(false);
-    }
-    return result;
-  };
-
   useEffect(() => {
-    console.log('home에서 찍힘');
     if (homeMartList && selectedMart === null) {
-      // setIsMarkerClicked(
-      //   Array.from({ length: homeMartList.length }, () => false)
-      // );
-      setIsMarkerClicked(repeatFalse(homeMartList.length));
+      setIsMarkerClicked(
+        Array.from({ length: homeMartList.length }, () => false)
+      );
     }
   }, [homeMartList]);
 
@@ -173,7 +157,7 @@ const Home = () => {
   console.log('마트리스트들', homeMartList);
 
   useEffect(() => {
-    if (mapRef.current && selectedMart !== null) {
+    if (mapRef.current) {
       console.log('이동', mapRef.current);
       const newCenter = new navermaps.LatLng(
         selectedMart.lat,
