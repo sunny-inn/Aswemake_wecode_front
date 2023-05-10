@@ -142,8 +142,7 @@ const Home = () => {
           'Content-Type': 'application/json;charset=utf-8',
           authorization: token,
         },
-        // body: JSON.stringify(changedCenter),
-        body: JSON.stringify(center),
+        body: JSON.stringify(changedCenter),
       })
         .then(response => response.json())
         .then(data => {
