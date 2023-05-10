@@ -60,7 +60,7 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [flyersStatusData.length, loading]);
+  }, []);
 
   if (loading) return null;
 

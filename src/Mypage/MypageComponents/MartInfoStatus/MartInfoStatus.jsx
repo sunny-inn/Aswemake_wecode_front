@@ -65,7 +65,7 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [martStatusData.length, loading]);
+  }, []);
 
   if (loading) return null;
 
