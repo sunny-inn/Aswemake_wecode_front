@@ -14,7 +14,7 @@ const CallModal = ({ detailMartList, handleModal, handlePhoneNum }) => {
             )}
           </S.ModalTitle>
           <S.ModalCloseImg
-            src="./images/closeImg.png"
+            src="/images/closeImg.png"
             onClick={handleModal}
             alt="닫기"
           />

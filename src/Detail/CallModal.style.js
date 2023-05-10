@@ -12,7 +12,7 @@ export const ModalBackground = styled.div`
 
 export const ModalContainer = styled.div`
   width: 288px;
-  height: 196px;
+  height: 160px;
   background-color: #ffffff;
   border-radius: 8px;
   position: absolute;
