@@ -15,7 +15,7 @@ const Search = ({
   const [keywords, setKeywords] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [marts, setMarts] = useState([]);
-  const [filteredMarts, setFilteredMarts] = useState();
+  const [filteredMarts, setFilteredMarts] = useState([]);
 
   const token = localStorage.getItem('token');
 
@@ -78,22 +78,27 @@ const Search = ({
 
   // FIXME: 검색 기능
   useEffect(() => {
-    const filteredList = marts.filter(
-      mart => mart.martName.includes(newKeyword)
-      // ||
-      // mart.martNumberAddress.includes(newKeyword)
-    );
-    const sortedList =
-      filteredList &&
-      filteredList.sort(function (a, b) {
-        return a.distance - b.distance;
-      });
-    setFilteredMarts(sortedList);
+    if (marts.length > 0) {
+      const filteredList = marts.filter(mart =>
+        // mart.martName.includes(newKeyword)
+        // ||
+        mart.martNumberAddress.includes(newKeyword)
+      );
+      const sortedList =
+        filteredList &&
+        filteredList.sort(function (a, b) {
+          return a.distance - b.distance;
+        });
+      setFilteredMarts(sortedList);
+    } else {
+      setFilteredMarts([]);
+    }
   }, [isSubmitted]);
 
-  if (marts) {
-    console.log(marts[0]);
-  }
+  // if (marts.length > 0) {
+  //   console.log(marts[0].martNumberAddress.includes('강릉'));
+  // }
+  console.log(filteredMarts);
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
