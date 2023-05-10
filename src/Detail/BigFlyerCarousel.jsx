@@ -43,13 +43,11 @@ const BigFlyerCarousel = ({
 
         <S.BigFlyerImgBox>
           <Slider {...settings}>
-            {list.martFlyerImages &&
-              list.martFlyerImages.map((image, index) => (
+            {list &&
+              list.map((image, index) => (
                 <S.FlyerImage key={index} src={image.imageUrl} alt="전단지" />
               ))}
-            {!list.martFlyerImages && (
-              <S.FlyerImage src="/images/flyernone.png" alt="전단지" />
-            )}
+            {!list && <S.FlyerImage src="/images/flyernone.png" alt="전단지" />}
           </Slider>
         </S.BigFlyerImgBox>
       </S.BigCarouselContentBox>
