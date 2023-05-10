@@ -92,7 +92,7 @@ const Search = ({
   }, [isSubmitted]);
 
   if (marts) {
-    console.log(marts[0].martName);
+    console.log(marts[0]);
   }
 
   // 검색어 삭제
