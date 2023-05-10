@@ -91,7 +91,7 @@ const Home = () => {
     console.log('handleMarkerClick', selectedMart.martName === mart.martName);
     if (selectedMart === null) {
       setSelectedMart(mart);
-    } else if (selectedMart !== mart) {
+    } else if (selectedMart.martName !== mart.martName) {
       setSelectedMart(mart);
     } else if (selectedMart.martName === mart.martName) {
       setSelectedMart(null);
