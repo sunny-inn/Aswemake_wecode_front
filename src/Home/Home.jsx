@@ -96,7 +96,6 @@ const Home = () => {
       }
     });
     setIsMarkerClicked(newToggles);
-    setCenter({ lat: mart.lat, lng: mart.lng });
   };
 
   const handleDragEnd = navermaps => {
@@ -165,6 +164,10 @@ const Home = () => {
   //     mapRef.current.setCenter(newCenter);
   //   }
   // }, [selectedMart]);
+
+  useEffect(() => {
+    selectedMart && setCenter({ lat: selectedMart.lat, lng: selectedMart.lng });
+  }, [selectedMart]);
 
   const navermaps = useNavermaps();
 
