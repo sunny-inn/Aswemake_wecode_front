@@ -17,8 +17,32 @@ const Suggest = ({ onClose, selectedMart }) => {
   };
   console.log('ㅇ에에에???', selectedMart);
 
+  const token = localStorage.getItem('token');
   const onClickSuggestBtn = e => {
     e.preventDefault();
+    const body = {
+      martName: input.martName,
+      martPhoneNumber: input.martPhoneNumber,
+    };
+    fetch(
+      `https://flyers.qmarket.me/api/home/martModification/${selectedMart.martId}`,
+      {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: token,
+        },
+        body: JSON.stringify(body),
+      }
+    )
+      .then(response => {
+        response.json();
+        console.log(response);
+      })
+      .then(data => {
+        console.log('데이터', data);
+      });
     navigate('./suggestCompleted');
   };
   return (
