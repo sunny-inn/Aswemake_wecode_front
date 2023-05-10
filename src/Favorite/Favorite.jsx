@@ -88,7 +88,7 @@ const Favorite = () => {
           },
         });
       });
-  }, [token]);
+  }, []);
 
   return (
     <div>
