@@ -105,6 +105,14 @@ const Search = ({
   };
 
   // 검색된 마트 클릭
+  const repeatFalse = count => {
+    let result = [true];
+    for (let i = 0; i < count; i++) {
+      result.push(false);
+    }
+    return result;
+  };
+
   const onClickMart = (id, mart) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
@@ -113,8 +121,12 @@ const Search = ({
     setSelectedMart(selectedMart);
     setNewKeyword('');
     setCenter({ lat: mart.lat, lng: mart.lng });
-    setIsMarkerClicked([true]);
+    setIsMarkerClicked(repeatFalse(homeMartList.length));
+    // setIsMarkerClicked([true]);
   };
+
+  console.log('homeMartList.length', homeMartList.length);
+  console.log('isMarkerClicked', isMarkerClicked);
 
   return (
     <S.SearchBox>
