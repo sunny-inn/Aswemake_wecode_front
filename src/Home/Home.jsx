@@ -230,7 +230,7 @@ const Home = () => {
     return deg * (Math.PI / 180);
   };
 
-  // console.log('selectedMart', selectedMart);
+  console.log('selectedMart', selectedMart);
   // console.log('isMarkerClicked', isMarkerClicked);
 
   return (
@@ -294,7 +294,7 @@ const Home = () => {
                     />
                   </div>
                   <S.CurrentLocation
-                    src="./images/home/location.png"
+                    src="./images/home/current-location.png"
                     alt="현위치"
                     onClick={getCurrentPosition}
                   />
@@ -342,8 +342,7 @@ const Home = () => {
           <NaverMap
             // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
             center={center}
-            defaultZoom={15}
-            minZoom={9}
+            minZoom={7}
             onDragEnd={handleDragEnd}
             // onCenterPointChanged={onCenterPointChanged}
             onCenterChanged={onCenterChanged} //중심좌표구할때
