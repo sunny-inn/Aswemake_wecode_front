@@ -12,23 +12,23 @@ export const BigCarouselContentBox = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
   position: relative;
-  justify-content: center;
-  align-items: flex-start;
+  -webkit-box-pack: center;
   overflow: hidden;
+  justify-content: center;
 `;
 
-export const CloseButtonBox = styled.div`
-  width: max-content; /* CloseButtonBox의 너비를 내부 컨텐츠의 크기만큼으로 지정 */
-  display: flex;
-  justify-content: flex-end; /* 닫기 버튼을 오른쪽으로 정렬 */
-`;
+// export const CloseButtonBox = styled.div`
+//   width: max-content; /* CloseButtonBox의 너비를 내부 컨텐츠의 크기만큼으로 지정 */
+//   display: flex;
+//   justify-content: flex-end; /* 닫기 버튼을 오른쪽으로 정렬 */
+// `;
 
 export const ModalCloseImg = styled.img`
   width: 24px;
   height: 24px;
-  margin-right: 10px;
+  right: 0;
+  position: absolute;
   cursor: pointer;
 `;
 
