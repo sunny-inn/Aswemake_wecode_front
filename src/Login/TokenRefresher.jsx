@@ -46,7 +46,7 @@ export const TokenRefresher = () => {
       }
     );
     return () => {
-      axios.interceptors.response.reject(intercepter);
+      axios.interceptors.response.eject(intercepter);
     };
   }, []);
 

@@ -28,11 +28,13 @@ const FindPwd = () => {
 
   const [showTimer, setShowTimer] = useState(false);
   const [seconds, setSeconds] = useState(180);
-  const [alertMsg, setAlerMsg] = useState(null);
+  const [alertMsg, setAlertMsg] = useState(null);
   //만료되었을 때 alert 상태 저장
   const [expired, setExpired] = useState(false);
   //타이머 0s 안돼서 추가
   const [timerId, setTimerId] = useState(null);
+  //0s 되면 만료 alert 뜸
+  const [codeBtnClicked, setCodeBtnClikced] = useState(false);
 
   // 인증번호 색깔 변하게..
   const codeBtnChange = input.phoneNumber === '' || input.code === '';
@@ -65,12 +67,40 @@ const FindPwd = () => {
     input.phoneNumber.includes('010') &&
     (input.phoneNumber.length === 10 || input.phoneNumber.length === 11);
 
-  //인증번호 전송
+  // //인증번호 전송
+  // const onClickCode = e => {
+  //   e.preventDefault();
+  //   setCodeBtn(true);
+  //   setShowTimer(true);
+  //   setSeconds(180);
+  //   setCodeBtnClikced(true);
+
+  //   fetch('https://flyers.qmarket.me/api/verificationCode/send', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       authorization: localStorage.getItem('token'),
+  //     },
+  //     body: JSON.stringify({
+  //       phoneNumber: input.phoneNumber,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.message !== 'message sent successfully') {
+  //         alert('인증번호 전송 실패');
+  //       }
+  //     });
+  // };
+
   const onClickCode = e => {
     e.preventDefault();
     setCodeBtn(true);
     setShowTimer(true);
     setSeconds(180);
+    setCodeBtnClikced(true);
+    setAlertMsg(null); // Reset the alertMsg state
+    setInput(prev => ({ ...prev, code: '' })); // Clear the input for the code
 
     fetch('https://flyers.qmarket.me/api/verificationCode/send', {
       method: 'POST',
@@ -94,7 +124,7 @@ const FindPwd = () => {
   const onCodeBtn = e => {
     e.preventDefault();
     setCodeBtn(false);
-    setAlerMsg(null);
+    setAlertMsg(null);
     setShowTimer(true);
     setSeconds(180);
     //타이머 멈춤
@@ -117,9 +147,9 @@ const FindPwd = () => {
       .then(data => {
         console.log(data);
         if (data.message === 'verification code matches') {
-          setAlerMsg(true);
+          setAlertMsg(true);
         } else {
-          setAlerMsg(false);
+          setAlertMsg(false);
         }
       })
       .catch(error => {
@@ -214,10 +244,10 @@ const FindPwd = () => {
         {alertMsg === true && (
           <S.AlertMsg> 번호 인증이 완료되었습니다. </S.AlertMsg>
         )}
-        {!expired && alertMsg === false && (
+        {alertMsg === false && (
           <S.FailAlertMsg>인증번호를 다시 확인해주세요. </S.FailAlertMsg>
         )}
-        {expired && (
+        {codeBtnClicked && expired && (
           <S.FailAlertMsg>
             만료된 인증번호입니다.다시 시도해주세요.
           </S.FailAlertMsg>
