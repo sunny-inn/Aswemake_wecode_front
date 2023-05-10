@@ -96,6 +96,7 @@ const Home = () => {
       }
     });
     setIsMarkerClicked(newToggles);
+    console.log('handleMarkerClick', selectedMart);
     // setCenter()
   };
 

@@ -123,7 +123,6 @@ const Search = ({
       }
     });
     setIsMarkerClicked(newToggles);
-    console.log('onClickMart', selectedMart);
   };
 
   return (
