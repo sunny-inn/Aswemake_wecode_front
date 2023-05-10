@@ -153,22 +153,18 @@ const Home = () => {
 
   console.log('마트리스트들', homeMartList);
 
-  // useEffect(() => {
-  //   if (mapRef.current) {
-  //     console.log('이동', mapRef.current);
-  //     const newCenter = new navermaps.LatLng(
-  //       selectedMart.lat,
-  //       selectedMart.longitude
-  //     );
-  //     console.log('좌표', newCenter);
-  //     mapRef.current.setCenter(newCenter);
-  //   }
-  // }, [selectedMart]);
-
   useEffect(() => {
-    selectedMart && setCenter({ lat: selectedMart.lat, lng: selectedMart.lng });
-  }, [selectedMart]);
+    if (mapRef.current) {
+      console.log('이동', mapRef.current);
+      const newCenter = new navermaps.LatLng(
+        selectedMart.lat,
+        selectedMart.longitude
+      );
 
+      console.log('좌표', newCenter);
+      mapRef.current.setCenter(newCenter);
+    }
+  }, [selectedMart]);
   const navermaps = useNavermaps();
 
   // const onCenterChanged = value => setCenter(value);
