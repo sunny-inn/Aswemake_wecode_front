@@ -108,13 +108,6 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
-  // 마커 클릭 시 center 변경
-  useEffect(() => {
-    if (selectedMart !== null) {
-      setCenter({ lat: selectedMart.lat, lng: selectedMart.lng });
-    }
-  }, [selectedMart]);
-
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
@@ -177,6 +170,10 @@ const Home = () => {
           setHomeMartList(data.martList);
           console.log('콘솔찍었다.', data);
         });
+
+    if (selectedMart !== null) {
+      setCenter({ lat: selectedMart.lat, lng: selectedMart.lng });
+    }
   }, [center]);
 
   console.log('마트리스트들', homeMartList);
