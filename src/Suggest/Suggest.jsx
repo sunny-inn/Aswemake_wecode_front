@@ -46,8 +46,7 @@ const Suggest = ({ onClose, selectedMart }) => {
     navigate('./suggestCompleted');
   };
   return (
-    // <S.SuggestModalContainer>
-    <>
+    <S.SuggestModalContainer>
       <Header type="suggest" onClickBack={onClickBack} />
       <S.SuggestWholeContainer>
         <S.SuggestText>
@@ -86,8 +85,7 @@ const Suggest = ({ onClose, selectedMart }) => {
           요청하기
         </S.SuggestBtn>
       </S.SuggestWholeContainer>
-      {/* </S.SuggestModalContainer> */}
-    </>
+    </S.SuggestModalContainer>
   );
 };
 

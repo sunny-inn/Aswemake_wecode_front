@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-// export const SuggestModalContainer = styled.div`
-//   position: absolute;
-//   right: 0;
-//   top: 0;
-//   background-color: #fff;
-//   width: 366px;
-//   height: 616px;
-//   z-index: 10;
-//   margin-right: -5px;
-// `;
+export const SuggestModalContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #fff;
+  width: 366px;
+  height: 616px;
+  z-index: 10;
+  margin-right: -5px;
+`;
 
 export const SuggestWholeContainer = styled.div`
   width: 360px;
