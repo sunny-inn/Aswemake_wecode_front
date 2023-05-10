@@ -96,6 +96,7 @@ const Home = () => {
       }
     });
     setIsMarkerClicked(newToggles);
+    console.log('home에서 마커')
   };
 
   console.log('isMarkerClicked', isMarkerClicked);
