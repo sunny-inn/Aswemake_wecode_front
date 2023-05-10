@@ -132,6 +132,8 @@ const Home = () => {
     console.log('useEffect1');
   }, [homeMartList]);
 
+  console.log('useEffect1', isMarkerClicked);
+
   useEffect(() => {
     fetch(`https://flyers.qmarket.me/api/home`, {
       method: 'GET',
