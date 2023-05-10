@@ -33,7 +33,7 @@ const Favorite = () => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite/${params.martId}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
