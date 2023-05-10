@@ -5,6 +5,7 @@ import DetailBtn from './DetailBtn';
 import CallModal from './CallModal';
 import DetailToast from './DetailToast';
 import Header from '../Components/Header/Header';
+import Suggest from '../Suggest/Suggest';
 import KakaoShare from './KakaoShare';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import * as S from './Detail.style';
@@ -15,6 +16,7 @@ const Detail = () => {
   const [showToast, setShowToast] = useState(false);
   const [showBigFlyerModal, setShowBigFlyerModal] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isSuggestModalOpen, setSuggestIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
   const url = `https://flyers.qmarket.me/api/home/martDetail/${params.id}`;
@@ -26,7 +28,7 @@ const Detail = () => {
 
   const onClickSuggestBtn = e => {
     e.preventDefault();
-    navigate('/suggest');
+    setSuggestIsModalOpen(true);
   };
 
   const token = localStorage.getItem('token');
@@ -218,6 +220,12 @@ const Detail = () => {
           <DetailToast
             onClickFavorite={onClickFavorite}
             type={showToast.type}
+          />
+        )}
+        {isSuggestModalOpen && (
+          <Suggest
+            onClose={() => setSuggestIsModalOpen(false)}
+            selectedMart={detailMartList[0]}
           />
         )}
       </S.DetailContainer>
