@@ -114,8 +114,9 @@ const Home = () => {
 
   // 마커 한번 클릭 후 센터 이동할 떄 마커 클릭되지 않도록 함
   const repeatFalse = count => {
+    setIsMarkerClicked([]);
     let result = [];
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i <= count; i++) {
       result.push(false);
     }
     return result;
