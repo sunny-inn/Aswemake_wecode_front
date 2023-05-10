@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     width: 360px;
   }
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
   html,
   body,
   #root {
@@ -43,7 +43,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     height: 100vh;
   }
-};
+} */
 `;
 
 export default GlobalStyle;
