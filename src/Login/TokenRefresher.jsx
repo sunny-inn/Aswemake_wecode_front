@@ -5,6 +5,24 @@ import { useNavigate } from 'react-router-dom';
 const TokenRefresher = () => {
   const navigate = useNavigate();
 
+  // axios.interceptors.request.use(function (config) {
+  //   axios({
+  //     url: 'https://flyers.qmarket.me/api/users/login',
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //   })
+  //     .then(function (response) {
+  //       localStorage.setItem('token', response.data.accessToken);
+  //       response.config.headers['Authorization'] =
+  //         'Bearer' + response.data.accessToken;
+  //     })
+  //     .then();
+
+  //   return config;
+  // });
+
   axios.interceptors.response.use(function (response) {
     console.log(1, response);
 
@@ -16,12 +34,12 @@ const TokenRefresher = () => {
           'Content-Type': 'application/json;charset=utf-8',
         },
       })
-        .then(res => {
-          localStorage.setItem('token', res.data.accessToken);
+        .then(response => {
+          localStorage.setItem('token', response.data.accessToken);
           response.config.headers['Authorization'] =
-            'Bearer' + res.data.accessToken;
+            'Bearer' + response.data.accessToken;
         })
-        .then(res => {
+        .then(response => {
           window.location.reload();
         });
     } else if (response.data.message === 'YOU NEED LOGIN AGAIN') {
