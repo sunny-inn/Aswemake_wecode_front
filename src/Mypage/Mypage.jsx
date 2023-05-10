@@ -8,6 +8,7 @@ import MartInfoStatus from './MypageComponents/MartInfoStatus/MartInfoStatus';
 import Terms from '../Components/Terms/Terms';
 import LogoutModal from '../Components/Modal/LogoutModal';
 import ModifyInfo from './MypageComponents/ModifyInfo/ModifyInfo';
+import TokenRefresher from '../Login/TokenRefresher';
 import * as S from './Mypage.style';
 
 const Mypage = () => {
@@ -149,6 +150,7 @@ const Mypage = () => {
       {isFlyersStatus && <FlyersStatus setIsFlyersStatus={setIsFlyersStatus} />}
       {isTermsOpen && <Terms setIsTermsOpen={setIsTermsOpen} />}
       <Header type="mypage" />
+      <TokenRefresher />
       <S.InfoBox>
         <S.NameBox>
           <div>
