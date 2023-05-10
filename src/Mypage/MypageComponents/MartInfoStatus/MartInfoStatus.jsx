@@ -12,20 +12,18 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
   const [onScreen, setOnScreen] = useState('1');
   const [martStatusData, setMartStatusData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [lastIndex, setLastIndex] = useState(-1);
+  const [page, setPage] = useState(0);
 
   const handleOnScreen = e => {
     setOnScreen(e.target.value);
   };
 
   useEffect(() => {
-    setLastIndex(-1);
+    setPage(0);
     setMartStatusData([]);
 
     fetch(
-      `https://flyers.qmarket.me/api/evaluation/marts?sort=${onScreen}&lastIndex=${
-        lastIndex + 1
-      }`,
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${onScreen}&page=0&size=7`,
       {
         method: 'GET',
         headers: {
@@ -36,10 +34,10 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
     )
       .then(response => response.json())
       .then(data => {
-        setMartStatusData(prevData => [...prevData, ...data.result]);
+        setMartStatusData(data.result);
         setLoading(false);
       });
-  }, [lastIndex, onScreen]);
+  }, [onScreen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,40 +55,38 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
         martStatusData.length > 0 &&
         !loading
       ) {
-        setLastIndex(prevIndex => prevIndex + 1);
+        setPage(prevIndex => prevIndex + 1);
       }
     };
 
-    setLastIndex(-1);
     handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [martStatusData.length, loading]);
+
+  useEffect(() => {
+    if (page === 0) return;
+
+    setLoading(true);
+
+    fetch(
+      `https://flyers.qmarket.me/api/evaluation/marts?sort=${onScreen}&page=${page}&size=7`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('token'),
+        },
+      }
+    )
+      .then(response => response.json())
+      .then(data => {
+        setMartStatusData(prevData => [...prevData, ...data.result]);
+        setLoading(false);
+      });
+  }, [page, onScreen]);
 
   if (loading) return null;
-
-  // const handleOnScreen = e => {
-  //   setOnScreen(e.target.value);
-  //   setLastIndex(-1);
-
-  //   setMartStatusData([]);
-  //   fetch(
-  //     `https://flyers.qmarket.me/api/evaluation/marts?sort=${
-  //       e.target.value
-  //     }&lastIndex=${lastIndex + 1}`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //         authorization: localStorage.getItem('token'),
-  //       },
-  //     }
-  //   )
-  //     .then(response => response.json())
-  //     .then(data =>
-  //       setMartStatusData(prevData => [...prevData, ...data.result])
-  //     );
-  // };
 
   const onClickBack = () => {
     setIsMartInfoStatus(prev => !prev);

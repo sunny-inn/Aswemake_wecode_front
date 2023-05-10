@@ -31,24 +31,6 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
 
   if (loading) return null;
 
-  // const handleOnScreen = e => {
-  //   setOnScreen(e.target.value);
-
-  //   setFlyersStatusData([]);
-  //   fetch(
-  //     `https://flyers.qmarket.me/api/evaluation/flyers?sort=${e.target.value}`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=utf-8',
-  //         authorization: localStorage.getItem('token'),
-  //       },
-  //     }
-  //   )
-  //     .then(response => response.json())
-  //     .then(data => setFlyersStatusData(data.result));
-  // };
-
   const onClickBack = () => {
     setIsFlyersStatus(prev => !prev);
   };
