@@ -338,21 +338,23 @@ const Home = () => {
           )}
         </div>
       ) : (
-        <NaverMap
-          // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
-          center={center}
-          defaultZoom={15}
-          minZoom={9}
-          onDragEnd={handleDragEnd}
-          // onCenterPointChanged={onCenterPointChanged}
-          onCenterChanged={onCenterChanged} //중심좌표구할때
-          ref={mapRef}
-          scaleControl={false}
-          logoControl={false}
-          mapDataControl={false}
-          zoomControl={false}
-          centerPoint={centerPoint}
-        />
+        <S.MapBox>
+          <NaverMap
+            // defaultCenter={new navermaps.LatLng(centerPoint.y, centerPoint.y)}
+            center={center}
+            defaultZoom={15}
+            minZoom={9}
+            onDragEnd={handleDragEnd}
+            // onCenterPointChanged={onCenterPointChanged}
+            onCenterChanged={onCenterChanged} //중심좌표구할때
+            ref={mapRef}
+            scaleControl={false}
+            logoControl={false}
+            mapDataControl={false}
+            zoomControl={false}
+            centerPoint={centerPoint}
+          />
+        </S.MapBox>
       )}
     </div>
   );
