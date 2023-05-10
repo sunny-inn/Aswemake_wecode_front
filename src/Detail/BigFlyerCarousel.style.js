@@ -17,6 +17,7 @@ export const BigCarouselContentBox = styled.div`
   -webkit-box-pack: center;
   overflow: hidden;
   justify-content: center;
+  align-items: center;
 `;
 
 export const ModalCloseImg = styled.img`
