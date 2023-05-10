@@ -115,6 +115,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    console.log('home에서 찍힘');
     if (homeMartList && selectedMart === null) {
       // setIsMarkerClicked(
       //   Array.from({ length: homeMartList.length }, () => false)
