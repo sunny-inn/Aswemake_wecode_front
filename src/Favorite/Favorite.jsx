@@ -26,8 +26,6 @@ const Favorite = () => {
       });
   }, []);
 
-  //
-
   // useEffect(() => {
   //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
   //     method: 'POST',
