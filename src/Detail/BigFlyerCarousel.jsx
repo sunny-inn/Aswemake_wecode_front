@@ -27,6 +27,7 @@ const BigFlyerCarousel = ({
       },
     ],
   };
+  console.log('mart리스트!!', list);
 
   return (
     <S.BigCarouselContainer>
