@@ -12,6 +12,10 @@ export const ChangeAccount = styled.div`
   font-size: 13px;
   font-weight: 500;
   margin-left: 170px; // Or any value you need for spacing
+
+  span {
+    color: #bcbcbc;
+  }
 `;
 
 export const TitleMyPoint = styled.span`
