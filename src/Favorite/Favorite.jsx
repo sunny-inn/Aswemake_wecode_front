@@ -34,7 +34,7 @@ const Favorite = () => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -45,6 +45,7 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data);
+        console.log('데이이이이터', data);
       });
   };
 
