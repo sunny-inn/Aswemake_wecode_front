@@ -30,40 +30,39 @@ import TokenRefresher from './Login/TokenRefresher';
 const Router = () => {
   return (
     <BrowserRouter>
-      <TokenRefresher>
-        <Routes>
-          <Route element={<Container />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/upload" element={<Upload />} />
-            <Route path="/mypage" element={<Mypage />} />
-            <Route path="/favorite" element={<Favorite />} />
-          </Route>
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/findid" element={<FindId />} />
-          <Route path="/notifyid" element={<NotifyId />} />
-          <Route path="/cntfindid" element={<CntFindId />} />
-          <Route path="/findpwd" element={<FindPwd />} />
-          <Route path="/pwdresetting" element={<PwdReSetting />} />
-          <Route path="/pwdfinal" element={<PwdFinal />} />
-          <Route path="/suggest" element={<Suggest />} />
-          <Route
-            path="/suggest/suggestCompleted"
-            element={<SuggestCompleted />}
-          />
-          <Route path="/signup" element={<Signup />} />
+      <TokenRefresher />
+      <Routes>
+        <Route element={<Container />}>
+          <Route path="/home" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/withdrawnotify" element={<WithdrawNotify />} />
-          <Route path="/withdrawpoint" element={<WithdrawPoint />} />
-          <Route path="/setpoint" element={<SetPoint />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/accountregi" element={<AccountRegi />} />
-          <Route path="/setaccount" element={<SetAccount />} />
-          <Route path="/accountchange" element={<AccountChange />} />
-          <Route path="/accountchangeinput" element={<AccountChangeInput />} />
-          <Route path="/setaccountchange" element={<SetAccountChange />} />
-        </Routes>
-      </TokenRefresher>
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/favorite" element={<Favorite />} />
+        </Route>
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/findid" element={<FindId />} />
+        <Route path="/notifyid" element={<NotifyId />} />
+        <Route path="/cntfindid" element={<CntFindId />} />
+        <Route path="/findpwd" element={<FindPwd />} />
+        <Route path="/pwdresetting" element={<PwdReSetting />} />
+        <Route path="/pwdfinal" element={<PwdFinal />} />
+        <Route path="/suggest" element={<Suggest />} />
+        <Route
+          path="/suggest/suggestCompleted"
+          element={<SuggestCompleted />}
+        />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/withdrawnotify" element={<WithdrawNotify />} />
+        <Route path="/withdrawpoint" element={<WithdrawPoint />} />
+        <Route path="/setpoint" element={<SetPoint />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/accountregi" element={<AccountRegi />} />
+        <Route path="/setaccount" element={<SetAccount />} />
+        <Route path="/accountchange" element={<AccountChange />} />
+        <Route path="/accountchangeinput" element={<AccountChangeInput />} />
+        <Route path="/setaccountchange" element={<SetAccountChange />} />
+      </Routes>
     </BrowserRouter>
   );
 };
