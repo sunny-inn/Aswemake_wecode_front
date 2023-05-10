@@ -90,9 +90,11 @@ export const FindPwdSubmit = styled.button`
 `;
 
 export const Timer = styled.div`
-  position: absolute;
-  top: 57.16%;
-  left: 186px;
+  /* position: absolute; */
+  /* top: 57.16%;
+  left: 186px; */
+  margin-left: 172px;
+  margin-top: -32px;
   color: #252525;
   font-weight: 500;
   font-size: 13px;
