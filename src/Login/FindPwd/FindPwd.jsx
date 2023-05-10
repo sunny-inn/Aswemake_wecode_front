@@ -214,7 +214,7 @@ const FindPwd = () => {
         {alertMsg === true && (
           <S.AlertMsg> 번호 인증이 완료되었습니다. </S.AlertMsg>
         )}
-        {alertMsg === false && (
+        {!expired && alertMsg === false && (
           <S.FailAlertMsg>인증번호를 다시 확인해주세요. </S.FailAlertMsg>
         )}
         {expired && (
@@ -236,3 +236,5 @@ const FindPwd = () => {
 };
 
 export default FindPwd;
+
+//타이머 0초 되어도 만료된 인증번호 뜸

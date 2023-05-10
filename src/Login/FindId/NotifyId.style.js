@@ -24,7 +24,7 @@ export const GoToFindPwd = styled.div`
 `;
 
 export const GoToLogin = styled.button`
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: white;
   width: 328px;
