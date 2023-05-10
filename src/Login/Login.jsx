@@ -164,7 +164,7 @@ const Login = () => {
 
             <S.Button
               onClick={() => goToHome()}
-              disabled={input.id.length < 7 || input.pw.length < 2}
+              disabled={input.id.length < 5 || input.pw.length < 7}
             >
               <span>로그인</span>
             </S.Button>
