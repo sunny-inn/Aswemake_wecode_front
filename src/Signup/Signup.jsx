@@ -170,7 +170,7 @@ const Signup = () => {
     name !== '' &&
     year !== '' &&
     month !== '' &&
-    date !== '' &&
+    (date !== '' || date !== undefined) &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
