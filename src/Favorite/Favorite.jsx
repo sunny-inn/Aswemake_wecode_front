@@ -30,7 +30,7 @@ const Favorite = () => {
   return (
     <div>
       <Header type="favorite" />
-      {addedFavoriteList.length === 0 ? (
+      {addedFavoriteList.length ? (
         <FavoriteEmpty />
       ) : (
         <FavoriteList
