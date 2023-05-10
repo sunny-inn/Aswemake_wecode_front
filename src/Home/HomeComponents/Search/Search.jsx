@@ -157,11 +157,13 @@ const Search = ({
                     }
                   >
                     <div>
-                      <S.MartName>{mart.martName}</S.MartName>
-                      <S.MartAddress>{mart.martNumberAddress}</S.MartAddress>
+                      <S.MartName>{filteredmart.martName}</S.MartName>
+                      <S.MartAddress>
+                        {filteredmart.martNumberAddress}
+                      </S.MartAddress>
                     </div>
                     <S.Distance>
-                      {Math.round(mart.distance * 100) / 100}km
+                      {Math.round(filteredmart.distance * 100) / 100}km
                     </S.Distance>
                   </S.SearchedItem>
                 ))}
