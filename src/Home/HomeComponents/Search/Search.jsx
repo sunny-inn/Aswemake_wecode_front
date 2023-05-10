@@ -91,6 +91,8 @@ const Search = ({
     setFilteredMarts(sortedList);
   }, [isSubmitted]);
 
+  console.log(marts[0].martNumberAddress.includes('강릉'))
+
   // 검색어 삭제
   const handleRemoveKeyword = id => {
     const filteredKeyword = keywords.filter(keyword => {
