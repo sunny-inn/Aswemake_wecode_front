@@ -93,7 +93,7 @@ const Home = () => {
       setSelectedMart(mart);
     } else if (selectedMart !== mart) {
       setSelectedMart(mart);
-    } else if (selectedMart === mart) {
+    } else if (selectedMart.martName === mart.martName) {
       setSelectedMart(null);
     } else {
       setSelectedMart(null);
