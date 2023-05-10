@@ -87,9 +87,10 @@ const Signup = () => {
 
   const handleDate = e => {
     const day = e.target.value;
-    const formattedDay = formatDay(day);
-    setDate(formattedDay);
-    console.log('day', typeof day);
+    if (day !== '') {
+      const formattedDay = formatDay(day);
+      setDate(formattedDay);
+    }
   };
 
   useEffect(() => {
@@ -177,8 +178,6 @@ const Signup = () => {
     verification === true &&
     isCheckboxClicked === true
   );
-
-  console.log(date);
 
   // 회원가입 완료
   const onSubmit = e => {
