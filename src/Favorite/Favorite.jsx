@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import FavoriteEmpty from './FavoriteEmpty';
 import FavoriteList from './FavoriteList';
 import Header from '../Components/Header/Header';
@@ -24,7 +25,7 @@ const Favorite = () => {
         setAddedFavoriteList(data.data || []);
       });
   }, []);
-
+  const params = useParams();
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
