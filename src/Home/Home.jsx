@@ -86,12 +86,15 @@ const Home = () => {
     setCurrentId(id);
   };
 
+  // 마커 클릭 시 캐러셀 노출 + 마커 반복 클릭 시 캐러셀 꺼짐
   const handleMarkerClick = (e, mart, index) => {
     console.log('handleMarkerClick', mart);
     if (selectedMart === null) {
       setSelectedMart(mart);
     } else if (selectedMart !== mart) {
       setSelectedMart(mart);
+    } else if (selectedMart === mart) {
+      setSelectedMart(null);
     } else {
       setSelectedMart(null);
     }
