@@ -89,7 +89,7 @@ const Signup = () => {
     const day = e.target.value;
     const formattedDay = formatDay(day);
     setDate(formattedDay);
-    console.log('day', day);
+    console.log('day', typeof day);
   };
 
   useEffect(() => {
