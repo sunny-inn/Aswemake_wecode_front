@@ -96,6 +96,7 @@ const Home = () => {
       }
     });
     setIsMarkerClicked(newToggles);
+    setCenter({ lat: mart.lat, lng: mart.lng });
   };
 
   const handleDragEnd = navermaps => {
