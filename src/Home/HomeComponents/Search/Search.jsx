@@ -78,22 +78,24 @@ const Search = ({
 
   // FIXME: 검색 기능
   useEffect(() => {
-    const filteredList = marts.filter(
-      mart => mart.martName.includes(newKeyword)
-      // ||
-      // mart.martNumberAddress.includes(newKeyword)
-    );
-    const sortedList =
-      filteredList &&
-      filteredList.sort(function (a, b) {
-        return a.distance - b.distance;
-      });
-    setFilteredMarts(sortedList);
+    if (marts.length > 0) {
+      const filteredList = marts.filter(
+        mart =>
+          mart.martName.includes(newKeyword) ||
+          mart.martNumberAddress.includes(newKeyword)
+      );
+      const sortedList =
+        filteredList &&
+        filteredList.sort(function (a, b) {
+          return a.distance - b.distance;
+        });
+      setFilteredMarts(sortedList);
+    }
   }, [isSubmitted]);
 
-  if (marts.length > 0) {
-    console.log(marts[0].martNumberAddress);
-  }
+  // if (marts.length > 0) {
+  //   console.log(marts[0].martNumberAddress);
+  // }
 
   // 검색어 삭제
   const handleRemoveKeyword = id => {
