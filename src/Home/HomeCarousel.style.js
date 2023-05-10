@@ -13,8 +13,15 @@ export const CarouselWholeContainer = styled(Slider)`
   z-index: 10;
   position: absolute;
   margin-left: 2px;
-  bottom: -4px;
+  bottom: 3px;
   overflow-x: hidden;
+
+  .slick-list {
+    position: relative;
+    display: inherit;
+    overflow: hidden;
+    margin: 0px -12px;
+  }
 `;
 
 export const CarouselImg = styled.img`
