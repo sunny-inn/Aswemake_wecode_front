@@ -29,11 +29,11 @@ const Favorite = () => {
 
   console.log('파람스', params);
 
-  const handleFavorite = index => {
+  const handleFavorite = (index, martId) => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.martId}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
       method: 'POST',
       credentials: 'include',
       headers: {
