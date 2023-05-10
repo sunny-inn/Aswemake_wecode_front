@@ -5,7 +5,6 @@ import axios from 'axios';
 import HomeSplash from './HomeSplash';
 import NetworkCheckModal from './NetworkCheckModal';
 import ReactDOM from 'react-dom';
-import instance from './TokenRefresher';
 // import { createRoot } from 'react-dom/client';
 import * as S from './Login.style';
 
@@ -70,55 +69,37 @@ const Login = () => {
   }, []);
 
   const goToHome = () => {
-    instance
-      .post('/api/users/login', {
+    // cookies.set('my-cookie', `response.cookie`, {
+    //   maxAge: 60000000,
+    //   secure: true,
+    //   httpOnly: false,
+    //   sameSite: 'none',
+    // });
+
+    fetch('https://flyers.qmarket.me/api/users/login', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
         identification: input.id,
         password: input.pw,
         auto: checked,
-      })
-      .then(response => {
-        localStorage.setItem('token', response.data.accessToken);
-        navigate('/home');
-      })
-      .catch(error => {
-        setIsFailed(true);
-        const message = document.getElementById('message');
-        message.innerText = '아이디 또는 비밀번호가 맞지 않습니다.';
+      }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        localStorage.setItem('token', data.accessToken);
+        if (localStorage.getItem('token') !== 'undefined') {
+          return navigate('/home');
+        } else {
+          setIsFailed(true);
+          const message = document.getElementById('message');
+          message.innerText = '아이디 또는 비밀번호가 맞지 않습니다.';
+        }
       });
   };
-
-  //const goToHome = () => {
-  // cookies.set('my-cookie', `response.cookie`, {
-  //   maxAge: 60000000,
-  //   secure: true,
-  //   httpOnly: false,
-  //   sameSite: 'none',
-  // });
-
-  //   fetch('https://flyers.qmarket.me/api/users/login', {
-  //     method: 'POST',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //     body: JSON.stringify({
-  //       identification: input.id,
-  //       password: input.pw,
-  //       auto: checked,
-  //     }),
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       localStorage.setItem('token', data.accessToken);
-  //       if (localStorage.getItem('token') !== 'undefined') {
-  //         return navigate('/home');
-  //       } else {
-  //         setIsFailed(true);
-  //         const message = document.getElementById('message');
-  //         message.innerText = '아이디 또는 비밀번호가 맞지 않습니다.';
-  //       }
-  //     });
-  // };
 
   // useEffect(() => {
   //   if (localStorage.getItem('token')) {
