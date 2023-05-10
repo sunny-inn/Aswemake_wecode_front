@@ -17,6 +17,7 @@ export const BigCarouselContentBox = styled.div`
   -webkit-box-pack: center;
   overflow: hidden;
   justify-content: center;
+  align-items: center;
 `;
 
 export const ModalCloseImg = styled.img`
@@ -31,7 +32,6 @@ export const ModalCloseImg = styled.img`
 
 export const FlyerImage = styled.img`
   width: 100%;
-  height: 95%;
 `;
 
 export const BigFlyerImgBox = styled(Slider)`

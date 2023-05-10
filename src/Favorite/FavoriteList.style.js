@@ -4,7 +4,6 @@ export const FavoriteListContainer = styled.div`
   width: 360px;
   height: 616px;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
@@ -55,7 +54,7 @@ export const MartTitleLi = styled.li`
 `;
 
 export const MartTitle = styled.span`
-  font-weight: 500;
+  font-weight: 700;
   font-size: 16px;
   line-height: 23px;
   color: black;
@@ -69,7 +68,7 @@ export const StarImg = styled.img`
 `;
 
 export const MartContentBox = styled.div`
-  margin-top: 10px;
+  margin-top: 5px;
   font-weight: 500;
   font-size: 13px;
   line-height: 17px;

@@ -14,7 +14,7 @@ const KakaoShare = (url, title, argumentKey, detailMartList) => {
         description: `${detailMartList[0].endDate} 까지 할인한대!!!`,
         imageUrl:
           detailMartList.length > 0
-            ? detailMartList[0].martFlyerImages[0]
+            ? detailMartList[0].martFlyerImages[0].imageUrl
             : '/images/flyernone.png',
         link: {
           mobileWebUrl: url,

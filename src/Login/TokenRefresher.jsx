@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export const TokenRefresher = () => {
+const TokenRefresher = () => {
   const navigate = useNavigate();
 
   axios.interceptors.response.use(function (response) {
-    console.log(response);
+    console.log(1, response);
 
     if (response.data.message === 'CREATED NEW ACCESS TOKEN') {
       axios({
@@ -29,7 +29,13 @@ export const TokenRefresher = () => {
       window.alert('로그인 기한이 만료되어 자동으로 로그아웃 되었습니다.');
       navigate('/');
     }
+
+    console.log(2, response);
+
+    return response;
   });
 
-  return;
+  return null;
 };
+
+export default TokenRefresher;
