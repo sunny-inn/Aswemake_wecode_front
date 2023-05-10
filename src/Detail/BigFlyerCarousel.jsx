@@ -27,18 +27,16 @@ const BigFlyerCarousel = ({
       },
     ],
   };
-  console.log('mart리스트!!', list);
+  // console.log('mart리스트!!', list);
 
   return (
     <S.BigCarouselContainer>
       <S.BigCarouselContentBox>
-        {/* <S.CloseButtonBox> */}
         <S.ModalCloseImg
           src="/images/closeImg.png"
           onClick={onClickClose}
           alt="닫기"
         />
-        {/* </S.CloseButtonBox> */}
         <S.BigFlyerImgBox {...settings}>
           <S.FlyerImage src={list.martFlyerImages[0].imageUrl} alt="전단지" />
           <S.FlyerImage src={list.martFlyerImages[1].imageUrl} alt="전단지" />
