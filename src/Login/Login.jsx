@@ -5,7 +5,6 @@ import axios from 'axios';
 import HomeSplash from './HomeSplash';
 import NetworkCheckModal from './NetworkCheckModal';
 import ReactDOM from 'react-dom';
-import TokenRefresher from './TokenRefresher';
 // import { createRoot } from 'react-dom/client';
 import * as S from './Login.style';
 
@@ -102,11 +101,11 @@ const Login = () => {
       });
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('token')) {
-  //     navigate('/home');
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      navigate('/home');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -116,7 +115,6 @@ const Login = () => {
 
   return (
     <>
-      <TokenRefresher />
       {showSplash && <HomeSplash />}
       {!showSplash && (
         <S.LoginContainer>
