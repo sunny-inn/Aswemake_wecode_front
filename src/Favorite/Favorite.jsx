@@ -77,13 +77,23 @@ const Favorite = () => {
       .then(data => {
         setAddedFavoriteList(data.data);
         setImageStates(Array(data.data.length).fill(false));
+      })
+      .then(() => {
+        return fetch('https://flyers.qmarket.me/api/favorite', {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: token,
+          },
+        });
       });
   }, [token]);
 
   return (
     <div>
       <Header type="favorite" />
-      {addedFavoriteList[0] === Array(0) ? (
+      {addedFavoriteList.length === 0 ? (
         <FavoriteEmpty />
       ) : (
         <FavoriteList
