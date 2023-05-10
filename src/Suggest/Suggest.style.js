@@ -7,8 +7,9 @@ export const SuggestModalContainer = styled.div`
   background-color: #fff;
   width: 366px;
   height: 616px;
-  z-index: 10;
+  z-index: 20;
   margin-right: -5px;
+  margin-top: -40px;
 `;
 
 export const SuggestWholeContainer = styled.div`
