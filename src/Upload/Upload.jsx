@@ -142,10 +142,12 @@ const Upload = () => {
     setImg4();
   };
 
+  console.log(uploadInfo);
+
   // 체크박스
   const onClickCheckbox = e => {
     setIsCheckboxClicked(prev => !prev);
-    alert(uploadInfo);
+    alert(img1);
   };
 
   const handelDisabled = !(
