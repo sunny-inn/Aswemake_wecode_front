@@ -251,7 +251,7 @@ const Home = () => {
             zoomControl={false}
             centerPoint={centerPoint}
           >
-            {homeMartList.length > 0 ? (
+            {/* {homeMartList.length > 0 ? (
               homeMartList.map((mart, index) => {
                 //2일전계산
                 const now = new Date();
@@ -285,7 +285,7 @@ const Home = () => {
               <div position={new navermaps.LatLng(center.lat, center.lng)}>
                 센터
               </div>
-            )}
+            )} */}
             <S.SearchBox>
               <div onClick={handleSearch}>
                 <S.SearchBar
