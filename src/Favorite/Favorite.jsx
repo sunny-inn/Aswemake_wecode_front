@@ -29,25 +29,28 @@ const Favorite = () => {
   const params = useParams();
 
   console.log('파람스', params);
-  console.log('이미지스테이트?', setImageStates);
 
   const handleFavorite = (index, martId) => {
     const newImageStates = [...imageStates];
     newImageStates[index] = !newImageStates[index];
     setImageStates(newImageStates);
-    fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: token,
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        setImageStates(data.data);
-        console.log('데이터', data);
-      });
+    console.log('마트아이이디', martId);
+    // fetch(`https://flyers.qmarket.me/api/favorite/${martId}`, {
+    //   method: 'POST',
+    //   credentials: 'include',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //     authorization: token,
+    //   },
+    // })
+    //   .then(response => {
+    //     response.json();
+    //     console.log(response);
+    //   })
+    //   .then(data => {
+    //     setAddedFavoriteList(data.data);
+    //     console.log('데이터', data);
+    //   });
   };
 
   // useEffect(() => {
