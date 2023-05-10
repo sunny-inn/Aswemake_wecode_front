@@ -104,7 +104,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (homeMartList) {
+    if (homeMartList && selectedMart === null) {
       setIsMarkerClicked(
         Array.from({ length: homeMartList.length }, () => false)
       );
