@@ -87,6 +87,7 @@ const Home = () => {
   };
 
   const handleMarkerClick = (e, mart, index) => {
+    console.log('handleMarkerClick', mart);
     if (selectedMart === null) {
       setSelectedMart(mart);
     } else if (selectedMart !== mart) {
