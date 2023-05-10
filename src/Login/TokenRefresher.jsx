@@ -5,23 +5,13 @@ import { useNavigate } from 'react-router-dom';
 const TokenRefresher = () => {
   const navigate = useNavigate();
 
-  // axios.interceptors.request.use(function (config) {
-  //   axios({
-  //     url: 'https://flyers.qmarket.me/api/users/login',
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //   })
-  //     .then(function (response) {
-  //       localStorage.setItem('token', response.data.accessToken);
-  //       response.config.headers['Authorization'] =
-  //         'Bearer' + response.data.accessToken;
-  //     })
-  //     .then();
+  axios.interceptors.request.use(function (config) {
+    const accessToken = localStorage.getItem('token');
 
-  //   return config;
-  // });
+    config.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+    return config;
+  });
 
   axios.interceptors.response.use(function (response) {
     console.log(1, response);
