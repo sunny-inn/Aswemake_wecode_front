@@ -5,7 +5,7 @@ export const FlyerCarouselContainer = styled.div`
   height: 220px;
   border-bottom: 8px solid #f9f9f9;
   justify-content: center;
-  overflow-x: auto;
+  overflow-x: hidden;
   margin-left: 10px;
 `;
 
@@ -14,5 +14,6 @@ export const FlyerImage = styled.img`
   height: 200px;
   border: 1px solid #f9f9f9;
   border-radius: 8px;
+  margin-right: 10px;
   cursor: pointer;
 `;
