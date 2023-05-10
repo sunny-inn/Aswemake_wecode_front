@@ -263,7 +263,14 @@ const Upload = () => {
               </S.ImgBox>
             ) : (
               <S.CameraBox htmlFor="imgFile">
-                <input id="imgFile" type="file" hidden onChange={handleImg1} />
+                <input
+                  id="imgFile"
+                  type="file"
+                  accept="image/*"
+                  capture="camera"
+                  hidden
+                  onChange={handleImg1}
+                />
                 <S.CameraImg alt="camera" src="/images/upload/camera.png" />
                 <S.ImgCount>1/4</S.ImgCount>
               </S.CameraBox>
@@ -285,8 +292,9 @@ const Upload = () => {
                 <input
                   id="imgFile"
                   type="file"
-                  hidden
                   accept="image/*"
+                  capture="camera"
+                  hidden
                   onChange={handleImg2}
                 />
                 <S.CameraImg alt="camera" src="/images/upload/camera.png" />
@@ -310,8 +318,9 @@ const Upload = () => {
                 <input
                   id="imgFile"
                   type="file"
-                  hidden
                   accept="image/*"
+                  capture="camera"
+                  hidden
                   onChange={handleImg3}
                 />
                 <S.CameraImg alt="camera" src="/images/upload/camera.png" />
@@ -335,8 +344,9 @@ const Upload = () => {
                 <input
                   id="imgFile"
                   type="file"
-                  hidden
                   accept="image/*"
+                  capture="camera"
+                  hidden
                   onChange={handleImg4}
                 />
                 <S.CameraImg alt="camera" src="/images/upload/camera.png" />
