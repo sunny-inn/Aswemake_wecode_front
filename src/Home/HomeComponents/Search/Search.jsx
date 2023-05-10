@@ -91,8 +91,8 @@ const Search = ({
     setFilteredMarts(sortedList);
   }, [isSubmitted]);
 
-  if (marts) {
-    console.log(marts[0]);
+  if (marts.length > 0) {
+    console.log(marts[0].distance);
   }
 
   // 검색어 삭제
