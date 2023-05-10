@@ -111,6 +111,7 @@ const Search = ({
     return result;
   };
 
+  //FIXME: 위치 옮기기만 해도 마커 클릭된 상태됨
   const onClickMart = (id, mart) => {
     const selectedMart = homeMartList.filter(mart => {
       return mart.martId === id;
@@ -120,6 +121,7 @@ const Search = ({
     setNewKeyword('');
     setCenter({ lat: mart.lat, lng: mart.lng });
     setIsMarkerClicked(repeatFalse(homeMartList.length));
+    console.log('search에서 찍힘')
   };
 
   return (

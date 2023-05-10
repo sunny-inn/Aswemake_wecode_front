@@ -98,6 +98,8 @@ const Home = () => {
     setIsMarkerClicked(newToggles);
   };
 
+  console.log('isMarkerClicked', isMarkerClicked);
+
   const handleDragEnd = navermaps => {
     console.log(navermaps.getCenter());
     console.log('center는?!?!', center);
@@ -253,6 +255,7 @@ const Home = () => {
             centerPoint={centerPoint}
           >
             {homeMartList.length > 0 &&
+              homeMartList !== null &&
               homeMartList.map((mart, index) => {
                 //2일전계산
                 const now = new Date();
@@ -282,25 +285,24 @@ const Home = () => {
                   />
                 );
               })}
+            <S.SearchBox>
+              <div onClick={handleSearch}>
+                <S.SearchBar
+                  type="text"
+                  placeholder="동주소, 마트 검색"
+                  value={newKeyword.text}
+                  readOnly
+                />
+              </div>
+              <S.CurrentLocation
+                src="./images/home/current-location.png"
+                alt="현위치"
+                onClick={getCurrentPosition}
+              />
+            </S.SearchBox>
           </NaverMap>
           {homeMartList.length > 0 && (
             <>
-              {' '}
-              <S.SearchBox>
-                <div onClick={handleSearch}>
-                  <S.SearchBar
-                    type="text"
-                    placeholder="동주소, 마트 검색"
-                    value={newKeyword.text}
-                    readOnly
-                  />
-                </div>
-                <S.CurrentLocation
-                  src="./images/home/current-location.png"
-                  alt="현위치"
-                  onClick={getCurrentPosition}
-                />
-              </S.SearchBox>
               <HomeCarousel
                 handleSecModal={handleSecModal}
                 homeMartList={homeMartList}
