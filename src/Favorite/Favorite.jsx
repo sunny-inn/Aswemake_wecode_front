@@ -26,6 +26,7 @@ const Favorite = () => {
       });
   }, []);
   const params = useParams();
+  console.log('파람스', params);
 
   const handleFavorite = index => {
     const newImageStates = [...imageStates];
