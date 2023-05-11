@@ -171,10 +171,8 @@ const WithdrawPoint = () => {
   // };
 
   const handleInputChange = e => {
-    // 숫자 외의 문자 제거
     const value = e.target.value.replace(/[^0-9]/g, '');
-    const formattedValue = formatNumber(value);
-    setInputValue(formattedValue + '원');
+    setInputValue(value);
     setEmpty(value === '');
     setOverPrice(parseInt(value, 10) > 150000);
     setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
@@ -194,6 +192,7 @@ const WithdrawPoint = () => {
     const formattedValue = formatNumber(e.target.value);
     setInputValue(formattedValue);
   };
+
   const showCurrency = () => {
     setInputValue(prevValue => {
       if (prevValue === '') {
@@ -248,9 +247,6 @@ const WithdrawPoint = () => {
             <S.WithdrawPoint
               value={inputValue}
               onChange={handleInputChange}
-              // showCurrency={showCurrency}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               placeholder="1,000원 이상 인출 가능"
               borderColor={
                 overPrice || overHoldingPoint || belowThreshold
