@@ -38,7 +38,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
           <div>
             <S.CarouselImg
               src={
-                mart.martFlyerImages === '0'
+                isClicked === '0'
                   ? 'images/flyernone.png'
                   : mart.martFlyerImages[0].imageUrl
               }
