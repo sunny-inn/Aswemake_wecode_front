@@ -75,8 +75,10 @@ const HomeCarousel = ({
     });
   };
 
-  const onClickFavorite = ({ id }) => {
-    console.log('클릭', id);
+  const onClickFavorite = () => {
+    console.log('클릭', isFavorite);
+    setIsFavorite(prev => !prev);
+
     // const selectedMart = selectedMartList.find(mart => mart.martId === id);
 
     // const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분 없어도될것같은데?
@@ -152,8 +154,7 @@ const HomeCarousel = ({
                         ? '/images/clickedFavorite.png'
                         : '/images/favorite.png'
                     }
-                    // onClick={() => onClickFavorite(mart.martId)}
-                    onClick={() => onClickFavorite}
+                    onClick={() => onClickFavorite({ id: mart.martId })}
                   />
                 </S.MartTitleLi>
                 <S.MartContentBox>
