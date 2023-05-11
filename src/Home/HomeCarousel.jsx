@@ -121,7 +121,7 @@ const HomeCarousel = ({
       ref={setSlider}
       onSwipe={e => changeCenterByCarousel(currentSlide, e)}
     >
-      {homeMartList &&
+      {homeMartList[0].martId &&
         homeMartList.map(mart => (
           <CarouselContent
             mart={mart}
