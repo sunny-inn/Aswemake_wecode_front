@@ -126,7 +126,11 @@ const FlyersStatus = ({ setIsFlyersStatus }) => {
                   </S.FlyersStatusTitleWrap>
                   <article>
                     <S.FlyersStatusImgWrap>
-                      <img src={flyer.imageUrl[0]} alt="mart" />
+                      {flyer.imageUrl.length === 0 ? (
+                        <img src="/images/fourthRec.png" alt="mart" />
+                      ) : (
+                        <img src={flyer.imageUrl[0]} alt="mart" />
+                      )}
                     </S.FlyersStatusImgWrap>
                     <S.FlyersStatusTextWrap>
                       <S.FlyersStatusName>{flyer.martName}</S.FlyersStatusName>
