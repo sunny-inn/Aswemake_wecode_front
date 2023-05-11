@@ -96,6 +96,13 @@ export const SearchBar = styled.input`
   border-radius: 16px;
   z-index: 10;
   cursor: pointer;
+
+  ::placeholder {
+    color: #dbdbdb;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+  }
 `;
 
 export const CurrentLocation = styled.img`
