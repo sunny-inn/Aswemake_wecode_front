@@ -22,18 +22,14 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         },
       }).then(response => {
         if (response.ok) {
-          if (isClicked === '0') {
-            setIsClicked('0');
-          } else {
-            setIsClicked('1');
-          }
+          console.log('isClicked', isClicked);
         } else {
           console.error('errorMsg');
         }
       });
   };
 
-  console.log('carousel', isClicked);
+  // console.log('carousel', isClicked);
 
   return (
     <S.CarouselBox>
