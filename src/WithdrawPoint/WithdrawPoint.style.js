@@ -98,6 +98,9 @@ export const FinBtn = styled.button`
   border-radius: 8px;
   border: none;
   background-color: #dbdbdb;
+  :disabled {
+    background-color: #dbdbdb;
+  }
   margin-top: 260px;
   color: white;
   font-weight: 700;
@@ -107,7 +110,6 @@ export const FinBtn = styled.button`
     !props.overPrice &&
     !props.overHoldingPoint &&
     !props.empty &&
-    props.belowThreshold &&
     css`
       background-color: #ff6a21;
     `}
