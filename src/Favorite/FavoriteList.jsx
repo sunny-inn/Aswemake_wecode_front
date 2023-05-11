@@ -52,45 +52,41 @@ const FavoriteList = ({
 
   return (
     <S.FavoriteListContainer>
-      {addedFavoriteList.map((list, i) => (
+      {addedFavoriteList.map((item, i) => (
         <React.Fragment key={i}>
-          {list.map((item, j) => (
-            <div key={item.martId}>
-              <S.MartBox>
-                <S.CarouselBox>
-                  <div>
-                    <S.CarouselImg
+          <div key={item.martId}>
+            <S.MartBox>
+              <S.CarouselBox>
+                <div>
+                  <S.CarouselImg
+                    src={
+                      item.martFlyerImage === '0'
+                        ? '/images/flyernone.png'
+                        : item.martFlyerImage
+                    }
+                    alt="전단지"
+                  />
+                </div>
+                <S.CarouselContent>
+                  <S.MartTitleLi>
+                    <S.MartTitle>{item.martName}</S.MartTitle>
+                    <S.StarImg
                       src={
-                        item.martFlyerImage === '0'
-                          ? '/images/flyernone.png'
-                          : item.martFlyerImage
+                        imageStates[i]
+                          ? '/images/favorite.png'
+                          : '/images/clickedFavorite.png'
                       }
-                      alt="전단지"
+                      onClick={() => handleFavorite(i, item.martId)}
                     />
-                  </div>
-                  <S.CarouselContent>
-                    <S.MartTitleLi>
-                      <S.MartTitle>{item.martName}</S.MartTitle>
-                      <S.StarImg
-                        src={
-                          imageStates[i * list.length + j]
-                            ? '/images/favorite.png'
-                            : '/images/clickedFavorite.png'
-                        }
-                        onClick={() =>
-                          handleFavorite(i * list.length + j, item.martId)
-                        }
-                      />
-                    </S.MartTitleLi>
-                    <S.MartContentBox>
-                      <li>{item.martAddress}</li>
-                      <li>{item.martPhoneNumber}</li>
-                    </S.MartContentBox>
-                  </S.CarouselContent>
-                </S.CarouselBox>
-              </S.MartBox>
-            </div>
-          ))}
+                  </S.MartTitleLi>
+                  <S.MartContentBox>
+                    <li>{item.martAddress}</li>
+                    <li>{item.martPhoneNumber}</li>
+                  </S.MartContentBox>
+                </S.CarouselContent>
+              </S.CarouselBox>
+            </S.MartBox>
+          </div>
         </React.Fragment>
       ))}
     </S.FavoriteListContainer>
