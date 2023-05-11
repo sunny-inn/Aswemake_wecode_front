@@ -75,9 +75,11 @@ const HomeCarousel = ({
     });
   };
 
-  const onClickFavorite = id => {
+  const onClickFavorite = ({ id }) => {
+    console.log('클릭');
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
-    const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분
+
+    // const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분 없어도될것같은데?
     // const newSelectedMartList = selectedMartList.map(mart => {
     //   if (mart.martId === id) {
     //     return {
@@ -119,7 +121,6 @@ const HomeCarousel = ({
   }, [smIndex]);
 
   return (
-    // <S.CarouselWholeContainer>
     <S.CarouselWholeContainer
       {...settings}
       ref={setSlider}
@@ -142,18 +143,20 @@ const HomeCarousel = ({
               </div>
               <S.CarouselContent>
                 <S.MartTitleLi>
-                  <S.MartTitle>{mart.martName}</S.MartTitle>
+                  <S.MartTitle onClick={onClickMartItem(mart.martId)}>
+                    {mart.martName}
+                  </S.MartTitle>
                   <S.StarImg
                     src={
                       mart.isFavorite
-                        ? './images/clickedFavorite.png'
-                        : './images/favorite.png'
+                        ? '/images/clickedFavorite.png'
+                        : '/images/favorite.png'
                     }
                     onClick={() => onClickFavorite(mart.martId)}
                   />
                 </S.MartTitleLi>
                 <S.MartContentBox>
-                  <S.AddressAndPhone>
+                  <S.AddressAndPhone onClick={onClickMartItem(mart.martId)}>
                     {mart.martNumberAddress}
                   </S.AddressAndPhone>
                   <S.AddressAndPhone>{mart.martPhoneNumber}</S.AddressAndPhone>
@@ -163,7 +166,6 @@ const HomeCarousel = ({
           </S.MartBox>
         ))}
     </S.CarouselWholeContainer>
-    // </S.CarouselWholeContainer>
   );
 };
 
