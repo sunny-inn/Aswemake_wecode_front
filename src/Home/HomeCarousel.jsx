@@ -153,7 +153,7 @@ const HomeCarousel = ({
                         : '/images/favorite.png'
                     }
                     // onClick={() => onClickFavorite(mart.martId)}
-                    onClick={() => onClickFavorite}
+                    onClick={() => onClickFavorite({ id: mart.martId })}
                   />
                 </S.MartTitleLi>
                 <S.MartContentBox>
