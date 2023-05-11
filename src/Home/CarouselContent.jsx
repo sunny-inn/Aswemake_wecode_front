@@ -49,7 +49,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
               </S.MartTitle>
               <S.StarImg
                 src={
-                  mart.isFavorite
+                  mart.favoriteCheck === '1'
                     ? 'images/clickedFavorite.png'
                     : 'images/favorite.png'
                 }
