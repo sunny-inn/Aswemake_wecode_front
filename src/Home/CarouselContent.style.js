@@ -35,9 +35,6 @@ export const CarouselContent = styled.div`
   padding-top: 5px;
   color: #707070;
   width: 250px;
-`;
-
-export const MartBox = styled.div`
   cursor: pointer;
 `;
 
