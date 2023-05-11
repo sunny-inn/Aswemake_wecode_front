@@ -33,7 +33,7 @@ const PwdReSetting = () => {
   };
 
   const onClickBack = e => {
-    navigate('/');
+    navigate('/findpwd');
   };
 
   const setPwd = e => {
