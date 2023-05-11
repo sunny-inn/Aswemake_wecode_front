@@ -86,7 +86,6 @@ const Detail = () => {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
       },
-      body: JSON.stringify({ favoriteCheck }),
     })
       .then(response => {
         if (response.ok) {

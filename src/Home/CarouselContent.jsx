@@ -15,7 +15,6 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
           'Content-Type': 'application/json;charset=utf-8',
           Authorization: token,
         },
-        body: JSON.stringify(),
       }).then(response => {
         if (response.ok) {
           console.log('response', response);
