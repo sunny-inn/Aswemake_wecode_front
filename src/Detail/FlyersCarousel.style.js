@@ -3,8 +3,7 @@ import Slider from 'react-slick';
 
 export const FlyerCarouselContainer = styled.div`
   width: 360px;
-  height: 230px;
-  padding-bottom: 10px;
+  padding-bottom: 16px;
   border-bottom: 8px solid #f9f9f9;
   justify-content: center;
   overflow-x: hidden;
