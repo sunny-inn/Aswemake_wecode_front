@@ -78,23 +78,23 @@ const HomeCarousel = ({
   const onClickFavorite = id => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
     const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분
-    const newSelectedMartList = selectedMartList.map(mart => {
-      if (mart.martId === id) {
-        return {
-          ...mart,
-          isFavorite: !mart.isFavorite,
-        };
-      } else {
-        return mart;
-      }
-    });
-    setSelectedMartList(newSelectedMartList);
-    sendFavoriteRequest(
-      newFavoriteCheck,
-      'favorite updated successfully',
-      'failed to update favorite',
-      token
-    );
+    // const newSelectedMartList = selectedMartList.map(mart => {
+    //   if (mart.martId === id) {
+    //     return {
+    //       ...mart,
+    //       isFavorite: !mart.isFavorite,
+    //     };
+    //   } else {
+    //     return mart;
+    //   }
+    // });
+    // setSelectedMartList(newSelectedMartList);
+    // sendFavoriteRequest(
+    //   newFavoriteCheck,
+    //   'favorite updated successfully',
+    //   'failed to update favorite',
+    //   token
+    // );
   };
 
   // const afterhandleModal = () => {
