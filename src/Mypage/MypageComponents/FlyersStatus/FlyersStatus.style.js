@@ -74,7 +74,6 @@ export const FlyersStatusImgWrap = styled.div`
   height: 88px;
   margin-right: 8px;
   object-fit: cover;
-  border-radius: 8px;
 
   img {
     width: 88px;
