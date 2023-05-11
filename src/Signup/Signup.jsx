@@ -87,15 +87,13 @@ const Signup = () => {
   };
 
   const handleDate = e => {
-    // const day = e.target.value;
-    // if (day && day.length === 2) {
-    //   const formattedDay = formatDay(day);
-    //   setDate(formattedDay);
-    // } else {
-    //   setDate('');
-    // }
-
-    setDate(e.target.value);
+    const day = e.target.value;
+    if (day !== '') {
+      const formattedDay = formatDay(day);
+      setDate(formattedDay);
+    } else {
+      setDate('');
+    }
   };
 
   useEffect(() => {
