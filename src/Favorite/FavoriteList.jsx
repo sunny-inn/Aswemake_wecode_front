@@ -41,7 +41,6 @@ const FavoriteList = ({
     })
       .then(response => {
         response.json();
-        reRender();
         console.log(response);
       })
       .then(data => {
@@ -49,6 +48,9 @@ const FavoriteList = ({
         console.log('데이터', data);
       });
   };
+  useEffect(() => {
+    console.log('render');
+  }, [imageStates]);
 
   return (
     <S.FavoriteListContainer>
