@@ -87,7 +87,7 @@ const Signup = () => {
 
   const handleDate = e => {
     const day = e.target.value;
-    if (day.length === 2) {
+    if (day !== '') {
       const formattedDay = formatDay(day);
       setDate(formattedDay);
     } else {
@@ -96,8 +96,9 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    if (date.length === 2) {
-      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+    if (year && month && date) {
+      let birthDate = year + month + date;
+      setSignupInfo(prev => ({ ...prev, birth: birthDate }));
     }
   }, [date]);
 
