@@ -28,7 +28,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
 
   return (
     <S.CarouselBox>
-      {mart && (
+      {mart[0] !== null && (
         <>
           <div>
             <S.CarouselImg
