@@ -1,10 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Header from '../Components/Header/Header';
 import { Link, useNavigate } from 'react-router-dom';
 import * as S from './WithdrawPoint.style';
 import LoginLayout from '../Login/Component/LoginLayout';
 
 const WithdrawPoint = () => {
+  const inputRef = useRef(null); // input 참조 생성
+  let cursorPosition = 0; // 커서 위치 초기화
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.selectionStart = cursorPosition; // 커서 위치 설정
+      inputRef.current.selectionEnd = cursorPosition;
+    }
+  }, [inputValue]);
+
   const navigate = useNavigate();
 
   const goToChangeAccount = e => {
@@ -179,7 +189,32 @@ const WithdrawPoint = () => {
   //   setBelowThreshold(parseInt(value, 10) < 1000);
   // };
 
+  // const handleInputChange = e => {
+  //   // 숫자와 '원' 외의 문자 제거
+  //   let value = e.target.value.replace(/[^0-9원]/g, '');
+  //   // '원'을 제거한 값을 확인
+  //   const valueWithoutWon = value.replace('원', '');
+
+  //   // '원'을 제거한 값이 숫자만으로 이루어져 있지 않다면, '원'을 다시 추가
+  //   if (!/^\d+$/.test(valueWithoutWon)) {
+  //     value = valueWithoutWon + '원';
+  //   }
+
+  //   // 숫자만 추출
+  //   const onlyNumbers = value.replace(/[^0-9]/g, '');
+
+  //   // 포맷 및 '원' 추가
+  //   const formattedValue = formatNumber(onlyNumbers) + '원';
+
+  //   setInputValue(formattedValue);
+  //   setEmpty(onlyNumbers === '');
+  //   setOverPrice(parseInt(onlyNumbers, 10) > 150000);
+  //   setOverHoldingPoint(parseInt(onlyNumbers, 10) > holdingPoint);
+  //   setBelowThreshold(parseInt(onlyNumbers, 10) < 1000);
+  // };
+
   const handleInputChange = e => {
+    cursorPosition = e.target.selectionStart; // 입력 전 커서 위치 저장
     // 숫자와 '원' 외의 문자 제거
     let value = e.target.value.replace(/[^0-9원]/g, '');
     // '원'을 제거한 값을 확인
@@ -201,6 +236,11 @@ const WithdrawPoint = () => {
     setOverPrice(parseInt(onlyNumbers, 10) > 150000);
     setOverHoldingPoint(parseInt(onlyNumbers, 10) > holdingPoint);
     setBelowThreshold(parseInt(onlyNumbers, 10) < 1000);
+
+    // '원'의 길이만큼 커서 위치 조정
+    if (e.target.selectionStart > inputValue.length - 1) {
+      cursorPosition = formattedValue.length - 1;
+    }
   };
 
   // const handleInputChange = e => {
@@ -269,6 +309,7 @@ const WithdrawPoint = () => {
               </S.HoldingPoint>
             </S.PointWrapper>
             <S.WithdrawPoint
+              ref={inputRef}
               value={inputValue}
               onChange={handleInputChange}
               placeholder="1,000원 이상 인출 가능"
