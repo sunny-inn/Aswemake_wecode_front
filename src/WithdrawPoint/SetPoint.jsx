@@ -19,7 +19,7 @@ const SetPoint = () => {
 
   return (
     <div>
-      <S.Container>
+      {/* <S.Container>
         <S.Name>{accountHolderName}님</S.Name>
         <S.Inform style={{ color: '#FF6A21' }}>
           &nbsp;&nbsp;{formatNumber(withdrawalPoints)}원
@@ -31,7 +31,8 @@ const SetPoint = () => {
       </S.Container>
       <Link to="/mypage">
         <S.FinBtn>확인</S.FinBtn>
-      </Link>
+      </Link> */}
+      아아아ㅏ
     </div>
   );
 };
