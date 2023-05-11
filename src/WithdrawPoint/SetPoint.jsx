@@ -45,10 +45,10 @@ const SetPoint = () => {
           <S.WithdrawNotify>
             인출 요청 후 7일 이내 등록된 계좌로 입금됩니다.
           </S.WithdrawNotify>
+          <Link to="/mypage">
+            <S.FinBtn>확인</S.FinBtn>
+          </Link>
         </S.Container>
-        <Link to="/mypage">
-          <S.FinBtn>확인</S.FinBtn>
-        </Link>
       </LoginLayout>
     </>
   );
