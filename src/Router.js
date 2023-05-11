@@ -25,10 +25,12 @@ import SetAccount from './AccountRegi/Component/SetAccount';
 import AccountChange from './AccountChange/AccountChange';
 import AccountChangeInput from './AccountChange/AccountChangeInput';
 import SetAccountChange from './AccountChange/SetAccountChange';
+import TokenRefresher from './Login/TokenRefresher';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <TokenRefresher />
       <Routes>
         <Route element={<Container />}>
           <Route path="/home" element={<Home />} />
