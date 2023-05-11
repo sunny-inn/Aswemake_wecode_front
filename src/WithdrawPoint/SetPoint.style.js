@@ -27,6 +27,11 @@ export const Inform = styled.div`
   font-weight: 500;
 `;
 
+export const InformPoint = styled.div`
+  font-size: 17px;
+  font-weight: 500;
+`;
+
 export const WithdrawNotify = styled.div`
   margin-top: 16px;
   font-size: 13px;
