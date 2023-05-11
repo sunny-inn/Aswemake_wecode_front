@@ -5,17 +5,9 @@ import * as S from './WithdrawPoint.style';
 import LoginLayout from '../Login/Component/LoginLayout';
 
 const WithdrawPoint = () => {
-  const inputRef = useRef(null); // input 참조 생성
-  let cursorPosition = 0; // 커서 위치 초기화
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.selectionStart = cursorPosition; // 커서 위치 설정
-      inputRef.current.selectionEnd = cursorPosition;
-    }
-  }, [inputValue]);
-
   const navigate = useNavigate();
+  const inputRef = useRef(null);
+  let cursorPosition = 0;
 
   const goToChangeAccount = e => {
     e.preventDefault();
@@ -213,6 +205,13 @@ const WithdrawPoint = () => {
   //   setBelowThreshold(parseInt(onlyNumbers, 10) < 1000);
   // };
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.selectionStart = cursorPosition; // 커서 위치 설정
+      inputRef.current.selectionEnd = cursorPosition;
+    }
+  }, [inputValue]);
+
   const handleInputChange = e => {
     cursorPosition = e.target.selectionStart; // 입력 전 커서 위치 저장
     // 숫자와 '원' 외의 문자 제거
@@ -241,34 +240,6 @@ const WithdrawPoint = () => {
     if (e.target.selectionStart > inputValue.length - 1) {
       cursorPosition = formattedValue.length - 1;
     }
-  };
-
-  // const handleInputChange = e => {
-  //   const value = e.target.value.replace(/[^0-9]/g, '');
-  //   setInputValue(value);
-  //   setEmpty(value === '');
-  //   setOverPrice(parseInt(value, 10) > 150000);
-  //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
-  //   setBelowThreshold(parseInt(value, 10) < 1000);
-  // };
-
-  const handleBlur = e => {
-    const formattedValue = formatNumber(e.target.value);
-    setInputValue(formattedValue);
-  };
-
-  const showCurrency = () => {
-    setInputValue(prevValue => {
-      if (prevValue === '') {
-        return '';
-      }
-      const onlyNumbers = prevValue.replace(/[^0-9]/g, '');
-      return formatNumber(onlyNumbers) + '원';
-    });
-  };
-
-  const handleFocus = () => {
-    setInputValue(prevValue => prevValue.replace(/[^0-9]/g, ''));
   };
 
   // 포인트 입력 금액 천자리마다 , 찍기
