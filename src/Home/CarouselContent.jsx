@@ -24,16 +24,20 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
     });
   };
 
+  const img = mart?.martFlyerImages;
+  console.log('img', img);
+
   return (
     <S.MartBox key={mart.martId}>
       <S.CarouselBox>
         <div>
           <S.CarouselImg
-            src={
-              mart.martFlyerImages === '0'
-                ? 'images/flyernone.png'
-                : mart.martFlyerImages[0].imageUrl
-            }
+            src="images/flyernone.png"
+            // {
+            //   mart.martFlyerImages === '0'
+            //     ? 'images/flyernone.png'
+            //     : mart.martFlyerImages[0].imageUrl
+            // }
             alt="전단지"
             onClick={onClickMartItem(mart.martId)}
           />
