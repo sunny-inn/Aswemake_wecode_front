@@ -36,6 +36,8 @@ const Id = ({
       setIsClicked(false);
       setIsFilled(false);
       setIsIdDisabled(false);
+    } else if (id.length < 2) {
+      setIsFilled(false);
     }
   }, [id, setIsFilled, setIsClicked, setIsIdDisabled]);
 

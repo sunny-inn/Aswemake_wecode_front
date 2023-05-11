@@ -173,13 +173,15 @@ const Signup = () => {
     name !== '' &&
     year.length === 4 &&
     month !== '' &&
-    date !== '' &&
+    date.length === 2 &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
     verification === true &&
     isCheckboxClicked === true
   );
+
+  console.log('date', date);
 
   // 회원가입 완료
   const onSubmit = e => {

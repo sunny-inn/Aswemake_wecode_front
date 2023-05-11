@@ -26,6 +26,7 @@ const Birth = ({ year, date, handleYear, handleMonth, handleDate }) => {
         type="text"
         onChange={handleDate}
         placeholder="일"
+        maxLength="2"
       />
     </S.BirthBox>
   );
