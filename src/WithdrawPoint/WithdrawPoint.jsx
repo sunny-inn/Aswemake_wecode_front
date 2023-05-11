@@ -170,13 +170,37 @@ const WithdrawPoint = () => {
   //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
   // };
 
+  // const handleInputChange = e => {
+  //   const value = e.target.value.replace(/[^0-9]/g, '');
+  //   setInputValue(value);
+  //   setEmpty(value === '');
+  //   setOverPrice(parseInt(value, 10) > 150000);
+  //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
+  //   setBelowThreshold(parseInt(value, 10) < 1000);
+  // };
+
   const handleInputChange = e => {
-    const value = e.target.value.replace(/[^0-9]/g, '');
-    setInputValue(value);
-    setEmpty(value === '');
-    setOverPrice(parseInt(value, 10) > 150000);
-    setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
-    setBelowThreshold(parseInt(value, 10) < 1000);
+    // 숫자와 '원' 외의 문자 제거
+    let value = e.target.value.replace(/[^0-9원]/g, '');
+    // '원'을 제거한 값을 확인
+    const valueWithoutWon = value.replace('원', '');
+
+    // '원'을 제거한 값이 숫자만으로 이루어져 있지 않다면, '원'을 다시 추가
+    if (!/^\d+$/.test(valueWithoutWon)) {
+      value = valueWithoutWon + '원';
+    }
+
+    // 숫자만 추출
+    const onlyNumbers = value.replace(/[^0-9]/g, '');
+
+    // 포맷 및 '원' 추가
+    const formattedValue = formatNumber(onlyNumbers) + '원';
+
+    setInputValue(formattedValue);
+    setEmpty(onlyNumbers === '');
+    setOverPrice(parseInt(onlyNumbers, 10) > 150000);
+    setOverHoldingPoint(parseInt(onlyNumbers, 10) > holdingPoint);
+    setBelowThreshold(parseInt(onlyNumbers, 10) < 1000);
   };
 
   // const handleInputChange = e => {
