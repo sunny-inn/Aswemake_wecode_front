@@ -62,7 +62,6 @@ const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
   const [imageStates, setImageStates] = useState([]);
   const navigate = useNavigate();
-  const reRender = navigate('/favorite');
 
   const token = localStorage.getItem('token');
 
@@ -78,7 +77,6 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data);
-        reRender();
       });
   }, []);
 

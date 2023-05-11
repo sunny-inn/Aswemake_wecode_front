@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './FavoriteList.style';
 
 const FavoriteList = ({
@@ -9,7 +9,9 @@ const FavoriteList = ({
   imageStates,
 }) => {
   // const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
   const params = useParams();
+  const reRender = navigate('/favorite');
 
   // const handleFavorite = index => {
   //   const newImageStates = [...imageStates];
@@ -46,6 +48,9 @@ const FavoriteList = ({
         console.log('데이터', data);
       });
   };
+  useEffect(() => {
+    console.log('render');
+  }, [imageStates]);
 
   return (
     <S.FavoriteListContainer>
