@@ -24,7 +24,10 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
     });
   };
 
-  console.log('favorite?', mart.isFavorite);
+  const onClickFavorite = () => {
+    console.log('favorite?', mart.isFavorite);
+  };
+
   return (
     <S.MartBox key={mart.martId}>
       <S.CarouselBox>
