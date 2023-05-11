@@ -4,8 +4,7 @@ import * as S from './CarouselContent.style';
 
 const CarouselContent = ({ mart, onClickMartItem }) => {
   const token = localStorage.getItem('token');
-  const params = useParams();
-  const [isFavorite, setIsFavorite] = useState(false);
+
   console.log('ggg', mart);
 
   const onClickFavorite = () => {
@@ -15,10 +14,10 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
       },
-      body: JSON.stringify({ isFavorite }),
+      body: JSON.stringify(`${mart.favoriteCheck}`),
     }).then(response => {
       if (response.ok) {
-        setIsFavorite(prev => !prev);
+        console.log('response', response);
       } else {
         console.error('errorMsg');
       }

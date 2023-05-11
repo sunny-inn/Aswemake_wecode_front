@@ -33,13 +33,6 @@ const HomeCarousel = ({
   const [slider, setSlider] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
-  const selectedMartList = selectedMart
-    ? homeMartList.map(mart => ({
-        ...mart,
-        checked: false,
-        isFavorite: false, // 수정된 부분
-      }))
-    : [];
   const navigate = useNavigate();
   const params = useParams();
 
@@ -106,7 +99,7 @@ const HomeCarousel = ({
   // };
 
   const onClickMartItem = id => e => {
-    const selectedMart = selectedMartList.find(mart => mart.martId === id);
+    const selectedMart = homeMartList.find(mart => mart.martId === id);
     if (selectedMart && selectedMart.martFlyerImages === '0') {
       handleModal();
       // afterhandleModal();
@@ -128,8 +121,8 @@ const HomeCarousel = ({
       ref={setSlider}
       onSwipe={e => changeCenterByCarousel(currentSlide, e)}
     >
-      {selectedMartList &&
-        selectedMartList.map(mart => (
+      {homeMartList &&
+        homeMartList.map(mart => (
           <CarouselContent
             mart={mart}
             key={mart.id}
