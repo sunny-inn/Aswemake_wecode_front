@@ -28,15 +28,16 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
 
   return (
     <S.CarouselBox>
-      {mart[0] !== null && (
+      {mart && (
         <>
           <div>
             <S.CarouselImg
-              src={
-                mart.martFlyerImages === '0'
-                  ? 'images/flyernone.png'
-                  : mart.martFlyerImages[0].imageUrl
-              }
+              src="images/flyernone.png"
+              // {
+              //   mart.martFlyerImages === '0'
+              //     ? 'images/flyernone.png'
+              //     : mart.martFlyerImages[0].imageUrl
+              // }
               alt="전단지"
               onClick={onClickMartItem(mart.martId)}
             />
