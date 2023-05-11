@@ -21,13 +21,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
           Authorization: token,
         },
       })
-        .then(response => {
-          if (response.ok) {
-            console.log('response', response);
-          } else {
-            console.error('errorMsg');
-          }
-        })
+        .then(response => response.json())
         .then(data => console.log('data', data));
   };
 
