@@ -107,6 +107,7 @@ export const FinBtn = styled.button`
     !props.overPrice &&
     !props.overHoldingPoint &&
     !props.empty &&
+    !props.belowThreshold &&
     css`
       background-color: #ff6a21;
     `}
