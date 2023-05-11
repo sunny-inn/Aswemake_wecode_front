@@ -53,8 +53,8 @@ const FavoriteList = ({
   return (
     <S.FavoriteListContainer>
       {addedFavoriteList.map((item, i) => (
-        <React.Fragment key={i}>
-          <div key={item.martId}>
+        <React.Fragment key={item.marId}>
+          <div>
             <S.MartBox>
               <S.CarouselBox>
                 <div>
