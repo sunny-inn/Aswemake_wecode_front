@@ -272,7 +272,7 @@ const WithdrawPoint = () => {
         <S.FinBtn
           onClick={handleWithdrawRequest}
           overPrice={overPrice}
-          disabled={overPrice || overHoldingPoint || empty}
+          disabled={overPrice || overHoldingPoint || empty || belowThreshold}
           overHoldingPoint={overHoldingPoint}
           empty={empty}
         >
