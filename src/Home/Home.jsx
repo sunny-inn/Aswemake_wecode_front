@@ -129,8 +129,7 @@ const Home = () => {
   const changedCenter = { y: `${center.lat}`, x: `${center.lng}` };
 
   useEffect(() => {
-    selectedMart === null &&
-      center.lat &&
+    center.lat &&
       fetch(`https://flyers.qmarket.me/api/home/mart`, {
         method: 'POST',
         credentials: 'include',
@@ -211,8 +210,6 @@ const Home = () => {
   };
 
   // console.log('isMarkerClicked', isMarkerClicked);
-  console.log('isMarkerClicked', isMarkerClicked);
-  console.log('selectedMart', selectedMart);
 
   return (
     <div>
