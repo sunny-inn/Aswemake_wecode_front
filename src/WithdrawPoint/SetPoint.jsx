@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './SetPoint.style';
 import { Link, useLocation } from 'react-router-dom';
 import Header from '../Components/Header/Header';
+import LoginLayout from '../Login/Component/LoginLayout';
 
 const SetPoint = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const SetPoint = () => {
   }
 
   return (
-    <div>
+    <>
       {/* <S.Container>
         <S.Name>{accountHolderName}님</S.Name>
         <S.Inform style={{ color: '#FF6A21' }}>
@@ -33,9 +34,11 @@ const SetPoint = () => {
       <Link to="/mypage">
         <S.FinBtn>확인</S.FinBtn>
       </Link> */}
-      아아아ㅏ
       <Header type="withdrawPoint2" />
-    </div>
+      <LoginLayout>
+        <S.Name>{accountHolderName}님</S.Name>
+      </LoginLayout>
+    </>
   );
 };
 
