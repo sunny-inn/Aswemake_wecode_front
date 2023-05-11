@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Components/Header/Header';
 import { Link, useNavigate } from 'react-router-dom';
 import * as S from './WithdrawPoint.style';
@@ -6,8 +6,6 @@ import LoginLayout from '../Login/Component/LoginLayout';
 
 const WithdrawPoint = () => {
   const navigate = useNavigate();
-  const inputRef = useRef(null);
-  let cursorPosition = 0;
 
   const goToChangeAccount = e => {
     e.preventDefault();
@@ -172,6 +170,17 @@ const WithdrawPoint = () => {
   //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
   // };
 
+  const handleInputChange = e => {
+    // 숫자 외의 문자 제거
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    const formattedValue = formatNumber(value);
+    setInputValue(formattedValue + '원');
+    setEmpty(value === '');
+    setOverPrice(parseInt(value, 10) > 150000);
+    setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
+    setBelowThreshold(parseInt(value, 10) < 1000);
+  };
+
   // const handleInputChange = e => {
   //   const value = e.target.value.replace(/[^0-9]/g, '');
   //   setInputValue(value);
@@ -181,65 +190,22 @@ const WithdrawPoint = () => {
   //   setBelowThreshold(parseInt(value, 10) < 1000);
   // };
 
-  // const handleInputChange = e => {
-  //   // 숫자와 '원' 외의 문자 제거
-  //   let value = e.target.value.replace(/[^0-9원]/g, '');
-  //   // '원'을 제거한 값을 확인
-  //   const valueWithoutWon = value.replace('원', '');
-
-  //   // '원'을 제거한 값이 숫자만으로 이루어져 있지 않다면, '원'을 다시 추가
-  //   if (!/^\d+$/.test(valueWithoutWon)) {
-  //     value = valueWithoutWon + '원';
-  //   }
-
-  //   // 숫자만 추출
-  //   const onlyNumbers = value.replace(/[^0-9]/g, '');
-
-  //   // 포맷 및 '원' 추가
-  //   const formattedValue = formatNumber(onlyNumbers) + '원';
-
-  //   setInputValue(formattedValue);
-  //   setEmpty(onlyNumbers === '');
-  //   setOverPrice(parseInt(onlyNumbers, 10) > 150000);
-  //   setOverHoldingPoint(parseInt(onlyNumbers, 10) > holdingPoint);
-  //   setBelowThreshold(parseInt(onlyNumbers, 10) < 1000);
-  // };
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.selectionStart = cursorPosition; // 커서 위치 설정
-      inputRef.current.selectionEnd = cursorPosition;
-    }
-  }, [inputValue]);
-
-  const handleInputChange = e => {
-    cursorPosition = e.target.selectionStart; // 입력 전 커서 위치 저장
-    // 숫자와 '원' 외의 문자 제거
-    let value = e.target.value.replace(/[^0-9원]/g, '');
-    // '원'을 제거한 값을 확인
-    const valueWithoutWon = value.replace('원', '');
-
-    // '원'을 제거한 값이 숫자만으로 이루어져 있지 않다면, '원'을 다시 추가
-    if (!/^\d+$/.test(valueWithoutWon)) {
-      value = valueWithoutWon + '원';
-    }
-
-    // 숫자만 추출
-    const onlyNumbers = value.replace(/[^0-9]/g, '');
-
-    // 포맷 및 '원' 추가
-    const formattedValue = formatNumber(onlyNumbers) + '원';
-
+  const handleBlur = e => {
+    const formattedValue = formatNumber(e.target.value);
     setInputValue(formattedValue);
-    setEmpty(onlyNumbers === '');
-    setOverPrice(parseInt(onlyNumbers, 10) > 150000);
-    setOverHoldingPoint(parseInt(onlyNumbers, 10) > holdingPoint);
-    setBelowThreshold(parseInt(onlyNumbers, 10) < 1000);
+  };
+  const showCurrency = () => {
+    setInputValue(prevValue => {
+      if (prevValue === '') {
+        return '';
+      }
+      const onlyNumbers = prevValue.replace(/[^0-9]/g, '');
+      return formatNumber(onlyNumbers) + '원';
+    });
+  };
 
-    // '원'의 길이만큼 커서 위치 조정
-    if (e.target.selectionStart > inputValue.length - 1) {
-      cursorPosition = formattedValue.length - 1;
-    }
+  const handleFocus = () => {
+    setInputValue(prevValue => prevValue.replace(/[^0-9]/g, ''));
   };
 
   // 포인트 입력 금액 천자리마다 , 찍기
@@ -280,9 +246,11 @@ const WithdrawPoint = () => {
               </S.HoldingPoint>
             </S.PointWrapper>
             <S.WithdrawPoint
-              ref={inputRef}
               value={inputValue}
               onChange={handleInputChange}
+              // showCurrency={showCurrency}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               placeholder="1,000원 이상 인출 가능"
               borderColor={
                 overPrice || overHoldingPoint || belowThreshold
