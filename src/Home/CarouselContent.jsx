@@ -6,7 +6,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
   const token = localStorage.getItem('token');
   const params = useParams();
   const [isFavorite, setIsFavorite] = useState(false);
-  console.log('ggg', isFavorite);
+  console.log('ggg', mart);
 
   const onClickFavorite = () => {
     fetch(`https://flyers.qmarket.me/api/favorite/${mart.martId}`, {
