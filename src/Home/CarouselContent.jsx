@@ -35,7 +35,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
           <div>
             <S.CarouselImg
               src={
-                isClicked === '0'
+                mart.martFlyerImages === '0'
                   ? 'images/flyernone.png'
                   : mart.martFlyerImages[0].imageUrl
               }
@@ -50,7 +50,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
               </S.MartTitle>
               <S.StarImg
                 src={
-                  mart.favoriteCheck === '1'
+                  isClicked === '1'
                     ? 'images/clickedFavorite.png'
                     : 'images/favorite.png'
                 }
