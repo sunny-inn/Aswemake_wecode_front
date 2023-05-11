@@ -87,22 +87,34 @@ const Signup = () => {
   };
 
   const handleDate = e => {
-    const day = e.target.value;
-    if (day && day.length === 2) {
-      const formattedDay = formatDay(day);
-      setDate(formattedDay);
-    } else {
-      setDate('');
-    }
+    // const day = e.target.value;
+    // if (day && day.length === 2) {
+    //   const formattedDay = formatDay(day);
+    //   setDate(formattedDay);
+    // } else {
+    //   setDate('');
+    // }
+
+    setDate(e.target.value);
   };
 
   useEffect(() => {
+    // if (year && month && date) {
+    //   let birthDate = (year + month + date).length === 8 && year + month + date;
+    //   setSignupInfo(prev => ({ ...prev, birth: birthDate }));
+    //   console.log(birthDate);
+    // }
     if (year && month && date) {
-      let birthDate = (year + month + date).length === 8 && year + month + date;
-      setSignupInfo(prev => ({ ...prev, birth: birthDate }));
-      console.log(birthDate);
+      const formattedDay = formatDay(date);
+      setDate(formattedDay);
+    }
+
+    if (year && month && date && date.length === 2) {
+      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
     }
   }, [date]);
+
+  console.log('birth', birth);
 
   // 성별
   const handleGender = e => {
