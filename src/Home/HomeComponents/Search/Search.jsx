@@ -171,7 +171,7 @@ const Search = ({
             <S.KeywordTitle>최근 검색어</S.KeywordTitle>
             <S.SearchedList>
               {keywords.length > 0 ? (
-                keywords.slice(0, 3).map(({ id, text }) => (
+                keywords.slice(0, 10).map(({ id, text }) => (
                   <S.KeywordItem key={id}>
                     <p onClick={() => onClickKeyword(id, text)}>{text}</p>
                     <S.DeleteBtn
