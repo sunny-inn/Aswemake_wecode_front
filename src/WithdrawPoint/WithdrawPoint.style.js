@@ -50,7 +50,23 @@ export const WithdrawPoint = styled.input`
   ::placeholder {
     color: #dbdbdb;
   }
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='10' viewBox='0 0 15 10'><text x='0' y='10' fill='%23dbdbdb' font-size='14' font-weight='700'>원</text></svg>")
+    no-repeat;
+  background-position-x: calc(100% - 10px);
+  background-position-y: 50%;
+  padding-right: 30px;
 `;
+// export const WithdrawPoint = styled.input`
+//   /* ... */
+//   ::placeholder {
+//     color: #dbdbdb;
+//   }
+//   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='10' viewBox='0 0 15 10'><text x='0' y='10' fill='%23dbdbdb' font-size='14' font-weight='700'>원</text></svg>")
+//     no-repeat;
+//   background-position-x: calc(100% - 10px);
+//   background-position-y: 50%;
+//   padding-right: 30px;
+// `;
 
 export const PointContainer = styled.div`
   margin-top: 8px;
@@ -114,14 +130,3 @@ export const FinBtn = styled.button`
       background-color: #ff6a21;
     `}
 `;
-
-// export const WithdrawPoint = styled.input`
-//   /* ... */
-//   ::placeholder {
-//     color: #dbdbdb;
-//   }
-//   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='10' viewBox='0 0 15 10'><text x='0' y='10' fill='%23dbdbdb' font-size='14' font-weight='700'>원</text></svg>") no-repeat;
-//   background-position-x: calc(100% - 10px);
-//   background-position-y: 50%;
-//   padding-right: 30px;
-// `;
