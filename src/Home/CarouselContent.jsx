@@ -30,7 +30,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         <div>
           <S.CarouselImg
             src={
-              mart.martFlyerImages.length === 4
+              mart && mart.martFlyerImages.length === 4
                 ? 'images/flyernone.png'
                 : mart.martFlyerImages[0].imageUrl
             }
