@@ -16,11 +16,9 @@ import DetailModal from './DetailModal';
 
 const Home = () => {
   //MockData시작
-  // const [userAddress, setUserAddress] = useState('');
   const [homeMartList, setHomeMartList] = useState([{}]);
   const [selectedMart, setSelectedMart] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const [shopModal, setShopModal] = useState(false);
   const [currentId, setCurrentId] = useState(Number.MAX_SAFE_INTEGER);
   const [centerPoint, setCenterPoint] = useState(null);
   const mapRef = useRef(null);
@@ -31,7 +29,6 @@ const Home = () => {
   const [error, setError] = useState('');
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [newKeyword, setNewKeyword] = useState('');
-  const [searchedMart, setSearchedMart] = useState({});
   const navigate = useNavigate();
 
   const goToDetail = id => {
@@ -44,29 +41,6 @@ const Home = () => {
       navigate('/');
     }
   }, [token, navigate]);
-
-  // useEffect(() => {
-  //   userAddress &&
-  //     navermaps.Service.geocode(
-  //       {
-  //         address: userAddress,
-  //       },
-  //       function (status, response) {
-  //         if (status !== navermaps.Service.Status.OK) {
-  //           return alert('Something wrong!');
-  //         }
-  //         const result = response.result;
-  //         const items = result.items;
-  //         console.log(
-  //           '위도 = ',
-  //           items[0].point.y,
-  //           ' 경도 = ',
-  //           items[0].point.x
-  //         );
-  //         setCenter({ lat: items[0].point.x, lng: items[0].point.y });
-  //       }
-  //     );
-  // }, [userAddress]);
 
   const handleModal = () => {
     // navigate(`/detail/${selectedMart.martId}`);
@@ -176,9 +150,6 @@ const Home = () => {
   console.log('마트리스트들', homeMartList);
 
   const navermaps = useNavermaps();
-
-  // const onCenterChanged = value => setCenter(value);
-  // console.log('센터바뀜?', center);
 
   const onCenterChanged = value => {
     console.log('센터 확인 중', value);
