@@ -185,10 +185,7 @@ const Signup = () => {
     isIdDisabled === false &&
     isValidPasswd === true &&
     correctPasswd === true &&
-    name !== '' &&
-    year !== '' &&
-    month !== '' &&
-    date !== '' &&
+    birth !== '' &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
