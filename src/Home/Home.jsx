@@ -278,7 +278,7 @@ const Home = () => {
               />
             </S.SearchBox>
           </NaverMap>
-          {homeMartList.length > 0 && (
+          {selectedMart !== null && (
             <>
               <HomeCarousel
                 handleSecModal={handleSecModal}
