@@ -21,7 +21,6 @@ const SetPoint = () => {
 
   return (
     <div>
-      <Header type="withdrawPoint" />
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName}님</S.Name>
