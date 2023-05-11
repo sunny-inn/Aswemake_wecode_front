@@ -227,21 +227,24 @@ const FindPwd = () => {
         >
           인증번호 받기
         </S.ButtonOne>
-        <S.InputBox
-          style={{ width: '204px' }}
-          placeholder="인증번호를 입력해주세요."
-          name="code"
-          value={input.code}
-          onChange={handleCode}
-          borderColor={alertMsg === false || expired ? '#e40303' : '#dbdbdb'}
-        />
-        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
-        <S.ButtonTwo
-          onClick={onCodeBtn}
-          disabled={codeBtnChange || alertMsg === true}
-        >
-          확인
-        </S.ButtonTwo>
+        <div style={{ position: 'relative' }}>
+          <S.InputBox
+            style={{ width: '204px' }}
+            placeholder="인증번호를 입력해주세요."
+            name="code"
+            value={input.code}
+            onChange={handleCode}
+            borderColor={alertMsg === false || expired ? '#e40303' : '#dbdbdb'}
+          />
+          {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
+
+          <S.ButtonTwo
+            onClick={onCodeBtn}
+            disabled={codeBtnChange || alertMsg === true}
+          >
+            확인
+          </S.ButtonTwo>
+        </div>
         {alertMsg === true && (
           <S.AlertMsg> 번호 인증이 완료되었습니다. </S.AlertMsg>
         )}
@@ -267,3 +270,5 @@ const FindPwd = () => {
 };
 
 export default FindPwd;
+
+//타이머 0초 되어도 만료된 인증번호 뜸
