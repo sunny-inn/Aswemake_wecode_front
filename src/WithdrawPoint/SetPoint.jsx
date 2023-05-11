@@ -36,7 +36,9 @@ const SetPoint = () => {
       </Link> */}
       <Header type="withdrawPoint2" />
       <LoginLayout>
-        <S.Name>{accountHolderName}님</S.Name>
+        <S.Container>
+          <S.Name>{accountHolderName}님</S.Name>
+        </S.Container>
       </LoginLayout>
     </>
   );
