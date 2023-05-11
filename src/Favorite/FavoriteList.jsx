@@ -71,7 +71,7 @@ const FavoriteList = ({
                   <S.MartTitle>{item.martName}</S.MartTitle>
                   <S.StarImg
                     src={
-                      imageStates[i]
+                      imageStates[item.martId]
                         ? '/images/favorite.png'
                         : '/images/clickedFavorite.png'
                     }
