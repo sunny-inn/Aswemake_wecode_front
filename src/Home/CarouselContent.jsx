@@ -25,7 +25,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
       });
   };
 
-  console.log('img', mart.favoriteCheck);
+  console.log('carousel', isClicked);
 
   return (
     <S.CarouselBox>
