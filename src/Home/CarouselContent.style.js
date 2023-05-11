@@ -12,6 +12,7 @@ export const CarouselImg = styled.img`
   left: 51px;
   top: 612px;
   border-radius: 8px;
+  object-fit: cover;
 `;
 
 export const CarouselBox = styled.ul`

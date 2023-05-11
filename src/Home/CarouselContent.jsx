@@ -18,7 +18,11 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         },
       }).then(response => {
         if (response.ok) {
-          setIsClicked(prev => !prev);
+          if (isClicked === '0') {
+            setIsClicked('1');
+          } else {
+            setIsClicked('0');
+          }
         } else {
           console.error('errorMsg');
         }
