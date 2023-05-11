@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './CarouselContent.style';
 
 const CarouselContent = ({ mart, onClickMartItem }) => {
@@ -7,6 +7,10 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
   console.log(token);
 
   console.log('ggg', mart);
+
+  useEffect(() => {
+    console.log('isClicked');
+  }, [isClicked]);
 
   const onClickFavorite = () => {
     token &&
