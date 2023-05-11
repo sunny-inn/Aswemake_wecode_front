@@ -107,9 +107,6 @@ const Signup = () => {
     if (year && month && date) {
       const formattedDay = formatDay(date);
       setDate(formattedDay);
-    }
-
-    if (year && month && date && date.length === 2) {
       setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
     }
   }, [date]);
@@ -185,7 +182,9 @@ const Signup = () => {
     isIdDisabled === false &&
     isValidPasswd === true &&
     correctPasswd === true &&
-    birth !== '' &&
+    year !== '' &&
+    month !== '' &&
+    date?.length === 2 &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
