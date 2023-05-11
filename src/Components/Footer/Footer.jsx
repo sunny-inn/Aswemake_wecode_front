@@ -31,7 +31,7 @@ const Footer = () => {
                 onClick={goToNav}
                 src={index === clickedIndex ? item.checkedImg : item.defaultImg}
               />
-              <S.FooterTitle> {item.title}</S.FooterTitle>
+              {/* <S.FooterTitle> {item.title}</S.FooterTitle> */}
             </S.FooterList>
           </div>
         ))}
