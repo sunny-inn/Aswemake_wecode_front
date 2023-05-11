@@ -38,6 +38,9 @@ const SetPoint = () => {
       <LoginLayout>
         <S.Container>
           <S.Name>{accountHolderName}님</S.Name>
+          <S.Inform style={{ color: '#FF6A21' }}>
+            &nbsp;&nbsp;{formatNumber(withdrawalPoints)}원
+          </S.Inform>
         </S.Container>
       </LoginLayout>
     </>
