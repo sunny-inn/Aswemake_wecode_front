@@ -41,7 +41,6 @@ const Signup = () => {
     passwd,
     gender,
     name,
-    birth,
     address,
     addressDetail,
     phoneNumber,
@@ -97,19 +96,10 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    // if (year && month && date) {
-    //   let birthDate = (year + month + date).length === 8 && year + month + date;
-    //   setSignupInfo(prev => ({ ...prev, birth: birthDate }));
-    //   console.log(birthDate);
-    // }
     if (year && month && date) {
-      const formattedDay = formatDay(date);
-      setDate(formattedDay);
       setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
     }
   }, [date]);
-
-  console.log('birth', birth);
 
   // 성별
   const handleGender = e => {
@@ -180,7 +170,8 @@ const Signup = () => {
     isIdDisabled === false &&
     isValidPasswd === true &&
     correctPasswd === true &&
-    year !== '' &&
+    name !== '' &&
+    year.length === 4 &&
     month !== '' &&
     date?.length === 2 &&
     gender !== '' &&
@@ -191,7 +182,6 @@ const Signup = () => {
   );
 
   console.log('date', date);
-  // console.log('date length', date.length);
 
   // 회원가입 완료
   const onSubmit = e => {
