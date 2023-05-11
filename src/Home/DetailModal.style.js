@@ -79,6 +79,7 @@ export const CloseImg = styled.img`
   width: 26px;
   height: 26px;
   right: 10px;
+  margin-bottom: 4px;
   cursor: pointer;
   position: absolute;
 `;
