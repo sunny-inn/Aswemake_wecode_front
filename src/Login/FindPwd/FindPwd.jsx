@@ -253,7 +253,7 @@ const FindPwd = () => {
         )}
         {codeBtnClicked && expired && (
           <S.FailAlertMsg>
-            만료된 인증번호입니다.다시 시도해주세요.
+            만료된 인증번호입니다. 다시 시도해주세요.
           </S.FailAlertMsg>
         )}
 
