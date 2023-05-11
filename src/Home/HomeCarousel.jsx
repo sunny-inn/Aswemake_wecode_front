@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as S from './HomeCarousel.style';
+import CarouselContent from './CarouselContent';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -28,7 +29,7 @@ const HomeCarousel = ({
       setCurrentSlide(next);
     },
   };
-  const [isFavorite, setIsFavorite] = useState(false);
+
   const [slider, setSlider] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const smIndex = homeMartList.indexOf(selectedMart);
@@ -57,49 +58,48 @@ const HomeCarousel = ({
   //   setSelectedMartList(newSelectedMartList);
   // };
 
-  const token = localStorage.getItem('token');
-  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-      body: JSON.stringify({ favoriteCheck }),
-    }).then(response => {
-      if (response.ok) {
-        console.log(successMsg);
-      } else {
-        console.error(errorMsg);
-      }
-    });
-  };
+  // const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg, token) => {
+  //   fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //       Authorization: token,
+  //     },
+  //     body: JSON.stringify({ favoriteCheck }),
+  //   }).then(response => {
+  //     if (response.ok) {
+  //       console.log(successMsg);
+  //     } else {
+  //       console.error(errorMsg);
+  //     }
+  //   });
+  // };
 
-  const onClickFavorite = () => {
-    console.log('클릭', isFavorite);
-    setIsFavorite(prev => !prev);
+  // const onClickFavorite = () => {
+  //   console.log('클릭', isFavorite);
+  //   setIsFavorite(prev => !prev);
 
-    // const selectedMart = selectedMartList.find(mart => mart.martId === id);
+  // const selectedMart = selectedMartList.find(mart => mart.martId === id);
 
-    // const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분 없어도될것같은데?
-    // const newSelectedMartList = selectedMartList.map(mart => {
-    //   if (mart.martId === id) {
-    //     return {
-    //       ...mart,
-    //       isFavorite: !mart.isFavorite,
-    //     };
-    //   } else {
-    //     return mart;
-    //   }
-    // });
-    // setSelectedMartList(newSelectedMartList);
-    // sendFavoriteRequest(
-    //   newFavoriteCheck,
-    //   'favorite updated successfully',
-    //   'failed to update favorite',
-    //   token
-    // );
-  };
+  // const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분 없어도될것같은데?
+  // const newSelectedMartList = selectedMartList.map(mart => {
+  //   if (mart.martId === id) {
+  //     return {
+  //       ...mart,
+  //       isFavorite: !mart.isFavorite,
+  //     };
+  //   } else {
+  //     return mart;
+  //   }
+  // });
+  // setSelectedMartList(newSelectedMartList);
+  // sendFavoriteRequest(
+  //   newFavoriteCheck,
+  //   'favorite updated successfully',
+  //   'failed to update favorite',
+  //   token
+  // );
+  // };
 
   // const afterhandleModal = () => {
   //   navigate(`/detail/${selectedMart.martId}`);
@@ -130,42 +130,11 @@ const HomeCarousel = ({
     >
       {selectedMartList &&
         selectedMartList.map(mart => (
-          <S.MartBox key={mart.martId}>
-            <S.CarouselBox>
-              <div>
-                <S.CarouselImg
-                  src={
-                    mart.martFlyerImages === '0'
-                      ? './images/flyernone.png'
-                      : mart.martFlyerImages[0].imageUrl
-                  }
-                  alt="전단지"
-                  onClick={onClickMartItem(mart.martId)}
-                />
-              </div>
-              <S.CarouselContent>
-                <S.MartTitleLi>
-                  <S.MartTitle onClick={onClickMartItem(mart.martId)}>
-                    {mart.martName}
-                  </S.MartTitle>
-                  <S.StarImg
-                    src={
-                      mart.isFavorite
-                        ? '/images/clickedFavorite.png'
-                        : '/images/favorite.png'
-                    }
-                    onClick={() => onClickFavorite({ id: mart.martId })}
-                  />
-                </S.MartTitleLi>
-                <S.MartContentBox>
-                  <S.AddressAndPhone onClick={onClickMartItem(mart.martId)}>
-                    {mart.martNumberAddress}
-                  </S.AddressAndPhone>
-                  <S.AddressAndPhone>{mart.martPhoneNumber}</S.AddressAndPhone>
-                </S.MartContentBox>
-              </S.CarouselContent>
-            </S.CarouselBox>
-          </S.MartBox>
+          <CarouselContent
+            mart={mart}
+            key={mart.id}
+            onClickMartItem={onClickMartItem}
+          />
         ))}
     </S.CarouselWholeContainer>
   );
