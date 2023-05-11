@@ -174,9 +174,9 @@ const Signup = () => {
     isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    year !== "" &&
-    month !== "" &&
-    date
+    year !== '' &&
+    month !== '' &&
+    date !== '' &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
