@@ -20,13 +20,15 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
           'Content-Type': 'application/json;charset=utf-8',
           Authorization: token,
         },
-      }).then(response => {
-        if (response.ok) {
-          console.log('response', response);
-        } else {
-          console.error('errorMsg');
-        }
-      });
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('response', response);
+          } else {
+            console.error('errorMsg');
+          }
+        })
+        .then(data => console.log('data', data));
   };
 
   // console.log('carousel', isClicked);
