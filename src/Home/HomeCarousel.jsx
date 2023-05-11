@@ -77,6 +77,7 @@ const HomeCarousel = ({
 
   const onClickFavorite = id => {
     const selectedMart = selectedMartList.find(mart => mart.martId === id);
+    console.log('클릭');
     // const newFavoriteCheck = selectedMart.isFavorite ? 0 : 1; // 수정된 부분 없어도될것같은데?
     // const newSelectedMartList = selectedMartList.map(mart => {
     //   if (mart.martId === id) {
