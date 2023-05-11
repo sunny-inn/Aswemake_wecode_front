@@ -98,6 +98,7 @@ const Signup = () => {
   useEffect(() => {
     if (year && month && date) {
       setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+      console.log(signupInfo.birth);
     }
   }, [date]);
 
@@ -180,8 +181,6 @@ const Signup = () => {
     verification === true &&
     isCheckboxClicked === true
   );
-
-  console.log('date', date);
 
   // 회원가입 완료
   const onSubmit = e => {
