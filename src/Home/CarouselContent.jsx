@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as S from './CarouselContent.style';
 
 const CarouselContent = ({ mart, onClickMartItem }) => {
-  const [isClicked, setIsClicked] = useState(mart.favoriteCheck);
+  const [isClicked, setIsClicked] = useState(Number(mart.favoriteCheck));
   const token = localStorage.getItem('token');
   console.log(token);
 
