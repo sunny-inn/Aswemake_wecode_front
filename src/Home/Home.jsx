@@ -210,6 +210,7 @@ const Home = () => {
   };
 
   // console.log('isMarkerClicked', isMarkerClicked);
+  console.log('selectedMart', selectedMart);
 
   return (
     <div>
