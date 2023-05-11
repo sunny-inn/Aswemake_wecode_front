@@ -54,8 +54,9 @@ export const KeywordTitle = styled.h1`
 export const SearchedList = styled.ul`
   ${flex('flex-start', 'center', 'column')}
   gap: 5px;
-  height: 560px;
+  height: 500px;
   padding-bottom: 10px;
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 export const SearchedItem = styled.li`
@@ -88,14 +89,13 @@ export const Distance = styled.p`
 `;
 export const KeywordItem = styled.li`
   ${flex('space-between', 'center', null)}
+  width: 320px;
   padding: 12px 0px;
-  width: 328px;
   border-top: 1px solid #f7f7f7;
   color: #252525;
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
-  overflow-x: hidden;
   cursor: pointer;
 
   p {
