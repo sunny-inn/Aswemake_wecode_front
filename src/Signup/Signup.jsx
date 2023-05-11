@@ -41,6 +41,7 @@ const Signup = () => {
     passwd,
     gender,
     name,
+    birth,
     address,
     addressDetail,
     phoneNumber,
@@ -173,9 +174,7 @@ const Signup = () => {
     isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    year !== '' &&
-    month !== '' &&
-    date !== '' &&
+    birth.length === 8 &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
