@@ -8,7 +8,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const onClickFavorite = () => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
+    fetch(`https://flyers.qmarket.me/api/favorite/${mart.martId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
