@@ -20,7 +20,7 @@ export const FlyerCarouselContainer = styled.div`
     margin-right: 5px;
   }
   .slick-slide {
-    margin-right: 5px;
+    /* margin-right: 5px; */
   }
 `;
 
