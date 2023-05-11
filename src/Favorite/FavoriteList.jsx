@@ -41,11 +41,11 @@ const FavoriteList = ({
     })
       .then(response => {
         response.json();
+        reRender();
         console.log(response);
       })
       .then(data => {
         setAddedFavoriteList(data.data);
-        reRender();
         console.log('데이터', data);
       });
   };
