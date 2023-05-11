@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './SetPoint.style';
 import { Link, useLocation } from 'react-router-dom';
+import Header from '../Components/Header/Header';
 
 const SetPoint = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const SetPoint = () => {
         <S.FinBtn>확인</S.FinBtn>
       </Link> */}
       아아아ㅏ
+      <Header type="withdrawPoint2" />
     </div>
   );
 };
