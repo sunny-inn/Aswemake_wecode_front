@@ -46,5 +46,7 @@ export const FinBtn = styled.button`
   background-color: #ff6a21;
   color: white;
   margin-top: 230px;
+  font-size: 17px;
+  font-weight: 700;
   cursor: pointer;
 `;
