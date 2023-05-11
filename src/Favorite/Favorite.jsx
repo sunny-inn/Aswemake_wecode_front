@@ -76,16 +76,6 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data);
-      })
-      .then(() => {
-        return fetch('https://flyers.qmarket.me/api/favorite', {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            authorization: token,
-          },
-        });
       });
   }, []);
 
