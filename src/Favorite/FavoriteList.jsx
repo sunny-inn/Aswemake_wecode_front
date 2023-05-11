@@ -42,7 +42,16 @@ const FavoriteList = ({
         console.log(response);
       })
       .then(data => {
-        setAddedFavoriteList(data.data);
+        fetch('https://flyers.qmarket.me/api/favorite', {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            authorization: token,
+          },
+        })
+          .then(response => response.json())
+          .then(setAddedFavoriteList(data.data));
+
         console.log('데이터', data);
       });
   };
