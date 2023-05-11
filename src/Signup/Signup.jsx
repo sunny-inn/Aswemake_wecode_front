@@ -173,7 +173,7 @@ const Signup = () => {
     name !== '' &&
     year.length === 4 &&
     month !== '' &&
-    date.length === 2 &&
+    date !== '' &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
