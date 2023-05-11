@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
   html,
   body,
   #root {
+    ${flex('center', 'center', 'column')}
     width: 100vw;
     height: 100vh;
   }
