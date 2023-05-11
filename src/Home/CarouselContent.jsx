@@ -3,6 +3,7 @@ import * as S from './CarouselContent.style';
 
 const CarouselContent = ({ mart, onClickMartItem }) => {
   const token = localStorage.getItem('token');
+  console.log(token);
 
   console.log('ggg', mart);
 
