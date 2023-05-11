@@ -8,17 +8,8 @@ const FavoriteList = ({
   setImageStates,
   imageStates,
 }) => {
-  // const [checked, setChecked] = useState(false);
-  const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
   const params = useParams();
-  const reRender = navigate('/favorite');
-
-  // const handleFavorite = index => {
-  //   const newImageStates = [...imageStates];
-  //   newImageStates[index] = !newImageStates[index];
-  //   setImageStates(newImageStates);
-  //   // setChecked(prevChecked => !prevChecked);
-  // };
 
   const token = localStorage.getItem('token');
 
@@ -48,9 +39,6 @@ const FavoriteList = ({
         console.log('데이터', data);
       });
   };
-  useEffect(() => {
-    console.log('render');
-  }, [imageStates]);
 
   return (
     <S.FavoriteListContainer>
