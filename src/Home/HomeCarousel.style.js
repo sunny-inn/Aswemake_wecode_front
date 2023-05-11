@@ -13,7 +13,7 @@ export const CarouselWholeContainer = styled(Slider)`
   z-index: 10;
   position: fixed;
   margin-left: 2px;
-  bottom: 63px;
+  bottom: 69px;
   overflow-x: hidden;
 
   .slick-list {
