@@ -35,6 +35,5 @@ export const FooterTitle = styled.span`
 `;
 
 export const FooterImg = styled.img`
-  width: 20px;
-  height: 18px;
+  height: 38px;
 `;
