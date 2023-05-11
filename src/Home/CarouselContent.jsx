@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './CarouselContent.style';
 
 const CarouselContent = ({ mart, onClickMartItem }) => {
+  const [isClicked, setIsClicked] = useState(mart.favoriteCheck);
   const token = localStorage.getItem('token');
   console.log(token);
 
@@ -17,7 +18,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         },
       }).then(response => {
         if (response.ok) {
-          console.log('response', response);
+          setIsClicked(prev => !prev);
         } else {
           console.error('errorMsg');
         }
