@@ -89,12 +89,12 @@ const HomeCarousel = ({
       }
     });
     setSelectedMartList(newSelectedMartList);
-    sendFavoriteRequest(
-      newFavoriteCheck,
-      'favorite updated successfully',
-      'failed to update favorite',
-      token
-    );
+    // sendFavoriteRequest(
+    //   newFavoriteCheck,
+    //   'favorite updated successfully',
+    //   'failed to update favorite',
+    //   token
+    // );
   };
 
   // const afterhandleModal = () => {
