@@ -22,7 +22,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         },
       }).then(response => {
         if (response.ok) {
-          console.log('isClicked', isClicked);
+          console.log('isClicked', mart.favoriteCheck);
         } else {
           console.error('errorMsg');
         }
