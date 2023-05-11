@@ -103,7 +103,7 @@ export const FindPwdSubmit = styled.button`
 
 export const Timer = styled.div`
   position: absolute;
-  top: 47%; // Adjust this value to position the Timer vertically
+  top: 45%; // Adjust this value to position the Timer vertically
   left: 53%; // Adjust this value to position the Timer horizontally
   transform: translateX(-50%);
   color: #252525;
