@@ -200,7 +200,7 @@ const Upload = () => {
   };
 
   return (
-    <S.UplaodForm onSubmit={onSubmitFlyers} id="scroller">
+    <S.UplaodForm id="scroller">
       <Header type="upload" />
       <S.UploadBox>
         <S.InputBox>
@@ -379,6 +379,7 @@ const Upload = () => {
           <S.SubmitBtn
             disabled={handelDisabled ? true : false}
             handelDisabled={handelDisabled}
+            onClick={onSubmitFlyers}
           >
             전단등록 요청
           </S.SubmitBtn>

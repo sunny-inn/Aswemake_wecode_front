@@ -54,7 +54,7 @@ export const KeywordTitle = styled.h1`
 export const SearchedList = styled.ul`
   ${flex('flex-start', 'center', 'column')}
   gap: 5px;
-  height: 555px;
+  height: 560px;
   padding-bottom: 10px;
   overflow-y: scroll;
 `;
