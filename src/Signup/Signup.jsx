@@ -88,7 +88,7 @@ const Signup = () => {
 
   const handleDate = e => {
     const day = e.target.value;
-    if (day !== '') {
+    if (day.length === 2) {
       const formattedDay = formatDay(day);
       setDate(formattedDay);
     } else {
@@ -174,7 +174,9 @@ const Signup = () => {
     isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    birth.length === 8 &&
+    year !== "" &&
+    month !== "" &&
+    date
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
