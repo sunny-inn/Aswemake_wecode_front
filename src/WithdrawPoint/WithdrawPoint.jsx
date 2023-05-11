@@ -170,25 +170,25 @@ const WithdrawPoint = () => {
   //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
   // };
 
-  // const handleInputChange = e => {
-  //   // 숫자 외의 문자 제거
-  //   const value = e.target.value.replace(/[^0-9]/g, '');
-  //   const formattedValue = formatNumber(value);
-  //   setInputValue(formattedValue + '원');
-  //   setEmpty(value === '');
-  //   setOverPrice(parseInt(value, 10) > 150000);
-  //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
-  //   setBelowThreshold(parseInt(value, 10) < 1000);
-  // };
-
   const handleInputChange = e => {
+    // 숫자 외의 문자 제거
     const value = e.target.value.replace(/[^0-9]/g, '');
-    setInputValue(value);
+    const formattedValue = formatNumber(value);
+    setInputValue(formattedValue + '원');
     setEmpty(value === '');
     setOverPrice(parseInt(value, 10) > 150000);
     setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
     setBelowThreshold(parseInt(value, 10) < 1000);
   };
+
+  // const handleInputChange = e => {
+  //   const value = e.target.value.replace(/[^0-9]/g, '');
+  //   setInputValue(value);
+  //   setEmpty(value === '');
+  //   setOverPrice(parseInt(value, 10) > 150000);
+  //   setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
+  //   setBelowThreshold(parseInt(value, 10) < 1000);
+  // };
 
   const handleBlur = e => {
     const formattedValue = formatNumber(e.target.value) + '원';
