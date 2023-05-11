@@ -10,10 +10,10 @@ export const FooterContainer = styled.div`
 export const FooterUl = styled.ul`
   display: flex;
   padding-left: 0;
-  margin-top: 13px;
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  height: 100%;
 `;
 
 export const FooterList = styled.li`
