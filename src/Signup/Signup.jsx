@@ -183,7 +183,7 @@ const Signup = () => {
   );
 
   console.log('date', date);
-  console.log('date length', date.length);
+  // console.log('date length', date.length);
 
   // 회원가입 완료
   const onSubmit = e => {
