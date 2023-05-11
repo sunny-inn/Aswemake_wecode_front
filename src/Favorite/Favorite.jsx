@@ -53,7 +53,7 @@
 
 // export default Favorite;
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import FavoriteEmpty from './FavoriteEmpty';
 import FavoriteList from './FavoriteList';
 import Header from '../Components/Header/Header';
@@ -61,6 +61,8 @@ import Header from '../Components/Header/Header';
 const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
   const [imageStates, setImageStates] = useState([]);
+  const navigate = useNavigate();
+  const reRender = navigate('/favorite');
 
   const token = localStorage.getItem('token');
 
@@ -76,6 +78,7 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data);
+        reRender();
       });
   }, []);
 
