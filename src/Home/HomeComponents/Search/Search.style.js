@@ -56,6 +56,7 @@ export const SearchedList = styled.ul`
   gap: 5px;
   height: 500px;
   padding-bottom: 10px;
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 export const SearchedItem = styled.li`
