@@ -7,20 +7,21 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
   console.log('ggg', mart);
 
   const onClickFavorite = () => {
-    fetch(`https://flyers.qmarket.me/api/favorite/${mart.martId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: token,
-      },
-      body: JSON.stringify(`${mart.favoriteCheck}`),
-    }).then(response => {
-      if (response.ok) {
-        console.log('response', response);
-      } else {
-        console.error('errorMsg');
-      }
-    });
+    token &&
+      fetch(`https://flyers.qmarket.me/api/favorite/${mart.martId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+        body: JSON.stringify(`${mart.favoriteCheck}`),
+      }).then(response => {
+        if (response.ok) {
+          console.log('response', response);
+        } else {
+          console.error('errorMsg');
+        }
+      });
   };
 
   const img = mart?.martFlyerImages;
@@ -32,7 +33,7 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         <>
           <div>
             <S.CarouselImg
-              src={ // "images/flyernone.png"
+              src={
                 mart.martFlyerImages === '0'
                   ? 'images/flyernone.png'
                   : mart.martFlyerImages[0].imageUrl
