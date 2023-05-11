@@ -87,7 +87,7 @@ const Signup = () => {
 
   const handleDate = e => {
     const day = e.target.value;
-    if (day !== '') {
+    if (day.length === 2) {
       const formattedDay = formatDay(day);
       setDate(formattedDay);
     } else {
@@ -182,6 +182,7 @@ const Signup = () => {
   );
 
   console.log('date', date);
+  console.log('date length', date.length);
 
   // 회원가입 완료
   const onSubmit = e => {
