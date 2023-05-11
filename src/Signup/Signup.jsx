@@ -98,7 +98,6 @@ const Signup = () => {
   useEffect(() => {
     if (year && month && date) {
       setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
-      console.log(signupInfo.birth);
     }
   }, [date]);
 
