@@ -17,10 +17,10 @@ export const FlyerCarouselContainer = styled.div`
     }
   }
   .slick-slide slick-active slick-current {
-    margin-right: 10px;
+    margin-right: 5px;
   }
   .slick-slide {
-    margin-right: 10px;
+    margin-right: 5px;
   }
 `;
 
