@@ -174,7 +174,7 @@ const WithdrawPoint = () => {
     // 숫자 외의 문자 제거
     const value = e.target.value.replace(/[^0-9]/g, '');
     const formattedValue = formatNumber(value);
-    setInputValue(formattedValue);
+    setInputValue(formattedValue + '원');
     setEmpty(value === '');
     setOverPrice(parseInt(value, 10) > 150000);
     setOverHoldingPoint(parseInt(value, 10) > holdingPoint);
@@ -191,7 +191,7 @@ const WithdrawPoint = () => {
   // };
 
   const handleBlur = e => {
-    const formattedValue = formatNumber(e.target.value) + '원';
+    const formattedValue = formatNumber(e.target.value);
     setInputValue(formattedValue);
   };
   const showCurrency = () => {
