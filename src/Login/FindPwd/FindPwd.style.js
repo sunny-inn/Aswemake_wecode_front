@@ -89,12 +89,23 @@ export const FindPwdSubmit = styled.button`
   font-weight: 700;
 `;
 
+// export const Timer = styled.div`
+//   /* position: absolute; */
+//   /* top: 57.16%;
+//   left: 186px; */
+//   margin-left: 172px;
+//   margin-top: -32px;
+//   color: #252525;git
+//   font-weight: 500;
+//   font-size: 13px;
+//   color: #ff6a21;
+// `;
+
 export const Timer = styled.div`
-  /* position: absolute; */
-  /* top: 57.16%;
-  left: 186px; */
-  margin-left: 172px;
-  margin-top: -32px;
+  position: absolute;
+  top: 100%; // Adjust this value to position the Timer vertically
+  left: 50%; // Adjust this value to position the Timer horizontally
+  transform: translateX(-50%);
   color: #252525;
   font-weight: 500;
   font-size: 13px;

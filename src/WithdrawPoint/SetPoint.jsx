@@ -5,12 +5,19 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LoginLayout from '../Login/Component/LoginLayout';
 
 const SetPoint = () => {
-  const navigate = useNavigate();
   const location = useLocation();
-  const accountHolderName = location.state?.accountHolderName || '';
+  const formatNumber = num => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  const accountHolderName = location.state?.accountHolderName || '예금주명';
   const withdrawalPoints = location.state?.withdrawalPoints
     ? parseInt(location.state.withdrawalPoints, 10)
     : 0;
+
+  if (!location.state) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -19,7 +26,7 @@ const SetPoint = () => {
         <S.Container>
           <S.Name>{accountHolderName}님</S.Name>
           <S.Inform style={{ color: '#FF6A21' }}>
-            &nbsp;&nbsp;{withdrawalPoints}원
+            &nbsp;&nbsp;{formatNumber(withdrawalPoints)}원
           </S.Inform>
           <S.InformPoint>&nbsp;&nbsp;인출 요청이 완료되었습니다!</S.InformPoint>
           <S.WithdrawNotify>

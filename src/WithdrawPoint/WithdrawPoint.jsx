@@ -228,7 +228,9 @@ const WithdrawPoint = () => {
           <div>
             <S.PointWrapper>
               <S.MyPoint>보유포인트</S.MyPoint>
-              <S.HoldingPoint>{Math.floor(holdingPoint)}</S.HoldingPoint>
+              <S.HoldingPoint>
+                {formatNumber(Math.floor(holdingPoint))}
+              </S.HoldingPoint>
               <S.HoldingPoint>원</S.HoldingPoint>
             </S.PointWrapper>
             <S.WithdrawPoint

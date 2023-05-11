@@ -227,7 +227,7 @@ const FindPwd = () => {
         >
           인증번호 받기
         </S.ButtonOne>
-        <S.InputBox
+        {/* <S.InputBox
           style={{ width: '204px' }}
           placeholder="인증번호를 입력해주세요."
           name="code"
@@ -235,7 +235,17 @@ const FindPwd = () => {
           onChange={handleCode}
           borderColor={alertMsg === false || expired ? '#e40303' : '#dbdbdb'}
         />
-        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
+        {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>} */}
+        <div style={{ position: 'relative' }}>
+          <S.InputBox
+            style={{ width: '204px' }}
+            placeholder="전화번호를 입력해주세요."
+            name="phoneNumber"
+            value={input.phoneNumber}
+            onChange={saveInput}
+          />
+          {showTimer && <S.Timer>{formatTime(seconds)}</S.Timer>}
+        </div>
         <S.ButtonTwo
           onClick={onCodeBtn}
           disabled={codeBtnChange || alertMsg === true}
