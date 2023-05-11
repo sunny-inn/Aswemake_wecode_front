@@ -126,7 +126,11 @@ const MartInfoStatus = ({ setIsMartInfoStatus }) => {
                   </S.MartInfoStatusTitleWrap>
                   <article>
                     <S.MartStatusImgWrap>
-                      <img src={mart.imageUrl} alt="mart" />
+                      {mart.imageUrl === null ? (
+                        <img src="/images/fourthRec.png" alt="mart" />
+                      ) : (
+                        <img src={mart.imageUrl} alt="mart" />
+                      )}
                     </S.MartStatusImgWrap>
                     <S.MartStatusTextWrap>
                       <S.MartInfoStatusName>

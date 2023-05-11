@@ -41,6 +41,7 @@ const Signup = () => {
     passwd,
     gender,
     name,
+    birth,
     address,
     addressDetail,
     phoneNumber,
@@ -97,7 +98,9 @@ const Signup = () => {
 
   useEffect(() => {
     if (year && month && date) {
-      setSignupInfo(prev => ({ ...prev, birth: year + month + date }));
+      let birthDate = (year + month + date).length === 8 && year + month + date;
+      setSignupInfo(prev => ({ ...prev, birth: birthDate }));
+      console.log(birthDate);
     }
   }, [date]);
 
@@ -171,9 +174,7 @@ const Signup = () => {
     isValidPasswd === true &&
     correctPasswd === true &&
     name !== '' &&
-    year.length === 4 &&
-    month !== '' &&
-    date.length === 2 &&
+    birth.length === 8 &&
     gender !== '' &&
     postalCode !== '' &&
     addressDetail !== '' &&
@@ -182,6 +183,7 @@ const Signup = () => {
   );
 
   console.log('date', date);
+  // console.log('date length', date.length);
 
   // 회원가입 완료
   const onSubmit = e => {

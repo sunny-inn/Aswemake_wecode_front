@@ -9,6 +9,7 @@ const Birth = ({ year, date, handleYear, handleMonth, handleDate }) => {
         name="year"
         placeholder="년(4자)"
         onChange={handleYear}
+        maxLength="4"
       />
       <S.Month onChange={e => handleMonth(e)}>
         <S.MonthOption value="none" hidden>
