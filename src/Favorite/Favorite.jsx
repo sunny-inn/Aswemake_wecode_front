@@ -7,6 +7,7 @@ import Header from '../Components/Header/Header';
 const Favorite = () => {
   const [addedFavoriteList, setAddedFavoriteList] = useState([]);
   const [imageStates, setImageStates] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
@@ -23,8 +24,11 @@ const Favorite = () => {
       .then(response => response.json())
       .then(data => {
         setAddedFavoriteList(data.data);
+        setLoading(false);
       });
   }, []);
+
+  if (loading) return null;
 
   return (
     <div>

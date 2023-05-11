@@ -19,7 +19,7 @@ const UploadInput = css`
   }
 `;
 
-export const UplaodForm = styled.form`
+export const UplaodForm = styled.div`
   width: 360px;
   height: 616px;
   overflow-y: scroll;

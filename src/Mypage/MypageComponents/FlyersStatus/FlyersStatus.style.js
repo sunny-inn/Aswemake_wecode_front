@@ -78,6 +78,7 @@ export const FlyersStatusImgWrap = styled.div`
   img {
     width: 88px;
     height: 88px;
+    border-radius: 8px;
   }
 `;
 
