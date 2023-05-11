@@ -10,15 +10,17 @@ export const FlyerCarouselContainer = styled.div`
   overflow-x: hidden;
   margin-left: 10px;
 
+  .slick-list {
+    .slick-track {
+      display: flex;
+      width: 520px;
+    }
+  }
   .slick-slide slick-active slick-current {
     margin-right: 10px;
   }
   .slick-slide {
     margin-right: 10px;
-  }
-  .slick-track {
-    display: flex;
-    width: 520px;
   }
 `;
 
