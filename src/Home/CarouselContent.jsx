@@ -30,9 +30,9 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         <div>
           <S.CarouselImg
             src={
-              mart?.martFlyerImages === '0'
+              mart.martFlyerImages === '0'
                 ? './images/flyernone.png'
-                : mart.martFlyerImages[0].imageUrl
+                : mart.martFlyerImages.imageUrl
             }
             alt="전단지"
             onClick={onClickMartItem(mart.martId)}
