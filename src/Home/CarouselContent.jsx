@@ -7,25 +7,21 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
   const params = useParams();
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const sendFavoriteRequest = (favoriteCheck, successMsg, errorMsg) => {
+  const onClickFavorite = () => {
     fetch(`https://flyers.qmarket.me/api/favorite/${params.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         Authorization: token,
       },
-      body: JSON.stringify({ favoriteCheck }),
+      body: JSON.stringify({ isFavorite }),
     }).then(response => {
       if (response.ok) {
-        console.log(successMsg);
+        setIsFavorite(prev => !prev);
       } else {
-        console.error(errorMsg);
+        console.error('errorMsg');
       }
     });
-  };
-
-  const onClickFavorite = () => {
-    console.log('favorite?', mart.isFavorite);
   };
 
   return (
@@ -50,8 +46,8 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
             <S.StarImg
               src={
                 mart.isFavorite
-                  ? '/images/clickedFavorite.png'
-                  : '/images/favorite.png'
+                  ? './images/clickedFavorite.png'
+                  : './images/favorite.png'
               }
               onClick={() => onClickFavorite({ id: mart.martId })}
             />
