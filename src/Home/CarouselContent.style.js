@@ -6,23 +6,6 @@ export const StarImg = styled.img`
   display: inline-block;
 `;
 
-export const CarouselWholeContainer = styled(Slider)`
-  width: 360px;
-  height: 115px;
-  z-index: 10;
-  position: absolute;
-  margin-left: 2px;
-  bottom: 3px;
-  overflow-x: hidden;
-
-  .slick-list {
-    position: relative;
-    display: inherit;
-    overflow: hidden;
-    margin: 0px -12px;
-  }
-`;
-
 export const CarouselImg = styled.img`
   width: 88px;
   height: 88px;
