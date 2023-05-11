@@ -31,7 +31,6 @@ const Footer = () => {
                 onClick={goToNav}
                 src={index === clickedIndex ? item.checkedImg : item.defaultImg}
               />
-              {/* <S.FooterTitle> {item.title}</S.FooterTitle> */}
             </S.FooterList>
           </div>
         ))}
@@ -46,7 +45,7 @@ const FOOTER_LIST = [
   {
     id: 1,
     title: '홈',
-    defaultImg: '/images/홈(1).png',
+    defaultImg: '/images/홈 (1).png',
     checkedImg: '/images/홈.png',
     goTo: '/home',
   },
