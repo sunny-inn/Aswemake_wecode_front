@@ -8,10 +8,6 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
 
   console.log('ggg', mart);
 
-  useEffect(() => {
-    console.log('isClicked');
-  }, [isClicked]);
-
   const onClickFavorite = () => {
     token &&
       fetch(`https://flyers.qmarket.me/api/favorite/${mart.martId}`, {
@@ -22,10 +18,10 @@ const CarouselContent = ({ mart, onClickMartItem }) => {
         },
       })
         .then(response => response.json())
-        .then(data => console.log('data', data));
+        .then(data => setIsClicked(data.data[0].favoriteStatus));
   };
 
-  // console.log('carousel', isClicked);
+  console.log('carousel', isClicked);
 
   return (
     <S.CarouselBox>
