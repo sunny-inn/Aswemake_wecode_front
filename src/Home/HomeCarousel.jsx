@@ -98,8 +98,6 @@ const HomeCarousel = ({
   //   navigate(`/detail/${selectedMart.martId}`);
   // };
 
-  console.log('homecarousel');
-
   const onClickMartItem = id => e => {
     const selectedMart = homeMartList.find(mart => mart.martId === id);
     if (selectedMart && selectedMart.martFlyerImages === '0') {
