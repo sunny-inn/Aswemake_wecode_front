@@ -88,7 +88,7 @@ const Signup = () => {
 
   const handleDate = e => {
     const day = e.target.value;
-    if (day.length === 2) {
+    if (day && day.length === 2) {
       const formattedDay = formatDay(day);
       setDate(formattedDay);
     } else {
