@@ -17,6 +17,7 @@ const Upload = () => {
     startDate: '',
     endDate: '',
   });
+  const [flyerExist, setFlyerExist] = useState(false);
   const [img1, setImg1] = useState();
   const [img2, setImg2] = useState();
   const [img3, setImg3] = useState();
@@ -80,18 +81,28 @@ const Upload = () => {
       .then(response => response.json())
       .then(data => {
         if (data.mart.length !== 0) {
-          setMartInfo(data.mart[0]);
+          setMartInfo(data.mart.martInfo[0]);
           setUploadInfo(prev => ({
             ...prev,
             martPhoneNumber: phoneNumber,
           }));
-          setAlertMsg(false);
+          setFlyerExist(data.mart.flyerExist);
         } else {
           setAlertMsg(true);
         }
       });
   };
 
+  // 마트 전화번호 입력 후 전단 등록된 마트인지 확인하는 함수
+  useEffect(() => {
+    if (martInfo && flyerExist === true) {
+      setAlertMsg(true);
+    } else {
+      setAlertMsg(false);
+    }
+  }, [flyerExist]);
+
+  // 필독 클릭 시 모달 띄우는 함수
   const onClickTutorial = () => {
     setIsTutorialClicked(prev => !prev);
   };
@@ -199,8 +210,6 @@ const Upload = () => {
     setIsCheckboxClicked(false);
   };
 
-  console.log(martInfo);
-
   return (
     <S.UplaodForm id="scroller">
       <Header type="upload" />
@@ -217,6 +226,11 @@ const Upload = () => {
             />
             <S.PhoneBtn onClick={onClickMart}>확인</S.PhoneBtn>
           </S.PhoneBox>
+          {alertMsg === false && flyerExist === true && (
+            <S.AlertMsg>
+              이미 전단 등록된 마트입니다. 다른 마트의 전단을 등록해주세요.
+            </S.AlertMsg>
+          )}
           {alertMsg && (
             <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>
           )}
