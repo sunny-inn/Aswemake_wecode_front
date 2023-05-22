@@ -199,6 +199,8 @@ const Upload = () => {
     setIsCheckboxClicked(false);
   };
 
+  console.log(martInfo);
+
   return (
     <S.UplaodForm id="scroller">
       <Header type="upload" />
