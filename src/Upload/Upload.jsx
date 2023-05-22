@@ -226,12 +226,12 @@ const Upload = () => {
             />
             <S.PhoneBtn onClick={onClickMart}>확인</S.PhoneBtn>
           </S.PhoneBox>
-          {alertMsg === false && flyerExist === true && (
+          {martInfo && flyerExist === true && alertMsg && (
             <S.AlertMsg>
               이미 전단 등록된 마트입니다. 다른 마트의 전단을 등록해주세요.
             </S.AlertMsg>
           )}
-          {alertMsg && (
+          {martInfo && flyerExist === false && alertMsg && (
             <S.AlertMsg>마트 전화번호가 올바르지 않습니다.</S.AlertMsg>
           )}
         </S.InputBox>
